@@ -1,0 +1,126 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 # Test Configuration for Dyslexic AI System\
+version: 1.0.0\
+\
+# Global test settings\
+global:\
+  timeout: 30  # Default timeout in seconds\
+  log_level: INFO\
+  test_data_path: "./tests/data"\
+  temp_dir: "./tests/temp"\
+  parallel_execution: true\
+  max_workers: 4\
+\
+# Core module test configuration\
+core:\
+  accessibility:\
+    min_font_size: 14\
+    target_line_spacing: 1.5\
+    min_contrast_ratio: 4.5\
+    supported_fonts:\
+      - OpenDyslexic\
+      - Arial\
+      - Comic Sans MS\
+    color_schemes:\
+      - name: "Default Light"\
+        background: "#FFFFFF"\
+        text: "#000000"\
+      - name: "Default Dark"\
+        background: "#1A1A1A"\
+        text: "#FFFFFF"\
+\
+  text_processing:\
+    max_sentence_length: 20\
+    min_word_spacing: 1.2\
+    syllable_separator: "-"\
+    complexity_threshold: 0.7\
+\
+# ML model test configuration\
+ml:\
+  model_path: "./models"\
+  batch_size: 32\
+  test_split: 0.2\
+  metrics:\
+    - accuracy\
+    - processing_time\
+    - readability_score\
+  thresholds:\
+    min_accuracy: 0.85\
+    max_processing_time: 2.0  # seconds\
+    min_readability_improvement: 0.3\
+\
+# API test configuration\
+api:\
+  endpoint: "http://localhost:8000"\
+  timeout: 5\
+  max_retries: 3\
+  test_cases:\
+    - name: "basic_text"\
+      input: "The quick brown fox jumps over the lazy dog"\
+      expected_word_count: 9\
+    - name: "complex_text"\
+      input: "The utilization of complex terminology in academic writing"\
+      expected_simplification: true\
+\
+# Monitoring test configuration\
+monitoring:\
+  metrics_check_interval: 60\
+  performance_thresholds:\
+    cpu_usage: 80\
+    memory_usage: 85\
+    latency: 200  # milliseconds\
+  alert_endpoints:\
+    - type: "email"\
+      address: "alerts@dyslexicai.test"\
+    - type: "slack"\
+      webhook: "https://hooks.slack.com/services/TEST"\
+\
+# Security test configuration\
+security:\
+  auth_timeout: 300\
+  max_failed_attempts: 3\
+  required_headers:\
+    - "X-API-Key"\
+    - "Content-Type"\
+  sanitization_rules:\
+    - pattern: "[<>]"\
+      replace: ""\
+    - pattern: "script"\
+      replace: "blocked"\
+\
+# Test data configuration\
+test_data:\
+  datasets:\
+    - name: "simple_texts"\
+      path: "./tests/data/simple_texts.json"\
+      size: 100\
+    - name: "complex_texts"\
+      path: "./tests/data/complex_texts.json"\
+      size: 100\
+    - name: "dyslexic_samples"\
+      path: "./tests/data/dyslexic_samples.json"\
+      size: 50\
+\
+# Environment-specific configurations\
+environments:\
+  development:\
+    log_level: DEBUG\
+    detailed_errors: true\
+    mock_external_services: true\
+    \
+  staging:\
+    log_level: INFO\
+    detailed_errors: true\
+    mock_external_services: false\
+    \
+  production:\
+    log_level: WARNING\
+    detailed_errors: false\
+    mock_external_services: false\
+    performance_monitoring: true}
