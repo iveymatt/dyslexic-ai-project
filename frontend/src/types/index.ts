@@ -1,11 +1,19 @@
-export type AgentMode = 'study-buddy' | 'writing-helper' | 'task-master' | 'executive-coach' | 'research-partner';
+export type ThinkingMode = 'socratic' | 'strategic';
+
+export type SubAgent =
+  | 'think-out-loud'
+  | 'executive-strategist'
+  | 'writing-clarity'
+  | 'task-breakdown'
+  | 'research-digest';
 
 export interface Message {
   id: string;
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
-  agentMode?: AgentMode;
+  mode?: ThinkingMode;
+  subAgent?: SubAgent;
 }
 
 export interface Chat {
@@ -14,7 +22,8 @@ export interface Chat {
   messages: Message[];
   createdAt: Date;
   updatedAt: Date;
-  agentMode: AgentMode;
+  mode: ThinkingMode;
+  subAgent: SubAgent;
 }
 
 export interface AccessibilitySettings {
@@ -27,13 +36,20 @@ export interface AccessibilitySettings {
   readingGuideEnabled: boolean;
 }
 
-export interface AgentConfig {
-  id: AgentMode;
+export interface SubAgentConfig {
+  id: SubAgent;
   name: string;
   description: string;
-  icon: string;
   systemPrompt: string;
+}
+
+export interface ModeConfig {
+  id: ThinkingMode;
+  name: string;
+  description: string;
+  tagline: string;
   color: string;
+  subAgents: SubAgentConfig[];
   examplePrompts: string[];
 }
 

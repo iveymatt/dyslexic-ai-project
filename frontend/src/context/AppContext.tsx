@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
-import type { Chat, Message, AccessibilitySettings, AgentMode } from '../types';
-import { defaultAgent } from '../config/agents';
+import type { Chat, Message, AccessibilitySettings, ThinkingMode, SubAgent } from '../types';
+import { defaultMode, defaultSubAgent } from '../config/modes';
 
 interface AppContextType {
   // Chat state
@@ -8,7 +8,7 @@ interface AppContextType {
   currentChat: Chat | null;
   setCurrentChat: (chat: Chat | null) => void;
   addMessage: (message: Omit<Message, 'id' | 'timestamp'>) => void;
-  createNewChat: (agentMode?: AgentMode) => void;
+  createNewChat: (mode?: ThinkingMode, subAgent?: SubAgent) => void;
   deleteChat: (chatId: string) => void;
 
   // Accessibility state
@@ -21,9 +21,11 @@ interface AppContextType {
   accessibilityPanelOpen: boolean;
   setAccessibilityPanelOpen: (open: boolean) => void;
 
-  // Agent mode
-  currentAgentMode: AgentMode;
-  setCurrentAgentMode: (mode: AgentMode) => void;
+  // Mode and sub-agent
+  currentMode: ThinkingMode;
+  setCurrentMode: (mode: ThinkingMode) => void;
+  currentSubAgent: SubAgent;
+  setCurrentSubAgent: (subAgent: SubAgent) => void;
 
   // TTS state
   isSpeaking: boolean;
@@ -50,7 +52,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   );
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [accessibilityPanelOpen, setAccessibilityPanelOpen] = useState(false);
-  const [currentAgentMode, setCurrentAgentMode] = useState<AgentMode>(defaultAgent.id);
+  const [currentMode, setCurrentMode] = useState<ThinkingMode>(defaultMode);
+  const [currentSubAgent, setCurrentSubAgent] = useState<SubAgent>(defaultSubAgent);
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   // Load from localStorage on mount
@@ -119,18 +122,20 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   }, [accessibilitySettings]);
 
-  const createNewChat = (agentMode: AgentMode = defaultAgent.id) => {
+  const createNewChat = (mode: ThinkingMode = defaultMode, subAgent: SubAgent = defaultSubAgent) => {
     const newChat: Chat = {
       id: `chat-${Date.now()}`,
       title: 'New Conversation',
       messages: [],
       createdAt: new Date(),
       updatedAt: new Date(),
-      agentMode,
+      mode,
+      subAgent,
     };
     setChats([newChat, ...chats]);
     setCurrentChat(newChat);
-    setCurrentAgentMode(agentMode);
+    setCurrentMode(mode);
+    setCurrentSubAgent(subAgent);
   };
 
   const addMessage = (message: Omit<Message, 'id' | 'timestamp'>) => {
@@ -185,8 +190,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setSidebarOpen,
         accessibilityPanelOpen,
         setAccessibilityPanelOpen,
-        currentAgentMode,
-        setCurrentAgentMode,
+        currentMode,
+        setCurrentMode,
+        currentSubAgent,
+        setCurrentSubAgent,
         isSpeaking,
         setIsSpeaking,
       }}
