@@ -68,38 +68,85 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         </div>
       </section>
 
-      {/* Agents Section */}
+      {/* Thinking Modes Section */}
       <section className="container mx-auto px-6 py-16">
-        <h2 className="text-3xl font-bold text-center mb-6">Your Personal AI Team</h2>
+        <h2 className="text-3xl font-bold text-center mb-6">Two Ways to Think</h2>
         <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-          Switch between specialized agents designed for different thinking tasks
+          Choose your thinking mode based on what you need
         </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          <AgentCard
-            name="Study Buddy"
-            description="Learn through questions and analogies"
-            color="bg-blue-600"
-          />
-          <AgentCard
-            name="Writing Helper"
-            description="Improve clarity without losing your voice"
-            color="bg-purple-600"
-          />
-          <AgentCard
-            name="Task Master"
-            description="Break big projects into small steps"
-            color="bg-green-600"
-          />
-          <AgentCard
-            name="Executive Coach"
-            description="Time management and focus strategies"
-            color="bg-orange-600"
-          />
-          <AgentCard
-            name="Research Partner"
-            description="Summarize and organize information"
-            color="bg-teal-600"
-          />
+
+        {/* Mode Cards */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
+          {/* SOCRATIC Mode */}
+          <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-2xl text-white shadow-2xl">
+            <h3 className="text-3xl font-bold mb-4">SOCRATIC</h3>
+            <p className="text-xl mb-6 text-blue-100">Explore together. Ask questions. Think it through.</p>
+            <p className="text-blue-100 mb-6">
+              Perfect for when you need to think through problems, explore ideas, or understand something deeply.
+            </p>
+            <div className="space-y-3">
+              <div className="bg-white/10 rounded-lg p-4">
+                <h4 className="font-semibold mb-1">Think Out Loud</h4>
+                <p className="text-sm text-blue-100">Explore ideas through dialogue</p>
+              </div>
+              <div className="bg-white/10 rounded-lg p-4">
+                <h4 className="font-semibold mb-1">Executive Strategist</h4>
+                <p className="text-sm text-blue-100">ADHD-aware planning & decision-making</p>
+              </div>
+            </div>
+          </div>
+
+          {/* STRATEGIC Mode */}
+          <div className="bg-gradient-to-br from-green-600 to-green-800 p-8 rounded-2xl text-white shadow-2xl">
+            <h3 className="text-3xl font-bold mb-4">STRATEGIC</h3>
+            <p className="text-xl mb-6 text-green-100">Get direct answers. Clear info. Done.</p>
+            <p className="text-green-100 mb-6">
+              Perfect for when you need quick answers, actionable steps, or direct information.
+            </p>
+            <div className="space-y-3">
+              <div className="bg-white/10 rounded-lg p-4">
+                <h4 className="font-semibold mb-1">Writing Clarity</h4>
+                <p className="text-sm text-green-100">Direct, actionable writing feedback</p>
+              </div>
+              <div className="bg-white/10 rounded-lg p-4">
+                <h4 className="font-semibold mb-1">Task Breakdown</h4>
+                <p className="text-sm text-green-100">Break projects into achievable steps</p>
+              </div>
+              <div className="bg-white/10 rounded-lg p-4">
+                <h4 className="font-semibold mb-1">Research Digest</h4>
+                <p className="text-sm text-green-100">Summarize & organize information</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* When to Use */}
+        <div className="max-w-3xl mx-auto bg-gray-800 rounded-xl p-8">
+          <h3 className="text-2xl font-bold mb-6 text-center">When to Use Each Mode</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 className="text-blue-400 font-semibold mb-3 flex items-center gap-2">
+                <span className="text-2xl">💭</span> Use SOCRATIC when:
+              </h4>
+              <ul className="space-y-2 text-gray-300 text-sm">
+                <li>• You're stuck and need to think it through</li>
+                <li>• Making a big decision</li>
+                <li>• Learning something new</li>
+                <li>• Planning your approach</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-green-400 font-semibold mb-3 flex items-center gap-2">
+                <span className="text-2xl">⚡</span> Use STRATEGIC when:
+              </h4>
+              <ul className="space-y-2 text-gray-300 text-sm">
+                <li>• You need a quick answer</li>
+                <li>• Want specific steps to follow</li>
+                <li>• Need to improve your writing</li>
+                <li>• Researching information</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -160,15 +207,6 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode; titl
       <div className="text-primary-500 mb-4">{icon}</div>
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
       <p className="text-gray-400">{description}</p>
-    </div>
-  );
-}
-
-function AgentCard({ name, description, color }: { name: string; description: string; color: string }) {
-  return (
-    <div className={`${color} p-6 rounded-xl text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all`}>
-      <h3 className="text-xl font-semibold mb-2">{name}</h3>
-      <p className="text-white/90">{description}</p>
     </div>
   );
 }

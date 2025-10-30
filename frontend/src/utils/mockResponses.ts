@@ -1,112 +1,116 @@
-import type { AgentMode } from '../types';
+import type { ThinkingMode, SubAgent } from '../types';
 
-const studyBuddyResponses = [
-  "Great question! Let me break this down into smaller pieces. Think of it like building with blocks - each piece fits together to create the whole picture. What part would you like to explore first?",
-  "I love your curiosity! Here's an analogy that might help: imagine it's like a recipe. You have ingredients (inputs), a process (what you do), and a final dish (output). Does that make sense so far?",
-  "Let's use the Socratic method here. Instead of me just telling you, what do YOU think might happen if we tried this approach? There's no wrong answer - I'm genuinely curious about your thinking!",
-  "That's a complex topic, so let's chunk it down. First, the basic concept... Then, how it works in practice... And finally, why it matters. Ready to dive into step one?",
+// SOCRATIC MODE RESPONSES
+const thinkOutLoudResponses = [
+  "Great question! Let me ask you this first: what part of this feels most confusing to you? Is it the overall goal, or a specific step? Understanding where you're stuck will help me ask better questions. 🤔",
+  "I love that you're exploring this! Before we dive in, tell me: why is this important to you right now? Understanding your 'why' often unlocks the 'how.'",
+  "Interesting! Let's think through this together. What have you already tried? Sometimes the 'failed' attempts tell us more than we realize.",
+  "That's a big question - let's break it down. If you could only focus on one piece of this right now, which piece would make the biggest difference? Start there.",
 ];
 
-const writingHelperResponses = [
-  "I can help with that! Here's a clearer version:\n\n**Before:** [original text]\n\n**After:** [improved version]\n\n**Why these changes help:**\n- Shorter sentences = easier to follow\n- Active voice = more direct\n- Simpler words = clearer meaning\n\nWhat do you think?",
-  "Good start! Let's polish this together. I see a few opportunities to make your writing even stronger. The core idea is great - we just need to refine the delivery. Want me to show you what I'm thinking?",
-  "Let me help you structure this. Right now, your ideas are all good, but they're arranged in a way that might confuse readers. Think of it like organizing a room - same furniture, better layout. Here's what I suggest...",
-  "Your voice is coming through nicely here! I'd keep most of this as-is. Just a couple of tiny grammar tweaks and one sentence that could be split for easier reading. You're doing well!",
+const executiveStrategistResponses = [
+  "Let's figure this out together. First: what's your energy level right now - high, medium, or running on fumes? Be honest. That'll shape our strategy.",
+  "Good! Before we plan, tell me: when do you work best? Morning fresh? Late night hyperfocus? Deadline pressure? Let's work WITH your brain, not against it.",
+  "I hear you. This feels overwhelming. Let's start small: what's ONE thing you could do in the next 10 minutes? Just one. Sometimes starting is the hardest part.",
+  "Smart question! Let's prioritize by asking: what happens if you DON'T do this? If the answer is 'not much,' it might not be as urgent as it feels.",
 ];
 
-const taskMasterResponses = [
-  "Okay, let's break this down into bite-sized tasks!\n\n**Phase 1: Planning (Day 1)**\n☐ Task 1 (30 mins)\n☐ Task 2 (45 mins)\n\n**Phase 2: Execution (Days 2-3)**\n☐ Task 3 (1 hour)\n☐ Task 4 (1 hour)\n\n**Phase 3: Wrap-up (Day 4)**\n☐ Final review (30 mins)\n\nLet's start with Task 1 - that's your quick win!",
-  "I see you're feeling overwhelmed. That's totally normal for a project this size! Here's the good news: we can split this into small, manageable pieces. Would you like me to prioritize them for you, or shall we tackle them in chronological order?",
-  "Perfect! Here's your action plan:\n\n**This Week:**\n- Monday: Do X (1 hour)\n- Wednesday: Do Y (1 hour)\n- Friday: Do Z (30 mins)\n\n**Next Week:**\n- Continue with...\n\nNotice I've built in rest days. Your brain needs breaks to process and recharge!",
-  "Let's use the 'eat the frog' method - tackle the hardest thing first when your energy is highest. Here's what I think is your 'frog' for this project... Does that feel right to you?",
+// STRATEGIC MODE RESPONSES
+const writingClarityResponses = [
+  "**ORIGINAL:** [Your text]\n\n**IMPROVED:** [Clearer version with shorter sentences and simpler words]\n\n**WHY THESE CHANGES:**\n• Shorter sentences = easier to follow\n• Active voice = more direct\n• Simpler words = clearer meaning\n\nYour core idea is great - these tweaks just make it shine! ✨",
+  "Let me help clean this up:\n\n**BEFORE:**\n[Original]\n\n**AFTER:**\n[Improved]\n\n**What Changed:**\n1. Removed jargon\n2. Split long sentence into two\n3. Used everyday words\n\nMuch easier to read now!",
+  "Good start! Here's a tighter version:\n\n**YOUR VERSION:** [Original text]\n**STREAMLINED:** [Improved text]\n\n**Key improvements:**\n- Cut 30% of words (clarity, not fluff)\n- One idea per sentence\n- Stronger verbs\n\nYou're getting there!",
 ];
 
-const executiveCoachResponses = [
-  "Let's use the Eisenhower Matrix to prioritize:\n\n**DO FIRST (Urgent + Important):**\n1. [Priority task]\n\n**SCHEDULE (Important, not urgent):**\n2. [Important task]\n\n**SIMPLIFY (Urgent, not important):**\n3. [Quick task]\n\n**SKIP (Neither):**\n- You can honestly let this go\n\nPick ONE from 'Do First' and let's make that happen today.",
-  "I hear you - task paralysis is real. Let's try the 2-minute rule: if something takes less than 2 minutes, do it NOW. Otherwise, add it to your list. This gets small tasks out of the way and builds momentum. Ready to identify your 2-minute tasks?",
-  "Focus tip: Try the Pomodoro Technique! Work for 25 minutes, then take a 5-minute break. After 4 cycles, take a longer 15-30 minute break. This matches how most brains actually work best. Want to try one Pomodoro right now?",
-  "Time to match tasks to your energy! When are you most alert and focused? Schedule your hardest tasks then. When are you in 'zombie mode'? Save easy, mindless tasks for that time. Let's map out your energy patterns.",
+const taskBreakdownResponses = [
+  "**GOAL:** [Your project]\n\n**STEPS:**\n1. **Do X** (30 min) - This is your 'easy win' to build momentum\n2. **Then Y** (1 hour) - This is the meat of it\n3. **Finally Z** (15 min) - Save the easy wrap-up for when you're tired\n\n**TOTAL TIME:** ~2 hours\n\n**WHY THIS ORDER:** X sets up Y, and you want fresh energy for Y. Z is easy, so you can coast through it.\n\nStart with Step 1 right now? 🚀",
+  "Let's break this down:\n\n**PHASE 1: Setup** (Day 1)\n☐ Task A (20 min)\n☐ Task B (30 min)\n\n**PHASE 2: Main Work** (Days 2-3)\n☐ Task C (2 hours) - Break this into two 1-hour sessions\n☐ Task D (1 hour)\n\n**PHASE 3: Finish** (Day 4)\n☐ Review (30 min)\n\n**REALISTIC TIMELINE:** 4 days with breaks built in. Don't rush Phase 2!",
+  "Here's your game plan:\n\n**Step 1:** Do the boring admin stuff first (30 min) - Get it out of the way\n**Step 2:** Do the creative/hard thinking (1-2 hours) - When your brain is fresh\n**Step 3:** Do the easy execution (45 min) - You can do this on autopilot\n\n**Pro tip:** Schedule Step 2 for your personal 'peak brain time.' When is that for you?",
 ];
 
-const researchPartnerResponses = [
-  "**TL;DR:** [Main takeaway in one sentence]\n\n**KEY POINTS:**\n• Point 1: Most important finding\n• Point 2: Supporting evidence\n• Point 3: What this means\n\n**DETAILS:**\nLet me break down each point...\n\n**NEXT STEPS:**\nBased on this, you might want to explore...",
-  "Here's what I found in that source:\n\n**Main Argument:** [Core thesis]\n\n**Evidence:**\n1. Data point 1\n2. Data point 2\n3. Data point 3\n\n**Credibility:** [Source quality assessment]\n\n**How This Connects:** This relates to your other sources by...",
-  "I've organized your findings into themes:\n\n**Theme 1: [Topic]**\n- Source A says...\n- Source B adds...\n\n**Theme 2: [Topic]**\n- Source C shows...\n\n**Contradictions:**\nInterestingly, Source A and C disagree about...",
-  "**Summary in Simple Terms:**\n\n[Complex concept explained like you're explaining to a friend]\n\n**Why This Matters:**\n[Practical implications]\n\n**If You Want to Learn More:**\n- Read this next: [suggestion]\n- Key term to search: [term]",
+const researchDigestResponses = [
+  "**TL;DR:** The main point in one sentence.\n\n**KEY POINTS:**\n• Most important finding #1\n• Key insight #2\n• Critical detail #3\n\n**DETAILS:**\nHere's the breakdown of each point with more context and explanation...\n\n**WHAT THIS MEANS FOR YOU:**\nPractical takeaway or action step.\n\n**WANT TO LEARN MORE?**\n[Suggested next steps or resources]",
+  "**QUICK ANSWER:**\n[Direct answer to your question]\n\n**EVIDENCE:**\n1. Data point supporting this\n2. Research showing that\n3. Example proving it\n\n**IN SIMPLE TERMS:**\n[Explanation like you're talking to a friend]\n\n**BOTTOM LINE:**\n[What you should actually do with this information]",
+  "Here's what you need to know:\n\n**THE ANSWER:** [Main point]\n\n**WHY IT MATTERS:** [Context]\n\n**HOW IT WORKS:** [Explanation]\n\n**WHAT TO DO:** [Action steps]\n\nClear? Want me to dive deeper into any part?",
 ];
 
-const generalResponses = [
-  "That's an interesting perspective! Tell me more about what you're thinking.",
-  "I'm here to help! Could you give me a bit more context about what you're working on?",
-  "Let's work through this together. What's the main thing you're trying to figure out or accomplish?",
-  "Good question! Let me think about the best way to explain this in a way that makes sense for how your brain works.",
-];
-
-export function generateMockResponse(userMessage: string, agentMode: AgentMode): string {
+export function generateMockResponse(userMessage: string, mode: ThinkingMode, subAgent: SubAgent): string {
   const lowerMessage = userMessage.toLowerCase();
 
-  // Check for specific quick actions
+  // Check for specific quick actions (work across all modes)
   if (lowerMessage.includes('simpler language') || lowerMessage.includes('simplify')) {
-    return "**Simplified Version:**\n\nHere's the same information, but easier to read:\n\n" +
+    return "**Simplified Version:**\n\n" +
+           "Here's the same information, but easier to read:\n\n" +
            "[The previous response rewritten with shorter sentences, everyday words, and clearer structure]\n\n" +
+           "Each sentence has one main idea. No jargon. Short paragraphs.\n\n" +
            "Is this easier to understand? Let me know if you want me to simplify any specific part even more!";
   }
 
   if (lowerMessage.includes('mind map')) {
     return "**Mind Map:**\n\n" +
-           "**Central Topic**\n" +
-           "├─ Main Branch 1\n" +
+           "📍 **Central Topic**\n" +
+           "├─ 🔵 Main Branch 1\n" +
            "│  ├─ Sub-topic A\n" +
            "│  └─ Sub-topic B\n" +
-           "├─ Main Branch 2\n" +
+           "├─ 🟢 Main Branch 2\n" +
            "│  ├─ Sub-topic C\n" +
            "│  └─ Sub-topic D\n" +
-           "└─ Main Branch 3\n" +
+           "└─ 🟡 Main Branch 3\n" +
            "   ├─ Sub-topic E\n" +
            "   └─ Sub-topic F\n\n" +
-           "Does this structure help you visualize the connections?";
+           "Does this structure help you see the connections? Want me to expand any branch?";
   }
 
   if (lowerMessage.includes('extract tasks') || lowerMessage.includes('action items')) {
     return "**Action Items Checklist:**\n\n" +
-           "☐ **Task 1:** [First actionable item] (Priority: High)\n" +
-           "☐ **Task 2:** [Second actionable item] (Priority: Medium)\n" +
-           "☐ **Task 3:** [Third actionable item] (Priority: Low)\n\n" +
-           "**Estimated Time:** 2-3 hours total\n\n" +
-           "**Suggested Order:** Start with Task 1, it'll give you momentum!\n\n" +
-           "Ready to tackle these?";
+           "☐ **Task 1:** [First actionable item] (Priority: High, Time: 30 min)\n" +
+           "☐ **Task 2:** [Second actionable item] (Priority: Medium, Time: 1 hour)\n" +
+           "☐ **Task 3:** [Third actionable item] (Priority: Low, Time: 15 min)\n\n" +
+           "**Total Estimated Time:** 1 hour 45 minutes\n\n" +
+           "**Suggested Order:** Start with Task 1 - it's quick and will give you momentum!\n\n" +
+           "**Best Time To Do This:** When do you have 2 hours of uninterrupted time?";
   }
 
   if (lowerMessage.includes('follow-up questions') || lowerMessage.includes('ask follow')) {
-    return "**Great Follow-Up Questions:**\n\n" +
-           "1. **Dive Deeper:** \"Can you explain more about [specific aspect]?\"\n\n" +
-           "2. **Real-World Application:** \"How would I use this in [your context]?\"\n\n" +
-           "3. **Connection:** \"How does this relate to [related topic you mentioned]?\"\n\n" +
-           "Which one sounds most helpful? Or would you like to explore something else?";
+    if (mode === 'socratic') {
+      return "**Great Follow-Up Questions to Ask Yourself:**\n\n" +
+             "1. **Dig Deeper:** \"Why does this matter to me specifically?\"\n\n" +
+             "2. **Challenge Assumptions:** \"What am I assuming that might not be true?\"\n\n" +
+             "3. **Think Broader:** \"What am I not considering? What's missing?\"\n\n" +
+             "Which question resonates most? Let's explore that one together.";
+    } else {
+      return "**Useful Follow-Up Questions:**\n\n" +
+             "1. **For More Detail:** \"Can you explain more about [specific aspect]?\"\n\n" +
+             "2. **For Application:** \"How would I use this in [your context]?\"\n\n" +
+             "3. **For Connections:** \"How does this relate to [related topic]?\"\n\n" +
+             "Pick one and I'll give you a direct answer!";
+    }
   }
 
-  // Agent-specific responses
+  // Mode and sub-agent specific responses
   let responses: string[];
-  switch (agentMode) {
-    case 'study-buddy':
-      responses = studyBuddyResponses;
-      break;
-    case 'writing-helper':
-      responses = writingHelperResponses;
-      break;
-    case 'task-master':
-      responses = taskMasterResponses;
-      break;
-    case 'executive-coach':
-      responses = executiveCoachResponses;
-      break;
-    case 'research-partner':
-      responses = researchPartnerResponses;
-      break;
-    default:
-      responses = generalResponses;
+
+  if (mode === 'socratic') {
+    if (subAgent === 'think-out-loud') {
+      responses = thinkOutLoudResponses;
+    } else if (subAgent === 'executive-strategist') {
+      responses = executiveStrategistResponses;
+    } else {
+      responses = thinkOutLoudResponses;
+    }
+  } else {
+    // strategic mode
+    if (subAgent === 'writing-clarity') {
+      responses = writingClarityResponses;
+    } else if (subAgent === 'task-breakdown') {
+      responses = taskBreakdownResponses;
+    } else if (subAgent === 'research-digest') {
+      responses = researchDigestResponses;
+    } else {
+      responses = taskBreakdownResponses;
+    }
   }
 
-  // Return a random response from the agent's response set
+  // Return a random response from the appropriate response set
   return responses[Math.floor(Math.random() * responses.length)];
 }

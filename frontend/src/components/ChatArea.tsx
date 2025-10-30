@@ -4,11 +4,11 @@ import { useApp } from '../context/AppContext';
 import { MessageBubble } from './MessageBubble';
 import { QuickActions } from './QuickActions';
 import { InputBar } from './InputBar';
-import { agents } from '../config/agents';
+import { modes, getSubAgentConfig } from '../config/modes';
 import { generateMockResponse } from '../utils/mockResponses';
 
 export function ChatArea() {
-  const { currentChat, addMessage, currentAgentMode } = useApp();
+  const { currentChat, addMessage, currentMode, currentSubAgent } = useApp();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -25,7 +25,8 @@ export function ChatArea() {
     addMessage({
       role: 'user',
       content,
-      agentMode: currentAgentMode,
+      mode: currentMode,
+      subAgent: currentSubAgent,
     });
 
     // Simulate AI processing
@@ -34,14 +35,15 @@ export function ChatArea() {
     // Wait a bit to simulate processing
     await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
 
-    // Generate mock response based on agent mode
-    const response = generateMockResponse(content, currentAgentMode);
+    // Generate mock response based on mode and sub-agent
+    const response = generateMockResponse(content, currentMode, currentSubAgent);
 
     // Add assistant message
     addMessage({
       role: 'assistant',
       content: response,
-      agentMode: currentAgentMode,
+      mode: currentMode,
+      subAgent: currentSubAgent,
     });
 
     setIsProcessing(false);
@@ -51,7 +53,8 @@ export function ChatArea() {
     await handleSendMessage(content);
   };
 
-  const currentAgent = agents[currentAgentMode];
+  const currentModeConfig = modes[currentMode];
+  const currentSubAgentConfig = getSubAgentConfig(currentMode, currentSubAgent);
   const lastMessage = currentChat?.messages[currentChat.messages.length - 1] || null;
 
   return (
@@ -62,19 +65,22 @@ export function ChatArea() {
           // Welcome Screen
           <div className="h-full flex items-center justify-center p-8">
             <div className="max-w-3xl text-center">
-              <div className={`inline-flex items-center justify-center w-16 h-16 ${currentAgent.color} rounded-full mb-6`}>
+              <div className={`inline-flex items-center justify-center w-16 h-16 ${currentModeConfig.color} rounded-full mb-6`}>
                 <Brain size={32} className="text-white" />
               </div>
-              <h2 className="text-3xl font-bold mb-4 text-white">
-                Welcome to {currentAgent.name}
+              <h2 className="text-3xl font-bold mb-2 text-white">
+                {currentModeConfig.name} Mode
               </h2>
-              <p className="text-xl text-gray-400 mb-8">
-                {currentAgent.description}
+              <h3 className="text-xl text-primary-400 mb-4">
+                {currentSubAgentConfig?.name}
+              </h3>
+              <p className="text-lg text-gray-400 mb-8">
+                {currentModeConfig.tagline}
               </p>
 
               {/* Example Prompts */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-8">
-                {currentAgent.examplePrompts.map((prompt, idx) => (
+                {currentModeConfig.examplePrompts.map((prompt, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleSendMessage(prompt)}
@@ -87,9 +93,12 @@ export function ChatArea() {
 
               {/* Info */}
               <div className="mt-12 p-6 bg-gray-800/50 rounded-lg border border-gray-700">
-                <h3 className="font-semibold mb-2 text-white">Getting Started</h3>
-                <p className="text-sm text-gray-400">
-                  Type your message below or use voice input. I'm here to help you think, learn, and create in a way that works for your brain.
+                <h3 className="font-semibold mb-2 text-white">About This Mode</h3>
+                <p className="text-sm text-gray-400 mb-3">
+                  {currentModeConfig.description}
+                </p>
+                <p className="text-sm text-gray-500">
+                  <strong>Current Assistant:</strong> {currentSubAgentConfig?.name} - {currentSubAgentConfig?.description}
                 </p>
               </div>
             </div>
@@ -97,6 +106,13 @@ export function ChatArea() {
         ) : (
           // Messages
           <div className="max-w-4xl mx-auto p-6 w-full">
+            {/* Mode/Sub-agent indicator */}
+            <div className={`mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${currentModeConfig.color} bg-opacity-20 border ${currentModeConfig.color.replace('bg-', 'border-')}`}>
+              <span className="text-sm font-medium text-gray-300">
+                {currentModeConfig.name} • {currentSubAgentConfig?.name}
+              </span>
+            </div>
+
             {currentChat.messages.map(message => (
               <MessageBubble key={message.id} message={message} />
             ))}
