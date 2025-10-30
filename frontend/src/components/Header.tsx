@@ -1,9 +1,13 @@
-import { Menu, Settings, Brain } from 'lucide-react';
+import { Menu, Settings, Brain, Trophy } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { modes, getSubAgentsForMode } from '../config/modes';
 import type { ThinkingMode, SubAgent } from '../types';
 
-export function Header() {
+interface HeaderProps {
+  onShowLeaderboard?: () => void;
+}
+
+export function Header({ onShowLeaderboard }: HeaderProps) {
   const {
     sidebarOpen,
     setSidebarOpen,
@@ -48,13 +52,25 @@ export function Header() {
         </div>
 
         {/* Right side */}
-        <button
-          onClick={() => setAccessibilityPanelOpen(!accessibilityPanelOpen)}
-          className="btn-icon"
-          aria-label="Toggle accessibility settings"
-        >
-          <Settings size={20} />
-        </button>
+        <div className="flex items-center gap-2">
+          {onShowLeaderboard && (
+            <button
+              onClick={onShowLeaderboard}
+              className="flex items-center gap-2 px-3 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors"
+              aria-label="View AI Leaderboard"
+            >
+              <Trophy size={18} />
+              <span className="hidden sm:inline">AI Leaderboard</span>
+            </button>
+          )}
+          <button
+            onClick={() => setAccessibilityPanelOpen(!accessibilityPanelOpen)}
+            className="btn-icon"
+            aria-label="Toggle accessibility settings"
+          >
+            <Settings size={20} />
+          </button>
+        </div>
       </div>
 
       {/* Mode Toggle */}
