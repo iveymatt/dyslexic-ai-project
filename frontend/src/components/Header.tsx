@@ -1,13 +1,14 @@
-import { Menu, Settings, Brain, Trophy } from 'lucide-react';
+import { Menu, Settings, Brain, Trophy, BookOpen } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { modes, getSubAgentsForMode } from '../config/modes';
 import type { ThinkingMode, SubAgent } from '../types';
 
 interface HeaderProps {
   onShowLeaderboard?: () => void;
+  onShowPromptLibrary?: () => void;
 }
 
-export function Header({ onShowLeaderboard }: HeaderProps) {
+export function Header({ onShowLeaderboard, onShowPromptLibrary }: HeaderProps) {
   const {
     sidebarOpen,
     setSidebarOpen,
@@ -53,6 +54,16 @@ export function Header({ onShowLeaderboard }: HeaderProps) {
 
         {/* Right side */}
         <div className="flex items-center gap-2">
+          {onShowPromptLibrary && (
+            <button
+              onClick={onShowPromptLibrary}
+              className="flex items-center gap-2 px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
+              aria-label="View Prompt Library"
+            >
+              <BookOpen size={18} />
+              <span className="hidden sm:inline">Prompt Library</span>
+            </button>
+          )}
           {onShowLeaderboard && (
             <button
               onClick={onShowLeaderboard}
