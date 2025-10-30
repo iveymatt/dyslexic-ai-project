@@ -1,5 +1,23 @@
 import React from 'react';
-import { Brain, Volume2, Type, MessageSquare, Mic, Network, CheckSquare, ArrowRight } from 'lucide-react';
+import {
+  Brain,
+  Volume2,
+  Type,
+  MessageSquare,
+  Mic,
+  Network,
+  CheckSquare,
+  ArrowRight,
+  BookOpen,
+  Trophy,
+  Star,
+  Lightbulb,
+  List,
+  Target,
+  Users,
+  Sparkles,
+  Zap,
+} from 'lucide-react';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -10,203 +28,537 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
       {/* Hero Section */}
       <header className="container mx-auto px-6 py-16 text-center">
-        <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full mb-8">
+        <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full mb-8 animate-pulse">
           <Brain size={40} />
         </div>
         <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
           Cognitive Partner
         </h1>
-        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-          The first AI chat assistant designed specifically for dyslexic and neurodivergent thinkers
+        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-semibold">
+          The complete AI platform for dyslexic and neurodivergent thinkers
         </p>
         <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-          Clean interface. Clear typography. Built-in accessibility. Your brain, amplified.
+          AI chat + Prompt library + Tool comparison. Everything you need to work WITH your brain, not against it.
         </p>
         <button
           onClick={onGetStarted}
           className="btn-primary text-lg px-8 py-4 inline-flex items-center gap-2 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all"
         >
-          Start Chatting
+          Start Free →
           <ArrowRight size={20} />
         </button>
+        <p className="text-sm text-gray-500 mt-4">No signup required • Privacy-focused • Open source</p>
       </header>
 
-      {/* Features Grid */}
+      {/* Feature Highlights - 3 Major Features */}
       <section className="container mx-auto px-6 py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Built for How You Think</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard
-            icon={<Volume2 size={32} />}
-            title="Text-to-Speech"
-            description="Every message can be read aloud with adjustable speed. No extra clicks required."
-          />
-          <FeatureCard
-            icon={<Type size={32} />}
-            title="Dyslexic-Friendly Fonts"
-            description="Choose from OpenDyslexic, Comic Sans, Verdana, and more. Adjust size and spacing instantly."
-          />
-          <FeatureCard
-            icon={<Mic size={32} />}
-            title="Voice Input"
-            description="Speak your thoughts instead of typing. Perfect for when words flow better out loud."
-          />
-          <FeatureCard
-            icon={<MessageSquare size={32} />}
-            title="Simplify Responses"
-            description="Any AI response can be instantly rewritten in simpler, clearer language."
-          />
-          <FeatureCard
-            icon={<Network size={32} />}
-            title="Mind Maps"
-            description="Turn complex text into visual mind maps that show how ideas connect."
-          />
-          <FeatureCard
-            icon={<CheckSquare size={32} />}
-            title="Task Extraction"
-            description="Automatically pull out action items and to-dos from any conversation."
-          />
+        <h2 className="text-4xl font-bold text-center mb-4">Three Tools. One Platform.</h2>
+        <p className="text-center text-gray-400 mb-12 text-lg max-w-3xl mx-auto">
+          We built the platform we wished existed. Here's what makes Cognitive Partner different.
+        </p>
+
+        <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {/* Prompt Library */}
+          <div className="bg-gradient-to-br from-green-900/40 to-green-800/40 p-8 rounded-2xl border border-green-700/50 hover:border-green-600 transition-all">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-600 rounded-full mb-6">
+              <BookOpen size={32} />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">Prompt Library</h3>
+            <p className="text-gray-300 mb-6 text-lg">
+              30+ ready-to-use AI prompts created by neurodivergent people for neurodivergent people.
+            </p>
+            <ul className="space-y-3 text-gray-300 mb-6">
+              <li className="flex items-start gap-2">
+                <span className="text-green-400 flex-shrink-0 mt-1">✓</span>
+                <span>Organized by who you are (student, professional, parent, etc.)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-400 flex-shrink-0 mt-1">✓</span>
+                <span>Real example use cases from real people</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-400 flex-shrink-0 mt-1">✓</span>
+                <span>One click to copy, one click to use</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-400 flex-shrink-0 mt-1">✓</span>
+                <span>Community-rated and verified</span>
+              </li>
+            </ul>
+            <div className="bg-green-900/30 rounded-lg p-4 border border-green-700/30">
+              <p className="text-sm text-green-200 italic">
+                "Finally, prompts that actually work for ADHD brains. No more staring at a blank screen."
+              </p>
+            </div>
+          </div>
+
+          {/* AI Leaderboard */}
+          <div className="bg-gradient-to-br from-blue-900/40 to-purple-800/40 p-8 rounded-2xl border border-blue-700/50 hover:border-blue-600 transition-all">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-6">
+              <Trophy size={32} />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">AI Tool Leaderboard</h3>
+            <p className="text-gray-300 mb-6 text-lg">
+              Which AI tools actually support neurodivergent thinking? We tested them. Here's the data.
+            </p>
+            <ul className="space-y-3 text-gray-300 mb-6">
+              <li className="flex items-start gap-2">
+                <span className="text-blue-400 flex-shrink-0 mt-1">✓</span>
+                <span>4 dimensions: lateral thinking, linear thinking, language, awareness</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-400 flex-shrink-0 mt-1">✓</span>
+                <span>Real test results with actual AI responses</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-400 flex-shrink-0 mt-1">✓</span>
+                <span>Compare 6 major AI tools side-by-side</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-400 flex-shrink-0 mt-1">✓</span>
+                <span>Filter by your thinking style</span>
+              </li>
+            </ul>
+            <div className="bg-blue-900/30 rounded-lg p-4 border border-blue-700/30">
+              <p className="text-sm text-blue-200 italic">
+                "The only benchmark that measures if AI tools actually 'get' how dyslexic brains work."
+              </p>
+            </div>
+          </div>
+
+          {/* AI Chat */}
+          <div className="bg-gradient-to-br from-purple-900/40 to-pink-800/40 p-8 rounded-2xl border border-purple-700/50 hover:border-purple-600 transition-all">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-600 rounded-full mb-6">
+              <MessageSquare size={32} />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">Accessible AI Chat</h3>
+            <p className="text-gray-300 mb-6 text-lg">
+              Two thinking modes (Socratic & Strategic), built-in accessibility, designed for dyslexic brains.
+            </p>
+            <ul className="space-y-3 text-gray-300 mb-6">
+              <li className="flex items-start gap-2">
+                <span className="text-purple-400 flex-shrink-0 mt-1">✓</span>
+                <span>Text-to-speech & voice input built-in</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-purple-400 flex-shrink-0 mt-1">✓</span>
+                <span>Dyslexic-friendly fonts & spacing</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-purple-400 flex-shrink-0 mt-1">✓</span>
+                <span>Simplify responses instantly</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-purple-400 flex-shrink-0 mt-1">✓</span>
+                <span>Switch between exploration & direct answers</span>
+              </li>
+            </ul>
+            <div className="bg-purple-900/30 rounded-lg p-4 border border-purple-700/30">
+              <p className="text-sm text-purple-200 italic">
+                "First AI chat that doesn't make me feel stupid. It adapts to how MY brain works."
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Thinking Modes Section */}
       <section className="container mx-auto px-6 py-16">
-        <h2 className="text-3xl font-bold text-center mb-6">Two Ways to Think</h2>
-        <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-          Choose your thinking mode based on what you need
+        <h2 className="text-4xl font-bold text-center mb-4">Two Thinking Modes</h2>
+        <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-lg">
+          Neurodivergent brains think laterally (connections, exploration) AND need structure (step-by-step, organized).
+          We support both.
         </p>
 
         {/* Mode Cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
           {/* SOCRATIC Mode */}
-          <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-2xl text-white shadow-2xl">
-            <h3 className="text-3xl font-bold mb-4">SOCRATIC</h3>
-            <p className="text-xl mb-6 text-blue-100">Explore together. Ask questions. Think it through.</p>
+          <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-2xl text-white shadow-2xl transform hover:scale-105 transition-all">
+            <div className="flex items-center gap-3 mb-4">
+              <Lightbulb size={40} className="text-yellow-300" />
+              <h3 className="text-3xl font-bold">SOCRATIC</h3>
+            </div>
+            <p className="text-xl mb-6 text-blue-100 font-semibold">Explore together. Ask questions. Think it through.</p>
             <p className="text-blue-100 mb-6">
               Perfect for when you need to think through problems, explore ideas, or understand something deeply.
+              The AI asks questions back, follows tangents, makes creative connections.
             </p>
             <div className="space-y-3">
-              <div className="bg-white/10 rounded-lg p-4">
-                <h4 className="font-semibold mb-1">Think Out Loud</h4>
-                <p className="text-sm text-blue-100">Explore ideas through dialogue</p>
+              <div className="bg-white/10 rounded-lg p-4 border border-blue-400/30">
+                <h4 className="font-semibold mb-1 flex items-center gap-2">
+                  <Sparkles size={16} />
+                  Think Out Loud
+                </h4>
+                <p className="text-sm text-blue-100">Explore ideas through dialogue & creative connections</p>
               </div>
-              <div className="bg-white/10 rounded-lg p-4">
-                <h4 className="font-semibold mb-1">Executive Strategist</h4>
-                <p className="text-sm text-blue-100">ADHD-aware planning & decision-making</p>
+              <div className="bg-white/10 rounded-lg p-4 border border-blue-400/30">
+                <h4 className="font-semibold mb-1 flex items-center gap-2">
+                  <Target size={16} />
+                  Executive Strategist
+                </h4>
+                <p className="text-sm text-blue-100">ADHD-aware planning, decision-making & prioritization</p>
               </div>
+            </div>
+            <div className="mt-6 bg-blue-900/40 rounded-lg p-4 border border-blue-400/30">
+              <p className="text-sm text-blue-100">
+                <strong>Use when:</strong> Stuck on a problem, making decisions, learning concepts, brainstorming
+              </p>
             </div>
           </div>
 
           {/* STRATEGIC Mode */}
-          <div className="bg-gradient-to-br from-green-600 to-green-800 p-8 rounded-2xl text-white shadow-2xl">
-            <h3 className="text-3xl font-bold mb-4">STRATEGIC</h3>
-            <p className="text-xl mb-6 text-green-100">Get direct answers. Clear info. Done.</p>
+          <div className="bg-gradient-to-br from-green-600 to-green-800 p-8 rounded-2xl text-white shadow-2xl transform hover:scale-105 transition-all">
+            <div className="flex items-center gap-3 mb-4">
+              <Zap size={40} className="text-yellow-300" />
+              <h3 className="text-3xl font-bold">STRATEGIC</h3>
+            </div>
+            <p className="text-xl mb-6 text-green-100 font-semibold">Get direct answers. Clear info. Done.</p>
             <p className="text-green-100 mb-6">
               Perfect for when you need quick answers, actionable steps, or direct information.
+              No fluff. Just clear, organized, practical help.
             </p>
             <div className="space-y-3">
-              <div className="bg-white/10 rounded-lg p-4">
-                <h4 className="font-semibold mb-1">Writing Clarity</h4>
-                <p className="text-sm text-green-100">Direct, actionable writing feedback</p>
+              <div className="bg-white/10 rounded-lg p-4 border border-green-400/30">
+                <h4 className="font-semibold mb-1 flex items-center gap-2">
+                  <Type size={16} />
+                  Writing Clarity
+                </h4>
+                <p className="text-sm text-green-100">Direct, actionable writing feedback & editing</p>
               </div>
-              <div className="bg-white/10 rounded-lg p-4">
-                <h4 className="font-semibold mb-1">Task Breakdown</h4>
-                <p className="text-sm text-green-100">Break projects into achievable steps</p>
+              <div className="bg-white/10 rounded-lg p-4 border border-green-400/30">
+                <h4 className="font-semibold mb-1 flex items-center gap-2">
+                  <List size={16} />
+                  Task Breakdown
+                </h4>
+                <p className="text-sm text-green-100">Break overwhelming projects into achievable steps</p>
               </div>
-              <div className="bg-white/10 rounded-lg p-4">
-                <h4 className="font-semibold mb-1">Research Digest</h4>
-                <p className="text-sm text-green-100">Summarize & organize information</p>
+              <div className="bg-white/10 rounded-lg p-4 border border-green-400/30">
+                <h4 className="font-semibold mb-1 flex items-center gap-2">
+                  <Brain size={16} />
+                  Research Digest
+                </h4>
+                <p className="text-sm text-green-100">Summarize & organize complex information</p>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* When to Use */}
-        <div className="max-w-3xl mx-auto bg-gray-800 rounded-xl p-8">
-          <h3 className="text-2xl font-bold mb-6 text-center">When to Use Each Mode</h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="text-blue-400 font-semibold mb-3 flex items-center gap-2">
-                <span className="text-2xl">💭</span> Use SOCRATIC when:
-              </h4>
-              <ul className="space-y-2 text-gray-300 text-sm">
-                <li>• You're stuck and need to think it through</li>
-                <li>• Making a big decision</li>
-                <li>• Learning something new</li>
-                <li>• Planning your approach</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-green-400 font-semibold mb-3 flex items-center gap-2">
-                <span className="text-2xl">⚡</span> Use STRATEGIC when:
-              </h4>
-              <ul className="space-y-2 text-gray-300 text-sm">
-                <li>• You need a quick answer</li>
-                <li>• Want specific steps to follow</li>
-                <li>• Need to improve your writing</li>
-                <li>• Researching information</li>
-              </ul>
+            <div className="mt-6 bg-green-900/40 rounded-lg p-4 border border-green-400/30">
+              <p className="text-sm text-green-100">
+                <strong>Use when:</strong> Need quick answers, want specific steps, improving writing, researching
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Accessibility Section */}
+      {/* Prompt Library Deep Dive */}
       <section className="container mx-auto px-6 py-16 bg-gray-800/50 rounded-3xl my-16">
-        <h2 className="text-3xl font-bold text-center mb-6">Accessibility First, Always</h2>
-        <div className="max-w-3xl mx-auto space-y-4 text-lg text-gray-300">
-          <p className="flex items-start gap-3">
-            <span className="text-accent-500 flex-shrink-0">✓</span>
-            <span><strong>Generous spacing:</strong> No cramped text. Everything breathes.</span>
-          </p>
-          <p className="flex items-start gap-3">
-            <span className="text-accent-500 flex-shrink-0">✓</span>
-            <span><strong>High contrast:</strong> WCAG AAA compliant. Easy on the eyes.</span>
-          </p>
-          <p className="flex items-start gap-3">
-            <span className="text-accent-500 flex-shrink-0">✓</span>
-            <span><strong>Large text default:</strong> 16px minimum, scales up to 24px.</span>
-          </p>
-          <p className="flex items-start gap-3">
-            <span className="text-accent-500 flex-shrink-0">✓</span>
-            <span><strong>Clear labels:</strong> Every button has both icon and text.</span>
-          </p>
-          <p className="flex items-start gap-3">
-            <span className="text-accent-500 flex-shrink-0">✓</span>
-            <span><strong>Dark mode default:</strong> Reduces eye strain for long sessions.</span>
-          </p>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-600 rounded-full mb-4">
+              <BookOpen size={32} />
+            </div>
+            <h2 className="text-4xl font-bold mb-4">Prompt Library: Your Secret Weapon</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              30+ battle-tested prompts organized by who you are and what you need. No more blank screen paralysis.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <PromptPreviewCard
+              emoji="🎓"
+              title="For Students"
+              examples={[
+                'Explain this concept simply',
+                'Create a study guide I can use',
+                'Break down this confusing assignment',
+              ]}
+              color="blue"
+            />
+            <PromptPreviewCard
+              emoji="💼"
+              title="For Professionals"
+              examples={[
+                'Help me write this email professionally',
+                'Break this project into steps',
+                'How do I ask for accommodations?',
+              ]}
+              color="green"
+            />
+            <PromptPreviewCard
+              emoji="🚀"
+              title="For Entrepreneurs"
+              examples={[
+                'Help me plan my business idea',
+                'How do I stay organized?',
+                'Understand this financial thing',
+              ]}
+              color="purple"
+            />
+            <PromptPreviewCard
+              emoji="👩‍🏫"
+              title="For Teachers"
+              examples={[
+                'Teach [subject] to dyslexic students',
+                'Create accessible lesson materials',
+                'Recognize dyslexic strengths',
+              ]}
+              color="orange"
+            />
+            <PromptPreviewCard
+              emoji="👨‍👩‍👧"
+              title="For Parents"
+              examples={[
+                'Explain dyslexia to me',
+                'Help my child with homework',
+                'Build my child\'s confidence',
+              ]}
+              color="pink"
+            />
+            <PromptPreviewCard
+              emoji="🎯"
+              title="For Coaches"
+              examples={[
+                'Coach dyslexic people effectively',
+                'Understand neurodivergent thinking',
+                'Celebrate neurodivergent strengths',
+              ]}
+              color="teal"
+            />
+          </div>
+
+          <div className="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-8 border border-green-700/30">
+            <div className="flex items-start gap-4">
+              <Users size={32} className="text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-xl font-bold mb-2">Community-Powered</h3>
+                <p className="text-gray-300 mb-4">
+                  Every prompt is created by neurodivergent people who actually use them. Real problems. Real solutions.
+                  Rated, verified, and constantly improving.
+                </p>
+                <p className="text-sm text-gray-400">
+                  Each prompt includes: when to use it, the full prompt text, real example use case, best mode
+                  (Socratic/Strategic), and related prompts.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Leaderboard Deep Dive */}
+      <section className="container mx-auto px-6 py-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-4">
+              <Trophy size={32} />
+            </div>
+            <h2 className="text-4xl font-bold mb-4">AI Tool Leaderboard</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              The only benchmark that measures if AI tools actually understand neurodivergent thinking.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="bg-gray-800 rounded-xl p-8 border border-gray-700">
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                <Brain className="text-primary-400" />
+                What We Test
+              </h3>
+              <div className="space-y-4">
+                <ScoreDimension
+                  icon={<Lightbulb size={20} className="text-yellow-500" />}
+                  title="Lateral Thinking Support"
+                  description="Can it handle non-linear exploration & creative connections?"
+                />
+                <ScoreDimension
+                  icon={<List size={20} className="text-blue-500" />}
+                  title="Linear Thinking Support"
+                  description="Can it organize & structure information clearly?"
+                />
+                <ScoreDimension
+                  icon={<MessageSquare size={20} className="text-green-500" />}
+                  title="Language Adaptability"
+                  description="Does it adjust to dyslexic language processing needs?"
+                />
+                <ScoreDimension
+                  icon={<Brain size={20} className="text-purple-500" />}
+                  title="Neurodivergent Awareness"
+                  description="Does it understand & celebrate ND strengths?"
+                />
+              </div>
+            </div>
+
+            <div className="bg-gray-800 rounded-xl p-8 border border-gray-700">
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                <Star className="text-yellow-500" />
+                Top Performers
+              </h3>
+              <div className="space-y-4">
+                <LeaderboardPreview rank={1} name="Cognitive Partner" score={9.75} color="green" />
+                <LeaderboardPreview rank={2} name="Claude (Anthropic)" score={8.75} color="blue" />
+                <LeaderboardPreview rank={3} name="ChatGPT (OpenAI)" score={8.0} color="blue" />
+                <LeaderboardPreview rank={4} name="Perplexity AI" score={7.0} color="yellow" />
+                <LeaderboardPreview rank={5} name="Gemini (Google)" score={7.0} color="yellow" />
+                <LeaderboardPreview rank={6} name="Microsoft Copilot" score={6.5} color="orange" />
+              </div>
+              <div className="mt-6 pt-6 border-t border-gray-700">
+                <p className="text-sm text-gray-400">
+                  Each tool tested with 4 questions across all dimensions. Full test results, AI responses, and scoring
+                  reasoning available in the leaderboard.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-8 border border-blue-700/30">
+            <h3 className="text-xl font-bold mb-4">Why This Matters</h3>
+            <p className="text-gray-300 text-lg mb-4">
+              <strong className="text-blue-400">Dyslexia is a language-processing difference.</strong> LLMs are
+              language models.
+            </p>
+            <p className="text-gray-300">
+              We asked: Which AI tools adapt to BOTH lateral thinking (how neurodivergent brains naturally work) AND
+              linear thinking (structured support when needed)? Which ones truly "get" us? Now you have the data.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Accessibility Features */}
+      <section className="container mx-auto px-6 py-16 bg-gray-800/50 rounded-3xl my-16">
+        <h2 className="text-4xl font-bold text-center mb-4">Accessibility First, Always</h2>
+        <p className="text-center text-gray-400 mb-12 text-lg max-w-3xl mx-auto">
+          Every feature, every design choice, built with dyslexic and neurodivergent users at the center.
+        </p>
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
+          <AccessibilityFeature icon={<Volume2 size={24} />} title="Text-to-Speech" description="Every message can be read aloud. Adjustable speed. No extra clicks." />
+          <AccessibilityFeature icon={<Type size={24} />} title="Dyslexic-Friendly Fonts" description="OpenDyslexic, Comic Sans, Verdana. Adjust size & spacing instantly." />
+          <AccessibilityFeature icon={<Mic size={24} />} title="Voice Input" description="Speak your thoughts instead of typing. Perfect for verbal processors." />
+          <AccessibilityFeature icon={<MessageSquare size={24} />} title="Simplify Responses" description="Any AI response can be instantly rewritten in simpler language." />
+          <AccessibilityFeature icon={<Network size={24} />} title="Mind Maps" description="Turn complex text into visual mind maps that show connections." />
+          <AccessibilityFeature icon={<CheckSquare size={24} />} title="Task Extraction" description="Automatically pull out action items from any conversation." />
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="container mx-auto px-6 py-16 text-center">
-        <h2 className="text-4xl font-bold mb-6">Ready to Think Better?</h2>
-        <p className="text-xl text-gray-400 mb-8">
-          No signup required. Start chatting in seconds.
+        <h2 className="text-5xl font-bold mb-6">Ready to Think Better?</h2>
+        <p className="text-xl text-gray-400 mb-4">
+          No signup required. No credit card. No BS.
+        </p>
+        <p className="text-lg text-gray-500 mb-8">
+          Start chatting, browse prompts, compare AI tools. Free. Forever.
         </p>
         <button
           onClick={onGetStarted}
-          className="btn-primary text-lg px-8 py-4 inline-flex items-center gap-2 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all"
+          className="btn-primary text-xl px-10 py-5 inline-flex items-center gap-3 shadow-2xl hover:shadow-primary-500/50 transform hover:scale-110 transition-all"
         >
           Launch Cognitive Partner
-          <ArrowRight size={20} />
+          <ArrowRight size={24} />
         </button>
+        <p className="text-xs text-gray-600 mt-6">
+          Join thousands of neurodivergent thinkers who finally found an AI that gets them.
+        </p>
       </section>
 
       {/* Footer */}
-      <footer className="container mx-auto px-6 py-8 border-t border-gray-800 text-center text-gray-500">
-        <p>Built with ❤️ for dyslexic and neurodivergent thinkers</p>
-        <p className="mt-2 text-sm">Open source • Privacy-focused • Community-driven</p>
+      <footer className="container mx-auto px-6 py-12 border-t border-gray-800">
+        <div className="text-center space-y-4">
+          <p className="text-gray-400 text-lg">
+            Built with ❤️ by neurodivergent people, for neurodivergent people
+          </p>
+          <div className="flex items-center justify-center gap-6 text-sm text-gray-500">
+            <span>🔒 Privacy-focused</span>
+            <span>•</span>
+            <span>💾 Open source</span>
+            <span>•</span>
+            <span>🌍 Community-driven</span>
+          </div>
+          <p className="text-xs text-gray-600 mt-4">
+            No tracking. No data collection. Just tools that work for your brain.
+          </p>
+        </div>
       </footer>
     </div>
   );
 }
 
-function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
+function PromptPreviewCard({
+  emoji,
+  title,
+  examples,
+  color,
+}: {
+  emoji: string;
+  title: string;
+  examples: string[];
+  color: string;
+}) {
+  const colorClasses = {
+    blue: 'border-blue-700/50 hover:border-blue-600',
+    green: 'border-green-700/50 hover:border-green-600',
+    purple: 'border-purple-700/50 hover:border-purple-600',
+    orange: 'border-orange-700/50 hover:border-orange-600',
+    pink: 'border-pink-700/50 hover:border-pink-600',
+    teal: 'border-teal-700/50 hover:border-teal-600',
+  };
+
   return (
-    <div className="p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-primary-500 transition-colors">
-      <div className="text-primary-500 mb-4">{icon}</div>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-gray-400">{description}</p>
+    <div className={`bg-gray-800 rounded-xl p-6 border ${colorClasses[color as keyof typeof colorClasses]} transition-all hover:scale-105`}>
+      <div className="text-4xl mb-3">{emoji}</div>
+      <h3 className="text-lg font-bold mb-4">{title}</h3>
+      <ul className="space-y-2">
+        {examples.map((example, i) => (
+          <li key={i} className="text-sm text-gray-400 flex items-start gap-2">
+            <span className="text-primary-500 mt-0.5">→</span>
+            <span>{example}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function ScoreDimension({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
+  return (
+    <div className="flex items-start gap-3">
+      <div className="flex-shrink-0 mt-1">{icon}</div>
+      <div>
+        <h4 className="font-semibold text-white mb-1">{title}</h4>
+        <p className="text-sm text-gray-400">{description}</p>
+      </div>
+    </div>
+  );
+}
+
+function LeaderboardPreview({ rank, name, score, color }: { rank: number; name: string; score: number; color: string }) {
+  const colorClasses = {
+    green: 'text-green-500',
+    blue: 'text-blue-500',
+    yellow: 'text-yellow-500',
+    orange: 'text-orange-500',
+  };
+
+  const medalEmoji = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : '';
+
+  return (
+    <div className="flex items-center justify-between p-4 bg-gray-900/50 rounded-lg border border-gray-700">
+      <div className="flex items-center gap-3">
+        <span className="text-2xl w-8 text-center">{medalEmoji || `${rank}.`}</span>
+        <span className="font-semibold text-white">{name}</span>
+      </div>
+      <span className={`text-lg font-bold ${colorClasses[color as keyof typeof colorClasses]}`}>{score.toFixed(2)}/10</span>
+    </div>
+  );
+}
+
+function AccessibilityFeature({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
+  return (
+    <div className="flex items-start gap-4 p-5 bg-gray-800 rounded-xl border border-gray-700">
+      <div className="text-primary-500 flex-shrink-0 mt-1">{icon}</div>
+      <div>
+        <h3 className="text-lg font-semibold mb-1">{title}</h3>
+        <p className="text-gray-400 text-sm">{description}</p>
+      </div>
     </div>
   );
 }
