@@ -1,11 +1,30 @@
 // Neurodivergent Thinking Assessment Types
 
+export type ThinkingStyle = 'lateral' | 'linear' | 'balanced' | 'all';
+
 export interface NeurodivergentScore {
   lateralThinking: number;        // 1-10: Can handle non-linear exploration
   linearThinking: number;         // 1-10: Can organize and structure
   languageAdaptability: number;   // 1-10: Adjusts to language processing needs
   neurodivergentAwareness: number; // 1-10: Understands neurodivergent brains
   overall: number;                // Average of above
+}
+
+export interface TestResult {
+  dimension: keyof Omit<NeurodivergentScore, 'overall'>;
+  prompt: string;
+  response: string;
+  score: number;
+  reasoning: string;
+}
+
+export interface NeurodivergentAssessment {
+  scores: NeurodivergentScore;
+  bestAt: string[];
+  weakAt: string[];
+  perfectFor: string[];
+  notIdealFor: string[];
+  testResults: TestResult[];
 }
 
 export interface TestQuestion {
@@ -31,13 +50,13 @@ export interface AITool {
   // Overall scores
   overallScore: number;
   featuresScore: number;
-  neurodivergentScore: NeurodivergentScore;
 
-  // Detailed breakdown
+  // Neurodivergent assessment (detailed)
+  neurodivergentAssessment: NeurodivergentAssessment;
+
+  // General strengths/weaknesses (for features)
   strengths: string[];
   weaknesses: string[];
-  bestFor: string[];
-  notIdealFor: string[];
 
   // Features
   features: {
