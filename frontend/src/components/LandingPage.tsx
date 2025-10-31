@@ -17,6 +17,9 @@ import {
   Users,
   Sparkles,
   Zap,
+  Briefcase,
+  Clock,
+  TrendingUp,
 } from 'lucide-react';
 
 interface LandingPageProps {
@@ -38,7 +41,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
           The complete AI platform for dyslexic and neurodivergent thinkers
         </p>
         <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-          AI chat + Prompt library + Tool comparison. Everything you need to work WITH your brain, not against it.
+          AI chat + Prompt library + Tool comparison + Career discovery. Everything you need to work WITH your brain, not against it.
         </p>
         <button
           onClick={onGetStarted}
@@ -50,14 +53,14 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         <p className="text-sm text-gray-500 mt-4">No signup required • Privacy-focused • Open source</p>
       </header>
 
-      {/* Feature Highlights - 3 Major Features */}
+      {/* Feature Highlights - 4 Major Features */}
       <section className="container mx-auto px-6 py-16">
-        <h2 className="text-4xl font-bold text-center mb-4">Three Tools. One Platform.</h2>
+        <h2 className="text-4xl font-bold text-center mb-4">Four Tools. One Platform.</h2>
         <p className="text-center text-gray-400 mb-12 text-lg max-w-3xl mx-auto">
           We built the platform we wished existed. Here's what makes Cognitive Partner different.
         </p>
 
-        <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
           {/* Prompt Library */}
           <div className="bg-gradient-to-br from-green-900/40 to-green-800/40 p-8 rounded-2xl border border-green-700/50 hover:border-green-600 transition-all">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-green-600 rounded-full mb-6">
@@ -156,6 +159,40 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             <div className="bg-purple-900/30 rounded-lg p-4 border border-purple-700/30">
               <p className="text-sm text-purple-200 italic">
                 "First AI chat that doesn't make me feel stupid. It adapts to how MY brain works."
+              </p>
+            </div>
+          </div>
+
+          {/* Career Discovery */}
+          <div className="bg-gradient-to-br from-orange-900/40 to-red-800/40 p-8 rounded-2xl border border-orange-700/50 hover:border-orange-600 transition-all">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-600 rounded-full mb-6">
+              <Briefcase size={32} />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">Career Discovery</h3>
+            <p className="text-gray-300 mb-6 text-lg">
+              Find careers that match how YOUR brain works. Learn life skills. Master AI tools. Built for neurodivergent young adults.
+            </p>
+            <ul className="space-y-3 text-gray-300 mb-6">
+              <li className="flex items-start gap-2">
+                <span className="text-orange-400 flex-shrink-0 mt-1">✓</span>
+                <span>30+ careers matched to your cognitive profile</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-orange-400 flex-shrink-0 mt-1">✓</span>
+                <span>Life skills coach (time, money, interviews, emotions, social)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-orange-400 flex-shrink-0 mt-1">✓</span>
+                <span>AI literacy training (10 modules, hands-on practice)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-orange-400 flex-shrink-0 mt-1">✓</span>
+                <span>Cognitive fit scores, AI-risk ratings, sensory demands</span>
+              </li>
+            </ul>
+            <div className="bg-orange-900/30 rounded-lg p-4 border border-orange-700/30">
+              <p className="text-sm text-orange-200 italic">
+                "I have autism and ADHD. I never knew what career would work for me. This showed me jobs that actually fit my brain. Game changer."
               </p>
             </div>
           </div>
@@ -419,6 +456,171 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               We asked: Which AI tools adapt to BOTH lateral thinking (how neurodivergent brains naturally work) AND
               linear thinking (structured support when needed)? Which ones truly "get" us? Now you have the data.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Career Discovery Deep Dive */}
+      <section className="container mx-auto px-6 py-16 bg-gray-800/50 rounded-3xl my-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-600 rounded-full mb-4">
+              <Briefcase size={32} />
+            </div>
+            <h2 className="text-4xl font-bold mb-4">Career Discovery: Your Future, Your Brain</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              The complete career development platform for neurodivergent young adults. Find jobs that fit how YOUR brain works.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {/* Career Matching */}
+            <div className="bg-gradient-to-br from-orange-900/30 to-red-900/30 rounded-xl p-6 border border-orange-700/30">
+              <div className="flex items-center gap-3 mb-4">
+                <Briefcase className="text-orange-400" size={28} />
+                <h3 className="text-xl font-bold">Career Matching</h3>
+              </div>
+              <p className="text-gray-300 mb-4">
+                30+ careers matched to your neurodivergent strengths, challenges, and interests.
+              </p>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li className="flex items-start gap-2">
+                  <span className="text-orange-400">•</span>
+                  <span>Cognitive fit scores (how your brain matches this job)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange-400">•</span>
+                  <span>AI-risk ratings (will automation replace this?)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange-400">•</span>
+                  <span>Sensory/social demands (is this job bearable for you?)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange-400">•</span>
+                  <span>Growth paths & getting started guides</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Life Skills Coach */}
+            <div className="bg-gradient-to-br from-green-900/30 to-teal-900/30 rounded-xl p-6 border border-green-700/30">
+              <div className="flex items-center gap-3 mb-4">
+                <Clock className="text-green-400" size={28} />
+                <h3 className="text-xl font-bold">Life Skills Coach</h3>
+              </div>
+              <p className="text-gray-300 mb-4">
+                Master the skills you need for adult life. Built for neurodivergent brains.
+              </p>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li className="flex items-start gap-2">
+                  <span className="text-green-400">⏰</span>
+                  <span>Time Management & Scheduling</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-400">💰</span>
+                  <span>Money Management & Budgeting</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-400">💼</span>
+                  <span>Job Interviews & Communication</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-400">😊</span>
+                  <span>Emotional Regulation & Stress</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-400">🗣️</span>
+                  <span>Social Skills & Relationships</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* AI Literacy Training */}
+            <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-700/30">
+              <div className="flex items-center gap-3 mb-4">
+                <TrendingUp className="text-blue-400" size={28} />
+                <h3 className="text-xl font-bold">AI Literacy Training</h3>
+              </div>
+              <p className="text-gray-300 mb-4">
+                Master AI tools for job search, learning, and daily life. 10 modules, hands-on practice.
+              </p>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400">•</span>
+                  <span>What is AI & how it works</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400">•</span>
+                  <span>Writing effective prompts</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400">•</span>
+                  <span>AI for career, learning, daily life</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400">•</span>
+                  <span>Ethics, safety, and hands-on practice</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400">•</span>
+                  <span>Certificate upon completion</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-orange-900/30 to-purple-900/30 rounded-xl p-8 border border-orange-700/30 mb-8">
+            <h3 className="text-2xl font-bold mb-4">How It Works</h3>
+            <div className="grid md:grid-cols-4 gap-6">
+              <div>
+                <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-xl font-bold mb-3">1</div>
+                <h4 className="font-semibold mb-2">Build Your Profile</h4>
+                <p className="text-sm text-gray-400">7-step questionnaire: neurodivergence, strengths, challenges, interests</p>
+              </div>
+              <div>
+                <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-xl font-bold mb-3">2</div>
+                <h4 className="font-semibold mb-2">Get Matched</h4>
+                <p className="text-sm text-gray-400">See 30+ jobs ranked by cognitive fit, AI-risk, and sensory/social demands</p>
+              </div>
+              <div>
+                <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-xl font-bold mb-3">3</div>
+                <h4 className="font-semibold mb-2">Learn Skills</h4>
+                <p className="text-sm text-gray-400">Take bite-sized lessons on time, money, interviews, emotions, social skills</p>
+              </div>
+              <div>
+                <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-xl font-bold mb-3">4</div>
+                <h4 className="font-semibold mb-2">Master AI</h4>
+                <p className="text-sm text-gray-400">Complete 10-module AI course with hands-on practice and certification</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-8 border border-green-700/30">
+            <div className="flex items-start gap-4">
+              <Users size={32} className="text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-2xl font-bold mb-4">Built FOR Neurodivergent People, BY Neurodivergent People</h3>
+                <p className="text-gray-300 text-lg mb-4">
+                  Every job, every lesson, every prompt is designed with neurodivergent thinking at the center.
+                  We celebrate your strengths. We're honest about challenges. We never make you feel broken.
+                </p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="bg-green-900/20 rounded-lg p-4 border border-green-700/30">
+                    <p className="text-sm text-green-200 italic">
+                      "I have autism and ADHD. I never knew what career would work for me. This tool showed me jobs that actually fit how my brain works. I found a job I love as a Software Tester."
+                    </p>
+                    <p className="text-xs text-gray-500 mt-2">- Alex, 23</p>
+                  </div>
+                  <div className="bg-blue-900/20 rounded-lg p-4 border border-blue-700/30">
+                    <p className="text-sm text-blue-200 italic">
+                      "The Life Skills Coach saved me. Time management lessons actually made sense for my ADHD brain. I'm not 'lazy'—I just needed tools that work WITH how I think."
+                    </p>
+                    <p className="text-xs text-gray-500 mt-2">- Jordan, 20</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
