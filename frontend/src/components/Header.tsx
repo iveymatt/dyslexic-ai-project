@@ -1,4 +1,4 @@
-import { Menu, Settings, Brain, Trophy, BookOpen } from 'lucide-react';
+import { Menu, Settings, Brain, Trophy, BookOpen, Briefcase } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { modes, getSubAgentsForMode } from '../config/modes';
 import type { ThinkingMode, SubAgent } from '../types';
@@ -6,9 +6,10 @@ import type { ThinkingMode, SubAgent } from '../types';
 interface HeaderProps {
   onShowLeaderboard?: () => void;
   onShowPromptLibrary?: () => void;
+  onShowCareerDiscovery?: () => void;
 }
 
-export function Header({ onShowLeaderboard, onShowPromptLibrary }: HeaderProps) {
+export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDiscovery }: HeaderProps) {
   const {
     sidebarOpen,
     setSidebarOpen,
@@ -54,6 +55,16 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary }: HeaderProps) 
 
         {/* Right side */}
         <div className="flex items-center gap-2">
+          {onShowCareerDiscovery && (
+            <button
+              onClick={onShowCareerDiscovery}
+              className="flex items-center gap-2 px-3 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-medium transition-colors"
+              aria-label="View Career Discovery"
+            >
+              <Briefcase size={18} />
+              <span className="hidden sm:inline">Career Discovery</span>
+            </button>
+          )}
           {onShowPromptLibrary && (
             <button
               onClick={onShowPromptLibrary}
