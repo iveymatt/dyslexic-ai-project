@@ -122,9 +122,14 @@ interface LessonContentProps {
   lessonNumber: number;
   onComplete: () => void;
   onBack: () => void;
+  userProfile?: {
+    leaderboardScore?: number;
+    strengths?: string[];
+    challenges?: string[];
+  };
 }
 
-export function LessonContent({ lesson, lessonNumber, onComplete, onBack }: LessonContentProps) {
+export function LessonContent({ lesson, lessonNumber, onComplete, onBack, userProfile }: LessonContentProps) {
   return (
     <div className="max-w-3xl mx-auto">
       {/* Header */}
@@ -188,7 +193,7 @@ export function LessonContent({ lesson, lessonNumber, onComplete, onBack }: Less
 
       {/* Teachable Moment */}
       {lesson.teachableMoment && (
-        <TeachableMomentCard teachableMoment={lesson.teachableMoment} />
+        <TeachableMomentCard teachableMoment={lesson.teachableMoment} userProfile={userProfile} />
       )}
 
       {/* Actions */}
