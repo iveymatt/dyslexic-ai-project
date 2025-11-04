@@ -1,0 +1,125 @@
+# Dyslexic AI Prompt Library Configuration
+
+# Library Settings
+library:
+  # Path to the main prompt library file
+  path: "../src/prompts/library/dyslexia_prompt_library.json"
+
+  # Auto-load on startup
+  auto_load: true
+
+  # Enable usage tracking
+  track_usage: true
+
+  # Cache prompts in memory for faster access
+  cache_enabled: true
+
+# Default Filters
+defaults:
+  # Default user type (if not specified)
+  user_type: "General"
+
+  # Maximum search results to return
+  max_search_results: 50
+
+  # Minimum characters for search term
+  min_search_length: 3
+
+# Display Settings
+display:
+  # Show prompt metadata in results
+  show_metadata: true
+
+  # Include placeholders in prompt preview
+  show_placeholders: true
+
+  # Maximum preview length for prompts
+  preview_max_length: 200
+
+# Usage Analytics
+analytics:
+  # Track most popular prompts
+  track_popular: true
+
+  # Track usage by user type
+  track_by_user_type: true
+
+  # Track usage by category
+  track_by_category: true
+
+  # Export analytics periodically
+  export_analytics: false
+  export_path: "./data/prompt_analytics.json"
+  export_frequency_days: 7
+
+# Customization
+customization:
+  # Allow custom prompts
+  enable_custom_prompts: true
+
+  # Path to custom prompts directory
+  custom_prompts_path: "./data/custom_prompts"
+
+  # Allow users to save favorite prompts
+  enable_favorites: true
+  favorites_path: "./data/user_favorites.json"
+
+# Categories Configuration
+categories:
+  # Enable/disable specific categories
+  enabled:
+    - "Reading Struggles"
+    - "Writing Challenges"
+    - "Organization & Executive Function"
+    - "Confidence & Self-Esteem"
+    - "Social & Disclosure"
+    - "Accommodations & Advocacy"
+    - "Tools & Strategies"
+    - "Understanding Dyslexia"
+    - "Parent Prompts"
+    - "Student Prompts"
+    - "Professional/Adult Prompts"
+    - "Teacher/Educator Prompts"
+
+# Feature Flags
+features:
+  # Enable prompt suggestions based on user history
+  enable_suggestions: true
+
+  # Enable AI-powered prompt completion
+  enable_ai_completion: true
+
+  # Enable prompt templates customization
+  enable_template_editing: false
+
+  # Enable collaborative prompts
+  enable_sharing: false
+
+# Integration Settings
+integration:
+  # Integrate with main AI model
+  integrate_with_model: true
+
+  # Use prompts as system instructions
+  use_as_system_prompt: true
+
+  # Prepend context to user prompts
+  prepend_context: true
+
+  # Context template
+  context_template: "You are an AI assistant specializing in supporting individuals with dyslexia. {prompt}"
+
+# Accessibility
+accessibility:
+  # Use dyslexia-friendly formatting in prompt display
+  dyslexia_friendly_display: true
+
+  # Font settings for prompt display
+  font: "OpenDyslexic"
+  font_size: 14
+  line_spacing: 1.5
+
+  # Color coding for different prompt types
+  color_code_types:
+    Strategic: "#4A90E2"  # Blue
+    Socratic: "#7ED321"   # Green
