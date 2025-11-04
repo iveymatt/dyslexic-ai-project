@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { UserProfile } from '../../types/career';
 import { CognitiveProfile } from '../../components/CognitiveProfile';
-import { Briefcase, BookOpen, Lightbulb, ArrowRight, Star, Users, Zap, Clipboard, Eye } from 'lucide-react';
+import { Briefcase, BookOpen, Lightbulb, ArrowRight, Star, Users, Zap, Clipboard, Eye, Brain, Calendar, Heart, Shield, MessageCircle } from 'lucide-react';
 import {
   calculateLifeSkillsProgress,
   calculateAILiteracyProgress,
@@ -182,6 +182,85 @@ export function CareerDiscovery({
                   Master AI tools for job search, learning, and daily life. 10 modules from beginner
                   to advanced.
                 </p>
+              </div>
+            </div>
+
+            {/* Core Program Themes */}
+            <div className="mt-16">
+              <div className="text-center mb-8">
+                <h3 className="text-3xl font-bold mb-3">Our Core Program Themes</h3>
+                <p className="text-gray-300 max-w-3xl mx-auto">
+                  Every feature is designed around neurodivergent needs and research-backed workforce readiness skills.
+                  We target the growing gap between soft skill development and real-life challenges when entering college, employment, and adult relationships.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Theme 1 */}
+                <div className="bg-gradient-to-br from-purple-900/40 to-purple-800/40 rounded-xl p-6 border border-purple-700/50">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Brain className="text-purple-400" size={28} />
+                    <h4 className="text-lg font-bold text-purple-300">Capacity & Executive Function</h4>
+                  </div>
+                  <p className="text-gray-300 text-sm">
+                    Planning, task initiation, flexibility, and sustained attention. Learn strategies that work WITH your brain, not against it.
+                  </p>
+                </div>
+
+                {/* Theme 2 */}
+                <div className="bg-gradient-to-br from-blue-900/40 to-blue-800/40 rounded-xl p-6 border border-blue-700/50">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Calendar className="text-blue-400" size={28} />
+                    <h4 className="text-lg font-bold text-blue-300">Organizing Systems</h4>
+                  </div>
+                  <p className="text-gray-300 text-sm">
+                    Adaptable tools for calendars, notes, and deadlines that move from school to work. Build systems that actually stick.
+                  </p>
+                </div>
+
+                {/* Theme 3 */}
+                <div className="bg-gradient-to-br from-green-900/40 to-green-800/40 rounded-xl p-6 border border-green-700/50">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Heart className="text-green-400" size={28} />
+                    <h4 className="text-lg font-bold text-green-300">Sensory & Emotional Regulation</h4>
+                  </div>
+                  <p className="text-gray-300 text-sm">
+                    Strategies to prevent burnout, maintain balance, and manage sensory processing challenges in workplace environments.
+                  </p>
+                </div>
+
+                {/* Theme 4 */}
+                <div className="bg-gradient-to-br from-pink-900/40 to-pink-800/40 rounded-xl p-6 border border-pink-700/50">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Shield className="text-pink-400" size={28} />
+                    <h4 className="text-lg font-bold text-pink-300">Masking & Camouflaging</h4>
+                  </div>
+                  <p className="text-gray-300 text-sm">
+                    Unmasking safely, building self-acceptance, and reducing cognitive load. Be yourself without exhaustion.
+                  </p>
+                </div>
+
+                {/* Theme 5 */}
+                <div className="bg-gradient-to-br from-cyan-900/40 to-cyan-800/40 rounded-xl p-6 border border-cyan-700/50">
+                  <div className="flex items-center gap-3 mb-3">
+                    <MessageCircle className="text-cyan-400" size={28} />
+                    <h4 className="text-lg font-bold text-cyan-300">Communication & Self-Advocacy</h4>
+                  </div>
+                  <p className="text-gray-300 text-sm">
+                    Scripts, confidence, and clarity in real-world communication. Ask for what you need professionally.
+                  </p>
+                </div>
+
+                {/* How These Connect */}
+                <div className="bg-gradient-to-br from-yellow-900/40 to-orange-900/40 rounded-xl p-6 border border-yellow-700/50">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Lightbulb className="text-yellow-400" size={28} />
+                    <h4 className="text-lg font-bold text-yellow-300">Integrated Approach</h4>
+                  </div>
+                  <p className="text-gray-300 text-sm">
+                    These themes appear throughout Career Matching, Life Skills, and AI Literacy—connecting your learning to real careers.
+                  </p>
+                </div>
               </div>
             </div>
 
