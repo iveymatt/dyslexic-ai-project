@@ -240,12 +240,29 @@ export const jobs: Job[] = [
 
     sensoryDemands: {
       noise: 'low',
+      noiseDetails: 'Quiet office environment. Headphones often allowed. Minimal interruptions during focused work time.',
       lights: 'standard',
+      lightingDetails: 'Typically standard office lighting. Screen brightness adjustable. Desk lamps usually OK.',
       openPlan: true,
+      openPlanDetails: 'Often open-plan offices, but roles are highly remote (70%+). Low interaction even in-office.',
       remote: true,
+      remoteDetails: 'One of the MOST remote-friendly entry-level jobs. Full remote common, especially with temp agencies.',
+      sensoryBreaks: true,
+      sensoryAccommodations: ['Headphones during work', 'Flexible break schedule', 'Remote work standard'],
     },
 
     socialDemands: 'minimal',
+    socialDemandDetails: {
+      level: 'minimal',
+      teamSize: 1-3,
+      dailyInteractions: '1-2 emails/day with supervisor, occasional Slack check-ins, mostly independent work',
+      clientFacing: false,
+      presentationsRequired: false,
+      phoneCallsRequired: false,
+      writtenVsVerbal: 'mostly-written',
+      socialAccommodations: ['Work independently most of day', 'Email preferred over meetings', 'Minimal small talk expected'],
+    },
+
     hoursPerWeek: 40,
     schedule: '9-5, some flexibility',
 
@@ -262,6 +279,152 @@ export const jobs: Job[] = [
     ],
 
     tags: ['detail-oriented', 'low-social', 'remote-friendly', 'repetitive', 'structured'],
+
+    // ========== NEURODIVERGENT-FOCUSED ENHANCEMENTS ==========
+
+    softSkills: [
+      {
+        name: 'Attention to Detail',
+        importance: 'critical',
+        neurodivergentTips: 'Hyperfocus THRIVES here! Many neurodivergent people find repetitive, detailed work satisfying. The predictability is calming, not boring.',
+        canBeSupported: true,
+        supportTools: ['Dual monitors to compare data', 'Data validation tools in Excel', 'Quality check checklists'],
+      },
+      {
+        name: 'Focus & Concentration',
+        importance: 'critical',
+        neurodivergentTips: 'Long stretches of focused work suit ADHD hyperfocus perfectly. Use timers for breaks to avoid burnout. Headphones + music/white noise help maintain flow state.',
+        canBeSupported: true,
+        supportTools: ['Pomodoro timers', 'Focus music/white noise', 'Noise-canceling headphones'],
+      },
+      {
+        name: 'Following Processes',
+        importance: 'helpful',
+        neurodivergentTips: 'Clear, written procedures are ADHD-friendly. You don\'t need to remember - just follow the checklist. Ask for detailed instructions upfront.',
+        canBeSupported: true,
+        supportTools: ['Written SOPs (standard operating procedures)', 'Checklists', 'Screenshot guides'],
+      },
+      {
+        name: 'Independence',
+        importance: 'helpful',
+        neurodivergentTips: 'This job has minimal social demands. You work alone most of the day. Perfect for people who find social interaction draining.',
+        canBeSupported: false,
+        supportTools: [],
+      },
+      {
+        name: 'Typing Speed & Accuracy',
+        importance: 'helpful',
+        neurodivergentTips: 'Speed comes with practice. Accuracy matters more. Use spell-check and data validation. Dyslexia? Use text-to-speech to proofread.',
+        canBeSupported: true,
+        supportTools: ['Typing practice sites', 'Excel data validation', 'Text-to-speech for proofing'],
+      },
+    ],
+
+    aiAssistiveTools: [
+      {
+        name: 'Excel Macros / Google Sheets Scripts',
+        category: 'task-automation',
+        description: 'Automate repetitive data entry patterns and formatting',
+        costLevel: 'free',
+        neurodivergentBenefit: 'Reduces mind-numbing repetition. Lets you focus on accuracy, not copying the same formula 100 times. Satisfying to set up automation.',
+        helpsWithChallenges: ['executive-function', 'time-management'],
+      },
+      {
+        name: 'Text-to-Speech (NaturalReader, Voice Dream)',
+        category: 'learning',
+        description: 'Read back entered data to catch errors',
+        costLevel: 'free',
+        neurodivergentBenefit: 'Essential for dyslexia. Hearing data read aloud catches errors your eyes miss when reading.',
+        helpsWithChallenges: ['reading-writing'],
+      },
+      {
+        name: 'ChatGPT for Data Cleaning',
+        category: 'task-automation',
+        description: 'Clean messy data, format inconsistently entered data, extract patterns',
+        costLevel: 'free',
+        neurodivergentBenefit: 'Helps with executive function when data is messy and overwhelming. AI can organize chaos into structure.',
+        helpsWithChallenges: ['executive-function'],
+      },
+      {
+        name: 'Focus@Will / Brain.fm',
+        category: 'sensory',
+        description: 'Music scientifically designed to improve focus',
+        costLevel: 'low',
+        neurodivergentBenefit: 'Helps ADHD brains maintain focus during repetitive work. Blocks out distracting office noise. Creates "work mode" mental state.',
+        helpsWithChallenges: ['sensory-sensitivity', 'time-management'],
+      },
+      {
+        name: 'Grammarly / LanguageTool',
+        category: 'writing',
+        description: 'Catch spelling errors in data entry fields',
+        costLevel: 'free',
+        neurodivergentBenefit: 'Catches dyslexia-related spelling errors before submission. Reduces anxiety about typos.',
+        helpsWithChallenges: ['reading-writing'],
+      },
+    ],
+
+    accommodations: [
+      {
+        type: 'workspace',
+        name: 'Remote work',
+        description: 'Work fully remote or from home',
+        likelihood: 'common',
+        howToRequest: 'Data entry is extremely remote-friendly. Just ask: "Is this role available fully remote?" Most are.',
+      },
+      {
+        type: 'sensory',
+        name: 'Headphones and quiet workspace',
+        description: 'Use headphones during work, request quieter workspace if in-office',
+        likelihood: 'common',
+        howToRequest: 'If in-office: "I do my best focused work with headphones and minimal distractions. Is there a quieter workspace available?"',
+      },
+      {
+        type: 'time',
+        name: 'Flexible hours',
+        description: 'Adjust start/end times to match your peak focus hours',
+        likelihood: 'common',
+        howToRequest: '"I\'m most focused during [morning/afternoon/evening]. Could I adjust my schedule to [hours] while completing the same work?"',
+      },
+      {
+        type: 'communication',
+        name: 'Written instructions',
+        description: 'Receive all training and task instructions in writing',
+        likelihood: 'common',
+        howToRequest: '"I follow instructions best when they\'re in writing. Could you send me a written guide or checklist for this task?"',
+      },
+      {
+        type: 'time',
+        name: 'Predictable breaks',
+        description: 'Scheduled breaks every X hours to avoid burnout from hyperfocus',
+        likelihood: 'negotiable',
+        howToRequest: '"I work best with regular breaks to maintain accuracy. Could I take a 10-min break every 2 hours?"',
+      },
+      {
+        type: 'tech',
+        name: 'Dual monitors',
+        description: 'Two monitors for comparing source documents and entry fields',
+        likelihood: 'common',
+        howToRequest: '"Could I get a second monitor? It would significantly improve my accuracy by having the source doc on one screen and entry on the other."',
+      },
+    ],
+
+    futureAIImpact: {
+      automationRisk: 7,
+      augmentationOpportunity: 6,
+      emergingTools: [
+        'OCR + AI (automatically read and enter data from scanned documents)',
+        'Smart forms (AI auto-populates fields from uploaded documents)',
+        'Database automation (AI detects patterns and suggests entries)',
+        'Voice-to-data (speak data instead of typing)',
+      ],
+      futureSkillsNeeded: [
+        'Data quality checking (verifying AI-entered data)',
+        'Excel advanced skills (macros, pivot tables, data validation)',
+        'Database basics (learning SQL, understanding data structure)',
+        'Process documentation (teaching AI what data goes where)',
+      ],
+      neurodivergentAdvantage: 'Yes, AI will automate some data entry - but NOT ALL. Complex, messy, or sensitive data still needs humans. Neurodivergent workers excel at QUALITY CHECKING AI work because of attention to detail and pattern recognition. The job evolves from "entering data" to "ensuring data quality" and "training AI systems." Your hyperfocus and detail orientation become MORE valuable, not less. Plus, skills transfer easily to Data Analysis, Database Management, and Data Quality roles.',
+    },
   },
 
   {
@@ -286,12 +449,29 @@ export const jobs: Job[] = [
 
     sensoryDemands: {
       noise: 'medium',
+      noiseDetails: 'Creative agencies can be social/collaborative. Many designers use headphones. Remote work increasingly common.',
       lights: 'standard',
+      lightingDetails: 'Color-accurate monitors important. Natural light preferred but adjustable. Screen brightness customizable.',
       openPlan: true,
+      openPlanDetails: 'Many agencies have open studios for collaboration, but remote work is 60%+ of roles. Freelancers work from home.',
       remote: true,
+      remoteDetails: 'Highly remote-friendly. Freelance = full remote. In-house = hybrid 2-3 days/week typical.',
+      sensoryBreaks: true,
+      sensoryAccommodations: ['Headphones during focus work', 'Flexible work location', 'Control over workspace lighting'],
     },
 
     socialDemands: 'moderate',
+    socialDemandDetails: {
+      level: 'moderate',
+      teamSize: 4,
+      dailyInteractions: '1-2 client meetings/week (30-60 min), 10-20 Slack messages/day, design critique sessions',
+      clientFacing: true,
+      presentationsRequired: true,
+      phoneCallsRequired: false,
+      writtenVsVerbal: 'balanced',
+      socialAccommodations: ['Meetings often async via Figma comments', 'Portfolios speak louder than words', 'Email common for client communication'],
+    },
+
     hoursPerWeek: 40,
     schedule: 'Flexible, project-based',
 
@@ -308,6 +488,160 @@ export const jobs: Job[] = [
     ],
 
     tags: ['creative', 'visual', 'remote-friendly', 'project-based', 'portfolio'],
+
+    // ========== NEURODIVERGENT-FOCUSED ENHANCEMENTS ==========
+
+    softSkills: [
+      {
+        name: 'Visual Creativity',
+        importance: 'critical',
+        neurodivergentTips: 'Many neurodivergent people are HIGHLY visual thinkers! Pattern-creation, color sensitivity, and "seeing differently" are ASSETS. Your unique perspective creates original work.',
+        canBeSupported: false,
+        supportTools: [],
+      },
+      {
+        name: 'Client Communication',
+        importance: 'critical',
+        neurodivergentTips: 'Presenting ideas verbally can be challenging. Use visual mockups to "show, not tell." Loom videos work great for design explanations. Written summaries help clarify verbal meetings.',
+        canBeSupported: true,
+        supportTools: ['Figma for visual explanations', 'Loom for async presentations', 'ChatGPT to draft client emails'],
+      },
+      {
+        name: 'Receiving Feedback',
+        importance: 'critical',
+        neurodivergentTips: 'Design critiques can feel personal. Remember: feedback is about THE WORK, not YOU. Ask for specific, actionable feedback. Written feedback is easier to process than verbal.',
+        canBeSupported: true,
+        supportTools: ['Request written feedback in Figma', 'Ask "What specifically should I change?"', 'Take notes during verbal feedback'],
+      },
+      {
+        name: 'Time Management (Deadlines)',
+        importance: 'helpful',
+        neurodivergentTips: 'Creative work + ADHD time blindness = tricky deadlines. Use timers, break projects into smaller milestones, and communicate early if you need more time.',
+        canBeSupported: true,
+        supportTools: ['Toggl for time tracking', 'Notion for project milestones', 'Calendar blocking for focused work'],
+      },
+      {
+        name: 'Attention to Detail',
+        importance: 'helpful',
+        neurodivergentTips: 'Hyperfocus helps with detailed pixel-perfect work, but typos in text can slip through. Use spell-check tools and have someone proofread copy before final delivery.',
+        canBeSupported: true,
+        supportTools: ['Grammarly for text in designs', 'Design checklists', 'Peer review for final proofing'],
+      },
+    ],
+
+    aiAssistiveTools: [
+      {
+        name: 'Figma AI / Adobe Firefly',
+        category: 'task-automation',
+        description: 'Generate backgrounds, remove objects, create variations of designs automatically',
+        costLevel: 'medium',
+        neurodivergentBenefit: 'Reduces repetitive tasks (like background removal) so you can focus on creative work. Helps when executive function makes starting hard - AI generates starting points.',
+        helpsWithChallenges: ['executive-function', 'time-management'],
+      },
+      {
+        name: 'ChatGPT / Claude',
+        category: 'writing',
+        description: 'Draft client emails, write design rationales, generate copy for mockups',
+        costLevel: 'free',
+        neurodivergentBenefit: 'Helps with writing professional emails and explaining design decisions in words (when verbal/written communication is challenging). Great for dyslexia.',
+        helpsWithChallenges: ['reading-writing', 'social-interaction'],
+      },
+      {
+        name: 'Loom',
+        category: 'communication',
+        description: 'Record screen + voice to present designs asynchronously',
+        costLevel: 'free',
+        neurodivergentBenefit: 'Avoid live presentations! Record design walkthroughs on your own time, with multiple takes if needed. Reduces social anxiety and allows you to prepare.',
+        helpsWithChallenges: ['social-interaction', 'public-speaking'],
+      },
+      {
+        name: 'Grammarly',
+        category: 'writing',
+        description: 'Check spelling/grammar in design mockups and client communications',
+        costLevel: 'free',
+        neurodivergentBenefit: 'Catches typos in your designs before clients see them. Essential for dyslexia.',
+        helpsWithChallenges: ['reading-writing'],
+      },
+      {
+        name: 'Notion / ClickUp',
+        category: 'organization',
+        description: 'Track design projects, client feedback, and deadlines in one visual place',
+        costLevel: 'free',
+        neurodivergentBenefit: 'External project brain. Visual kanban boards help ADHD brains see progress. Reduces "what am I supposed to be working on?" paralysis.',
+        helpsWithChallenges: ['executive-function', 'time-management'],
+      },
+      {
+        name: 'f.lux / Dark Mode',
+        category: 'sensory',
+        description: 'Adjust screen color temperature and reduce blue light',
+        costLevel: 'free',
+        neurodivergentBenefit: 'Reduces eye strain and sensory overwhelm from bright screens. Especially helpful for long design sessions.',
+        helpsWithChallenges: ['sensory-sensitivity'],
+      },
+    ],
+
+    accommodations: [
+      {
+        type: 'workspace',
+        name: 'Remote work or quiet design space',
+        description: 'Work from home or request a quieter corner of the studio',
+        likelihood: 'common',
+        howToRequest: 'Graphic design is increasingly remote. Say: "I do my best creative work in a quiet environment. Could I work remotely X days per week or have a quieter workspace?"',
+      },
+      {
+        type: 'communication',
+        name: 'Written briefs and feedback',
+        description: 'Receive project briefs and feedback in writing (Figma, email, Slack) rather than verbally',
+        likelihood: 'common',
+        howToRequest: '"I process information best in writing. Could we follow up verbal meetings with written summaries or use Figma comments for feedback?"',
+      },
+      {
+        type: 'social',
+        name: 'Async design presentations',
+        description: 'Present work via recorded Loom videos instead of live meetings',
+        likelihood: 'negotiable',
+        howToRequest: '"I\'d like to try presenting designs via Loom videos so clients can review on their own time. This also gives them a recording to refer back to."',
+      },
+      {
+        type: 'time',
+        name: 'Flexible deadlines for creative work',
+        description: 'Extra time when creative blocks happen or revisions are extensive',
+        likelihood: 'negotiable',
+        howToRequest: '"This project needs more iteration to get it right. Could I have 2 extra days to ensure quality?" (Emphasize quality, not struggle)',
+      },
+      {
+        type: 'sensory',
+        name: 'Headphones during focus work',
+        description: 'Use noise-canceling headphones in open studios',
+        likelihood: 'common',
+        howToRequest: 'Usually no request needed - very common in creative fields. If questioned: "Headphones help me focus during detailed design work."',
+      },
+      {
+        type: 'tech',
+        name: 'Design software accommodations',
+        description: 'Color-accurate monitor, ergonomic setup, assistive tech for dyslexia',
+        likelihood: 'common',
+        howToRequest: '"I need a color-accurate monitor for design work. Could the company provide this?" (Often standard equipment)',
+      },
+    ],
+
+    futureAIImpact: {
+      automationRisk: 5,
+      augmentationOpportunity: 8,
+      emergingTools: [
+        'AI design assistants (generate layouts, color palettes, icon sets)',
+        'AI-powered image editing (remove backgrounds, upscale images, generate variations)',
+        'Text-to-image generation (create concept art from descriptions)',
+        'Automated design systems (AI maintains brand consistency)',
+      ],
+      futureSkillsNeeded: [
+        'AI prompt engineering for design (knowing how to get good results from AI)',
+        'Creative direction (guiding AI instead of doing pixel-pushing)',
+        'Brand strategy and storytelling (what AI can\'t do)',
+        'Human-centered design (understanding what resonates emotionally)',
+      ],
+      neurodivergentAdvantage: 'AI will handle repetitive design tasks (resizing, background removal, color variations), but HUMAN creativity, originality, and emotional understanding are irreplaceable. Neurodivergent designers often see patterns and connections others miss - creating truly original work. As AI generates "average" designs, YOUR unique perspective becomes MORE valuable. The future values LATERAL thinking, not just technical execution.',
+    },
   },
 
   {
