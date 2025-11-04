@@ -54,14 +54,14 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         <p className="text-sm text-gray-500 mt-4">No signup required • Privacy-focused • Open source</p>
       </header>
 
-      {/* Feature Highlights - 4 Major Features */}
+      {/* Feature Highlights - 5 Major Features */}
       <section className="container mx-auto px-6 py-16">
-        <h2 className="text-4xl font-bold text-center mb-4">Four Tools. One Platform.</h2>
+        <h2 className="text-4xl font-bold text-center mb-4">Five Tools. One Platform.</h2>
         <p className="text-center text-gray-400 mb-12 text-lg max-w-3xl mx-auto">
           We built the platform we wished existed. Here's what makes Cognitive Partner different.
         </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {/* Prompt Library */}
           <div className="bg-gradient-to-br from-green-900/40 to-green-800/40 p-8 rounded-2xl border border-green-700/50 hover:border-green-600 transition-all">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-green-600 rounded-full mb-6">
@@ -194,6 +194,40 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             <div className="bg-orange-900/30 rounded-lg p-4 border border-orange-700/30">
               <p className="text-sm text-orange-200 italic">
                 "I have autism and ADHD. I never knew what career would work for me. This showed me jobs that actually fit my brain. Game changer."
+              </p>
+            </div>
+          </div>
+
+          {/* AI Agents & Workflows */}
+          <div className="bg-gradient-to-br from-cyan-900/40 to-teal-800/40 p-8 rounded-2xl border border-cyan-700/50 hover:border-cyan-600 transition-all">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-cyan-600 rounded-full mb-6">
+              <Bot size={32} />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">AI Agents & Workflows</h3>
+            <p className="text-gray-300 mb-6 text-lg">
+              Pre-built AI assistants and step-by-step workflows for career transition challenges.
+            </p>
+            <ul className="space-y-3 text-gray-300 mb-6">
+              <li className="flex items-start gap-2">
+                <span className="text-cyan-400 flex-shrink-0 mt-1">✓</span>
+                <span>10 ready-to-use AI agents (task breakdown, interview prep, scripts)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-cyan-400 flex-shrink-0 mt-1">✓</span>
+                <span>3 multi-step workflows (job apps, first day, accommodations)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-cyan-400 flex-shrink-0 mt-1">✓</span>
+                <span>Voice-to-text optimized prompts with examples</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-cyan-400 flex-shrink-0 mt-1">✓</span>
+                <span>Organized by 5 core themes (executive function, emotional regulation, etc.)</span>
+              </li>
+            </ul>
+            <div className="bg-cyan-900/30 rounded-lg p-4 border border-cyan-700/30">
+              <p className="text-sm text-cyan-200 italic">
+                "The Social Script Generator saved me. I finally have words for difficult conversations at work."
               </p>
             </div>
           </div>
