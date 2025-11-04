@@ -1,12 +1,34 @@
 import { useState, useEffect } from 'react';
 import type { UserProfile } from '../../types/career';
 import { CognitiveProfile } from '../../components/CognitiveProfile';
-import { Briefcase, BookOpen, Lightbulb, ArrowRight, Star, Users, Zap, Clipboard } from 'lucide-react';
+import { Briefcase, BookOpen, Lightbulb, ArrowRight, Star, Users, Zap, Clipboard, Eye } from 'lucide-react';
 import {
   calculateLifeSkillsProgress,
   calculateAILiteracyProgress,
 } from '../../utils/careerHelpers';
 import { jobs } from '../../data/careerDiscovery/jobs';
+
+// Demo profile for "Try Demo" feature (Autistic, age 22)
+const DEMO_PROFILE: UserProfile = {
+  id: 'demo-user',
+  name: 'Demo User',
+  age: 22,
+  neurodivergence: ['autism'],
+  challenges: ['social-interaction', 'sensory-sensitivity', 'executive-function'],
+  strengths: ['pattern-recognition', 'detailed-work', 'hyperfocus', 'visual-spatial'],
+  sensoryPreference: 'quiet-preferred',
+  hasWorked: false,
+  education: 'high-school',
+  careerInterests: ['technology', 'creative', 'research-learning'],
+  jobPriorities: ['flexibility', 'low-stress', 'good-pay'],
+  savedJobs: [],
+  profileCompleted: true,
+  isDemo: true, // Flag to indicate demo mode
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  lifeSkillsProgress: {},
+  aiLiteracyProgress: {},
+};
 
 interface CareerDiscoveryProps {
   onBack: () => void;
@@ -38,6 +60,14 @@ export function CareerDiscovery({
       }
     }
   }, []);
+
+  const handleTryDemo = () => {
+    // Save demo profile to localStorage
+    localStorage.setItem('careerDiscoveryProfile', JSON.stringify(DEMO_PROFILE));
+    setUserProfile(DEMO_PROFILE);
+    // Navigate to jobs view to show the matched careers
+    onViewJobs();
+  };
 
   const hasProfile = userProfile && userProfile.profileCompleted;
 
@@ -75,6 +105,28 @@ export function CareerDiscovery({
               based on your neurodivergent strengths, challenges, and interests.
             </p>
 
+            {/* Try Demo Button - Prominent */}
+            <div className="mb-6">
+              <button
+                onClick={handleTryDemo}
+                className="w-full max-w-3xl bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold py-6 px-8 rounded-xl shadow-2xl transition-all flex items-center justify-center gap-4 border-2 border-green-400/50"
+              >
+                <Eye size={32} />
+                <div className="text-center">
+                  <div className="text-2xl">👀 Try Demo - No Setup Required!</div>
+                  <div className="text-sm opacity-90 mt-1">
+                    See how it works with a sample profile (Autistic, age 22) • View 3 fully enhanced careers
+                  </div>
+                </div>
+              </button>
+            </div>
+
+            <div className="flex items-center gap-4 mb-6 max-w-3xl mx-auto">
+              <div className="flex-1 border-t border-gray-600"></div>
+              <span className="text-gray-500 text-sm">OR CREATE YOUR OWN PROFILE</span>
+              <div className="flex-1 border-t border-gray-600"></div>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4 max-w-3xl mx-auto">
               <button
                 onClick={onQuickStart}
@@ -100,8 +152,7 @@ export function CareerDiscovery({
             </div>
 
             <p className="text-sm text-gray-400 mb-12">
-              Not sure which to choose? Quick Start gets you exploring careers in 2 minutes.
-              Full Assessment gives the most personalized matches.
+              Quick Start: 2 minutes. Full Assessment: Most personalized matches.
             </p>
 
             {/* Features */}
