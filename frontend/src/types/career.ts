@@ -240,6 +240,7 @@ export interface LifeSkillsModule {
   title: string;
   icon: string;
   description: string;
+  color?: string; // Theme color: purple, blue, green, pink, cyan
   lessons: Lesson[];
   skillsYouGain: string[];
   practiceActivity: string;
