@@ -9,7 +9,14 @@ import {
   getCognitiveFitLabel,
   getCognitiveFitColor,
 } from '../../utils/careerHelpers';
-import { ArrowLeft, Bookmark, Lightbulb, AlertCircle, TrendingUp } from 'lucide-react';
+import { ArrowLeft, Bookmark, Lightbulb, TrendingUp } from 'lucide-react';
+import {
+  SoftSkillsSection,
+  AIAssistiveToolsSection,
+  AccommodationsSection,
+  FutureAIImpactSection,
+  EnhancedSensorySection,
+} from '../../components/career/NeurodivergentJobFeatures';
 
 interface JobDetailProps {
   jobId: string;
@@ -207,28 +214,50 @@ export function JobDetail({ jobId, onBack }: JobDetailProps) {
           </div>
         </div>
 
-        {/* Sensory & Social */}
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-8">
-          <div className="flex items-center gap-2 mb-4">
-            <AlertCircle className="text-orange-400" size={24} />
-            <h2 className="text-2xl font-bold">Sensory & Social Demands</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <p className="text-gray-400 mb-2">Office Environment</p>
-              <p className="text-white capitalize">
-                {job.sensoryDemands.noise} noise • {job.sensoryDemands.lights} lighting
-              </p>
-              <p className="text-white">
-                {job.sensoryDemands.openPlan ? 'Open plan office' : 'Private/quiet space'}
-              </p>
-            </div>
-            <div>
-              <p className="text-gray-400 mb-2">Social Interaction</p>
-              <p className="text-white capitalize">{job.socialDemands} social demands</p>
-            </div>
-          </div>
+        {/* Enhanced Sensory & Social Details */}
+        <div className="mb-8">
+          <EnhancedSensorySection
+            sensory={job.sensoryDemands}
+            socialDetails={job.socialDemandDetails}
+          />
         </div>
+
+        {/* Soft Skills (if available) */}
+        {job.softSkills && job.softSkills.length > 0 && (
+          <div className="mb-8">
+            <SoftSkillsSection
+              skills={job.softSkills}
+              userChallenges={userProfile?.challenges}
+            />
+          </div>
+        )}
+
+        {/* AI Assistive Tools (if available) */}
+        {job.aiAssistiveTools && job.aiAssistiveTools.length > 0 && (
+          <div className="mb-8">
+            <AIAssistiveToolsSection
+              tools={job.aiAssistiveTools}
+              userChallenges={userProfile?.challenges}
+            />
+          </div>
+        )}
+
+        {/* Accommodations (if available) */}
+        {job.accommodations && job.accommodations.length > 0 && (
+          <div className="mb-8">
+            <AccommodationsSection accommodations={job.accommodations} />
+          </div>
+        )}
+
+        {/* Future AI Impact (if available) */}
+        {job.futureAIImpact && (
+          <div className="mb-8">
+            <FutureAIImpactSection
+              impact={job.futureAIImpact}
+              aiRiskScore={job.aiRiskScore}
+            />
+          </div>
+        )}
 
         {/* How to Get Started */}
         <div className="bg-primary-900/20 border border-primary-700/30 rounded-xl p-6 mb-8">

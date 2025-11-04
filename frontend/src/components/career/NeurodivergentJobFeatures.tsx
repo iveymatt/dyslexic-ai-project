@@ -10,7 +10,6 @@ import {
   Sparkles,
   Brain,
   Zap,
-  DollarSign,
   CheckCircle2,
   AlertCircle,
   Users,
@@ -30,7 +29,7 @@ interface SoftSkillsProps {
   userChallenges?: string[];
 }
 
-export function SoftSkillsSection({ skills, userChallenges }: SoftSkillsProps) {
+export function SoftSkillsSection({ skills }: SoftSkillsProps) {
   const getImportanceColor = (importance: string) => {
     switch (importance) {
       case 'critical':
@@ -77,7 +76,7 @@ export function SoftSkillsSection({ skills, userChallenges }: SoftSkillsProps) {
             <div className="flex items-start justify-between mb-2">
               <h4 className="text-lg font-semibold flex items-center gap-2">
                 {skill.name}
-                {skill.canBeSupported && <Zap size={16} className="text-yellow-400" title="AI/Tools can help!" />}
+                {skill.canBeSupported && <Zap size={16} className="text-yellow-400" />}
               </h4>
               <span className="text-sm px-2 py-1 rounded bg-gray-800/50">
                 {getImportanceLabel(skill.importance)}
@@ -117,7 +116,7 @@ interface AIToolsProps {
   userChallenges?: string[];
 }
 
-export function AIAssistiveToolsSection({ tools, userChallenges }: AIToolsProps) {
+export function AIAssistiveToolsSection({ tools }: AIToolsProps) {
   const getCostIcon = (cost: string) => {
     switch (cost) {
       case 'free':
