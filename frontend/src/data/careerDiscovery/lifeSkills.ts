@@ -2,11 +2,12 @@ import type { LifeSkillsModule } from '../../types/career';
 
 export const lifeSkillsModules: LifeSkillsModule[] = [
   {
-    id: 'time-management',
-    title: 'Time Management & Scheduling',
-    icon: '⏰',
-    description: 'Master your time, not the clock',
-    coreThemes: ['Capacity & Executive Function', 'Organizing Systems'],
+    id: 'executive-function',
+    title: '🧠 Capacity & Executive Function',
+    icon: '🧠',
+    description: 'Planning, task initiation, flexibility, sustained attention',
+    color: 'purple',
+    coreThemes: ['Capacity & Executive Function'],
 
     lessons: [
       {
@@ -69,6 +70,7 @@ export const lifeSkillsModules: LifeSkillsModule[] = [
         id: 'lesson-3',
         title: 'Building Routines That Stick',
         duration: 5,
+        coreTheme: 'executive-function',
         content: `Routines help neurodivergent brains by removing decisions. But rigid routines can feel suffocating.
 
 **Key Concept:** Flexible routines work better.
@@ -80,13 +82,14 @@ export const lifeSkillsModules: LifeSkillsModule[] = [
 4. Give yourself permission to skip it sometimes
 
 **Example routine:**
-- Wake up → Coffee → Look at today\'s 3 tasks → Start`,
+- Wake up → Coffee → Look at today's 3 tasks → Start`,
         exercise: 'Choose ONE small routine to try this week. Just one.',
       },
       {
         id: 'lesson-4',
         title: 'Dealing with Time Blindness',
         duration: 5,
+        coreTheme: 'executive-function',
         content: `Time blindness = losing track of time. It's not laziness. It's a neurodivergent trait.
 
 **Key Concept:** External cues help when internal time sense doesn't work.
@@ -102,8 +105,46 @@ export const lifeSkillsModules: LifeSkillsModule[] = [
       },
       {
         id: 'lesson-5',
+        title: 'Understanding Decision Fatigue & Cognitive Load',
+        duration: 5,
+        coreTheme: 'executive-function',
+        content: `Every decision you make depletes mental energy. Neurodivergent brains often have less capacity to start with.
+
+**Key Concept:** Reduce unnecessary decisions to preserve energy for what matters.
+
+**How to reduce cognitive load:**
+- **Automate small decisions:** Same breakfast every day, capsule wardrobe
+- **Create templates:** Email templates, meal plans, weekly schedules
+- **Limit options:** Pick from 3 choices, not 30
+- **Delegate when possible:** Let others decide small things
+
+**Career application:**
+Use decision-making frameworks at work: "urgent + important = do now, important + not urgent = schedule"`,
+        exercise: 'Identify 3 daily decisions you could automate or simplify this week.',
+      },
+    ],
+
+    skillsYouGain: ['Energy awareness', 'Time blocking', 'Routine building', 'Task initiation', 'Cognitive load management'],
+
+    practiceActivity: 'Track your energy patterns for 3 days. Break one big task into time blocks. Build one simple morning routine.',
+
+    affirmation: 'Executive function challenges are neurodivergent traits, not personal failings. Your brain works differently. These strategies help you work WITH your brain, not against it.',
+  },
+
+  {
+    id: 'organizing-systems',
+    title: '📅 Organizing Systems',
+    icon: '📅',
+    description: 'Calendars, notes, deadlines that move from school to work',
+    color: 'blue',
+    coreThemes: ['Organizing Systems'],
+
+    lessons: [
+      {
+        id: 'lesson-1',
         title: 'Tools That Work for Neurodivergent Brains',
         duration: 5,
+        coreTheme: 'organizing-systems',
         content: `Generic productivity apps don't always work for us. Here's what DOES work:
 
 **Visual tools:**
@@ -124,50 +165,12 @@ export const lifeSkillsModules: LifeSkillsModule[] = [
 **The best tool = the one you'll actually use.**`,
         exercise: 'Try ONE new tool this week. Just one. See if it helps.',
       },
-    ],
-
-    skillsYouGain: ['Energy awareness', 'Time blocking', 'Routine building', 'Using tools effectively'],
-
-    practiceActivity: 'Create your personal weekly schedule. Block your peak energy times for important work. Schedule breaks. Use color coding.',
-
-    affirmation: 'Time blindness is real. You\'re not lazy. You\'re not broken. Your brain works differently, and that\'s okay. These tools help you work WITH your brain.',
-  },
-
-  {
-    id: 'money-management',
-    title: 'Money Management & Budgeting',
-    icon: '💰',
-    description: 'Take control of your finances, reduce money stress',
-
-    lessons: [
-      {
-        id: 'lesson-1',
-        title: 'Understanding Where Money Goes',
-        duration: 5,
-        content: `ADHD impulse spending is real. Executive dysfunction makes budgeting hard. Let's make it easier.
-
-**Key Concept:** You can't manage what you don't track.
-
-**Simple tracking method:**
-1. Check bank account once per week
-2. Write down: What did I spend on?
-3. Categories: Needs (rent, food) vs. Wants (fun stuff)
-
-**No judgment.** Just awareness.
-
-**Common neurodivergent money struggles:**
-- Impulse purchases (dopamine!)
-- Forgetting to pay bills (executive function)
-- Avoiding looking at finances (overwhelm)
-
-You're not alone.`,
-        exercise: 'This week, track your spending. Just write it down. No judgment.',
-      },
       {
         id: 'lesson-2',
-        title: 'The Simple Budget That Actually Works',
+        title: 'Money Management & Budgeting Basics',
         duration: 5,
-        content: `Forget complicated spreadsheets. Here's a budget that works for ADHD brains:
+        coreTheme: 'organizing-systems',
+        content: `ADHD impulse spending is real. Executive dysfunction makes budgeting hard. Let's make it easier.
 
 **The 50/30/20 Rule:**
 - 50% = Needs (rent, food, bills)
@@ -186,6 +189,7 @@ You're not alone.`,
         id: 'lesson-3',
         title: 'Automating to Reduce Executive Function Load',
         duration: 5,
+        coreTheme: 'organizing-systems',
         content: `Remembering to pay bills = executive function. Automate it = problem solved.
 
 **What to automate:**
@@ -206,6 +210,7 @@ Set up autopay BEFORE the due date. Late fees are expensive.`,
         id: 'lesson-4',
         title: 'Dealing with Impulse Spending',
         duration: 5,
+        coreTheme: 'organizing-systems',
         content: `Dopamine-driven purchases are a neurodivergent thing. Here's how to manage it:
 
 **The 24-hour rule:**
@@ -225,8 +230,9 @@ Give yourself permission to spend guilt-free from this pot.
       },
       {
         id: 'lesson-5',
-        title: 'Building an Emergency Fund (Even on Low Income)',
+        title: 'Building an Emergency Fund & Financial Systems',
         duration: 5,
+        coreTheme: 'organizing-systems',
         content: `Financial stress is real. An emergency fund = peace of mind.
 
 **Goal:** Save $500-$1000 (covers most emergencies)
@@ -248,24 +254,317 @@ Automate it. $10 auto-transfers every payday. You won't miss it.
       },
     ],
 
-    skillsYouGain: ['Budget creation', 'Expense tracking', 'Automation', 'Impulse control strategies'],
+    skillsYouGain: ['Tool selection', 'Budget creation', 'Automation', 'Financial planning', 'Impulse control strategies'],
 
-    practiceActivity: 'Create your first simple budget using the 50/30/20 rule. Set up one automatic payment or savings transfer.',
+    practiceActivity: 'Set up one productivity tool (calendar, budgeting app, or task manager). Create your first simple budget. Automate one payment or savings transfer.',
 
-    affirmation: 'Money management is hard for neurodivergent brains. Executive function struggles are real. You\'re not bad with money—you just need systems that work for YOUR brain.',
+    affirmation: 'Organization is hard for neurodivergent brains. You\'re not lazy or irresponsible. You just need systems that work for YOUR brain. External systems = internal peace.',
   },
 
   {
-    id: 'job-interviews',
-    title: 'Job Interviews & Communication',
-    icon: '💼',
-    description: 'Navigate interviews and workplace communication with confidence',
+    id: 'sensory-emotional',
+    title: '❤️ Sensory & Emotional Regulation',
+    icon: '❤️',
+    description: 'Prevent burnout, manage sensory challenges',
+    color: 'green',
+    coreThemes: ['Sensory & Emotional Regulation'],
+
+    lessons: [
+      {
+        id: 'lesson-1',
+        title: 'Understanding Emotional Dysregulation',
+        duration: 5,
+        coreTheme: 'sensory-emotional',
+        content: `Many neurodivergent people experience emotions MORE intensely. It's not being "dramatic." It's neurobiology.
+
+**Key Concept:** Your feelings are valid. AND you can learn to manage them.
+
+**Why emotions feel bigger:**
+- ADHD: Emotions come fast and intense
+- Autism: Delayed processing, then BAM
+- Anxiety: Everything feels like a threat
+- Depression: Everything feels heavy
+
+**It's not weakness. It's how your nervous system works.**
+
+**Goal:** Not to "stop feeling," but to respond skillfully.`,
+        exercise: 'Next time you feel a big emotion, name it: "I\'m feeling [angry/sad/overwhelmed]."',
+        teachableMoment: {
+          scenario: "You're at your new job. After 3 hours in a loud, bright office with constant interruptions, you feel like you're going to explode or cry. A coworker asks you a simple question and you snap at them. Now you feel guilty and scared they'll report you. You want to run to your car and never come back.",
+          whatToNotice: "This is sensory and emotional overload leading to dysregulation. Notice the early warning signs BEFORE you snap: tension in shoulders, racing thoughts, feeling 'prickly,' wanting to escape, sounds getting louder. These are your body's 'I'm at capacity' signals.",
+          howToRespond: "In the moment: If safe, excuse yourself. 'I need to step out for 5 minutes.' Go to bathroom, your car, outside. Splash cold water on face. Do box breathing (in 4, hold 4, out 4, hold 4). Don't try to 'fix' anything while dysregulated. After: Apologize briefly to coworker: 'Sorry I was short earlier, I was overwhelmed.' Don't over-explain. Prevention: Ask for accommodations BEFORE you're at breaking point.",
+          whyItMatters: "Autistic meltdowns and shutdowns aren't 'tantrums' or 'manipulation'—they're nervous system overload. Learning to recognize your early warning signs and take preventive breaks is how you avoid meltdowns at work, in relationships, and while living independently. This is survival-level emotional regulation. Masking until you collapse doesn't work long-term."
+        }
+      },
+      {
+        id: 'lesson-2',
+        title: 'The Regulation Toolbox',
+        duration: 5,
+        coreTheme: 'sensory-emotional',
+        content: `Different tools work for different emotions and different brains. Build your personal toolbox.
+
+**When overwhelmed:**
+- 5-4-3-2-1 grounding: 5 things you see, 4 you hear, 3 you touch, 2 you smell, 1 you taste
+- Step outside (change environment)
+- Cold water on face (resets nervous system)
+
+**When anxious:**
+- Box breathing: In 4, hold 4, out 4, hold 4
+- Progressive muscle relaxation
+- Movement (walk, dance, shake it out)
+
+**When understimulated (ADHD):**
+- Upbeat music
+- Physical activity
+- Fidget tools
+
+**The key: Experiment. Find what works for YOUR brain.**`,
+        exercise: 'Try box breathing right now. In 4, hold 4, out 4, hold 4. Repeat 4 times.',
+      },
+      {
+        id: 'lesson-3',
+        title: 'Identifying Your Triggers',
+        duration: 5,
+        coreTheme: 'sensory-emotional',
+        content: `Triggers = situations that reliably cause big emotions. Knowing them = power.
+
+**Common neurodivergent triggers:**
+- Sensory overload (too much noise, light, people)
+- Transitions (changing activities)
+- Criticism (rejection sensitivity dysphoria)
+- Uncertainty (not knowing what to expect)
+- Being interrupted (especially during hyperfocus)
+
+**How to identify yours:**
+1. Think: When do I usually get upset/overwhelmed/angry?
+2. Look for patterns
+3. Write them down
+
+**Once you know them, you can plan around them or prepare coping strategies.**
+
+**Career-Specific Triggers to Watch For:**
+- **Graphic Designers:** Client feedback can trigger RSD (Rejection Sensitivity Dysphoria)—remember, feedback is about the WORK, not YOU
+- **Software Testers:** Bug report rejections or developers dismissing your findings can feel personal—develop a "professional distance" mindset
+- **Data Entry:** Interruptions during hyperfocus can cause frustration—use "Do Not Disturb" signals and communicate your focus needs`,
+        exercise: 'List 3 situations that usually trigger big emotions for you. Just notice them.',
+      },
+      {
+        id: 'lesson-4',
+        title: 'Creating a Personal Calm-Down Plan',
+        duration: 5,
+        coreTheme: 'sensory-emotional',
+        content: `When you're in crisis mode, your brain can't problem-solve. Decide NOW what helps.
+
+**Your Calm-Down Plan:**
+
+**Step 1: Notice**
+What's my body telling me? (Tight chest? Racing thoughts? Tears?)
+
+**Step 2: Pause**
+Can I remove myself from the situation? (Bathroom break, walk outside, leave early)
+
+**Step 3: Regulate**
+Pick ONE tool from your toolbox (breathing, cold water, movement, etc.)
+
+**Step 4: Reflect**
+When calm: What triggered this? What can I do differently next time?
+
+**Write this plan down. Put it in your phone. You can't remember it when you're dysregulated.**`,
+        exercise: 'Write your personal calm-down plan. What\'s your go-to regulation tool?',
+      },
+      {
+        id: 'lesson-5',
+        title: 'Building Emotional Resilience Over Time',
+        duration: 5,
+        coreTheme: 'sensory-emotional',
+        content: `Resilience = bouncing back faster. It's a skill you can build.
+
+**Daily practices that help:**
+- **Sleep:** Emotional regulation starts with rest
+- **Movement:** Walk, dance, yoga—whatever you enjoy
+- **Routine:** Predictability reduces stress
+- **Connection:** Talk to people who get you
+- **Boundaries:** Say no to things that drain you
+
+**Neurodivergent-friendly self-care:**
+- It doesn't have to be "meditation and green smoothies"
+- It CAN be: video games, special interest time, alone time, stimming freely
+
+**Self-care = what recharges YOUR nervous system.**
+
+**Progress isn't linear. Bad days happen. That's okay.**`,
+        exercise: 'Pick ONE daily practice to try this week. Start small (5 minutes).',
+      },
+    ],
+
+    skillsYouGain: ['Emotional awareness', 'Regulation techniques', 'Trigger identification', 'Self-care planning', 'Resilience building'],
+
+    practiceActivity: 'Create your personal calm-down plan card. Identify your top 3 triggers. Practice one regulation technique daily for a week.',
+
+    affirmation: 'Emotional dysregulation is a neurodivergent trait, not a character flaw. Big feelings are valid. You can learn to work WITH your emotions, not against them.',
+  },
+
+  {
+    id: 'masking-camouflaging',
+    title: '🛡️ Masking & Camouflaging',
+    icon: '🛡️',
+    description: 'Unmask safely, reduce cognitive load',
+    color: 'pink',
+    coreThemes: ['Masking & Camouflaging'],
+
+    lessons: [
+      {
+        id: 'lesson-1',
+        title: 'Understanding Neurotypical Social Rules',
+        duration: 5,
+        coreTheme: 'masking',
+        content: `Social rules often feel arbitrary because... they kind of are. But understanding them helps you decide when to follow them.
+
+**Unwritten rules neurotypicals follow:**
+- Small talk before big talk (build rapport first)
+- Don't interrupt (even if you're excited)
+- Match energy levels (don't be super loud if they're quiet)
+- Ask questions back (conversation is a tennis match, not a lecture)
+
+**The thing is: You're not "bad at socializing." You're playing a game where no one explained the rules.**
+
+**Good news:** You can learn the rules WITHOUT masking your whole personality.
+
+**How This Applies to Different Careers:**
+- **Software Testers (Minimal Social):** Team size 5-8, mostly Slack messages, brief standups—very manageable social load
+- **Graphic Designers (Moderate Social):** Client-facing meetings required, but you can use Loom for async presentations
+- **Data Entry (Minimal Social):** Team size 1-3, mostly independent work—perfect for those who prefer limited social interaction`,
+        exercise: 'Observe one social interaction today. What unwritten rules do you notice?',
+      },
+      {
+        id: 'lesson-2',
+        title: 'Small Talk Survival Guide',
+        duration: 5,
+        coreTheme: 'masking',
+        content: `Small talk feels pointless to many neurodivergent people. "Why are we talking about weather when we could discuss something INTERESTING?"
+
+**Why neurotypicals do it:** It's social lubrication. Low-stakes connection.
+
+**Small talk formula:**
+1. Greeting: "Hi, how are you?"
+2. Safe topic: Weather, weekend plans, recent event
+3. Their turn: Ask a question
+4. Your turn: Answer briefly, ask back
+5. Exit: "Nice talking to you!"
+
+**Script bank:**
+- "How's your day going?"
+- "Any plans this weekend?"
+- "Did you see [relevant news/show/event]?"
+- "How long have you been [doing this job/living here]?"
+
+**Pro tip:** You don't have to LOVE small talk. You just have to survive it for 2 minutes.`,
+        exercise: 'Practice one small talk script with someone safe (family, friend).',
+      },
+      {
+        id: 'lesson-3',
+        title: 'Reading Social Cues (When Your Brain Doesn\'t Do It Automatically)',
+        duration: 5,
+        coreTheme: 'masking',
+        content: `Many neurodivergent people don't automatically read body language or tone. You can learn it intellectually instead.
+
+**Body language decoder:**
+- Arms crossed = defensive or cold
+- Leaning in = interested
+- Looking at phone = bored or busy
+- Nodding = "I'm listening"
+- Backing away = uncomfortable
+
+**Tone decoder:**
+- Short answers = probably wants to end conversation
+- Long answers = engaged
+- Higher pitch = excited or nervous
+- Flat tone = could be bored (or autistic!)
+
+**When in doubt, ASK:**
+"Are you okay? You seem quiet."
+"Is this a good time to talk?"
+
+**It's okay to be direct. It's better than guessing wrong.**`,
+        exercise: 'Watch a TV show with sound OFF. Try to guess emotions from body language.',
+      },
+      {
+        id: 'lesson-4',
+        title: 'Managing Sensory Overload in Social Situations',
+        duration: 5,
+        coreTheme: 'masking',
+        content: `Social situations are sensory nightmares: bright lights, eye contact, small talk, surprise questions, perfumes, background noise.
+
+**Before social events:**
+- Visit the location beforehand (reduces unknowns)
+- Bring stim tools (fidget, gum, smooth stone)
+- Wear comfortable clothes (itchy = distracted)
+- Plan your exit strategy
+
+**During events:**
+- It's okay to take breaks (bathroom = quiet space)
+- Eye contact tip: Look at their eyebrows or nose bridge
+- Have an excuse ready: "I need to take a call"
+
+**After events:**
+- Decompress somewhere quiet
+- Stim freely
+- Don't force yourself to process immediately
+
+**You don't have to go to everything. Choose what's worth your energy.**`,
+        exercise: 'Identify one sensory accommodation you need for social situations.',
+      },
+      {
+        id: 'lesson-5',
+        title: 'Unmasking Safely: When and How',
+        duration: 5,
+        coreTheme: 'masking',
+        content: `Masking = hiding neurodivergent traits to "fit in." It's exhausting and leads to burnout.
+
+**Signs you're masking too much:**
+- You feel like a different person at work vs. home
+- You're exhausted after social interactions
+- You can't remember "what to say" and it feels like acting
+- You have meltdowns/shutdowns when alone
+
+**Where to unmask:**
+- With trusted friends/family
+- Alone at home
+- In neurodivergent-friendly spaces
+- Gradually at work (test the waters first)
+
+**How to unmask at work (safely):**
+- Start small: Use noise-canceling headphones
+- Stim discreetly: Fidget tools under desk
+- Ask for accommodations: "I focus better with written instructions"
+- Disclose if safe: "I'm autistic/ADHD and this helps me work better"
+
+**You don't owe anyone full disclosure. Unmask at your own pace, in spaces that feel safe.**`,
+        exercise: 'Identify one place where you can unmask completely. Practice being yourself there.',
+      },
+    ],
+
+    skillsYouGain: ['Social rule awareness', 'Small talk scripts', 'Body language reading', 'Sensory management', 'Strategic unmasking'],
+
+    practiceActivity: 'Observe neurotypical social rules this week. Practice one small talk script. Identify one safe space to unmask.',
+
+    affirmation: 'You\'re not "bad at socializing." You\'re navigating a neurotypical world with a neurodivergent brain. Masking is survival, but you deserve spaces to be yourself.',
+  },
+
+  {
+    id: 'communication-advocacy',
+    title: '💬 Communication & Self-Advocacy',
+    icon: '💬',
+    description: 'Scripts, confidence, professional communication',
+    color: 'cyan',
+    coreThemes: ['Communication & Self-Advocacy'],
 
     lessons: [
       {
         id: 'lesson-1',
         title: 'Understanding What Interviewers Actually Want',
         duration: 5,
+        coreTheme: 'communication',
         content: `Interviews are stressful, especially for neurodivergent people. Social cues, small talk, eye contact—it's a lot.
 
 **Key Concept:** They want to know: Can you do the job? Will you fit the team?
@@ -281,15 +580,16 @@ You're probably more honest than neurotypical people. Use that.
 **You don't have to mask completely. But you do need to translate your skills into their language.**
 
 **Career-Specific Interview Focus:**
-- **Software Tester roles:** They'll ask about your attention to detail and problem-solving—your neurodivergent pattern-recognition is a STRENGTH here
-- **Graphic Designer roles:** Expect questions about receiving feedback and client communication—be ready to share how you handle creative critiques
-- **Data Entry roles:** They want to know about focus and accuracy—hyperfocus is your superpower, mention it!`,
+- **Software Tester roles:** They'll ask about attention to detail and problem-solving—your pattern-recognition is a STRENGTH
+- **Graphic Designer roles:** Expect questions about receiving feedback and client communication
+- **Data Entry roles:** They want to know about focus and accuracy—hyperfocus is your superpower!`,
         exercise: 'Write down 3 strengths you have. How do they relate to jobs you want?',
       },
       {
         id: 'lesson-2',
         title: 'Preparing Answers (Scripts Help!)',
         duration: 5,
+        coreTheme: 'communication',
         content: `Neurodivergent brains often work better with preparation. Scripts = less anxiety.
 
 **Common questions + how to answer:**
@@ -308,41 +608,18 @@ Example: "I sometimes hyperfocus and lose track of time. I use timers to stay on
 
 **Career-Specific Sample Answers:**
 
-**For Software Tester:** "My attention to detail is exceptional—I naturally notice patterns and inconsistencies others miss. I use tools like Notion to track test cases systematically."
+**For Software Tester:** "My attention to detail is exceptional—I naturally notice patterns and inconsistencies others miss."
 
-**For Graphic Designer:** "I'm highly creative and visual, but I've learned to handle feedback professionally. When clients request changes, I use Figma to show multiple options and let the work speak for itself."
+**For Graphic Designer:** "I'm highly creative and visual, and I've learned to handle feedback professionally by focusing on the work, not taking it personally."
 
-**For Data Entry:** "I have strong hyperfocus abilities—I can maintain accuracy for long periods. I use Excel macros and double-checking systems to ensure quality."`,
+**For Data Entry:** "I have strong hyperfocus abilities—I can maintain accuracy for long periods using systematic checking methods."`,
         exercise: 'Write your "Tell me about yourself" answer. Say it out loud 3 times.',
       },
       {
         id: 'lesson-3',
-        title: 'Managing Sensory Overload & Anxiety',
-        duration: 5,
-        content: `Interviews are sensory nightmares: bright lights, eye contact, small talk, surprise questions.
-
-**Before the interview:**
-- Visit the location beforehand (reduces unknowns)
-- Bring stim tools (fidget, gum, smooth stone)
-- Wear comfortable clothes (itchy = distracted)
-
-**During the interview:**
-- It's okay to pause before answering
-- "That's a great question, let me think..." = totally fine
-- Eye contact tip: Look at their eyebrows or nose bridge
-
-**After the interview:**
-- Decompress somewhere quiet
-- Stim freely
-- Celebrate: you did it
-
-**Disclosing neurodivergence:** Your choice. You don't have to. But if the job values it, it might help.`,
-        exercise: 'Identify one sensory accommodation you need. Plan how to get it during interviews.',
-      },
-      {
-        id: 'lesson-4',
         title: 'Email & Professional Communication',
         duration: 5,
+        coreTheme: 'communication',
         content: `Workplace communication has unwritten rules. Let's make them written.
 
 **Email structure:**
@@ -362,6 +639,31 @@ Example: "I sometimes hyperfocus and lose track of time. I use timers to stay on
 
 **It's okay to ask for clarification. It's better than guessing wrong.**`,
         exercise: 'Write a practice professional email asking for a meeting. Check the tone.',
+      },
+      {
+        id: 'lesson-4',
+        title: 'Setting Boundaries Without Guilt',
+        duration: 5,
+        coreTheme: 'communication',
+        content: `Neurodivergent people often struggle with boundaries because we people-please or don't realize it's an option.
+
+**You're allowed to:**
+- Say no to extra projects when at capacity
+- Leave work on time (not stay late unpaid)
+- Not answer emails after hours
+- Ask for reasonable deadlines
+- Take breaks when needed
+
+**How to set boundaries professionally:**
+- Be clear: "I can't take on additional projects right now"
+- Be solution-oriented: "I can do this next week instead"
+- Don't over-explain: "No" is a complete sentence
+- Offer alternative: "I can't attend the 8am meeting, but could we do 10am?"
+
+**People who respect you will respect your boundaries.**
+
+**Saying no to protect your capacity = saying yes to quality work.**`,
+        exercise: 'Identify one boundary you need to set at work or home. Write down how you\'ll say it.',
       },
       {
         id: 'lesson-5',
@@ -388,13 +690,11 @@ Example: "I sometimes hyperfocus and lose track of time. I use timers to stay on
 **Most employers will say yes. If they say no, that's a red flag about the workplace.**
 
 **Career-Specific Accommodations & Likelihood:**
-Each job in Career Discovery now includes:
 - **Common accommodations** (usually granted): Remote work for Software Testers, headphones for Data Entry
 - **Negotiable accommodations** (worth asking): Flexible hours for Graphic Designers, written briefs instead of verbal
 - **Rare accommodations** (harder to get): 4-day work weeks, unlimited work-from-home
-- **Exact request scripts** for each accommodation—check the Accommodations section on job detail pages!
 
-**Pro Tip:** Review the job's accommodation section BEFORE your interview so you know what's typically granted.`,
+**Pro Tip:** Ask early, before you're burning out. Prevention > crisis mode.`,
         exercise: 'Identify 2 accommodations that would help you. Write how you\'d ask for them.',
         teachableMoment: {
           scenario: "It's your first 'real job' and you're terrified to ask for accommodations. The fluorescent lights give you headaches. Your manager gives verbal instructions and you forget them immediately. You're afraid if you ask for help, they'll think you can't do the job and fire you.",
@@ -405,289 +705,10 @@ Each job in Career Discovery now includes:
       },
     ],
 
-    skillsYouGain: ['Interview preparation', 'Professional communication', 'Advocacy', 'Accommodation requests'],
+    skillsYouGain: ['Interview preparation', 'Professional communication', 'Boundary setting', 'Advocacy', 'Accommodation requests'],
 
-    practiceActivity: 'Do a mock interview with a friend or family member. Practice answering common questions out loud.',
+    practiceActivity: 'Do a mock interview with a friend. Write one professional email. Practice asking for one accommodation using the scripts provided.',
 
-    affirmation: 'Interviews are hard for neurodivergent people. Social performance is exhausting. You\'re not "bad at interviews"—you\'re navigating a system not designed for you. Preparation helps.',
-  },
-
-  {
-    id: 'emotional-regulation',
-    title: 'Emotional Regulation & Stress Management',
-    icon: '😊',
-    description: 'Understand and manage your emotions effectively',
-    coreThemes: ['Sensory & Emotional Regulation', 'Masking & Camouflaging'],
-
-    lessons: [
-      {
-        id: 'lesson-1',
-        title: 'Understanding Emotional Dysregulation',
-        duration: 5,
-        coreTheme: 'sensory-emotional',
-        content: `Many neurodivergent people experience emotions MORE intensely. It's not being "dramatic." It's neurobiology.
-
-**Key Concept:** Your feelings are valid. AND you can learn to manage them.
-
-**Why emotions feel bigger:**
-- ADHD: Emotions come fast and intense
-- Autism: Delayed processing, then BAM
-- Anxiety: Everything feels like a threat
-- Depression: Everything feels heavy
-
-**It's not weakness. It's how your nervous system works.**
-
-**Goal:** Not to "stop feeling," but to respond skillfully.`,
-        exercise: 'Next time you feel a big emotion, name it: "I\'m feeling [angry/sad/overwhelmed]."',
-        teachableMoment: {
-          scenario: "You're at your new job. After 3 hours in a loud, bright office with constant interruptions, you feel like you're going to explode or cry. A coworker asks you a simple question and you snap at them. Now you feel guilty and scared they'll report you. You want to run to your car and never come back.",
-          whatToNotice: "This is sensory and emotional overload leading to dysregulation. Notice the early warning signs BEFORE you snap: tension in shoulders, racing thoughts, feeling 'prickly,' wanting to escape, sounds getting louder. These are your body's 'I'm at capacity' signals.",
-          howToRespond: "In the moment: If safe, excuse yourself. 'I need to step out for 5 minutes.' Go to bathroom, your car, outside. Splash cold water on face. Do box breathing (in 4, hold 4, out 4, hold 4). Don't try to 'fix' anything while dysregulated. After: Apologize briefly to coworker: 'Sorry I was short earlier, I was overwhelmed.' Don't over-explain. Prevention: Ask for accommodations BEFORE you're at breaking point (see Lesson 5).",
-          whyItMatters: "Autistic meltdowns and shutdowns aren't 'tantrums' or 'manipulation'—they're nervous system overload. Learning to recognize your early warning signs and take preventive breaks is how you avoid meltdowns at work, in relationships, and while living independently. This is survival-level emotional regulation. Masking until you collapse doesn't work long-term."
-        }
-      },
-      {
-        id: 'lesson-2',
-        title: 'The Regulation Toolbox',
-        duration: 5,
-        content: `Different tools work for different emotions and different brains. Build your personal toolbox.
-
-**When overwhelmed:**
-- 5-4-3-2-1 grounding: 5 things you see, 4 you hear, 3 you touch, 2 you smell, 1 you taste
-- Step outside (change environment)
-- Cold water on face (resets nervous system)
-
-**When anxious:**
-- Box breathing: In 4, hold 4, out 4, hold 4
-- Progressive muscle relaxation
-- Movement (walk, dance, shake it out)
-
-**When understimulated (ADHD):**
-- Upbeat music
-- Physical activity
-- Fidget tools
-
-**The key: Experiment. Find what works for YOUR brain.**`,
-        exercise: 'Try box breathing right now. In 4, hold 4, out 4, hold 4. Repeat 4 times.',
-      },
-      {
-        id: 'lesson-3',
-        title: 'Identifying Your Triggers',
-        duration: 5,
-        content: `Triggers = situations that reliably cause big emotions. Knowing them = power.
-
-**Common neurodivergent triggers:**
-- Sensory overload (too much noise, light, people)
-- Transitions (changing activities)
-- Criticism (rejection sensitivity dysphoria)
-- Uncertainty (not knowing what to expect)
-- Being interrupted (especially during hyperfocus)
-
-**How to identify yours:**
-1. Think: When do I usually get upset/overwhelmed/angry?
-2. Look for patterns
-3. Write them down
-
-**Once you know them, you can plan around them or prepare coping strategies.**
-
-**Career-Specific Triggers to Watch For:**
-- **Graphic Designers:** Client feedback can trigger RSD (Rejection Sensitivity Dysphoria)—remember, feedback is about the WORK, not YOU
-- **Software Testers:** Bug report rejections or developers dismissing your findings can feel personal—develop a "professional distance" mindset
-- **Data Entry:** Interruptions during hyperfocus can cause frustration—use "Do Not Disturb" signals and communicate your focus needs
-- **All Careers:** Workplace noise and social demands vary—check each job's sensory profile in Career Discovery before applying`,
-        exercise: 'List 3 situations that usually trigger big emotions for you. Just notice them.',
-      },
-      {
-        id: 'lesson-4',
-        title: 'Creating a Personal Calm-Down Plan',
-        duration: 5,
-        content: `When you're in crisis mode, your brain can't problem-solve. Decide NOW what helps.
-
-**Your Calm-Down Plan:**
-
-**Step 1: Notice**
-What's my body telling me? (Tight chest? Racing thoughts? Tears?)
-
-**Step 2: Pause**
-Can I remove myself from the situation? (Bathroom break, walk outside, leave early)
-
-**Step 3: Regulate**
-Pick ONE tool from your toolbox (breathing, cold water, movement, etc.)
-
-**Step 4: Reflect**
-When calm: What triggered this? What can I do differently next time?
-
-**Write this plan down. Put it in your phone. You can't remember it when you're dysregulated.**`,
-        exercise: 'Write your personal calm-down plan. What\'s your go-to regulation tool?',
-      },
-      {
-        id: 'lesson-5',
-        title: 'Building Emotional Resilience Over Time',
-        duration: 5,
-        content: `Resilience = bouncing back faster. It's a skill you can build.
-
-**Daily practices that help:**
-- **Sleep:** Emotional regulation starts with rest
-- **Movement:** Walk, dance, yoga—whatever you enjoy
-- **Routine:** Predictability reduces stress
-- **Connection:** Talk to people who get you
-- **Boundaries:** Say no to things that drain you
-
-**Neurodivergent-friendly self-care:**
-- It doesn't have to be "meditation and green smoothies"
-- It CAN be: video games, special interest time, alone time, stimming freely
-
-**Self-care = what recharges YOUR nervous system.**
-
-**Progress isn't linear. Bad days happen. That's okay.**`,
-        exercise: 'Pick ONE daily practice to try this week. Start small (5 minutes).',
-      },
-    ],
-
-    skillsYouGain: ['Emotional awareness', 'Regulation techniques', 'Trigger identification', 'Self-care planning'],
-
-    practiceActivity: 'Create your personal calm-down plan card. Write it down. Keep it accessible (phone, wallet, desk).',
-
-    affirmation: 'Emotional dysregulation is a neurodivergent trait, not a character flaw. Big feelings are valid. You can learn to work WITH your emotions, not against them.',
-  },
-
-  {
-    id: 'social-skills',
-    title: 'Social Skills & Relationships',
-    icon: '🗣️',
-    description: 'Navigate social situations and build meaningful connections',
-
-    lessons: [
-      {
-        id: 'lesson-1',
-        title: 'Understanding Neurotypical Social Rules',
-        duration: 5,
-        content: `Social rules often feel arbitrary because... they kind of are. But understanding them helps you decide when to follow them.
-
-**Unwritten rules neurotypicals follow:**
-- Small talk before big talk (build rapport first)
-- Don't interrupt (even if you're excited)
-- Match energy levels (don't be super loud if they're quiet)
-- Ask questions back (conversation is a tennis match, not a lecture)
-
-**The thing is: You're not "bad at socializing." You're playing a game where no one explained the rules.**
-
-**Good news:** You can learn the rules WITHOUT masking your whole personality.
-
-**How This Applies to Different Careers:**
-- **Software Testers (Minimal Social):** Team size 5-8, mostly Slack messages, brief standups—very manageable social load
-- **Graphic Designers (Moderate Social):** Client-facing meetings required, but you can use Loom for async presentations to reduce live interaction
-- **Data Entry (Minimal Social):** Team size 1-3, mostly independent work—perfect for those who prefer limited social interaction
-- **Check Job Profiles:** Each career in Career Discovery shows detailed social demands (team size, daily interactions, phone calls, etc.)`,
-        exercise: 'Observe one social interaction today. What unwritten rules do you notice?',
-      },
-      {
-        id: 'lesson-2',
-        title: 'Small Talk Survival Guide',
-        duration: 5,
-        content: `Small talk feels pointless to many neurodivergent people. "Why are we talking about weather when we could discuss something INTERESTING?"
-
-**Why neurotypicals do it:** It's social lubrication. Low-stakes connection.
-
-**Small talk formula:**
-1. Greeting: "Hi, how are you?"
-2. Safe topic: Weather, weekend plans, recent event
-3. Their turn: Ask a question
-4. Your turn: Answer briefly, ask back
-5. Exit: "Nice talking to you!"
-
-**Script bank:**
-- "How's your day going?"
-- "Any plans this weekend?"
-- "Did you see [relevant news/show/event]?"
-- "How long have you been [doing this job/living here]?"
-
-**Pro tip:** You don't have to LOVE small talk. You just have to survive it for 2 minutes.**`,
-        exercise: 'Practice one small talk script with someone safe (family, friend).',
-      },
-      {
-        id: 'lesson-3',
-        title: 'Reading Social Cues (When Your Brain Doesn\'t Do It Automatically)',
-        duration: 5,
-        content: `Many neurodivergent people don't automatically read body language or tone. You can learn it intellectually instead.
-
-**Body language decoder:**
-- Arms crossed = defensive or cold
-- Leaning in = interested
-- Looking at phone = bored or busy
-- Nodding = "I'm listening"
-- Backing away = uncomfortable
-
-**Tone decoder:**
-- Short answers = probably wants to end conversation
-- Long answers = engaged
-- Higher pitch = excited or nervous
-- Flat tone = could be bored (or autistic!)
-
-**When in doubt, ASK:**
-"Are you okay? You seem quiet."
-"Is this a good time to talk?"
-
-**It's okay to be direct. It's better than guessing wrong.**`,
-        exercise: 'Watch a TV show with sound OFF. Try to guess emotions from body language.',
-      },
-      {
-        id: 'lesson-4',
-        title: 'Setting Boundaries Without Guilt',
-        duration: 5,
-        content: `Neurodivergent people often struggle with boundaries because we people-please or don't realize it's an option.
-
-**You're allowed to:**
-- Say no to social events (you don't need an excuse)
-- Leave early when overstimulated
-- Not answer texts immediately
-- Ask for space
-- End draining friendships
-
-**How to set boundaries:**
-- Be clear: "I can't make it" (not "I'll try")
-- Be kind: "I need some alone time to recharge"
-- Don't over-explain: "No" is a complete sentence
-- Offer alternative (if you want): "I can't do lunch, but coffee next week?"
-
-**People who respect you will respect your boundaries.**
-
-**People who don't? Not your people.**`,
-        exercise: 'Identify one boundary you need to set. Write down how you\'ll say it.',
-      },
-      {
-        id: 'lesson-5',
-        title: 'Finding Your People',
-        duration: 5,
-        content: `Not everyone will "get" you. That's okay. Focus on finding YOUR people.
-
-**Where neurodivergent-friendly people hang out:**
-- Special interest communities (online forums, Discord, Reddit)
-- Neurodivergent support groups
-- Hobby groups (less pressure than "make friends" groups)
-- Online spaces (easier to connect without sensory overload)
-
-**Green flags in friendships:**
-- They accept your communication style
-- They don't take offense when you need space
-- They share or respect your interests
-- You feel energized (or neutrally fine) after hanging out
-
-**Red flags:**
-- You're always masking
-- They mock your interests
-- You feel drained every time
-- They don't respect boundaries
-
-**Quality > quantity. One good friend > ten draining acquaintances.**`,
-        exercise: 'Join one online community related to your special interest or neurodivergence.',
-      },
-    ],
-
-    skillsYouGain: ['Social rule awareness', 'Small talk scripts', 'Boundary setting', 'Relationship evaluation'],
-
-    practiceActivity: 'Have one low-stakes social interaction this week. Practice a small talk script or boundary setting.',
-
-    affirmation: 'You\'re not "bad at socializing." You\'re navigating a neurotypical world with a neurodivergent brain. The right people will appreciate you as you are.',
+    affirmation: 'Communication and self-advocacy are learnable skills. You have the right to ask for what you need. Your needs are valid, and the right workplace will support you.',
   },
 ];

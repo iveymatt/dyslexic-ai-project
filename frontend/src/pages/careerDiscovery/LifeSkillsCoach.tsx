@@ -169,23 +169,30 @@ export function LifeSkillsCoach({ onBack }: LifeSkillsCoachProps) {
 
           {/* Intro */}
           <div className="bg-gradient-to-br from-green-900/30 to-blue-900/30 rounded-xl p-8 border border-green-700/30 mb-8">
-            <h2 className="text-2xl font-bold mb-4">How This Works</h2>
+            <h2 className="text-2xl font-bold mb-4">5 Core Program Themes</h2>
+            <p className="text-gray-300 mb-4">
+              These themes connect across Career Matching, Life Skills, and AI Literacy. Master these areas to build a sustainable career and independent life.
+            </p>
             <ul className="space-y-2 text-gray-300">
               <li className="flex items-start gap-2">
-                <span className="text-green-400 flex-shrink-0">✓</span>
-                <span>5 modules covering time, money, interviews, emotions, and social skills</span>
+                <span className="text-purple-400 flex-shrink-0">🧠</span>
+                <span><strong>Capacity & Executive Function:</strong> Planning, task initiation, flexibility, sustained attention</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-400 flex-shrink-0">✓</span>
-                <span>Each module has 5 bite-sized lessons (5-10 min each)</span>
+                <span className="text-blue-400 flex-shrink-0">📅</span>
+                <span><strong>Organizing Systems:</strong> Calendars, notes, deadlines that move from school to work</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-400 flex-shrink-0">✓</span>
-                <span>Practical exercises you can do today</span>
+                <span className="text-green-400 flex-shrink-0">❤️</span>
+                <span><strong>Sensory & Emotional Regulation:</strong> Prevent burnout, manage sensory challenges</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-400 flex-shrink-0">✓</span>
-                <span>No overwhelm. Go at your own pace. Come back anytime.</span>
+                <span className="text-pink-400 flex-shrink-0">🛡️</span>
+                <span><strong>Masking & Camouflaging:</strong> Unmask safely, reduce cognitive load</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-cyan-400 flex-shrink-0">💬</span>
+                <span><strong>Communication & Self-Advocacy:</strong> Scripts, confidence, professional communication</span>
               </li>
             </ul>
           </div>
@@ -202,6 +209,7 @@ export function LifeSkillsCoach({ onBack }: LifeSkillsCoachProps) {
                   description={module.description}
                   progress={progress.completed}
                   total={progress.total}
+                  color={module.color}
                   onClick={() => setSelectedModule(module.id)}
                 />
               );
