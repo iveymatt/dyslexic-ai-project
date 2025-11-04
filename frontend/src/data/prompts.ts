@@ -870,6 +870,1219 @@ I want them to feel PROUD of how their brain works.`,
     submittedBy: 'dyslexic-community',
     verified: true,
   },
+
+  // ==================== READING STRUGGLES (5) ====================
+  {
+    id: 'read-but-dont-remember',
+    title: 'I read the whole page but don\'t remember anything',
+    emoji: '📖',
+    description: 'You finish reading and realize you have no idea what you just read. Your eyes moved but your brain didn\'t absorb it.',
+    prompt: `I just read [TEXT/CHAPTER/ARTICLE] but I don't remember what I read. My brain was somewhere else.
+
+Help me:
+1. Summarize what I just read in 3-4 sentences
+2. Pull out the most important point
+3. Give me 2-3 questions to check if I understand it
+4. Suggest a strategy so this doesn't keep happening
+
+Here's what I read:
+[PASTE THE TEXT OR DESCRIBE IT]`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Reading', '#Memory', '#Comprehension', '#ADHD'],
+    exampleUseCase: 'Marcus read 5 pages of his history textbook but couldn\'t recall a single fact. This prompt summarized the key points and gave him 3 questions to test understanding. Now he does this after every page.',
+    relatedPromptIds: ['explain-concept', 'study-guide-creator', 'note-taking-help'],
+    rating: 213,
+    usedCount: 1654,
+    commentCount: 24,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'read-faster',
+    title: 'Everyone reads faster than me - how can I keep up?',
+    emoji: '⏱️',
+    description: 'Reading takes you forever. Everyone else finishes assignments in half the time and you\'re still on page 3.',
+    prompt: `I have to read [ASSIGNMENT/BOOK/ARTICLE] and it's taking me forever. I feel so slow.
+
+What I'm reading: [DESCRIBE IT]
+How long it's taking me: [TIME]
+Why I need to speed up: [DEADLINE, KEEPING UP WITH CLASS, etc.]
+
+Help me:
+1. Decide if I need to read EVERY word or if I can skim
+2. Show me what to focus on (and what to skip)
+3. Give me a faster strategy for getting what I need from this
+4. Remind me that slow ≠ stupid
+
+I need practical help, not "just read faster."`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Reading', '#Speed', '#Time-Management', '#Dyslexia'],
+    exampleUseCase: 'Sarah had to read a 30-page chapter in one night. This prompt taught her to read the intro/conclusion first, scan headers, and focus on bold terms. She finished in 90 minutes instead of 4 hours.',
+    relatedPromptIds: ['read-but-dont-remember', 'note-taking-help', 'overwhelmed-start'],
+    rating: 198,
+    usedCount: 1523,
+    commentCount: 19,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'skip-words-lines',
+    title: 'Why do I keep skipping words and lines?',
+    emoji: '👀',
+    description: 'Your eyes jump around the page. You skip words, re-read the same line, or lose your place constantly.',
+    prompt: `I keep skipping words or losing my place when I read. It's exhausting.
+
+What happens:
+[I SKIP WORDS / RE-READ THE SAME LINE / LOSE MY PLACE / MY EYES JUMP AROUND]
+
+Help me:
+1. Understand WHY this happens (is it normal for dyslexia?)
+2. Give me 3-5 practical tools or tricks to help
+3. Tell me if there are assistive tech options
+4. Reassure me I'm not broken
+
+I just want reading to be less exhausting.`,
+    userType: 'student',
+    bestMode: 'socratic',
+    tags: ['#Reading', '#Dyslexia', '#Tools', '#Understanding'],
+    exampleUseCase: 'Jake\'s eyes would jump lines constantly. This prompt explained visual tracking issues in dyslexia and suggested using a ruler/bookmark, trying colored overlays, and using text-to-speech. The ruler alone changed his life.',
+    relatedPromptIds: ['tool-recommendations', 'read-but-dont-remember', 'read-faster'],
+    rating: 187,
+    usedCount: 1445,
+    commentCount: 21,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'break-down-text',
+    title: 'Help me break down this confusing text',
+    emoji: '🧩',
+    description: 'The text is dense, complicated, or full of big words. You need it simplified so your brain can process it.',
+    prompt: `I'm trying to read this text but it's way too confusing.
+
+Text:
+[PASTE THE CONFUSING TEXT]
+
+Help me:
+1. Rewrite it in simple, clear language (like you're explaining to a 10-year-old)
+2. Break it into smaller chunks with headers
+3. Define any big/complicated words
+4. Tell me the main point in one sentence
+
+I have dyslexia, so simpler = better.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Reading', '#Understanding', '#Simplified', '#Dyslexia'],
+    exampleUseCase: 'Emma had to read a dense paragraph about the Civil War. This prompt rewrote it in 3 short sentences with simple words. She finally understood what her textbook was trying to say.',
+    relatedPromptIds: ['explain-concept', 'read-but-dont-remember', 'note-taking-help'],
+    rating: 205,
+    usedCount: 1589,
+    commentCount: 17,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'anxious-reading-aloud',
+    title: 'I\'m anxious about reading out loud in class',
+    emoji: '😰',
+    description: 'Reading out loud in front of people makes you panic. You stumble, freeze, or avoid it completely.',
+    prompt: `I have to read out loud in class and I'm terrified.
+
+What I'm worried about:
+[STUMBLING OVER WORDS / PEOPLE JUDGING ME / LOSING MY PLACE / etc.]
+
+The situation:
+[WHEN, WHAT CLASS, HOW OFTEN THIS HAPPENS]
+
+Help me:
+1. Give me coping strategies for RIGHT NOW
+2. Suggest what to say to my teacher (if I want accommodations)
+3. Remind me that struggling with reading aloud doesn't mean I'm stupid
+4. Help me prepare so I feel less anxious
+
+I need practical + emotional support.`,
+    userType: 'student',
+    bestMode: 'socratic',
+    tags: ['#Reading', '#Anxiety', '#School', '#Confidence'],
+    exampleUseCase: 'Liam would fake being sick on days his English class did round-robin reading. This prompt gave him a script to ask his teacher to let him pass, and strategies to practice at home with his mom. He finally told his teacher.',
+    relatedPromptIds: ['accommodations-student', 'confidence-boost', 'parent-advocacy'],
+    rating: 221,
+    usedCount: 1732,
+    commentCount: 28,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+
+  // ==================== WRITING CHALLENGES (5) ====================
+  {
+    id: 'spelling-three-ways',
+    title: 'I spell the same word three different ways in one essay',
+    emoji: '✍️',
+    description: 'Your spelling is all over the place. Spell-check helps but doesn\'t catch everything, and you feel embarrassed.',
+    prompt: `My spelling is a mess. I spell the same word differently every time and spell-check doesn't catch it all.
+
+Current problem:
+[DESCRIBE THE WRITING TASK - essay, email, report, etc.]
+
+Help me:
+1. Check this text for spelling errors (especially words spell-check misses)
+2. Show me patterns in my mistakes (so I can learn)
+3. Suggest tools that work better than basic spell-check
+4. Remind me that bad spelling ≠ bad writer
+
+Here's my text:
+[PASTE YOUR WRITING]`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Writing', '#Spelling', '#Dyslexia', '#Tools'],
+    exampleUseCase: 'Zoe wrote "there" "their" and "thier" all in one paragraph. This prompt caught all the errors, explained the difference, and suggested using Grammarly. Her essays improved immediately.',
+    relatedPromptIds: ['write-professionally', 'fix-grammar', 'tool-recommendations'],
+    rating: 192,
+    usedCount: 1498,
+    commentCount: 16,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'know-but-cant-write',
+    title: 'I know what I want to say but I can\'t write it down',
+    emoji: '💭',
+    description: 'The ideas are clear in your head, but when you try to write them, they come out wrong or don\'t make sense.',
+    prompt: `I know EXACTLY what I want to say, but when I try to write it, it comes out wrong.
+
+What I'm trying to write:
+[ESSAY, EMAIL, REPORT, etc.]
+
+What I want to say (in my own words):
+[TELL ME VERBALLY - just type it like you're talking]
+
+Help me:
+1. Turn my verbal explanation into clear written sentences
+2. Organize it logically
+3. Keep my voice (don't make it sound too formal unless I need that)
+4. Show me how to do this myself next time
+
+I think better when I TALK than when I WRITE.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Writing', '#Expression', '#Dyslexia', '#Communication'],
+    exampleUseCase: 'Marcus could explain photosynthesis perfectly out loud but his written answer made no sense. This prompt helped him "talk" his answer first, then turned it into a clear paragraph. He started recording himself before writing.',
+    relatedPromptIds: ['essay-organizer', 'email-help', 'write-professionally'],
+    rating: 217,
+    usedCount: 1687,
+    commentCount: 23,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'write-professionally',
+    title: 'Help me write this in a professional way',
+    emoji: '💼',
+    description: 'You need to write an email, cover letter, or document that sounds professional, but you\'re not sure if your tone is right.',
+    prompt: `I need to write something professional but I'm not sure if it sounds right.
+
+What I'm writing:
+[EMAIL, COVER LETTER, WORK MESSAGE, etc.]
+
+My attempt so far:
+[PASTE WHAT YOU'VE WRITTEN OR LEAVE BLANK]
+
+Help me:
+1. Make it sound professional (but not stiff)
+2. Fix any awkward phrasing
+3. Check for spelling/grammar errors
+4. Keep it clear and concise
+
+I have dyslexia, so I need help making sure it sounds polished.`,
+    userType: 'professional',
+    bestMode: 'strategic',
+    tags: ['#Writing', '#Work', '#Professional', '#Communication'],
+    exampleUseCase: 'Priya needed to email a potential client but wasn\'t sure if her tone was too casual. This prompt polished her email, fixed some spelling errors, and made it sound confident. The client responded immediately.',
+    relatedPromptIds: ['email-help', 'spelling-three-ways', 'fix-grammar'],
+    rating: 201,
+    usedCount: 1567,
+    commentCount: 18,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'essay-organizer',
+    title: 'Help me organize my essay - I have ideas but no structure',
+    emoji: '📝',
+    description: 'You have a bunch of ideas for your essay but don\'t know how to organize them into a logical structure.',
+    prompt: `I have to write an essay and I have ideas, but I don't know how to organize them.
+
+Essay topic:
+[WHAT YOU'RE WRITING ABOUT]
+
+My ideas (messy version):
+[DUMP ALL YOUR THOUGHTS HERE - bullet points, fragments, whatever]
+
+Help me:
+1. Organize these ideas into a clear structure (intro, body paragraphs, conclusion)
+2. Tell me what order to put them in
+3. Identify if I'm missing anything important
+4. Give me a simple outline I can follow
+
+I have ADHD, so I need a clear roadmap.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Writing', '#Organization', '#Essays', '#ADHD'],
+    exampleUseCase: 'Lila had 10 ideas for her persuasive essay but they were all jumbled. This prompt organized them into 3 clear body paragraphs with an intro and conclusion. She followed the outline and finished in 2 hours.',
+    relatedPromptIds: ['know-but-cant-write', 'overwhelmed-start', 'break-down-assignment'],
+    rating: 209,
+    usedCount: 1621,
+    commentCount: 20,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'fix-grammar',
+    title: 'Fix my spelling and grammar so I don\'t look careless',
+    emoji: '🔍',
+    description: 'You\'ve written something but need it checked for spelling, grammar, and awkward phrasing before you submit/send it.',
+    prompt: `I wrote this but I need it checked for spelling, grammar, and anything that sounds weird.
+
+What it's for:
+[SCHOOL ASSIGNMENT, WORK EMAIL, JOB APPLICATION, etc.]
+
+My text:
+[PASTE YOUR WRITING]
+
+Help me:
+1. Fix spelling and grammar errors
+2. Point out any sentences that don't make sense
+3. Suggest better phrasing for awkward parts
+4. Keep my voice (don't rewrite it completely)
+
+I have dyslexia, so I need a second set of eyes.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Writing', '#Grammar', '#Spelling', '#Proofreading'],
+    exampleUseCase: 'David wrote a cover letter but was terrified of typos. This prompt caught 8 spelling errors, fixed 3 awkward sentences, and gave him confidence to hit "send." He got the interview.',
+    relatedPromptIds: ['spelling-three-ways', 'write-professionally', 'email-help'],
+    rating: 194,
+    usedCount: 1512,
+    commentCount: 15,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+
+  // ==================== ORGANIZATION & EXECUTIVE FUNCTION (6) ====================
+  {
+    id: 'lost-track-time',
+    title: 'I lost track of time and now I\'m behind',
+    emoji: '⏰',
+    description: 'Time blindness strikes again. You thought you had plenty of time and suddenly the deadline is tomorrow.',
+    prompt: `I completely lost track of time and now [ASSIGNMENT/PROJECT/TASK] is due [SOON] and I'm behind.
+
+What I need to do:
+[DESCRIBE THE TASK]
+
+Time I have left:
+[HOURS/DAYS]
+
+What I've done so far:
+[NOTHING / OR WHAT YOU'VE DONE]
+
+Help me:
+1. Figure out what I can realistically finish in the time I have
+2. Create a time-blocked plan for the rest of today/this week
+3. Help me prioritize (what's essential vs what can I skip?)
+4. Keep me from panicking
+
+I have ADHD time blindness. Help me salvage this.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Time-Management', '#ADHD', '#Deadlines', '#Executive-Function'],
+    exampleUseCase: 'Mia thought her paper was due Friday but it was due Wednesday. With 24 hours left, this prompt helped her cut the assignment into essential parts, time-block her evening, and finish a solid draft. She got a B+.',
+    relatedPromptIds: ['overwhelmed-start', 'project-breakdown', 'planning-help'],
+    rating: 226,
+    usedCount: 1789,
+    commentCount: 26,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'losing-things',
+    title: 'I keep losing my keys/phone/wallet - where do I put them?',
+    emoji: '🔑',
+    description: 'You lose the same things every single day. Keys, phone, wallet, homework - it\'s exhausting.',
+    prompt: `I keep losing [KEYS / PHONE / WALLET / HOMEWORK / etc] and it's driving me crazy.
+
+What I keep losing:
+[LIST THE THINGS]
+
+Current "system" (if any):
+[WHAT YOU'VE TRIED]
+
+Help me:
+1. Create a simple system for where to put these things
+2. Make it so obvious I can't forget
+3. Give me a backup plan for when I still lose them
+4. Suggest any tools that might help (tile trackers, visual reminders, etc.)
+
+I have ADHD. I need SIMPLE and VISUAL.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Organization', '#ADHD', '#Executive-Function', '#Daily-Life'],
+    exampleUseCase: 'Carlos lost his keys 4 times a week. This prompt suggested a bright bowl by the door, a Tile tracker, and a rule: "Keys go in the bowl the second you walk in." He hasn\'t lost them in 2 months.',
+    relatedPromptIds: ['simple-organization-system', 'visual-system', 'adhd-life-hacks'],
+    rating: 218,
+    usedCount: 1698,
+    commentCount: 24,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'todo-list-chaos',
+    title: 'My to-do list is so long it\'s useless',
+    emoji: '📋',
+    description: 'Your to-do list has 47 things on it and you don\'t know where to start, so you do nothing.',
+    prompt: `My to-do list is out of control. It's so long that I just stare at it and do nothing.
+
+Current to-do list:
+[PASTE YOUR LIST OR DESCRIBE THE CHAOS]
+
+Help me:
+1. Cut this down to 3-5 things I should do TODAY
+2. Move the rest to "someday" or delete them
+3. Put today's tasks in order (what to do first)
+4. Teach me how to keep my list from getting this crazy again
+
+I have ADHD. Long lists paralyze me.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Organization', '#ADHD', '#Tasks', '#Executive-Function'],
+    exampleUseCase: 'Nina had 38 things on her list and hadn\'t crossed off one in days. This prompt helped her pick 3 for today, move 20 to "someday/maybe," and delete 15 completely. She finished all 3 that day.',
+    relatedPromptIds: ['overwhelmed-start', 'project-breakdown', 'planning-help'],
+    rating: 234,
+    usedCount: 1842,
+    commentCount: 29,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'started-never-finished',
+    title: 'I start projects but never finish them',
+    emoji: '🚧',
+    description: 'You have 10 half-finished projects and starting a new one sounds more exciting than finishing the old ones.',
+    prompt: `I have a bunch of unfinished projects and I can't seem to finish any of them.
+
+Projects I've started:
+[LIST THEM]
+
+Why I think I stopped:
+[LOST INTEREST / GOT STUCK / NEW IDEA DISTRACTED ME / etc.]
+
+Help me:
+1. Pick ONE project to finish (help me choose)
+2. Break it into tiny steps so I can actually finish it
+3. Figure out why I keep abandoning things (is this ADHD?)
+4. Teach me how to finish things instead of just starting them
+
+I'm tired of being a "project graveyard."`,
+    userType: 'entrepreneur',
+    bestMode: 'socratic',
+    tags: ['#ADHD', '#Executive-Function', '#Projects', '#Completion'],
+    exampleUseCase: 'Jake had 6 unfinished coding projects. This conversation helped him pick the smallest one to finish first, break it into 5 steps, and commit to 30 min/day. He finished it in a week and felt amazing.',
+    relatedPromptIds: ['overwhelmed-start', 'project-breakdown', 'business-task-breakdown'],
+    rating: 241,
+    usedCount: 1903,
+    commentCount: 31,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'planning-help',
+    title: 'Help me plan my week/day - I have no idea where to start',
+    emoji: '🗓️',
+    description: 'Planning feels impossible. You have 20 things to do this week and no idea how to fit them in.',
+    prompt: `I have a bunch of things to do this week and I don't know how to plan it.
+
+What I need to do:
+[LIST EVERYTHING]
+
+Time I have available:
+[AFTER SCHOOL, EVENINGS, WEEKENDS, etc.]
+
+Help me:
+1. Put these tasks into a realistic weekly plan
+2. Tell me what to do each day (be specific about times)
+3. Build in breaks (I have ADHD and can't work for 4 hours straight)
+4. Help me actually STICK to this plan
+
+I have ADHD and executive function issues. I need external structure.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Planning', '#ADHD', '#Time-Management', '#Executive-Function'],
+    exampleUseCase: 'Emma had 3 assignments, swim practice, and a family event all this week. This prompt time-blocked her week with 30-min tasks and built in breaks. She printed it out and checked off each block. Everything got done.',
+    relatedPromptIds: ['lost-track-time', 'project-breakdown', 'todo-list-chaos'],
+    rating: 228,
+    usedCount: 1765,
+    commentCount: 25,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'remember-important-things',
+    title: 'How do I remember important things I need to do?',
+    emoji: '🧠',
+    description: 'You forget appointments, deadlines, and promises constantly. Your memory feels like a sieve.',
+    prompt: `I forget everything. Appointments, deadlines, things I promised to do. It's embarrassing.
+
+What I keep forgetting:
+[EXAMPLES]
+
+Current system (if any):
+[PHONE REMINDERS / PLANNER / NOTHING / etc.]
+
+Help me:
+1. Create a memory system that works for ADHD brains
+2. Suggest tools (apps, planners, alarms, etc.)
+3. Give me a backup plan for when I still forget
+4. Help me stop feeling like I'm failing at life
+
+I don't MEAN to forget. My brain just... does.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Memory', '#ADHD', '#Executive-Function', '#Tools'],
+    exampleUseCase: 'Liam missed 3 doctor appointments in 2 months. This prompt suggested setting 3 phone alarms (1 day before, 1 hour before, 15 min before) and putting appointments in Google Calendar immediately. He hasn\'t missed one since.',
+    relatedPromptIds: ['losing-things', 'planning-help', 'tool-recommendations'],
+    rating: 223,
+    usedCount: 1734,
+    commentCount: 27,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+
+  // ==================== CONFIDENCE & SELF-ESTEEM (5) ====================
+  {
+    id: 'feel-stupid',
+    title: 'I feel stupid because of dyslexia (but I know I\'m not)',
+    emoji: '💔',
+    description: 'Dyslexia makes you feel dumb even though logically you know you\'re not. You need someone to remind you of your worth.',
+    prompt: `I feel stupid because of my dyslexia, even though I KNOW I'm not actually stupid.
+
+What happened recently that made me feel this way:
+[DESCRIBE THE SITUATION]
+
+What the mean voice in my head is saying:
+[BE HONEST]
+
+Help me:
+1. Remind me of what dyslexia actually is (and isn't)
+2. Challenge the "I'm stupid" thought with facts
+3. Help me see my strengths (even when I can't see them)
+4. Give me something to say back to that mean voice
+
+I need a pep talk from someone who gets it.`,
+    userType: 'student',
+    bestMode: 'socratic',
+    tags: ['#Confidence', '#Dyslexia', '#Self-Esteem', '#Mental-Health'],
+    exampleUseCase: 'After bombing a spelling test, Zoe felt like the "dumbest person in class." This conversation reminded her that dyslexia affects spelling, not intelligence, and helped her list 5 things she\'s actually great at. She cried, then felt better.',
+    relatedPromptIds: ['confidence-boost', 'recognize-strengths', 'parent-confidence'],
+    rating: 267,
+    usedCount: 2103,
+    commentCount: 38,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'imposter-syndrome',
+    title: 'I\'m terrified someone will find out I\'m not as smart as they think',
+    emoji: '😱',
+    description: 'Imposter syndrome is hitting hard. You\'re succeeding but convinced you\'re faking it and will be "found out."',
+    prompt: `I'm doing well at [SCHOOL / WORK / etc] but I feel like a fraud. I'm terrified someone will realize I'm not actually smart.
+
+Current situation:
+[WHAT YOU'RE SUCCEEDING AT]
+
+What I'm scared of:
+[BEING EXPOSED, PEOPLE FINDING OUT, FAILING PUBLICLY, etc.]
+
+Why I think I'm faking it:
+[YOUR THOUGHTS]
+
+Help me:
+1. Understand if this is imposter syndrome (and if it's common with dyslexia)
+2. Separate facts from feelings (am I ACTUALLY faking it?)
+3. Remember my real accomplishments
+4. Handle this fear when it comes up
+
+I need reality check + reassurance.`,
+    userType: 'professional',
+    bestMode: 'socratic',
+    tags: ['#Confidence', '#Imposter-Syndrome', '#Mental-Health', '#Work'],
+    exampleUseCase: 'Marcus got promoted at work but was convinced his boss would "realize" he wasn\'t qualified. This conversation helped him see imposter syndrome is common in neurodivergent people and list concrete evidence of his competence. He accepted the promotion.',
+    relatedPromptIds: ['feel-stupid', 'recognize-strengths', 'confidence-boost'],
+    rating: 253,
+    usedCount: 1987,
+    commentCount: 34,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'recognize-strengths',
+    title: 'Help me recognize my strengths (I only see my struggles)',
+    emoji: '💪',
+    description: 'You focus on what\'s hard for you and can\'t see what you\'re actually good at. You need help identifying your strengths.',
+    prompt: `I only see what I'm BAD at. I want to see what I'm GOOD at.
+
+My challenges (the ones I focus on):
+[LIST THEM]
+
+Things people have complimented me on (even if I don't believe them):
+[THINK HARD - WHAT HAVE PEOPLE SAID?]
+
+Help me:
+1. Identify potential strengths I'm overlooking
+2. See how dyslexia might have HELPED me develop certain strengths
+3. Find evidence of these strengths in my life
+4. Reframe my "weaknesses" as trade-offs, not failures
+
+I want to believe I'm good at SOMETHING.`,
+    userType: 'student',
+    bestMode: 'socratic',
+    tags: ['#Strengths', '#Confidence', '#Dyslexia', '#Self-Esteem'],
+    exampleUseCase: 'Lila could only list her struggles. Through this conversation, she realized she\'s great at big-picture thinking, problem-solving, and connecting with people. Her dyslexia actually made her a better listener because she focuses on meaning, not words.',
+    relatedPromptIds: ['feel-stupid', 'celebrate-strengths-coach', 'parent-confidence'],
+    rating: 246,
+    usedCount: 1923,
+    commentCount: 32,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'mistake-spiral',
+    title: 'I made a mistake and now I\'m spiraling',
+    emoji: '😰',
+    description: 'You made one mistake and now you\'re catastrophizing. Your brain is telling you this means you\'re incompetent.',
+    prompt: `I made a mistake and now I can't stop thinking about it.
+
+What happened:
+[DESCRIBE THE MISTAKE]
+
+What my brain is telling me:
+[I'M STUPID / I'M GOING TO GET FIRED / EVERYONE THINKS I'M INCOMPETENT / etc.]
+
+Help me:
+1. Get perspective (how bad is this ACTUALLY?)
+2. Challenge the catastrophic thoughts
+3. Figure out if I need to fix anything or just move on
+4. Stop spiraling
+
+I tend to blow things out of proportion. Help me reality-check this.`,
+    userType: 'professional',
+    bestMode: 'socratic',
+    tags: ['#Confidence', '#Anxiety', '#Work', '#Mental-Health'],
+    exampleUseCase: 'Priya sent an email with a typo to a client and spiraled for 2 hours. This conversation helped her see it was a minor typo, not a career-ending mistake. She corrected it in a follow-up and moved on. The client didn\'t even notice.',
+    relatedPromptIds: ['mistake-fix', 'feel-stupid', 'imposter-syndrome'],
+    rating: 238,
+    usedCount: 1856,
+    commentCount: 30,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'confidence-boost',
+    title: 'I need a pep talk - today was rough',
+    emoji: '🌟',
+    description: 'You\'re feeling defeated and need someone to remind you that you\'re capable, worthy, and doing better than you think.',
+    prompt: `Today was rough and I need a pep talk.
+
+What happened:
+[DESCRIBE YOUR DAY / THE STRUGGLE]
+
+How I'm feeling:
+[DEFEATED / EXHAUSTED / LIKE GIVING UP / etc.]
+
+Help me:
+1. Remind me why dyslexia doesn't define my worth
+2. Acknowledge that this IS hard (validate me)
+3. Point out things I might be overlooking (small wins, progress, strengths)
+4. Give me encouragement that feels real, not fake
+
+I don't need toxic positivity. I need real talk + kindness.`,
+    userType: 'student',
+    bestMode: 'socratic',
+    tags: ['#Confidence', '#Support', '#Mental-Health', '#Dyslexia'],
+    exampleUseCase: 'After failing another reading test, David felt like giving up. This conversation acknowledged the pain, reminded him reading speed isn\'t intelligence, and helped him see he\'d actually improved from last month. He kept going.',
+    relatedPromptIds: ['feel-stupid', 'recognize-strengths', 'parent-confidence'],
+    rating: 279,
+    usedCount: 2198,
+    commentCount: 41,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+
+  // ==================== SOCIAL & DISCLOSURE (6) ====================
+  {
+    id: 'should-i-tell-boss',
+    title: 'Should I tell my boss I have dyslexia?',
+    emoji: '🤔',
+    description: 'You\'re not sure if disclosing your dyslexia at work will help or hurt you. You need help weighing the decision.',
+    prompt: `I'm debating whether to tell my boss I have dyslexia.
+
+Current situation:
+[ARE YOU STRUGGLING? NEED ACCOMMODATIONS? JUST STARTING A NEW JOB?]
+
+What I'm worried about:
+[DISCRIMINATION / BEING SEEN AS LESS CAPABLE / LOSING OPPORTUNITIES / etc.]
+
+What I hope would happen if I tell them:
+[ACCOMMODATIONS / UNDERSTANDING / LESS PRESSURE / etc.]
+
+Help me:
+1. Weigh the pros and cons
+2. Assess my specific workplace (is it safe to disclose?)
+3. Decide what makes sense for MY situation
+4. Know my rights (briefly)
+
+I need help thinking this through logically.`,
+    userType: 'professional',
+    bestMode: 'socratic',
+    tags: ['#Disclosure', '#Work', '#Advocacy', '#Decision-Making'],
+    exampleUseCase: 'Nina was struggling with written reports at work but scared to tell her manager. This conversation helped her assess that her boss was supportive, and disclosure led to getting dictation software and extra time for reports. It changed everything.',
+    relatedPromptIds: ['write-disclosure-email', 'accommodations-request', 'explain-to-others'],
+    rating: 244,
+    usedCount: 1912,
+    commentCount: 28,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'write-disclosure-email',
+    title: 'Help me write a disclosure email/message',
+    emoji: '✉️',
+    description: 'You\'ve decided to disclose your dyslexia but don\'t know how to say it professionally without over-explaining or apologizing.',
+    prompt: `I want to tell [MY BOSS / MY TEACHER / MY TEAM] that I have dyslexia, but I'm not sure how to word it.
+
+Who I'm telling:
+[BOSS, PROFESSOR, COWORKER, etc.]
+
+Why I'm disclosing:
+[NEED ACCOMMODATIONS / WANT UNDERSTANDING / EXPLAINING A MISTAKE / etc.]
+
+What tone I want:
+[CONFIDENT / MATTER-OF-FACT / COLLABORATIVE / etc.]
+
+Help me:
+1. Write a clear, professional disclosure message
+2. Focus on solutions, not just problems
+3. Avoid over-apologizing or making excuses
+4. Keep it brief (3-5 sentences max)
+
+I want to sound confident, not defensive.`,
+    userType: 'professional',
+    bestMode: 'strategic',
+    tags: ['#Disclosure', '#Communication', '#Work', '#Advocacy'],
+    exampleUseCase: 'Carlos needed to tell his professor he has dyslexia to request extra time on exams. This prompt helped him write a 4-sentence email that was clear, confident, and professional. His professor responded supportively within an hour.',
+    relatedPromptIds: ['should-i-tell-boss', 'accommodations-request', 'explain-to-others'],
+    rating: 237,
+    usedCount: 1847,
+    commentCount: 26,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'explain-to-others',
+    title: 'How do I explain dyslexia to someone who doesn\'t get it?',
+    emoji: '💬',
+    description: 'Someone says "You don\'t look dyslexic" or "But you\'re so smart!" and you need language to explain what dyslexia actually is.',
+    prompt: `Someone said [QUOTE THEIR COMMENT] and I want to explain dyslexia in a way they'll understand.
+
+Who said it:
+[FRIEND / COWORKER / FAMILY MEMBER / etc.]
+
+What they seem to misunderstand:
+[DYSLEXIA MEANS LOW IQ / IT'S JUST READING / YOU SHOULD BE OVER IT BY NOW / etc.]
+
+Help me:
+1. Explain dyslexia in simple, relatable terms
+2. Correct their misconception without being defensive
+3. Use an analogy or example they'll get
+4. Keep it brief (they won't listen to a 10-minute lecture)
+
+I want to educate, not argue.`,
+    userType: 'student',
+    bestMode: 'socratic',
+    tags: ['#Disclosure', '#Education', '#Communication', '#Dyslexia'],
+    exampleUseCase: 'Jake\'s uncle said "You\'re so smart, I thought dyslexia was for people who can\'t read." This helped Jake explain dyslexia as "my brain processing words differently, like trying to read a different language" - his uncle finally got it.',
+    relatedPromptIds: ['explain-dyslexia-parent', 'explain-dyslexia-class', 'should-i-tell-boss'],
+    rating: 231,
+    usedCount: 1798,
+    commentCount: 24,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'handle-awkward-situation',
+    title: 'Help me handle this awkward dyslexia situation',
+    emoji: '😬',
+    description: 'Something awkward happened because of your dyslexia (mispronounced a word, misspelled something publicly, etc.) and you don\'t know how to respond.',
+    prompt: `Something awkward just happened because of my dyslexia and I'm not sure how to handle it.
+
+What happened:
+[DESCRIBE THE SITUATION]
+
+How I responded (if at all):
+[WHAT YOU SAID/DID OR NOTHING]
+
+Current vibe:
+[ARE PEOPLE STARING? DID SOMEONE COMMENT? IS IT AWKWARD?]
+
+Help me:
+1. Figure out if I should address it or just move on
+2. Suggest what to say if I need to say something
+3. Handle any embarrassment I'm feeling
+4. Prepare for if this happens again
+
+I want to handle this with confidence, not shame.`,
+    userType: 'professional',
+    bestMode: 'socratic',
+    tags: ['#Social', '#Confidence', '#Dyslexia', '#Communication'],
+    exampleUseCase: 'Emma mispronounced a client\'s name in a meeting and everyone went silent. This conversation helped her address it with humor ("Dyslexia strikes again! Can you help me with the pronunciation?"). The client laughed and moved on.',
+    relatedPromptIds: ['mistake-fix', 'confidence-boost', 'explain-to-others'],
+    rating: 229,
+    usedCount: 1776,
+    commentCount: 23,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'tell-but-not-defined',
+    title: 'I want to tell people, but I don\'t want dyslexia to define me',
+    emoji: '🎭',
+    description: 'You want people to know you have dyslexia (for understanding/accommodations) but you don\'t want it to become your whole identity.',
+    prompt: `I want to be open about having dyslexia, but I don't want it to be the ONLY thing people know about me.
+
+Current struggle:
+[DESCRIBE THE BALANCE YOU'RE TRYING TO FIND]
+
+What I want:
+[UNDERSTANDING? ACCOMMODATIONS? JUST HONESTY?]
+
+What I'm afraid of:
+[BEING SEEN AS "THE DYSLEXIC ONE" / PITY / LOWER EXPECTATIONS / etc.]
+
+Help me:
+1. Find language to disclose without making it my whole identity
+2. Set boundaries around talking about it
+3. Redirect conversations when dyslexia becomes the focus
+4. Own it without being defined by it
+
+I want to be honest but not be reduced to my diagnosis.`,
+    userType: 'student',
+    bestMode: 'socratic',
+    tags: ['#Disclosure', '#Identity', '#Confidence', '#Boundaries'],
+    exampleUseCase: 'After disclosing to her study group, Mia felt like every conversation became about dyslexia. This conversation helped her create a script: "Yep, I have dyslexia. It affects how I read, but it\'s not the whole story. Anyway, back to biology..."',
+    relatedPromptIds: ['should-i-tell-boss', 'explain-to-others', 'recognize-strengths'],
+    rating: 248,
+    usedCount: 1934,
+    commentCount: 27,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'explain-to-partner',
+    title: 'How do I explain dyslexia to my partner/date?',
+    emoji: '❤️',
+    description: 'You\'re dating someone or in a relationship and need to explain what dyslexia means for you, without it being weird or heavy.',
+    prompt: `I want to explain my dyslexia to [PARTNER / DATE / PERSON I'M SEEING] but I'm not sure how to bring it up.
+
+Current situation:
+[NEW RELATIONSHIP / BEEN TOGETHER A WHILE / JUST STARTED DATING]
+
+Why I want to tell them:
+[SO THEY UNDERSTAND / THEY NOTICED SOMETHING / JUST WANT TO BE OPEN]
+
+What I want them to know:
+[HOW IT AFFECTS ME / WHAT I NEED / WHAT IT DOESN'T MEAN]
+
+Help me:
+1. Find a natural way to bring it up (not make it A Big Talk)
+2. Explain what it means in practical terms (not clinical terms)
+3. Let them know how they can support me (if at all)
+4. Keep it light and confident, not heavy or apologetic
+
+I want to be honest without making it weird.`,
+    userType: 'student',
+    bestMode: 'socratic',
+    tags: ['#Disclosure', '#Relationships', '#Communication', '#Dyslexia'],
+    exampleUseCase: 'Liam was dating someone new and she noticed he asked her to read the menu. This gave him language to casually say "I have dyslexia, so reading menus is annoying, but I love talking about food - what looks good to you?" She thought it was charming.',
+    relatedPromptIds: ['explain-to-others', 'should-i-tell-boss', 'recognize-strengths'],
+    rating: 219,
+    usedCount: 1689,
+    commentCount: 22,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+
+  // ==================== TOOLS & STRATEGIES (5) ====================
+  {
+    id: 'tool-recommendations',
+    title: 'Which tool is best for [specific need]?',
+    emoji: '🛠️',
+    description: 'You need a tool (text-to-speech, dictation, note-taking, etc.) but don\'t know what to choose. You want recommendations.',
+    prompt: `I need a tool to help with [READING / WRITING / ORGANIZATION / NOTE-TAKING / etc] but I don't know what to use.
+
+What I need help with:
+[BE SPECIFIC - READING FASTER? SPELLING? TAKING NOTES?]
+
+My situation:
+[STUDENT / WORKING PROFESSIONAL / DEVICE I HAVE / BUDGET]
+
+What I've tried (if anything):
+[LIST TOOLS YOU'VE TRIED]
+
+Help me:
+1. Recommend 2-3 specific tools for my need
+2. Explain why each one might work for me
+3. Tell me if any are free or low-cost
+4. Give me a starting point (which one to try first)
+
+I'm overwhelmed by options. Just tell me what works.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Tools', '#Technology', '#Dyslexia', '#Recommendations'],
+    exampleUseCase: 'Zoe needed text-to-speech for college reading. This recommended Natural Reader (free), Voice Dream (paid, $10), and browser extensions. She started with the free option and it changed her life. She now finishes readings in half the time.',
+    relatedPromptIds: ['how-to-use-tool', 'best-font-overlay', 'remember-important-things'],
+    rating: 256,
+    usedCount: 2012,
+    commentCount: 33,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'how-to-use-tool',
+    title: 'Show me how to use [specific tool]',
+    emoji: '📱',
+    description: 'You have a tool but don\'t know how to set it up or use it effectively. You need a tutorial.',
+    prompt: `I have [TOOL NAME] but I'm not sure how to use it.
+
+The tool:
+[NAME OF THE TOOL - text-to-speech, Grammarly, dictation, etc.]
+
+What I'm trying to do with it:
+[WHAT'S YOUR GOAL?]
+
+Where I'm stuck:
+[SETUP? FEATURES? MAKING IT WORK FOR MY NEEDS?]
+
+Help me:
+1. Walk me through setup (step-by-step)
+2. Show me the key features I should actually use
+3. Give me tips to make it work better for dyslexia
+4. Troubleshoot any issues I'm having
+
+Pretend I'm not tech-savvy. Be VERY specific.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Tools', '#Technology', '#How-To', '#Support'],
+    exampleUseCase: 'Marcus downloaded Voice Dream but didn\'t know how to import his textbook PDFs. This prompt walked him through importing, adjusting speed, and highlighting while listening. He finally used the tool he\'d paid for months ago.',
+    relatedPromptIds: ['tool-recommendations', 'best-font-overlay', 'simple-organization-system'],
+    rating: 242,
+    usedCount: 1889,
+    commentCount: 25,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'best-font-overlay',
+    title: 'What\'s the best font/overlay/formatting for dyslexia?',
+    emoji: '🎨',
+    description: 'You\'ve heard about dyslexia-friendly fonts and colored overlays but don\'t know what actually works or how to use them.',
+    prompt: `I want to make reading easier with fonts, colors, or overlays, but I don't know what works.
+
+What I'm reading:
+[TEXTBOOKS, COMPUTER SCREEN, PRINTED DOCUMENTS, etc.]
+
+Current struggles:
+[LETTERS MOVE, GET TIRED QUICKLY, LOSE MY PLACE, etc.]
+
+Help me:
+1. Recommend fonts that help dyslexic readers
+2. Explain colored overlays (do they work? which colors?)
+3. Suggest formatting tricks (spacing, contrast, etc.)
+4. Tell me how to implement these (browser extensions, apps, etc.)
+
+I've heard about this stuff but don't know where to start.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Tools', '#Reading', '#Accessibility', '#Formatting'],
+    exampleUseCase: 'Lila\'s eyes got exhausted reading on her laptop. This recommended OpenDyslexic font, a cream background instead of white, and the Helperbird browser extension. She installed Helperbird and reading online became 10x easier.',
+    relatedPromptIds: ['skip-words-lines', 'tool-recommendations', 'how-to-use-tool'],
+    rating: 233,
+    usedCount: 1821,
+    commentCount: 21,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'study-note-strategies',
+    title: 'Help me figure out the best way to study/take notes',
+    emoji: '📓',
+    description: 'Traditional note-taking doesn\'t work for your brain. You need strategies that actually help you learn and remember.',
+    prompt: `Traditional note-taking doesn't work for me. I need a better way.
+
+What I'm studying:
+[SUBJECT/TOPIC]
+
+Current method (what's NOT working):
+[WRITING NOTES, HIGHLIGHTING, REREADING, etc.]
+
+My learning style (if you know):
+[VISUAL? VERBAL? HANDS-ON? NOT SURE?]
+
+Help me:
+1. Suggest 3-4 study/note-taking methods for dyslexic brains
+2. Explain HOW to do each one
+3. Help me pick which to try first
+4. Make it practical for [CLASS / WORK / EXAM PREP]
+
+I need strategies that work with my brain, not against it.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Studying', '#Note-Taking', '#Learning', '#Strategies'],
+    exampleUseCase: 'Emma was failing tests despite hours of studying. This suggested mind mapping instead of linear notes, recording herself explaining concepts, and teaching the material to her dog. She tried all three and her grades went up a full letter.',
+    relatedPromptIds: ['note-taking-help', 'study-guide-creator', 'explain-concept'],
+    rating: 249,
+    usedCount: 1945,
+    commentCount: 28,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'visual-system',
+    title: 'Help me create a visual organization system',
+    emoji: '🗂️',
+    description: 'Text-based organization doesn\'t stick. You need something visual that your brain can actually process and remember.',
+    prompt: `I need to organize [TASKS / SCHEDULE / PROJECTS / etc] but text lists don't work for my brain. I need something VISUAL.
+
+What I'm trying to organize:
+[BE SPECIFIC]
+
+Why text lists don't work:
+[I FORGET TO LOOK AT THEM / THEY OVERWHELM ME / I CAN'T PRIORITIZE]
+
+Tools I have:
+[PHONE, COMPUTER, PAPER, WHITEBOARD, etc.]
+
+Help me:
+1. Suggest visual organization systems (color-coding, symbols, charts, etc.)
+2. Show me how to set it up
+3. Keep it simple (I have ADHD, can't maintain complex systems)
+4. Make it something I'll actually USE
+
+I'm a visual learner. Work with my brain.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Organization', '#Visual', '#ADHD', '#Systems'],
+    exampleUseCase: 'Carlos had a text-based to-do list he never looked at. This helped him create a color-coded Trello board with 3 columns (To Do, Doing, Done) and emojis for priority. He checked it 5x a day because it was visual and satisfying.',
+    relatedPromptIds: ['simple-organization-system', 'losing-things', 'planning-help'],
+    rating: 251,
+    usedCount: 1967,
+    commentCount: 29,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+
+  // ==================== UNDERSTANDING DYSLEXIA (5) ====================
+  {
+    id: 'do-i-have-dyslexia',
+    title: 'Do I have dyslexia? Help me figure this out',
+    emoji: '❓',
+    description: 'You\'ve been struggling and wondering if it\'s dyslexia. You need help understanding the signs and what to do next.',
+    prompt: `I've been struggling with [READING / SPELLING / WRITING / etc] and I'm wondering if I have dyslexia.
+
+What I'm experiencing:
+[DESCRIBE YOUR STRUGGLES]
+
+How long this has been happening:
+[ALWAYS / RECENTLY / SINCE CHILDHOOD]
+
+Help me:
+1. Explain common signs of dyslexia
+2. Help me assess if my experiences match those signs
+3. Tell me what to do next (testing, evaluation, etc.)
+4. Reassure me that getting answers is a good thing
+
+I'm scared but also relieved to have a name for this.`,
+    userType: 'student',
+    bestMode: 'socratic',
+    tags: ['#Dyslexia', '#Diagnosis', '#Understanding', '#Assessment'],
+    exampleUseCase: 'Nina, 28, had struggled with reading her whole life but thought she was "just slow." This conversation helped her recognize dyslexia signs and connect with an educational psychologist for testing. She was diagnosed at 29 and finally got answers.',
+    relatedPromptIds: ['explain-dyslexia-simple', 'dyslexia-vs-adhd', 'will-i-always-have-dyslexia'],
+    rating: 264,
+    usedCount: 2076,
+    commentCount: 36,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'explain-dyslexia-simple',
+    title: 'Explain dyslexia to me in simple terms',
+    emoji: '🧠',
+    description: 'You want to understand what dyslexia actually IS - not medical jargon, just a clear explanation of how your brain works.',
+    prompt: `I want to understand what dyslexia actually is. Explain it to me in simple, clear language.
+
+What I already know (or think I know):
+[YOUR CURRENT UNDERSTANDING]
+
+What confuses me:
+[WHAT YOU DON'T GET OR HAVE QUESTIONS ABOUT]
+
+Help me understand:
+1. What dyslexia is (and what it ISN'T)
+2. Why my brain processes words differently
+3. Whether it's just about reading (or more than that)
+4. What this means for my life going forward
+
+No medical jargon. Talk to me like I'm a human, not a textbook.`,
+    userType: 'student',
+    bestMode: 'socratic',
+    tags: ['#Dyslexia', '#Understanding', '#Education', '#Simple-Explanation'],
+    exampleUseCase: 'Jake was just diagnosed and had no idea what dyslexia actually meant. This conversation explained it as "his brain taking a different route to process words - slower but often more creative." He finally understood himself.',
+    relatedPromptIds: ['do-i-have-dyslexia', 'dyslexia-vs-adhd', 'explain-dyslexia-parent'],
+    rating: 271,
+    usedCount: 2134,
+    commentCount: 37,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'dyslexia-vs-adhd',
+    title: 'What\'s the difference between dyslexia, ADHD, and other learning differences?',
+    emoji: '🔍',
+    description: 'You\'re confused about how dyslexia is different from ADHD, dyscalculia, or other diagnoses. You need clarity.',
+    prompt: `I'm confused about the difference between dyslexia, ADHD, and other learning differences.
+
+What I have (or think I have):
+[YOUR DIAGNOSIS OR WHAT YOU'RE WONDERING ABOUT]
+
+What confuses me:
+[DO I HAVE BOTH? HOW ARE THEY DIFFERENT? WHY DO THEY OVERLAP?]
+
+Help me understand:
+1. How dyslexia is different from ADHD
+2. Whether you can have both (and what that looks like)
+3. Other related conditions (dyscalculia, dysgraphia, etc.)
+4. Why this matters for getting the right support
+
+Make it clear and simple. I'm overwhelmed by labels.`,
+    userType: 'student',
+    bestMode: 'socratic',
+    tags: ['#Dyslexia', '#ADHD', '#Understanding', '#Diagnosis'],
+    exampleUseCase: 'Mia had both dyslexia and ADHD and didn\'t understand how they were different. This explained dyslexia affects word processing, ADHD affects attention/exec function, and they often co-occur. She finally understood why both accommodations helped.',
+    relatedPromptIds: ['explain-dyslexia-simple', 'do-i-have-dyslexia', 'understand-neurodivergent'],
+    rating: 258,
+    usedCount: 2023,
+    commentCount: 31,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'dyslexia-superpower',
+    title: 'Is dyslexia actually a "superpower" or is that just toxic positivity?',
+    emoji: '🦸',
+    description: 'You keep hearing dyslexia is a "gift" but it feels hard. You want an honest answer about strengths AND struggles.',
+    prompt: `People keep telling me dyslexia is a "superpower" or a "gift" but that doesn't match my experience. What's the truth?
+
+My experience with dyslexia:
+[BE HONEST - WHAT'S HARD? WHAT MIGHT BE STRENGTHS?]
+
+Why the "superpower" narrative bothers me (if it does):
+[YOUR THOUGHTS]
+
+Help me:
+1. Get an honest answer (not toxic positivity)
+2. Understand what the research actually says about strengths
+3. Validate that the struggles are REAL
+4. Find a balanced view that doesn't sugarcoat OR catastrophize
+
+I want the truth, not a pep talk.`,
+    userType: 'student',
+    bestMode: 'socratic',
+    tags: ['#Dyslexia', '#Strengths', '#Understanding', '#Real-Talk'],
+    exampleUseCase: 'Liam was frustrated by "dyslexia is a gift" messaging while failing spelling tests. This conversation validated that dyslexia IS hard, explained research on spatial reasoning/creativity strengths, and helped him see both truths can exist. He felt seen.',
+    relatedPromptIds: ['recognize-strengths', 'feel-stupid', 'explain-dyslexia-simple'],
+    rating: 268,
+    usedCount: 2109,
+    commentCount: 39,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'will-i-always-have-dyslexia',
+    title: 'Will I always have dyslexia? Can it be cured?',
+    emoji: '🔮',
+    description: 'You\'re wondering if dyslexia goes away, gets better, or if you\'ll struggle forever. You want an honest answer.',
+    prompt: `Will I always have dyslexia? Can it be cured or will it get better?
+
+Current situation:
+[YOUR AGE, HOW LONG YOU'VE KNOWN, WHAT YOU'RE STRUGGLING WITH]
+
+What I'm hoping for:
+[BE HONEST]
+
+Help me understand:
+1. Does dyslexia go away or is it lifelong?
+2. Can it get better (even if it doesn't go away)?
+3. What does "better" look like realistically?
+4. What I can do to make things easier going forward
+
+I want the truth, not false hope or doom and gloom.`,
+    userType: 'student',
+    bestMode: 'socratic',
+    tags: ['#Dyslexia', '#Understanding', '#Future', '#Real-Talk'],
+    exampleUseCase: 'Emma, 16, wanted to know if dyslexia would "go away" in college. This explained it\'s lifelong BUT skills improve, strategies help, and many dyslexic adults thrive. She stopped waiting to be "fixed" and started building strategies.',
+    relatedPromptIds: ['explain-dyslexia-simple', 'do-i-have-dyslexia', 'tool-recommendations'],
+    rating: 255,
+    usedCount: 1998,
+    commentCount: 32,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
 ];
 
 // Helper function to get all unique tags
