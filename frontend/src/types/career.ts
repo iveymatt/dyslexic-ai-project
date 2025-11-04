@@ -218,12 +218,21 @@ export interface Job {
   futureAIImpact?: FutureAIImpact; // How AI will change this job (risk + opportunity)
 }
 
+export interface TeachableMoment {
+  scenario: string; // Real-world situation description
+  whatToNotice: string; // What to pay attention to
+  howToRespond: string; // Practical action steps
+  whyItMatters: string; // Connection to independence/work
+}
+
 export interface Lesson {
   id: string;
   title: string;
   duration: number; // minutes
   content: string;
   exercise: string;
+  teachableMoment?: TeachableMoment; // Real-world scenario for practice
+  coreTheme?: 'executive-function' | 'organizing-systems' | 'sensory-emotional' | 'masking' | 'communication'; // Which core theme this connects to
 }
 
 export interface LifeSkillsModule {
@@ -235,6 +244,7 @@ export interface LifeSkillsModule {
   skillsYouGain: string[];
   practiceActivity: string;
   affirmation: string;
+  coreThemes?: string[]; // Which of the 5 core themes this module addresses
 }
 
 export interface AILiteracyModule {
