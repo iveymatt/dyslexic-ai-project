@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { UserProfile } from '../../types/career';
 import { CognitiveProfile } from '../../components/CognitiveProfile';
-import { Briefcase, BookOpen, Lightbulb, ArrowRight, Star, Users, Zap, Clipboard, Eye, Brain, Calendar, Heart, Shield, MessageCircle } from 'lucide-react';
+import { Briefcase, BookOpen, Lightbulb, ArrowRight, Star, Users, Zap, Clipboard, Eye, Brain, Calendar, Heart, Shield, MessageCircle, Bot } from 'lucide-react';
 import {
   calculateLifeSkillsProgress,
   calculateAILiteracyProgress,
@@ -37,6 +37,7 @@ interface CareerDiscoveryProps {
   onViewJobs: () => void;
   onViewLifeSkills: () => void;
   onViewAILiteracy: () => void;
+  onViewAIAgentsWorkflows: () => void;
 }
 
 export function CareerDiscovery({
@@ -46,6 +47,7 @@ export function CareerDiscovery({
   onViewJobs,
   onViewLifeSkills,
   onViewAILiteracy,
+  onViewAIAgentsWorkflows,
 }: CareerDiscoveryProps) {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
 
@@ -448,6 +450,31 @@ export function CareerDiscovery({
             <div className="bg-yellow-900/20 border border-yellow-700/30 rounded-lg p-3">
               <p className="text-sm text-yellow-200">
                 10 modules • {aiLiteracyProgress}% complete
+              </p>
+            </div>
+          </button>
+
+          {/* AI Agents & Workflows */}
+          <button
+            onClick={onViewAIAgentsWorkflows}
+            className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-primary-500 transition-all text-left group"
+          >
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Bot className="text-primary-400" size={24} />
+                  <h3 className="text-xl font-bold">AI Agents & Workflows</h3>
+                </div>
+                <p className="text-gray-400 text-sm">Pre-built AI assistants and step-by-step processes</p>
+              </div>
+              <ArrowRight
+                size={24}
+                className="text-gray-600 group-hover:text-primary-400 group-hover:translate-x-1 transition-all"
+              />
+            </div>
+            <div className="bg-primary-900/20 border border-primary-700/30 rounded-lg p-3">
+              <p className="text-sm text-primary-200">
+                10 agents • 3 workflows
               </p>
             </div>
           </button>
