@@ -6,12 +6,14 @@ export const lifeSkillsModules: LifeSkillsModule[] = [
     title: 'Time Management & Scheduling',
     icon: '⏰',
     description: 'Master your time, not the clock',
+    coreThemes: ['Capacity & Executive Function', 'Organizing Systems'],
 
     lessons: [
       {
         id: 'lesson-1',
         title: 'Understanding Your Energy Patterns',
         duration: 5,
+        coreTheme: 'executive-function',
         content: `Many neurodivergent people experience energy differently throughout the day. Some are night owls. Some have ADHD and their focus comes in waves. Time blindness is real.
 
 **Key Concept:** Work WITH your brain, not against it.
@@ -28,11 +30,18 @@ export const lifeSkillsModules: LifeSkillsModule[] = [
 - **Data Entry Specialists** thrive with hyperfocus blocks of 2-4 hours—align these with your natural energy peaks
 - **Graphic Designers** juggling multiple client projects need to match creative work with high-energy times`,
         exercise: 'For 3 days, write down your energy level every 2 hours (1-10 scale). Notice patterns.',
+        teachableMoment: {
+          scenario: "It's your first week at a new job. Your boss asks you to complete a detailed report by Friday. You notice you feel most alert around 2-4pm, but meetings are always scheduled then. By 5pm you're exhausted and can't focus.",
+          whatToNotice: "Pay attention to: (1) When do you feel most alert? (2) What drains your energy (meetings, noise, interruptions)? (3) When do you hit a 'wall' and can't think clearly anymore?",
+          howToRespond: "This week, track your energy honestly. Don't force yourself to work when you're crashing. Next week, talk to your supervisor: 'I've noticed I do my best detailed work between 2-4pm. Would it be possible to block that time for focused tasks and move meetings to mornings?' Most employers value self-awareness.",
+          whyItMatters: "Understanding your energy patterns prevents burnout and helps you advocate for yourself. Autistic people often experience energy differently—honoring that isn't 'special treatment,' it's working smarter. This skill helps you succeed long-term instead of burning out in 6 months."
+        }
       },
       {
         id: 'lesson-2',
         title: 'Breaking Tasks into Time Blocks',
         duration: 5,
+        coreTheme: 'executive-function',
         content: `Big tasks feel overwhelming. "Write report" feels impossible. "Write introduction for 15 minutes" feels doable.
 
 **Key Concept:** Small chunks = progress.
@@ -49,6 +58,12 @@ export const lifeSkillsModules: LifeSkillsModule[] = [
 - **Data Entry:** Use 45-min hyperfocus blocks for data input, 10-min breaks to prevent burnout
 - **Graphic Designers:** 30-min design blocks for creativity, 15-min blocks for client emails and admin tasks`,
         exercise: 'Pick one task today. Break it into 15-minute chunks. Try working for just one chunk.',
+        teachableMoment: {
+          scenario: "You're moving into your first apartment. The thought of packing, cleaning, setting up utilities, buying furniture, and organizing everything feels overwhelming. You keep procrastinating because you don't know where to start.",
+          whatToNotice: "Notice how your brain freezes when you think 'I have to move.' That's task paralysis—common for autistic people facing big, undefined projects.",
+          howToRespond: "Break it down into tiny blocks: Monday 2-3pm: Pack books. Tuesday 2-3pm: Pack kitchen. Wednesday 2-3pm: Call electric company. Just ONE hour, ONE category. Set a timer. When it rings, STOP—even if you want to keep going. Rest. Repeat tomorrow. In 2 weeks, you're moved. In one day trying to 'do it all'? Burnout.",
+          whyItMatters: "Executive function challenges make task initiation hard. Time blocking removes the 'where do I start?' paralysis. This skill applies to EVERYTHING: job searching, learning new software, cleaning your home, managing projects at work. Master this, and 'impossible' tasks become doable."
+        }
       },
       {
         id: 'lesson-3',
@@ -352,6 +367,7 @@ Example: "I sometimes hyperfocus and lose track of time. I use timers to stay on
         id: 'lesson-5',
         title: 'Asking for Accommodations',
         duration: 5,
+        coreTheme: 'communication',
         content: `You have the right to workplace accommodations (ADA in the US). Here's how to ask:
 
 **What you CAN ask for:**
@@ -380,6 +396,12 @@ Each job in Career Discovery now includes:
 
 **Pro Tip:** Review the job's accommodation section BEFORE your interview so you know what's typically granted.`,
         exercise: 'Identify 2 accommodations that would help you. Write how you\'d ask for them.',
+        teachableMoment: {
+          scenario: "It's your first 'real job' and you're terrified to ask for accommodations. The fluorescent lights give you headaches. Your manager gives verbal instructions and you forget them immediately. You're afraid if you ask for help, they'll think you can't do the job and fire you.",
+          whatToNotice: "Notice the fear: 'If I ask for accommodations, they'll know I'm different and get rid of me.' This fear is valid—ableism is real. BUT: struggling in silence until you burn out or make mistakes? That ACTUALLY gets you fired. Accommodations help you succeed.",
+          howToRespond: "Week 1: Say nothing. Observe. See if others use headphones, work from home sometimes, or ask for clarification. Week 2: Start small. Ask for ONE thing framed as productivity: 'I've noticed I retain information better when I have written task lists. Would it be possible to get tasks via email or Slack instead of verbally?' If they say yes, great. If they say no rudely? Start job searching—that's a toxic workplace.",
+          whyItMatters: "This is self-advocacy—a core life skill. You're not asking for 'special treatment.' You're asking for what you need to do your job well. Neurotypical people get accommodations all the time (ergonomic chairs, coffee breaks, flexible hours)—they just don't call them that. Learning to ask for what you need without shame is how you build a sustainable career instead of burning out every 6 months."
+        }
       },
     ],
 
@@ -395,12 +417,14 @@ Each job in Career Discovery now includes:
     title: 'Emotional Regulation & Stress Management',
     icon: '😊',
     description: 'Understand and manage your emotions effectively',
+    coreThemes: ['Sensory & Emotional Regulation', 'Masking & Camouflaging'],
 
     lessons: [
       {
         id: 'lesson-1',
         title: 'Understanding Emotional Dysregulation',
         duration: 5,
+        coreTheme: 'sensory-emotional',
         content: `Many neurodivergent people experience emotions MORE intensely. It's not being "dramatic." It's neurobiology.
 
 **Key Concept:** Your feelings are valid. AND you can learn to manage them.
@@ -415,6 +439,12 @@ Each job in Career Discovery now includes:
 
 **Goal:** Not to "stop feeling," but to respond skillfully.`,
         exercise: 'Next time you feel a big emotion, name it: "I\'m feeling [angry/sad/overwhelmed]."',
+        teachableMoment: {
+          scenario: "You're at your new job. After 3 hours in a loud, bright office with constant interruptions, you feel like you're going to explode or cry. A coworker asks you a simple question and you snap at them. Now you feel guilty and scared they'll report you. You want to run to your car and never come back.",
+          whatToNotice: "This is sensory and emotional overload leading to dysregulation. Notice the early warning signs BEFORE you snap: tension in shoulders, racing thoughts, feeling 'prickly,' wanting to escape, sounds getting louder. These are your body's 'I'm at capacity' signals.",
+          howToRespond: "In the moment: If safe, excuse yourself. 'I need to step out for 5 minutes.' Go to bathroom, your car, outside. Splash cold water on face. Do box breathing (in 4, hold 4, out 4, hold 4). Don't try to 'fix' anything while dysregulated. After: Apologize briefly to coworker: 'Sorry I was short earlier, I was overwhelmed.' Don't over-explain. Prevention: Ask for accommodations BEFORE you're at breaking point (see Lesson 5).",
+          whyItMatters: "Autistic meltdowns and shutdowns aren't 'tantrums' or 'manipulation'—they're nervous system overload. Learning to recognize your early warning signs and take preventive breaks is how you avoid meltdowns at work, in relationships, and while living independently. This is survival-level emotional regulation. Masking until you collapse doesn't work long-term."
+        }
       },
       {
         id: 'lesson-2',
