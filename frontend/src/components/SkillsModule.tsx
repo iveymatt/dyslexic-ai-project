@@ -1,6 +1,7 @@
 
 import type { Lesson } from '../types/career';
 import { Clock, CheckCircle, Circle, ArrowRight } from 'lucide-react';
+import { TeachableMomentCard } from './career/TeachableMomentCard';
 
 interface SkillsModuleCardProps {
   icon: string;
@@ -185,8 +186,13 @@ export function LessonContent({ lesson, lessonNumber, onComplete, onBack }: Less
         <p className="text-gray-300">{lesson.exercise}</p>
       </div>
 
+      {/* Teachable Moment */}
+      {lesson.teachableMoment && (
+        <TeachableMomentCard teachableMoment={lesson.teachableMoment} />
+      )}
+
       {/* Actions */}
-      <div className="flex gap-4">
+      <div className="flex gap-4 mt-8">
         <button onClick={onBack} className="btn-secondary flex-1">
           Back to Lessons
         </button>
