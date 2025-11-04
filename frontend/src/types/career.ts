@@ -111,6 +111,7 @@ export interface UserProfile {
   profileCompleted: boolean;
   createdAt: string;
   updatedAt: string;
+  isDemo?: boolean; // Flag to indicate this is a demo profile
 }
 
 export interface SensoryDemands {
