@@ -1,11 +1,34 @@
-import { Lightbulb, Eye, CheckCircle, Target } from 'lucide-react';
+import { useState } from 'react';
+import { Lightbulb, Eye, CheckCircle, Target, Sparkles } from 'lucide-react';
 import type { TeachableMoment } from '../../types/career';
+import { AICoach } from '../AICoach';
 
 interface TeachableMomentCardProps {
   teachableMoment: TeachableMoment;
+  userProfile?: {
+    leaderboardScore?: number;
+    strengths?: string[];
+    challenges?: string[];
+  };
 }
 
-export function TeachableMomentCard({ teachableMoment }: TeachableMomentCardProps) {
+export function TeachableMomentCard({ teachableMoment, userProfile }: TeachableMomentCardProps) {
+  const [showAICoach, setShowAICoach] = useState(false);
+
+  // Map teachable moment to related prompts from the library
+  const getRelatedPrompts = () => {
+    const scenario = teachableMoment.scenario.toLowerCase();
+    if (scenario.includes('job') || scenario.includes('work')) {
+      return ['Job Interview Prep', 'Professional Email Draft', 'Workplace Accommodation Request'];
+    }
+    if (scenario.includes('apartment') || scenario.includes('moving')) {
+      return ['Break Down Complex Task', 'Daily Schedule Plan', 'Stress Management'];
+    }
+    if (scenario.includes('overload') || scenario.includes('meltdown')) {
+      return ['Sensory Break Plan', 'Emotion Check-in', 'Self-Regulation Script'];
+    }
+    return ['Problem Solving', 'Self-Advocacy Script'];
+  };
   return (
     <div className="bg-gradient-to-br from-amber-900/30 to-orange-900/30 border-2 border-amber-600/50 rounded-xl p-6 mt-8">
       <div className="flex items-center gap-3 mb-4">
@@ -64,10 +87,32 @@ export function TeachableMomentCard({ teachableMoment }: TeachableMomentCardProp
       </div>
 
       <div className="mt-4 pt-4 border-t border-amber-600/30">
-        <p className="text-xs text-amber-200/70 italic">
+        <p className="text-xs text-amber-200/70 italic mb-4">
           💡 Practice this scenario mentally. Imagine yourself in this situation. What would you do? Having a plan BEFORE it happens makes responding easier.
         </p>
+
+        {/* Practice with AI Coach Button */}
+        <button
+          onClick={() => setShowAICoach(true)}
+          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-xl"
+        >
+          <Sparkles size={20} />
+          Practice This Scenario with AI Coach
+        </button>
+        <p className="text-xs text-center text-gray-400 mt-2">
+          Get personalized guidance based on your AI Leaderboard score and neurodivergent profile
+        </p>
       </div>
+
+      {/* AI Coach Modal */}
+      {showAICoach && (
+        <AICoach
+          context="teachable-moment"
+          scenario={teachableMoment.scenario}
+          relatedPrompts={getRelatedPrompts()}
+          userProfile={userProfile}
+        />
+      )}
     </div>
   );
 }
