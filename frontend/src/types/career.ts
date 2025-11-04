@@ -115,9 +115,59 @@ export interface UserProfile {
 
 export interface SensoryDemands {
   noise: 'low' | 'medium' | 'high';
+  noiseDetails?: string; // e.g., "Quiet office with occasional meetings"
   lights: 'standard' | 'bright' | 'dim';
+  lightingDetails?: string; // e.g., "Adjustable desk lamps available"
   openPlan: boolean;
+  openPlanDetails?: string; // e.g., "Cubicles with 5ft walls, quiet zones available"
   remote: boolean;
+  remoteDetails?: string; // e.g., "Full remote or hybrid 2 days/week"
+  sensoryBreaks?: boolean; // Can take sensory breaks
+  sensoryAccommodations?: string[]; // e.g., ["Noise-canceling headphones OK", "Sunglasses allowed"]
+}
+
+export interface SocialDemandDetails {
+  level: 'minimal' | 'moderate' | 'high';
+  teamSize?: number; // How many people on immediate team
+  dailyInteractions?: string; // e.g., "5-10 slack messages, 1 brief standup"
+  clientFacing?: boolean; // Direct client interaction required?
+  presentationsRequired?: boolean; // Do you need to present?
+  phoneCallsRequired?: boolean; // Phone calls expected?
+  writtenVsVerbal?: 'mostly-written' | 'balanced' | 'mostly-verbal';
+  socialAccommodations?: string[]; // e.g., ["Email preferred over calls", "Meeting agendas sent ahead"]
+}
+
+export interface SoftSkill {
+  name: string; // e.g., "Active Listening"
+  importance: 'critical' | 'helpful' | 'optional'; // How important for this job
+  neurodivergentTips?: string; // Tips for neurodivergent people
+  canBeSupported?: boolean; // Can AI/accommodations help with this?
+  supportTools?: string[]; // Tools that help, e.g., ["AI note-taker for meetings"]
+}
+
+export interface AIAssistiveTool {
+  name: string; // e.g., "Grammarly"
+  category: 'writing' | 'organization' | 'communication' | 'time-management' | 'sensory' | 'learning' | 'task-automation';
+  description: string; // How it helps
+  costLevel: 'free' | 'low' | 'medium' | 'expensive'; // $ indicator
+  neurodivergentBenefit: string; // Specific benefit for ND people
+  helpsWithChallenges?: ChallengeType[]; // Which ND challenges it addresses
+}
+
+export interface Accommodation {
+  type: 'sensory' | 'social' | 'time' | 'communication' | 'workspace' | 'tech';
+  name: string; // e.g., "Flexible start times"
+  description: string; // What it is
+  likelihood: 'common' | 'negotiable' | 'rare'; // How easy to get
+  howToRequest?: string; // Tips for requesting this
+}
+
+export interface FutureAIImpact {
+  automationRisk: number; // 1-10, what parts AI might automate
+  augmentationOpportunity: number; // 1-10, how much AI can help you do the job BETTER
+  emergingTools: string[]; // New AI tools coming for this field
+  futureSkillsNeeded: string[]; // Skills to learn now to stay relevant
+  neurodivergentAdvantage?: string; // How ND thinking may be MORE valuable as AI advances
 }
 
 export interface CognitiveProfile {
@@ -143,8 +193,10 @@ export interface Job {
   typicalDay: string;
   skillsNeeded: string[];
 
+  // ENHANCED: More detailed sensory/social info
   sensoryDemands: SensoryDemands;
   socialDemands: 'minimal' | 'moderate' | 'high';
+  socialDemandDetails?: SocialDemandDetails; // NEW: Detailed social breakdown
 
   hoursPerWeek: number;
   schedule: string;
@@ -157,6 +209,12 @@ export interface Job {
   gettingStarted: string[];
 
   tags: string[];
+
+  // NEW: Neurodivergent-focused enhancements
+  softSkills?: SoftSkill[]; // Soft skills with ND-friendly tips
+  aiAssistiveTools?: AIAssistiveTool[]; // AI tools that help ND people in this job
+  accommodations?: Accommodation[]; // Workplace accommodations
+  futureAIImpact?: FutureAIImpact; // How AI will change this job (risk + opportunity)
 }
 
 export interface Lesson {
