@@ -9,6 +9,7 @@ import { PromptLibrary } from './pages/PromptLibrary';
 import { PromptDetail } from './pages/PromptDetail';
 import { CareerDiscovery } from './pages/careerDiscovery/CareerDiscovery';
 import { ProfileBuilder } from './pages/careerDiscovery/ProfileBuilder';
+import QuickStartProfile from './pages/careerDiscovery/QuickStartProfile';
 import { JobSearch } from './pages/careerDiscovery/JobSearch';
 import { JobDetail } from './pages/careerDiscovery/JobDetail';
 import { LifeSkillsCoach } from './pages/careerDiscovery/LifeSkillsCoach';
@@ -23,6 +24,7 @@ function App() {
   // Career Discovery states
   const [showCareerDiscovery, setShowCareerDiscovery] = useState(false);
   const [showProfileBuilder, setShowProfileBuilder] = useState(false);
+  const [showQuickStart, setShowQuickStart] = useState(false);
   const [showJobSearch, setShowJobSearch] = useState(false);
   const [showLifeSkills, setShowLifeSkills] = useState(false);
   const [showAILiteracy, setShowAILiteracy] = useState(false);
@@ -129,6 +131,27 @@ function App() {
     );
   }
 
+  if (showQuickStart) {
+    return (
+      <QuickStartProfile
+        onComplete={(profile) => {
+          // Save profile to localStorage
+          localStorage.setItem('careerDiscoveryProfile', JSON.stringify(profile));
+          setShowQuickStart(false);
+          setShowCareerDiscovery(true);
+        }}
+        onSwitchToFullAssessment={() => {
+          setShowQuickStart(false);
+          setShowProfileBuilder(true);
+        }}
+        onBack={() => {
+          setShowQuickStart(false);
+          setShowCareerDiscovery(true);
+        }}
+      />
+    );
+  }
+
   if (showCareerDiscovery) {
     return (
       <CareerDiscovery
@@ -136,6 +159,10 @@ function App() {
         onStartProfile={() => {
           setShowCareerDiscovery(false);
           setShowProfileBuilder(true);
+        }}
+        onQuickStart={() => {
+          setShowCareerDiscovery(false);
+          setShowQuickStart(true);
         }}
         onViewJobs={() => {
           setShowCareerDiscovery(false);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { UserProfile } from '../../types/career';
 import { CognitiveProfile } from '../../components/CognitiveProfile';
-import { Briefcase, BookOpen, Lightbulb, ArrowRight, Star, Users } from 'lucide-react';
+import { Briefcase, BookOpen, Lightbulb, ArrowRight, Star, Users, Zap, Clipboard } from 'lucide-react';
 import {
   calculateLifeSkillsProgress,
   calculateAILiteracyProgress,
@@ -11,6 +11,7 @@ import { jobs } from '../../data/careerDiscovery/jobs';
 interface CareerDiscoveryProps {
   onBack: () => void;
   onStartProfile: () => void;
+  onQuickStart: () => void;
   onViewJobs: () => void;
   onViewLifeSkills: () => void;
   onViewAILiteracy: () => void;
@@ -19,6 +20,7 @@ interface CareerDiscoveryProps {
 export function CareerDiscovery({
   onBack,
   onStartProfile,
+  onQuickStart,
   onViewJobs,
   onViewLifeSkills,
   onViewAILiteracy,
@@ -73,10 +75,34 @@ export function CareerDiscovery({
               based on your neurodivergent strengths, challenges, and interests.
             </p>
 
-            <button onClick={onStartProfile} className="btn-primary text-lg px-8 py-4 mb-12">
-              Start Your Profile
-              <ArrowRight size={20} />
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4 max-w-3xl mx-auto">
+              <button
+                onClick={onQuickStart}
+                className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-5 px-8 rounded-lg shadow-lg transition-all flex items-center justify-center gap-3"
+              >
+                <Zap size={24} />
+                <div className="text-left">
+                  <div className="text-lg">Quick Start</div>
+                  <div className="text-xs opacity-90">Already know your needs?</div>
+                </div>
+              </button>
+
+              <button
+                onClick={onStartProfile}
+                className="flex-1 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold py-5 px-8 rounded-lg shadow-lg transition-all flex items-center justify-center gap-3"
+              >
+                <Clipboard size={24} />
+                <div className="text-left">
+                  <div className="text-lg">Full Assessment</div>
+                  <div className="text-xs opacity-90">7 steps, personalized matches</div>
+                </div>
+              </button>
+            </div>
+
+            <p className="text-sm text-gray-400 mb-12">
+              Not sure which to choose? Quick Start gets you exploring careers in 2 minutes.
+              Full Assessment gives the most personalized matches.
+            </p>
 
             {/* Features */}
             <div className="grid md:grid-cols-3 gap-6 mt-16">
@@ -204,6 +230,19 @@ export function CareerDiscovery({
         {/* Cognitive Profile */}
         <div className="mb-8">
           <CognitiveProfile profile={userProfile} onEdit={onStartProfile} />
+          <div className="mt-4 flex gap-3 justify-end">
+            <button
+              onClick={() => {
+                if (confirm('Start fresh with a new profile? This will replace your current profile.')) {
+                  localStorage.removeItem('careerDiscoveryProfile');
+                  window.location.reload();
+                }
+              }}
+              className="text-sm px-4 py-2 rounded-lg border border-gray-600 hover:border-red-500 hover:text-red-400 transition-all"
+            >
+              Start Fresh
+            </button>
+          </div>
         </div>
 
         {/* Main Sections */}
