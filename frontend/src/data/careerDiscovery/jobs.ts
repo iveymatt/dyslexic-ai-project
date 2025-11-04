@@ -23,12 +23,29 @@ export const jobs: Job[] = [
 
     sensoryDemands: {
       noise: 'low',
+      noiseDetails: 'Quiet office or home office. Occasional 15-min standup meetings. Headphones commonly worn.',
       lights: 'standard',
+      lightingDetails: 'Adjustable desk lamps and screen brightness. Most QA teams support low-light preferences.',
       openPlan: false,
+      openPlanDetails: 'Usually private offices or cubicles with high walls. Remote work very common (80% of roles).',
       remote: true,
+      remoteDetails: 'Full remote or hybrid 1-2 days in office. One of the most remote-friendly tech jobs.',
+      sensoryBreaks: true,
+      sensoryAccommodations: ['Noise-canceling headphones encouraged', 'Flexible break schedule', 'Dark mode on all tools standard'],
     },
 
     socialDemands: 'minimal',
+    socialDemandDetails: {
+      level: 'minimal',
+      teamSize: 3-8,
+      dailyInteractions: '5-15 Slack messages, 1 brief standup (15 min), occasional 1-on-1 with developer',
+      clientFacing: false,
+      presentationsRequired: false,
+      phoneCallsRequired: false,
+      writtenVsVerbal: 'mostly-written',
+      socialAccommodations: ['All communication can be async via Slack/email', 'Camera-off in meetings usually OK', 'Bug reports are written, not verbal'],
+    },
+
     hoursPerWeek: 40,
     schedule: '9-5, flexible hours common',
 
@@ -45,6 +62,160 @@ export const jobs: Job[] = [
     ],
 
     tags: ['technical', 'detail-oriented', 'low-social', 'remote-friendly', 'pattern-recognition'],
+
+    // ========== NEURODIVERGENT-FOCUSED ENHANCEMENTS ==========
+
+    softSkills: [
+      {
+        name: 'Attention to Detail',
+        importance: 'critical',
+        neurodivergentTips: 'This is where many neurodivergent people EXCEL! Hyperfocus and pattern-recognition are natural strengths here. Take breaks to avoid burnout from intense focus.',
+        canBeSupported: true,
+        supportTools: ['Checklists in Notion/Asana', 'Screenshot tools to document bugs', 'Test case management software'],
+      },
+      {
+        name: 'Written Communication',
+        importance: 'critical',
+        neurodivergentTips: 'You document bugs in writing (not verbally). Use templates and tools like Grammarly. Being concise is valued over being eloquent.',
+        canBeSupported: true,
+        supportTools: ['Grammarly for bug reports', 'Bug report templates', 'AI writing assistants'],
+      },
+      {
+        name: 'Problem-Solving',
+        importance: 'helpful',
+        neurodivergentTips: 'Thinking differently is an ASSET here! You find bugs others miss. Lateral thinking and "what if?" scenarios are valuable.',
+        canBeSupported: false,
+        supportTools: [],
+      },
+      {
+        name: 'Collaboration',
+        importance: 'helpful',
+        neurodivergentTips: 'Mostly async via Slack/Jira. You don\'t need to be chatty - just clear in your bug reports. Brief standups can be done via text in many teams.',
+        canBeSupported: true,
+        supportTools: ['Slack for async communication', 'Loom for screen recording instead of explaining verbally'],
+      },
+      {
+        name: 'Time Management',
+        importance: 'helpful',
+        neurodivergentTips: 'Flexible schedules help with executive function challenges. Use timers, task apps, and communicate if you need deadline flexibility.',
+        canBeSupported: true,
+        supportTools: ['Pomodoro timers', 'Task management apps', 'Calendar blocking'],
+      },
+    ],
+
+    aiAssistiveTools: [
+      {
+        name: 'Grammarly',
+        category: 'writing',
+        description: 'Checks grammar, spelling, and tone in bug reports and documentation',
+        costLevel: 'free',
+        neurodivergentBenefit: 'Helps with dyslexia and writing challenges. Catches typos before you submit bug reports.',
+        helpsWithChallenges: ['reading-writing'],
+      },
+      {
+        name: 'Notion AI / ChatGPT',
+        category: 'writing',
+        description: 'Helps structure bug reports, summarize findings, and organize test results',
+        costLevel: 'free',
+        neurodivergentBenefit: 'Assists with executive function - helps organize thoughts into clear bug reports. Can convert messy notes into professional documentation.',
+        helpsWithChallenges: ['executive-function', 'reading-writing'],
+      },
+      {
+        name: 'Loom',
+        category: 'communication',
+        description: 'Record your screen showing the bug instead of writing long explanations',
+        costLevel: 'free',
+        neurodivergentBenefit: 'Avoid lengthy written explanations. Show, don\'t tell. Great for people who struggle with writing but can demonstrate issues clearly.',
+        helpsWithChallenges: ['reading-writing', 'social-interaction'],
+      },
+      {
+        name: 'Todoist / TickTick',
+        category: 'organization',
+        description: 'Track test cases, organize daily tasks, set reminders for retesting',
+        costLevel: 'free',
+        neurodivergentBenefit: 'External executive function support. Notifications remind you to retest bugs. Satisfying checkboxes for dopamine.',
+        helpsWithChallenges: ['executive-function', 'time-management'],
+      },
+      {
+        name: 'Browser Extensions (Dark Reader, Zoom)',
+        category: 'sensory',
+        description: 'Customize browser appearance, reduce eye strain, zoom text',
+        costLevel: 'free',
+        neurodivergentBenefit: 'Reduce sensory overwhelm from bright screens. Make text easier to read. Control your visual environment.',
+        helpsWithChallenges: ['sensory-sensitivity'],
+      },
+      {
+        name: 'Otter.ai',
+        category: 'communication',
+        description: 'Auto-transcribes standup meetings so you can focus on listening, not note-taking',
+        costLevel: 'free',
+        neurodivergentBenefit: 'Helps with auditory processing challenges. Review meeting notes later instead of trying to remember everything.',
+        helpsWithChallenges: ['social-interaction', 'executive-function'],
+      },
+    ],
+
+    accommodations: [
+      {
+        type: 'workspace',
+        name: 'Remote work or quiet workspace',
+        description: 'Work from home or request a quiet office/cubicle away from high-traffic areas',
+        likelihood: 'common',
+        howToRequest: 'QA roles are often fully remote. If in-office, request: "I do my best focus work in a quiet environment. Could I have a workspace away from high-traffic areas or work remotely a few days per week?"',
+      },
+      {
+        type: 'sensory',
+        name: 'Noise-canceling headphones',
+        description: 'Use headphones during focus work (very common in tech)',
+        likelihood: 'common',
+        howToRequest: 'Usually no request needed - standard in tech. If questioned, say: "Headphones help me maintain focus during detailed testing work."',
+      },
+      {
+        type: 'time',
+        name: 'Flexible start/end times',
+        description: 'Adjust work hours to match your peak focus times',
+        likelihood: 'common',
+        howToRequest: '"I\'m most productive during [morning/afternoon/evening]. Could I adjust my core hours to [preferred time] while maintaining the same weekly hours?"',
+      },
+      {
+        type: 'communication',
+        name: 'Written communication preference',
+        description: 'Receive assignments and feedback in writing (Slack, email, tickets) rather than verbally',
+        likelihood: 'common',
+        howToRequest: '"I process information best in writing. Could we use Slack/email for task assignments so I can refer back to them?"',
+      },
+      {
+        type: 'time',
+        name: 'Extended deadlines for complex tests',
+        description: 'Extra time for particularly complex testing scenarios',
+        likelihood: 'negotiable',
+        howToRequest: '"This feature is complex and I want to test it thoroughly. Could I have an extra day to ensure quality testing?"',
+      },
+      {
+        type: 'tech',
+        name: 'Assistive technology',
+        description: 'Screen readers, text-to-speech, Grammarly, accessibility tools',
+        likelihood: 'common',
+        howToRequest: '"I use [tool] to improve my accuracy and efficiency. Could the company provide a license or expense it?" (Often approved immediately)',
+      },
+    ],
+
+    futureAIImpact: {
+      automationRisk: 4,
+      augmentationOpportunity: 9,
+      emergingTools: [
+        'AI-powered test case generators (create test scenarios automatically)',
+        'Intelligent bug detection (AI finds bugs before humans test)',
+        'Auto-regression testing (AI re-tests after every code change)',
+        'Visual testing AI (detects UI inconsistencies across browsers)',
+      ],
+      futureSkillsNeeded: [
+        'Test automation basics (even manual testers should learn)',
+        'AI tool evaluation (knowing which AI tools actually work)',
+        'Prompt engineering for test case generation',
+        'Understanding AI limitations (knowing what still needs human testing)',
+      ],
+      neurodivergentAdvantage: 'AI will automate repetitive tests, but HUMAN judgment is irreplaceable. Your pattern-recognition, lateral thinking, and "what if?" scenarios are what AI can\'t replicate. As AI handles routine testing, neurodivergent testers who think creatively and spot edge cases will be MORE valuable. Jobs will shift toward complex problem-solving, exploratory testing, and AI tool oversight - all areas where neurodivergent strengths shine.',
+    },
   },
 
   {
