@@ -258,6 +258,57 @@ export interface AILiteracyModule {
   samplePrompt: string;
 }
 
+// AI Agents & Workflows Types
+export interface AIAgent {
+  id: string;
+  name: string;
+  emoji: string;
+  category: 'executive-function' | 'organizing-systems' | 'sensory-emotional' | 'masking' | 'communication';
+  description: string; // Short 1-sentence description
+  longDescription: string; // Detailed explanation
+  useCases: string[]; // Real-world examples of when to use
+  systemPrompt: string; // The actual agent instructions
+  voicePromptTemplate?: string; // How to use with voice-to-text
+  typedPromptTemplate?: string; // How to use when typing
+  exampleInput?: string; // Example of what user might say
+  exampleOutput?: string; // Example of what agent produces
+  tags: string[];
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  estimatedTime: string; // "5-10 minutes per use"
+}
+
+export interface WorkflowStep {
+  stepNumber: number;
+  title: string;
+  description: string;
+  estimatedTime: string;
+  agentToUse?: string | null; // Agent ID to use in this step
+  promptToUse?: string | null; // Prompt ID to use in this step
+  instructions: string[]; // Step-by-step instructions
+  energyLevel: 'low' | 'medium' | 'high'; // How much energy this step requires
+  sensoryConsiderations?: string; // Sensory challenges to watch for
+  breakAfter: boolean; // Should user take break after this step?
+}
+
+export interface AIWorkflow {
+  id: string;
+  name: string;
+  emoji: string;
+  category: 'executive-function' | 'organizing-systems' | 'sensory-emotional' | 'masking' | 'communication';
+  description: string; // Short description
+  longDescription: string; // Detailed explanation
+  steps: WorkflowStep[]; // Array of steps in order
+  totalEstimatedTime: string; // "10-15 hours spread over 5-7 days"
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  prerequisites: string[]; // What you need before starting
+  successMetrics: string[]; // How to know if workflow was successful
+  commonChallenges: {
+    challenge: string;
+    solution: string;
+  }[];
+  tags: string[];
+}
+
 export interface JobFilters {
   searchQuery: string;
   cognitiveFit: 'all' | '6+' | '8+';

@@ -14,6 +14,7 @@ import { JobSearch } from './pages/careerDiscovery/JobSearch';
 import { JobDetail } from './pages/careerDiscovery/JobDetail';
 import { LifeSkillsCoach } from './pages/careerDiscovery/LifeSkillsCoach';
 import { AILiteracy } from './pages/careerDiscovery/AILiteracy';
+import { AIAgentsWorkflows } from './pages/careerDiscovery/AIAgentsWorkflows';
 
 function App() {
   const [showLanding, setShowLanding] = useState(true);
@@ -28,6 +29,7 @@ function App() {
   const [showJobSearch, setShowJobSearch] = useState(false);
   const [showLifeSkills, setShowLifeSkills] = useState(false);
   const [showAILiteracy, setShowAILiteracy] = useState(false);
+  const [showAIAgentsWorkflows, setShowAIAgentsWorkflows] = useState(false);
   const [selectedJobId, setSelectedJobId] = useState<string | null>(null);
 
   if (showLanding) {
@@ -116,6 +118,17 @@ function App() {
     );
   }
 
+  if (showAIAgentsWorkflows) {
+    return (
+      <AIAgentsWorkflows
+        onBack={() => {
+          setShowAIAgentsWorkflows(false);
+          setShowCareerDiscovery(true);
+        }}
+      />
+    );
+  }
+
   if (showProfileBuilder) {
     return (
       <ProfileBuilder
@@ -175,6 +188,10 @@ function App() {
         onViewAILiteracy={() => {
           setShowCareerDiscovery(false);
           setShowAILiteracy(true);
+        }}
+        onViewAIAgentsWorkflows={() => {
+          setShowCareerDiscovery(false);
+          setShowAIAgentsWorkflows(true);
         }}
       />
     );
