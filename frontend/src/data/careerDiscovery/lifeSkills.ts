@@ -21,7 +21,12 @@ export const lifeSkillsModules: LifeSkillsModule[] = [
 - Notice your "crash times" (when energy drops)
 - Identify what recharges you (breaks? movement? quiet?)
 
-**Why this matters:** Scheduling important tasks during your peak energy times = success.`,
+**Why this matters:** Scheduling important tasks during your peak energy times = success.
+
+**Career Connection:**
+- **Software Testers** need sustained attention to detail—schedule testing during your peak focus hours
+- **Data Entry Specialists** thrive with hyperfocus blocks of 2-4 hours—align these with your natural energy peaks
+- **Graphic Designers** juggling multiple client projects need to match creative work with high-energy times`,
         exercise: 'For 3 days, write down your energy level every 2 hours (1-10 scale). Notice patterns.',
       },
       {
@@ -37,7 +42,12 @@ export const lifeSkillsModules: LifeSkillsModule[] = [
 - **ADHD-friendly:** 15 min work + 3 min movement break
 - **Flexible blocks:** Work for as long as hyperfocus lasts, then break
 
-**The secret:** It's okay to stop. Progress > perfection.`,
+**The secret:** It's okay to stop. Progress > perfection.
+
+**Career Examples:**
+- **Software Testers:** Break testing into 25-min test case blocks, then document bugs in 15-min writing blocks
+- **Data Entry:** Use 45-min hyperfocus blocks for data input, 10-min breaks to prevent burnout
+- **Graphic Designers:** 30-min design blocks for creativity, 15-min blocks for client emails and admin tasks`,
         exercise: 'Pick one task today. Break it into 15-minute chunks. Try working for just one chunk.',
       },
       {
@@ -253,7 +263,12 @@ Automate it. $10 auto-transfers every payday. You won't miss it.
 **Neurodivergent advantage:**
 You're probably more honest than neurotypical people. Use that.
 
-**You don't have to mask completely. But you do need to translate your skills into their language.**`,
+**You don't have to mask completely. But you do need to translate your skills into their language.**
+
+**Career-Specific Interview Focus:**
+- **Software Tester roles:** They'll ask about your attention to detail and problem-solving—your neurodivergent pattern-recognition is a STRENGTH here
+- **Graphic Designer roles:** Expect questions about receiving feedback and client communication—be ready to share how you handle creative critiques
+- **Data Entry roles:** They want to know about focus and accuracy—hyperfocus is your superpower, mention it!`,
         exercise: 'Write down 3 strengths you have. How do they relate to jobs you want?',
       },
       {
@@ -274,7 +289,15 @@ Formula: Your skills + How they match the job + What you'll bring
 Pick a real one, then say how you manage it.
 Example: "I sometimes hyperfocus and lose track of time. I use timers to stay on schedule."
 
-**Practice out loud.** Your brain processes differently when you speak vs. think.`,
+**Practice out loud.** Your brain processes differently when you speak vs. think.
+
+**Career-Specific Sample Answers:**
+
+**For Software Tester:** "My attention to detail is exceptional—I naturally notice patterns and inconsistencies others miss. I use tools like Notion to track test cases systematically."
+
+**For Graphic Designer:** "I'm highly creative and visual, but I've learned to handle feedback professionally. When clients request changes, I use Figma to show multiple options and let the work speak for itself."
+
+**For Data Entry:** "I have strong hyperfocus abilities—I can maintain accuracy for long periods. I use Excel macros and double-checking systems to ensure quality."`,
         exercise: 'Write your "Tell me about yourself" answer. Say it out loud 3 times.',
       },
       {
@@ -346,7 +369,16 @@ Example: "I sometimes hyperfocus and lose track of time. I use timers to stay on
 **Example:**
 "I have ADHD and focus better with noise-canceling headphones. Would it be okay to use them while working?"
 
-**Most employers will say yes. If they say no, that's a red flag about the workplace.**`,
+**Most employers will say yes. If they say no, that's a red flag about the workplace.**
+
+**Career-Specific Accommodations & Likelihood:**
+Each job in Career Discovery now includes:
+- **Common accommodations** (usually granted): Remote work for Software Testers, headphones for Data Entry
+- **Negotiable accommodations** (worth asking): Flexible hours for Graphic Designers, written briefs instead of verbal
+- **Rare accommodations** (harder to get): 4-day work weeks, unlimited work-from-home
+- **Exact request scripts** for each accommodation—check the Accommodations section on job detail pages!
+
+**Pro Tip:** Review the job's accommodation section BEFORE your interview so you know what's typically granted.`,
         exercise: 'Identify 2 accommodations that would help you. Write how you\'d ask for them.',
       },
     ],
@@ -426,7 +458,13 @@ Example: "I sometimes hyperfocus and lose track of time. I use timers to stay on
 2. Look for patterns
 3. Write them down
 
-**Once you know them, you can plan around them or prepare coping strategies.**`,
+**Once you know them, you can plan around them or prepare coping strategies.**
+
+**Career-Specific Triggers to Watch For:**
+- **Graphic Designers:** Client feedback can trigger RSD (Rejection Sensitivity Dysphoria)—remember, feedback is about the WORK, not YOU
+- **Software Testers:** Bug report rejections or developers dismissing your findings can feel personal—develop a "professional distance" mindset
+- **Data Entry:** Interruptions during hyperfocus can cause frustration—use "Do Not Disturb" signals and communicate your focus needs
+- **All Careers:** Workplace noise and social demands vary—check each job's sensory profile in Career Discovery before applying`,
         exercise: 'List 3 situations that usually trigger big emotions for you. Just notice them.',
       },
       {
@@ -504,7 +542,13 @@ When calm: What triggered this? What can I do differently next time?
 
 **The thing is: You're not "bad at socializing." You're playing a game where no one explained the rules.**
 
-**Good news:** You can learn the rules WITHOUT masking your whole personality.`,
+**Good news:** You can learn the rules WITHOUT masking your whole personality.
+
+**How This Applies to Different Careers:**
+- **Software Testers (Minimal Social):** Team size 5-8, mostly Slack messages, brief standups—very manageable social load
+- **Graphic Designers (Moderate Social):** Client-facing meetings required, but you can use Loom for async presentations to reduce live interaction
+- **Data Entry (Minimal Social):** Team size 1-3, mostly independent work—perfect for those who prefer limited social interaction
+- **Check Job Profiles:** Each career in Career Discovery shows detailed social demands (team size, daily interactions, phone calls, etc.)`,
         exercise: 'Observe one social interaction today. What unwritten rules do you notice?',
       },
       {
