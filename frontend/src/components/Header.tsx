@@ -1,4 +1,4 @@
-import { Menu, Settings, Brain, Trophy, BookOpen, Briefcase } from 'lucide-react';
+import { Menu, Settings, Brain, Trophy, BookOpen, Briefcase, Bot } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { modes, getSubAgentsForMode } from '../config/modes';
 import type { ThinkingMode, SubAgent } from '../types';
@@ -7,9 +7,10 @@ interface HeaderProps {
   onShowLeaderboard?: () => void;
   onShowPromptLibrary?: () => void;
   onShowCareerDiscovery?: () => void;
+  onShowAIAgentsWorkflows?: () => void;
 }
 
-export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDiscovery }: HeaderProps) {
+export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDiscovery, onShowAIAgentsWorkflows }: HeaderProps) {
   const {
     sidebarOpen,
     setSidebarOpen,
@@ -72,7 +73,17 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
               aria-label="View Prompt Library"
             >
               <BookOpen size={18} />
-              <span className="hidden sm:inline">Prompt Library</span>
+              <span className="hidden sm:inline">Prompts</span>
+            </button>
+          )}
+          {onShowAIAgentsWorkflows && (
+            <button
+              onClick={onShowAIAgentsWorkflows}
+              className="flex items-center gap-2 px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors"
+              aria-label="View AI Agents & Workflows"
+            >
+              <Bot size={18} />
+              <span className="hidden sm:inline">AI Agents</span>
             </button>
           )}
           {onShowLeaderboard && (

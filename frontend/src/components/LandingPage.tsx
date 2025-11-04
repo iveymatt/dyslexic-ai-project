@@ -20,6 +20,7 @@ import {
   Briefcase,
   Clock,
   TrendingUp,
+  Bot,
 } from 'lucide-react';
 
 interface LandingPageProps {
@@ -170,7 +171,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             </div>
             <h3 className="text-2xl font-bold mb-4">Career Discovery</h3>
             <p className="text-gray-300 mb-6 text-lg">
-              Find careers that match how YOUR brain works. Learn life skills. Master AI tools. Built for neurodivergent young adults.
+              Find careers that match how YOUR brain works. Learn life skills. Master AI tools. Use pre-built AI agents. Built for neurodivergent young adults.
             </p>
             <ul className="space-y-3 text-gray-300 mb-6">
               <li className="flex items-start gap-2">
@@ -179,7 +180,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-orange-400 flex-shrink-0 mt-1">✓</span>
-                <span>Life skills coach (time, money, interviews, emotions, social)</span>
+                <span>Life skills coach organized by 5 core themes</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-orange-400 flex-shrink-0 mt-1">✓</span>
@@ -187,7 +188,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-orange-400 flex-shrink-0 mt-1">✓</span>
-                <span>Cognitive fit scores, AI-risk ratings, sensory demands</span>
+                <span>10 AI agents & 3 workflows for career transition</span>
               </li>
             </ul>
             <div className="bg-orange-900/30 rounded-lg p-4 border border-orange-700/30">
@@ -473,7 +474,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Career Matching */}
             <div className="bg-gradient-to-br from-orange-900/30 to-red-900/30 rounded-xl p-6 border border-orange-700/30">
               <div className="flex items-center gap-3 mb-4">
@@ -486,19 +487,19 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               <ul className="space-y-2 text-sm text-gray-400">
                 <li className="flex items-start gap-2">
                   <span className="text-orange-400">•</span>
-                  <span>Cognitive fit scores (how your brain matches this job)</span>
+                  <span>Cognitive fit scores</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-orange-400">•</span>
-                  <span>AI-risk ratings (will automation replace this?)</span>
+                  <span>AI-risk ratings</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-orange-400">•</span>
-                  <span>Sensory/social demands (is this job bearable for you?)</span>
+                  <span>Sensory/social demands</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-orange-400">•</span>
-                  <span>Growth paths & getting started guides</span>
+                  <span>Growth paths & guides</span>
                 </li>
               </ul>
             </div>
@@ -514,24 +515,24 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               </p>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li className="flex items-start gap-2">
-                  <span className="text-green-400">⏰</span>
-                  <span>Time Management & Scheduling</span>
+                  <span className="text-green-400">🧠</span>
+                  <span>Executive Function</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-400">💰</span>
-                  <span>Money Management & Budgeting</span>
+                  <span className="text-green-400">📅</span>
+                  <span>Organizing Systems</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-400">💼</span>
-                  <span>Job Interviews & Communication</span>
+                  <span className="text-green-400">❤️</span>
+                  <span>Emotional Regulation</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-400">😊</span>
-                  <span>Emotional Regulation & Stress</span>
+                  <span className="text-green-400">🛡️</span>
+                  <span>Masking & Unmasking</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-400">🗣️</span>
-                  <span>Social Skills & Relationships</span>
+                  <span className="text-green-400">💬</span>
+                  <span>Self-Advocacy</span>
                 </li>
               </ul>
             </div>
@@ -540,10 +541,10 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-700/30">
               <div className="flex items-center gap-3 mb-4">
                 <TrendingUp className="text-blue-400" size={28} />
-                <h3 className="text-xl font-bold">AI Literacy Training</h3>
+                <h3 className="text-xl font-bold">AI Literacy</h3>
               </div>
               <p className="text-gray-300 mb-4">
-                Master AI tools for job search, learning, and daily life. 10 modules, hands-on practice.
+                Master AI tools for job search, learning, and daily life.
               </p>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li className="flex items-start gap-2">
@@ -556,15 +557,48 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-400">•</span>
-                  <span>AI for career, learning, daily life</span>
+                  <span>AI for career & learning</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-400">•</span>
-                  <span>Ethics, safety, and hands-on practice</span>
+                  <span>Ethics & safety</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-400">•</span>
-                  <span>Certificate upon completion</span>
+                  <span>Hands-on practice</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* AI Agents & Workflows */}
+            <div className="bg-gradient-to-br from-primary-900/30 to-accent-900/30 rounded-xl p-6 border border-primary-700/30">
+              <div className="flex items-center gap-3 mb-4">
+                <Bot className="text-primary-400" size={28} />
+                <h3 className="text-xl font-bold">AI Agents & Workflows</h3>
+              </div>
+              <p className="text-gray-300 mb-4">
+                Pre-built AI assistants and step-by-step processes for career transition.
+              </p>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary-400">🤖</span>
+                  <span>10 ready-to-use AI agents</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary-400">🔄</span>
+                  <span>3 multi-step workflows</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary-400">📋</span>
+                  <span>Task breakdown & planning</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary-400">💬</span>
+                  <span>Social scripts & prep</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary-400">✨</span>
+                  <span>Voice-optimized prompts</span>
                 </li>
               </ul>
             </div>
