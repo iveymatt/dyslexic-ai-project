@@ -204,6 +204,7 @@ function App() {
         onShowLeaderboard={() => setShowLeaderboard(true)}
         onShowPromptLibrary={() => setShowPromptLibrary(true)}
         onShowCareerDiscovery={() => setShowCareerDiscovery(true)}
+        onShowAIAgentsWorkflows={() => setShowAIAgentsWorkflows(true)}
       />
 
       {/* Main Content Area */}
