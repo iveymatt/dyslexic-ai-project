@@ -1922,6 +1922,289 @@ I'm a visual learner. Work with my brain.`,
     verified: true,
   },
 
+  // ==================== ACCOMMODATIONS & ADVOCACY (8) ====================
+  {
+    id: 'accommodations-student',
+    title: 'What accommodations should I ask for at school?',
+    emoji: '📚',
+    description: 'You know you need help but don\'t know what accommodations to request. This helps you identify what would actually help.',
+    prompt: `I need accommodations at school but I don't know what to ask for.
+
+My struggles:
+[READING SPEED / WRITING / TESTS / HOMEWORK / etc.]
+
+What I've noticed helps:
+[EXTRA TIME? LISTENING INSTEAD OF READING? etc.]
+
+Current situation:
+[DO YOU HAVE AN IEP/504? WHAT GRADE/LEVEL?]
+
+Help me:
+1. Identify 3-5 accommodations that match my struggles
+2. Explain what each accommodation actually means
+3. Tell me how to request them
+4. Give me language to use when talking to teachers/counselors
+
+I want accommodations that actually help, not just token support.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Accommodations', '#School', '#Advocacy', '#IEP-504'],
+    exampleUseCase: 'Marcus struggled with timed tests but didn\'t know he could get extended time. This helped him request 1.5x time, audio format for reading passages, and a quiet testing room. His grades improved by a full letter.',
+    relatedPromptIds: ['parent-advocacy', 'accommodations-request', 'anxious-reading-aloud'],
+    rating: 241,
+    usedCount: 1876,
+    commentCount: 27,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'accommodations-not-working',
+    title: 'My school/work won\'t give me the accommodations I need',
+    emoji: '🚫',
+    description: 'You requested accommodations but they\'re being denied or ignored. You need to know your rights and how to advocate.',
+    prompt: `I asked for accommodations but [THEY DENIED THEM / THEY'RE NOT FOLLOWING THROUGH / THEY'RE IGNORING ME].
+
+What I asked for:
+[LIST THE ACCOMMODATIONS]
+
+What happened:
+[DESCRIBE THE RESPONSE]
+
+Current situation:
+[SCHOOL OR WORK? DO YOU HAVE DOCUMENTATION?]
+
+Help me:
+1. Understand my rights (briefly)
+2. Figure out next steps (who to talk to, how to escalate)
+3. Draft a follow-up message or email
+4. Know when to get outside help (disability advocate, lawyer, etc.)
+
+I need this accommodation to do my job/schoolwork. This isn't optional.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Accommodations', '#Advocacy', '#Rights', '#Legal'],
+    exampleUseCase: 'Emma\'s professor said "everyone has to take the same test" and denied her extra time despite her 504 plan. This helped her escalate to disability services with documentation. The professor was required to comply.',
+    relatedPromptIds: ['parent-advocacy', 'accommodations-student', 'should-i-tell-boss'],
+    rating: 236,
+    usedCount: 1834,
+    commentCount: 29,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'iep-504-prep',
+    title: 'Help me prepare for my IEP/504 meeting',
+    emoji: '📋',
+    description: 'You have an IEP or 504 meeting coming up and don\'t know how to prepare or what to say.',
+    prompt: `I have an IEP/504 meeting coming up and I want to be prepared.
+
+Type of meeting:
+[INITIAL EVALUATION / ANNUAL REVIEW / RE-EVALUATION]
+
+My biggest concerns:
+[WHAT DO YOU WANT TO MAKE SURE GETS ADDRESSED?]
+
+Current accommodations (if any):
+[LIST THEM]
+
+Help me:
+1. Know what to expect in the meeting
+2. Prepare questions to ask
+3. Identify accommodations to request or keep
+4. Write down my main points so I don't forget
+5. Understand my rights as a parent/student
+
+I want to advocate effectively but I'm nervous.`,
+    userType: 'parent',
+    bestMode: 'strategic',
+    tags: ['#IEP-504', '#Advocacy', '#School', '#Parents'],
+    exampleUseCase: 'Linda was going into her son\'s first IEP meeting terrified and unprepared. This helped her list 5 accommodations to request, questions about reading interventions, and talking points. She felt confident and got everything on the IEP.',
+    relatedPromptIds: ['parent-advocacy', 'accommodations-student', 'accommodations-not-working'],
+    rating: 248,
+    usedCount: 1923,
+    commentCount: 31,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'self-advocate-student',
+    title: 'How do I advocate for myself (without my parents)?',
+    emoji: '🗣️',
+    description: 'You\'re in college or becoming independent and need to learn to advocate for yourself without relying on parents.',
+    prompt: `I need to learn to advocate for myself, but I'm used to my parents doing it for me.
+
+Current situation:
+[COLLEGE? FIRST JOB? LIVING INDEPENDENTLY?]
+
+What I need to advocate for:
+[ACCOMMODATIONS / UNDERSTANDING / SUPPORT / etc.]
+
+What makes this hard:
+[SCARED / DON'T KNOW WHAT TO SAY / WORRIED ABOUT JUDGMENT / etc.]
+
+Help me:
+1. Build confidence to speak up for myself
+2. Know what to say (script or talking points)
+3. Figure out who to talk to
+4. Stop feeling like I'm being "difficult"
+
+I need to learn to do this on my own.`,
+    userType: 'student',
+    bestMode: 'socratic',
+    tags: ['#Advocacy', '#Independence', '#College', '#Self-Advocacy'],
+    exampleUseCase: 'Jake, 18, started college and needed to register with disability services himself for the first time. This helped him practice what to say, schedule the appointment, and advocate for text-to-speech software. He did it without his mom.',
+    relatedPromptIds: ['accommodations-student', 'should-i-tell-boss', 'write-disclosure-email'],
+    rating: 239,
+    usedCount: 1867,
+    commentCount: 25,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'disability-services-college',
+    title: 'How do I register with disability services in college?',
+    emoji: '🎓',
+    description: 'You\'re in college and don\'t know how to access accommodations through disability services.',
+    prompt: `I'm in college and I need to register with disability services but I don't know how.
+
+My situation:
+[DIAGNOSED WITH DYSLEXIA? HAVE DOCUMENTATION? FIRST YEAR OR LATER?]
+
+What I need help with:
+[THE PROCESS / WHAT TO BRING / WHAT ACCOMMODATIONS TO ASK FOR]
+
+What I'm worried about:
+[IS IT WORTH IT? WILL PROFESSORS JUDGE ME? IS IT TOO MUCH WORK?]
+
+Help me:
+1. Understand the step-by-step process
+2. Know what documentation I need
+3. Figure out what accommodations to request
+4. Get over my hesitation about doing this
+
+Everyone says to register but I don't know where to start.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#College', '#Accommodations', '#Disability-Services', '#Registration'],
+    exampleUseCase: 'Mia waited until sophomore year to register with disability services because she didn\'t know how. This walked her through the process: get documentation, schedule appointment, request accommodations. She finally got the help she needed.',
+    relatedPromptIds: ['accommodations-student', 'self-advocate-student', 'should-i-tell-boss'],
+    rating: 252,
+    usedCount: 1967,
+    commentCount: 28,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'workplace-accommodations-request',
+    title: 'What accommodations can I request at work?',
+    emoji: '💼',
+    description: 'You\'re struggling at work and need accommodations but don\'t know what\'s reasonable or how to ask.',
+    prompt: `I'm struggling at work and think I need accommodations, but I don't know what to ask for.
+
+My struggles:
+[READING EMAILS / WRITING REPORTS / MEETINGS / TIME MANAGEMENT / etc.]
+
+What helps me:
+[WRITTEN INSTRUCTIONS / EXTRA TIME / QUIET SPACE / etc.]
+
+My workplace:
+[SUPPORTIVE? FORMAL? SMALL/LARGE COMPANY?]
+
+Help me:
+1. Identify 3-5 workplace accommodations that match my struggles
+2. Know what's reasonable to ask for (legally and practically)
+3. Figure out how to request them formally
+4. Anticipate pushback and how to respond
+
+I need help, but I don't want to seem difficult.`,
+    userType: 'professional',
+    bestMode: 'strategic',
+    tags: ['#Accommodations', '#Work', '#ADA', '#Advocacy'],
+    exampleUseCase: 'Priya struggled with long email threads and verbal-only meetings. This helped her request written meeting notes, extra time for written reports, and Grammarly as assistive tech. Her employer approved all three under ADA.',
+    relatedPromptIds: ['accommodations-request', 'should-i-tell-boss', 'write-disclosure-email'],
+    rating: 244,
+    usedCount: 1901,
+    commentCount: 26,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'simple-organization-system',
+    title: 'Help me create a simple system I\'ll actually use',
+    emoji: '📦',
+    description: 'Complex organization systems don\'t work for you. You need something so simple you can\'t fail.',
+    prompt: `I've tried 20 organization systems and abandoned them all. I need something SIMPLE.
+
+What I've tried:
+[LIST THE SYSTEMS YOU'VE TRIED]
+
+Why they didn't work:
+[TOO COMPLICATED / FORGOT TO USE THEM / OVERWHELMING / etc.]
+
+What I need to organize:
+[TASKS / TIME / PAPERS / BELONGINGS / etc.]
+
+Help me:
+1. Create the SIMPLEST possible system (3 steps max)
+2. Make it visual if possible
+3. Build in reminders so I actually use it
+4. Accept that "good enough" is better than perfect
+
+I have ADHD. If it's not stupid simple, I won't do it.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#Organization', '#ADHD', '#Systems', '#Simplicity'],
+    exampleUseCase: 'Carlos tried bullet journaling, apps, planners - all abandoned within a week. This helped him create a 3-bin system: "Do Today" "Do This Week" "Someday." He\'s used it for 6 months because it\'s that simple.',
+    relatedPromptIds: ['visual-system', 'losing-things', 'planning-help'],
+    rating: 261,
+    usedCount: 2045,
+    commentCount: 33,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+  {
+    id: 'adhd-life-hacks',
+    title: 'Give me life hacks for ADHD that actually work',
+    emoji: '💡',
+    description: 'You need practical, real-world strategies for managing ADHD in daily life, not generic advice.',
+    prompt: `I have ADHD and I need practical life hacks that actually work.
+
+My biggest struggles:
+[TIME MANAGEMENT / LOSING THINGS / REMEMBERING / STARTING TASKS / etc.]
+
+What I've tried:
+[LIST STRATEGIES YOU'VE TRIED]
+
+My lifestyle:
+[STUDENT / WORKING / STAY-AT-HOME PARENT / etc.]
+
+Give me:
+1. 5-7 specific, practical hacks for my struggles
+2. Ones that don't require sustained effort (because... ADHD)
+3. Low-cost or free solutions
+4. Real examples of how to implement them
+
+No generic advice like "make a schedule." Tell me HOW.`,
+    userType: 'student',
+    bestMode: 'strategic',
+    tags: ['#ADHD', '#Life-Hacks', '#Practical', '#Executive-Function'],
+    exampleUseCase: 'Emma kept losing her phone 10x a day. Hacks that worked: phone always goes in right pocket, Tile tracker attached, "where\'s my phone?" routine before leaving any room. She hasn\'t lost it in 2 weeks.',
+    relatedPromptIds: ['losing-things', 'remember-important-things', 'simple-organization-system'],
+    rating: 273,
+    usedCount: 2145,
+    commentCount: 38,
+    dateAdded: '2025-11-04',
+    submittedBy: 'dyslexic-community',
+    verified: true,
+  },
+
   // ==================== UNDERSTANDING DYSLEXIA (5) ====================
   {
     id: 'do-i-have-dyslexia',
