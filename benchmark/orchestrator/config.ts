@@ -21,9 +21,9 @@ export interface DimensionConfig {
  * All 13 dimensions for DAS calculation
  * Weight distribution:
  * - Core 4 dimensions: 48% (12% each)
- * - Core Accessibility: 12%
- * - Modality & I/O: 8%
- * - Cognitive Load: 6%
+ * - Core Accessibility: 14% (increased for WCAG importance)
+ * - Modality & I/O: 10% (increased for voice/touch support)
+ * - Cognitive Load: 8% (increased for dyslexia-critical features)
  * - Personalization: 5%
  * - Privacy/Data: 5%
  * - Cost Transparency: 4%
@@ -69,21 +69,21 @@ export const DIMENSIONS: DimensionConfig[] = [
     name: "Core Accessibility",
     description: "WCAG 2.1 AAA compliance, EN 301549, keyboard nav, contrast, focus indicators",
     maxPoints: 20,
-    weight: 0.12,
+    weight: 0.14,
   },
   {
     key: "modality_io",
     name: "Modality & I/O",
     description: "Voice input/output, touch, keyboard, alternative input methods",
     maxPoints: 10,
-    weight: 0.08,
+    weight: 0.10,
   },
   {
     key: "cognitive_load",
     name: "Cognitive Load",
     description: "Chunking, reader mode, distraction reduction, progressive disclosure",
     maxPoints: 8,
-    weight: 0.06,
+    weight: 0.08,
   },
   {
     key: "personalization",
