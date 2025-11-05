@@ -1,0 +1,60 @@
+# LibreChat repository (cloned, not owned by this project)
+backend/LibreChat/*
+!backend/LibreChat/.env
+!backend/LibreChat/docker-compose.override.yml
+
+# Node modules
+frontend/node_modules/
+node_modules/
+
+# Build outputs
+frontend/dist/
+frontend/build/
+dist/
+build/
+
+# Environment files with sensitive data
+*.env.local
+.env.production
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Testing
+coverage/
+.coverage
+.pytest_cache/
+
+# Temporary files
+*.tmp
+.cache/
