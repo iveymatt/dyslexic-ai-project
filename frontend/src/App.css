@@ -1,0 +1,80 @@
+/* Dyslexia-Friendly Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=OpenDyslexic&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'OpenDyslexic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #fafafa;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+  word-spacing: 0.1em;
+}
+
+/* Dyslexia-friendly text defaults */
+p, div, span {
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+}
+
+/* High contrast for better readability */
+h1, h2, h3, h4, h5, h6 {
+  color: #1a1a1a;
+  line-height: 1.4;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+/* Improved link visibility */
+a {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #0052a3;
+  text-decoration: underline;
+}
+
+/* Better button defaults */
+button {
+  font-family: inherit;
+  letter-spacing: inherit;
+  transition: all 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Code blocks with better readability */
+pre, code {
+  font-family: 'Courier New', monospace;
+  background-color: #f4f4f4;
+  padding: 2px 4px;
+  border-radius: 3px;
+  line-height: 1.6;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

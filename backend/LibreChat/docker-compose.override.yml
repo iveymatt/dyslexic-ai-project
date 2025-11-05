@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  api:
+    ports:
+      - "3080:3080"
+    environment:
+      - NODE_ENV=development
+      - DEBUG=librechat:*
+    volumes:
+      - ./librechat_data:/app/data
+      - ./.env:/app/.env
+    restart: unless-stopped
+
+  mongodb:
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo_data:/data/db
+    restart: unless-stopped
