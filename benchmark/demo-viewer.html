@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyslexic AI Benchmark - Demo Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .das-score {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .das-number {
+            font-size: 72px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .das-label {
+            font-size: 24px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .confidence {
+            font-size: 18px;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .dimensions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .dimension {
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            background: #f9fafb;
+            border-radius: 10px;
+        }
+
+        .dimension-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .dimension-score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .run-demo {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .run-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .run-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .command-box {
+            background: #1e1e1e;
+            color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .command {
+            color: #4ec9b0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Dyslexic AI Benchmark</h1>
+            <p>Production-Ready Neurodivergent Accessibility Scoring</p>
+        </div>
+
+        <div class="card">
+            <div class="section-title">Demo Results - Claude Sonnet 4.0</div>
+
+            <div class="das-score">
+                <div class="das-number">87.3</div>
+                <div class="das-label">Dyslexic Accessibility Score (DAS)</div>
+                <div class="confidence">89% Confidence • 31 Tests Completed</div>
+
+                <div class="badges">
+                    <span class="badge">🗣️ Plain Language Default</span>
+                    <span class="badge">🎤 Voice First</span>
+                    <span class="badge">🔒 Privacy Guard</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">Core Dimensions (48% of DAS)</div>
+            <div class="dimensions">
+                <div class="dimension">
+                    <div class="dimension-name">Lateral Thinking</div>
+                    <div class="dimension-score">8.7/10</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 87%"></div>
+                    </div>
+                </div>
+                <div class="dimension">
+                    <div class="dimension-name">Linear Thinking</div>
+                    <div class="dimension-score">9.0/10</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="dimension">
+                    <div class="dimension-name">Language Adaptability</div>
+                    <div class="dimension-score">9.2/10</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 92%"></div>
+                    </div>
+                </div>
+                <div class="dimension">
+                    <div class="dimension-name">Neurodivergent Awareness</div>
+                    <div class="dimension-score">8.5/10</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">Supplementary Dimensions (52% of DAS)</div>
+            <div class="dimensions">
+                <div class="dimension">
+                    <div class="dimension-name">Core Accessibility (WCAG)</div>
+                    <div class="dimension-score">18.0/20</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="dimension">
+                    <div class="dimension-name">Modality & I/O</div>
+                    <div class="dimension-score">9.0/10</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="dimension">
+                    <div class="dimension-name">Cognitive Load</div>
+                    <div class="dimension-score">7.0/8</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 87.5%"></div>
+                    </div>
+                </div>
+                <div class="dimension">
+                    <div class="dimension-name">Personalization</div>
+                    <div class="dimension-score">5.0/6</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 83.3%"></div>
+                    </div>
+                </div>
+                <div class="dimension">
+                    <div class="dimension-name">Privacy & Data</div>
+                    <div class="dimension-score">5.0/6</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 83.3%"></div>
+                    </div>
+                </div>
+                <div class="dimension">
+                    <div class="dimension-name">Cost Transparency</div>
+                    <div class="dimension-score">3.0/4</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="run-demo">
+                <div class="section-title">Run Your Own Benchmark</div>
+                <p style="margin-bottom: 20px; color: #666;">Execute the benchmark orchestrator from your terminal:</p>
+
+                <div class="command-box">
+                    <span class="command">npm run benchmark:run</span> -- --tool-id claude_sonnet --tool-version 4.0
+                </div>
+
+                <p style="margin-top: 20px; color: #999; font-size: 14px;">
+                    This demo uses mocked LLM responses. To run real benchmarks, add API keys to .env
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animate progress bars on load
+        window.addEventListener('load', () => {
+            const fills = document.querySelectorAll('.progress-fill');
+            fills.forEach((fill, index) => {
+                setTimeout(() => {
+                    fill.style.width = fill.style.width;
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
