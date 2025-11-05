@@ -59,7 +59,7 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
           {onShowCareerDiscovery && (
             <button
               onClick={onShowCareerDiscovery}
-              className="flex items-center gap-2 px-3 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-medium transition-colors"
+              className="flex items-center gap-2 px-3 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-medium transition-colors"
               aria-label="View Career Discovery"
             >
               <Briefcase size={18} />
@@ -69,7 +69,7 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
           {onShowPromptLibrary && (
             <button
               onClick={onShowPromptLibrary}
-              className="flex items-center gap-2 px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
+              className="flex items-center gap-2 px-3 py-2 bg-highlight-500 hover:bg-highlight-600 text-white rounded-lg font-medium transition-colors"
               aria-label="View Prompt Library"
             >
               <BookOpen size={18} />
@@ -79,7 +79,7 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
           {onShowAIAgentsWorkflows && (
             <button
               onClick={onShowAIAgentsWorkflows}
-              className="flex items-center gap-2 px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors"
+              className="flex items-center gap-2 px-3 py-2 bg-accent-500 hover:bg-accent-600 text-white rounded-lg font-medium transition-colors"
               aria-label="View AI Agents & Workflows"
             >
               <Bot size={18} />
