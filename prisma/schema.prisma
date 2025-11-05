@@ -1,0 +1,134 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Category {
+  LLM
+  Frontend
+  App
+  Other
+}
+
+model Tool {
+  id         String       @id @default(cuid())
+  toolId     String       @unique
+  name       String
+  vendor     String
+  category   Category
+  site       String?
+  tags       String[]     @default([])
+  versions   ToolVersion[]
+  runs       Run[]
+  aggregates Aggregate[]
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  @@index([toolId])
+}
+
+model ToolVersion {
+  id            String    @id @default(cuid())
+  tool          Tool      @relation(fields: [toolId], references: [toolId], onDelete: Cascade)
+  toolId        String
+  version       String
+  releasedAt    DateTime?
+  notes         String?
+  runs          Run[]
+  aggregates    Aggregate[]
+  createdAt     DateTime  @default(now())
+
+  @@index([toolId, version])
+}
+
+model TestSpec {
+  id           String   @id @default(cuid())
+  testId       String   @unique
+  dimensionKey String
+  prompt       String
+  maxPoints    Int
+  rubric       String
+  createdAt    DateTime @default(now())
+
+  @@index([dimensionKey])
+}
+
+model PlatformCheckSpec {
+  id           String   @id @default(cuid())
+  checkId      String   @unique
+  dimensionKey String
+  command      String
+  maxPoints    Int
+  rubric       String
+  createdAt    DateTime @default(now())
+
+  @@index([dimensionKey])
+}
+
+model Run {
+  id             String       @id @default(cuid())
+  runIdentifier  String       @unique
+  tool           Tool         @relation(fields: [toolId], references: [toolId], onDelete: Restrict)
+  toolId         String
+  toolVersion    ToolVersion? @relation(fields: [toolVersionId], references: [id], onDelete: SetNull)
+  toolVersionId  String?
+  startedAt      DateTime
+  finishedAt     DateTime?
+  items          RunItem[]
+  judgeResults   JudgeResult[]
+  createdAt      DateTime     @default(now())
+
+  @@index([toolId])
+  @@index([toolId, toolVersionId])
+}
+
+model RunItem {
+  id            String    @id @default(cuid())
+  run           Run       @relation(fields: [runId], references: [id], onDelete: Cascade)
+  runId         String
+  type          String    // "test" | "platform_check"
+  itemKey       String
+  inputJson     Json?
+  outputJson    Json?
+  latencyMs     Int?
+  tokensUsed    Int?
+  costUsd       Float?
+  evidenceUris  String[]   @default([])
+
+  @@index([runId])
+}
+
+model JudgeResult {
+  id            String    @id @default(cuid())
+  run           Run       @relation(fields: [runId], references: [id], onDelete: Cascade)
+  runId         String
+  dimensionKey  String
+  itemKey       String
+  raterScores   Json      // [{score, notes, evidence_flags[]}]
+  finalScore    Float
+  agreement     Float      // 0..1
+  createdAt     DateTime  @default(now())
+
+  @@index([runId, dimensionKey])
+}
+
+model Aggregate {
+  id            String    @id @default(cuid())
+  tool          Tool      @relation(fields: [toolId], references: [toolId], onDelete: Cascade)
+  toolId        String
+  toolVersion   ToolVersion? @relation(fields: [toolVersionId], references: [id], onDelete: SetNull)
+  toolVersionId String?
+  das           Float
+  confidence    Float
+  breakdown     Json      // [{dimension_key, raw, normalized, weight}]
+  badges        String[]  @default([])
+  createdAt     DateTime  @default(now())
+
+  @@index([toolId, toolVersionId])
+}
