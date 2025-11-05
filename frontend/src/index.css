@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-size-base: 16px;
+    --line-height-base: 1.5;
+    --spacing-base: 1rem;
+  }
+
+  body {
+    @apply bg-gray-900 text-gray-100 font-sans antialiased;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+  }
+
+  /* Accessibility: Focus visible states */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary-500 ring-2 ring-primary-500;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    body {
+      @apply bg-black text-white;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-colors duration-200;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700;
+    @apply focus-visible:ring-primary-500;
+  }
+
+  .btn-secondary {
+    @apply btn bg-gray-700 text-gray-100 hover:bg-gray-600;
+    @apply focus-visible:ring-gray-500;
+  }
+
+  .btn-icon {
+    @apply p-2 rounded-lg transition-colors duration-200;
+    @apply hover:bg-gray-700 focus-visible:ring-2 focus-visible:ring-primary-500;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700;
+    @apply text-gray-100 placeholder-gray-400;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+    @apply transition-colors duration-200;
+  }
+
+  .message {
+    @apply p-4 rounded-lg mb-4;
+  }
+
+  .message-user {
+    @apply message bg-primary-600 text-white ml-auto max-w-[80%];
+  }
+
+  .message-assistant {
+    @apply message bg-gray-800 text-gray-100 mr-auto max-w-[80%];
+  }
+
+  /* Dyslexic-friendly text styles */
+  .text-dyslexic {
+    font-family: 'OpenDyslexic', 'Comic Sans MS', 'Verdana', sans-serif;
+    letter-spacing: 0.05em;
+    word-spacing: 0.16em;
+  }
+
+  /* Reading guide line */
+  .reading-guide {
+    @apply absolute left-0 right-0 h-1 bg-accent-500 opacity-50 pointer-events-none;
+    transition: top 0.3s ease-out;
+  }
+
+  /* Accessibility panel controls */
+  .control-group {
+    @apply mb-6;
+  }
+
+  .control-label {
+    @apply block text-sm font-medium text-gray-300 mb-2;
+  }
+
+  .slider {
+    @apply w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer;
+  }
+
+  .slider::-webkit-slider-thumb {
+    @apply appearance-none w-4 h-4 bg-primary-500 rounded-full cursor-pointer;
+  }
+
+  .slider::-moz-range-thumb {
+    @apply w-4 h-4 bg-primary-500 rounded-full cursor-pointer border-0;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Custom spacing utilities for accessibility */
+  .spacing-compact {
+    line-height: 1.5;
+    letter-spacing: normal;
+  }
+
+  .spacing-comfortable {
+    line-height: 1.75;
+    letter-spacing: 0.025em;
+  }
+
+  .spacing-relaxed {
+    line-height: 2;
+    letter-spacing: 0.05em;
+  }
+}
