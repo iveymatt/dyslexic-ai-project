@@ -165,8 +165,8 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
           </div>
 
           {/* Career Discovery */}
-          <div className="bg-gradient-to-br from-orange-900/40 to-red-800/40 p-8 rounded-2xl border border-orange-700/50 hover:border-orange-600 transition-all">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-600 rounded-full mb-6">
+          <div className="bg-gradient-to-br from-orange-900/40 to-orange-800/40 p-8 rounded-2xl border border-orange-700/50 hover:border-orange-600 transition-all">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-500 rounded-full mb-6">
               <Briefcase size={32} />
             </div>
             <h3 className="text-2xl font-bold mb-4">Career Discovery</h3>
@@ -245,75 +245,75 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         {/* Mode Cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
           {/* SOCRATIC Mode */}
-          <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-2xl text-white shadow-2xl transform hover:scale-105 transition-all">
+          <div className="bg-gradient-to-br from-accent-500 to-accent-700 p-8 rounded-2xl text-white shadow-2xl transform hover:scale-105 transition-all">
             <div className="flex items-center gap-3 mb-4">
               <Lightbulb size={40} className="text-yellow-300" />
               <h3 className="text-3xl font-bold">SOCRATIC</h3>
             </div>
-            <p className="text-xl mb-6 text-blue-100 font-semibold">Explore together. Ask questions. Think it through.</p>
-            <p className="text-blue-100 mb-6">
+            <p className="text-xl mb-6 text-accent-100 font-semibold">Explore together. Ask questions. Think it through.</p>
+            <p className="text-accent-100 mb-6">
               Perfect for when you need to think through problems, explore ideas, or understand something deeply.
               The AI asks questions back, follows tangents, makes creative connections.
             </p>
             <div className="space-y-3">
-              <div className="bg-white/10 rounded-lg p-4 border border-blue-400/30">
+              <div className="bg-white/10 rounded-lg p-4 border border-accent-300/30">
                 <h4 className="font-semibold mb-1 flex items-center gap-2">
                   <Sparkles size={16} />
                   Think Out Loud
                 </h4>
-                <p className="text-sm text-blue-100">Explore ideas through dialogue & creative connections</p>
+                <p className="text-sm text-accent-100">Explore ideas through dialogue & creative connections</p>
               </div>
-              <div className="bg-white/10 rounded-lg p-4 border border-blue-400/30">
+              <div className="bg-white/10 rounded-lg p-4 border border-accent-300/30">
                 <h4 className="font-semibold mb-1 flex items-center gap-2">
                   <Target size={16} />
                   Executive Strategist
                 </h4>
-                <p className="text-sm text-blue-100">ADHD-aware planning, decision-making & prioritization</p>
+                <p className="text-sm text-accent-100">ADHD-aware planning, decision-making & prioritization</p>
               </div>
             </div>
-            <div className="mt-6 bg-blue-900/40 rounded-lg p-4 border border-blue-400/30">
-              <p className="text-sm text-blue-100">
+            <div className="mt-6 bg-accent-900/40 rounded-lg p-4 border border-accent-300/30">
+              <p className="text-sm text-accent-100">
                 <strong>Use when:</strong> Stuck on a problem, making decisions, learning concepts, brainstorming
               </p>
             </div>
           </div>
 
           {/* STRATEGIC Mode */}
-          <div className="bg-gradient-to-br from-green-600 to-green-800 p-8 rounded-2xl text-white shadow-2xl transform hover:scale-105 transition-all">
+          <div className="bg-gradient-to-br from-primary-500 to-primary-700 p-8 rounded-2xl text-white shadow-2xl transform hover:scale-105 transition-all">
             <div className="flex items-center gap-3 mb-4">
               <Zap size={40} className="text-yellow-300" />
               <h3 className="text-3xl font-bold">STRATEGIC</h3>
             </div>
-            <p className="text-xl mb-6 text-green-100 font-semibold">Get direct answers. Clear info. Done.</p>
-            <p className="text-green-100 mb-6">
+            <p className="text-xl mb-6 text-primary-100 font-semibold">Get direct answers. Clear info. Done.</p>
+            <p className="text-primary-100 mb-6">
               Perfect for when you need quick answers, actionable steps, or direct information.
               No fluff. Just clear, organized, practical help.
             </p>
             <div className="space-y-3">
-              <div className="bg-white/10 rounded-lg p-4 border border-green-400/30">
+              <div className="bg-white/10 rounded-lg p-4 border border-primary-300/30">
                 <h4 className="font-semibold mb-1 flex items-center gap-2">
                   <Type size={16} />
                   Writing Clarity
                 </h4>
-                <p className="text-sm text-green-100">Direct, actionable writing feedback & editing</p>
+                <p className="text-sm text-primary-100">Direct, actionable writing feedback & editing</p>
               </div>
-              <div className="bg-white/10 rounded-lg p-4 border border-green-400/30">
+              <div className="bg-white/10 rounded-lg p-4 border border-primary-300/30">
                 <h4 className="font-semibold mb-1 flex items-center gap-2">
                   <List size={16} />
                   Task Breakdown
                 </h4>
-                <p className="text-sm text-green-100">Break overwhelming projects into achievable steps</p>
+                <p className="text-sm text-primary-100">Break overwhelming projects into achievable steps</p>
               </div>
-              <div className="bg-white/10 rounded-lg p-4 border border-green-400/30">
+              <div className="bg-white/10 rounded-lg p-4 border border-primary-300/30">
                 <h4 className="font-semibold mb-1 flex items-center gap-2">
                   <Brain size={16} />
                   Research Digest
                 </h4>
-                <p className="text-sm text-green-100">Summarize & organize complex information</p>
+                <p className="text-sm text-primary-100">Summarize & organize complex information</p>
               </div>
             </div>
-            <div className="mt-6 bg-green-900/40 rounded-lg p-4 border border-green-400/30">
-              <p className="text-sm text-green-100">
+            <div className="mt-6 bg-primary-900/40 rounded-lg p-4 border border-primary-300/30">
+              <p className="text-sm text-primary-100">
                 <strong>Use when:</strong> Need quick answers, want specific steps, improving writing, researching
               </p>
             </div>
@@ -499,7 +499,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
       <section className="container mx-auto px-6 py-16 bg-gray-800/50 rounded-3xl my-16">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-600 rounded-full mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-500 rounded-full mb-4">
               <Briefcase size={32} />
             </div>
             <h2 className="text-4xl font-bold mb-4">Career Discovery: Your Future, Your Brain</h2>
@@ -638,26 +638,26 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-orange-900/30 to-purple-900/30 rounded-xl p-8 border border-orange-700/30 mb-8">
+          <div className="bg-gradient-to-r from-orange-900/30 to-primary-900/30 rounded-xl p-8 border border-orange-700/30 mb-8">
             <h3 className="text-2xl font-bold mb-4">How It Works</h3>
             <div className="grid md:grid-cols-4 gap-6">
               <div>
-                <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-xl font-bold mb-3">1</div>
+                <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-xl font-bold mb-3">1</div>
                 <h4 className="font-semibold mb-2">Build Your Profile</h4>
                 <p className="text-sm text-gray-400">7-step questionnaire: neurodivergence, strengths, challenges, interests</p>
               </div>
               <div>
-                <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-xl font-bold mb-3">2</div>
+                <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-xl font-bold mb-3">2</div>
                 <h4 className="font-semibold mb-2">Get Matched</h4>
                 <p className="text-sm text-gray-400">See 30+ jobs ranked by cognitive fit, AI-risk, and sensory/social demands</p>
               </div>
               <div>
-                <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-xl font-bold mb-3">3</div>
+                <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-xl font-bold mb-3">3</div>
                 <h4 className="font-semibold mb-2">Learn Skills</h4>
                 <p className="text-sm text-gray-400">Take bite-sized lessons on time, money, interviews, emotions, social skills</p>
               </div>
               <div>
-                <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-xl font-bold mb-3">4</div>
+                <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-xl font-bold mb-3">4</div>
                 <h4 className="font-semibold mb-2">Master AI</h4>
                 <p className="text-sm text-gray-400">Complete 10-module AI course with hands-on practice and certification</p>
               </div>
