@@ -28,7 +28,7 @@ program
   .command("run")
   .description("Run benchmark for a tool")
   .requiredOption("-t, --tool-id <toolId>", "Tool ID (e.g., claude_sonnet)")
-  .requiredOption("-v, --version <version>", "Version to benchmark (e.g., 4.0)")
+  .requiredOption("-V, --tool-version <version>", "Version to benchmark (e.g., 4.0)")
   .option("-e, --evidence <url>", "Evidence URL (for manual trigger)", "manual_trigger")
   .option("--raters <number>", "Number of LLM raters", "3")
   .option("--rate-limit <number>", "Rate limit per minute", "30")
@@ -39,13 +39,13 @@ program
       console.log("Dyslexic AI Benchmark v2.0");
       console.log("=".repeat(60));
       console.log(`Tool: ${options.toolId}`);
-      console.log(`Version: ${options.version}`);
+      console.log(`Version: ${options.toolVersion}`);
       console.log("=".repeat(60));
 
       // Create WatcherEvent (manual trigger)
       const event: WatcherEvent = {
         toolId: options.toolId,
-        versionHint: options.version,
+        versionHint: options.toolVersion,
         trigger: WatcherTrigger.Manual,
         evidence: [options.evidence],
         action: "enqueue_run",
@@ -108,12 +108,12 @@ program
   .command("trigger")
   .description("Trigger a manual benchmark (requires 2 independent signals)")
   .requiredOption("-t, --tool-id <toolId>", "Tool ID")
-  .requiredOption("-v, --version <version>", "Version")
+  .requiredOption("-V, --tool-version <version>", "Version")
   .requiredOption("-e, --evidence <url>", "Evidence URL")
   .action((options) => {
     console.log("Adding manual signal...");
 
-    const result = triggerManual(options.toolId, options.version, options.evidence);
+    const result = triggerManual(options.toolId, options.toolVersion, options.evidence);
 
     if ("error" in result) {
       if (result.error.recoverable) {
