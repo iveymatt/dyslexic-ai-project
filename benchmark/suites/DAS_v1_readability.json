@@ -1,0 +1,166 @@
+{
+  "suiteId": "DAS_v1_readability",
+  "name": "DAS v1: Readability & Structure",
+  "description": "Tests for dyslexic-friendly readability, clear structure, and visual organization. Evaluates how well models format responses with headings, lists, spacing, and plain language.",
+  "version": "1.0.0",
+  "category": "DAS",
+  "tasks": [
+    {
+      "taskId": "read-01-explain-simple",
+      "dimensionKey": "das.readability_structure",
+      "prompt": "Explain what photosynthesis is in simple terms. Use clear headings and bullet points to make it easy to scan.",
+      "expectedBehavior": "Response should use markdown headings (# or ##), bullet points, short sentences, and clear structure. Avoid dense paragraphs.",
+      "rubric": {
+        "headings": "Uses clear section headings",
+        "lists": "Uses bullet points or numbered lists",
+        "spacing": "Has good visual spacing between sections",
+        "plainLanguage": "Uses simple, clear language (Flesch score 60+)"
+      },
+      "tags": ["readability", "structure", "plain-language"]
+    },
+    {
+      "taskId": "read-02-step-by-step",
+      "dimensionKey": "das.readability_structure",
+      "prompt": "Write step-by-step instructions for making a peanut butter and jelly sandwich. Make it very clear and easy to follow.",
+      "expectedBehavior": "Numbered list with one action per step. Clear, imperative language. No ambiguity.",
+      "rubric": {
+        "numberedList": "Uses numbered steps (1, 2, 3...)",
+        "oneActionPerStep": "Each step contains one clear action",
+        "imperative": "Uses command form (Get, Spread, Place)",
+        "clarity": "No ambiguous language"
+      },
+      "tags": ["readability", "instructions", "sequential"]
+    },
+    {
+      "taskId": "read-03-organize-ramble",
+      "dimensionKey": "das.readability_structure",
+      "prompt": "I have these messy notes. Can you organize them into a clear, easy-to-read format?\n\n{{fixture}}",
+      "fixtureUri": "ramble01.txt",
+      "expectedBehavior": "Transforms unstructured notes into organized document with headings, lists, and clear hierarchy.",
+      "rubric": {
+        "headings": "Creates logical section headings",
+        "hierarchy": "Uses heading levels appropriately (H1, H2, H3)",
+        "lists": "Converts related items into lists",
+        "preservation": "Preserves all key information from original"
+      },
+      "tags": ["readability", "organization", "l2l"]
+    },
+    {
+      "taskId": "read-04-dense-paragraph",
+      "dimensionKey": "das.readability_structure",
+      "prompt": "Explain the concept of compound interest, but make it really easy to understand. Avoid dense paragraphs - use spacing and formatting to help.",
+      "expectedBehavior": "Uses formatting (headings, lists, examples) to break up information. Avoids walls of text.",
+      "rubric": {
+        "formatting": "Uses multiple formatting techniques (headings, lists, bold)",
+        "examples": "Includes concrete examples",
+        "spacing": "Good visual spacing between sections",
+        "avoidDensity": "No paragraphs longer than 4 lines"
+      },
+      "tags": ["readability", "formatting", "examples"]
+    },
+    {
+      "taskId": "read-05-font-guidance",
+      "dimensionKey": "das.readability_structure",
+      "prompt": "What are the best practices for choosing fonts for people with dyslexia? Format your answer to be dyslexic-friendly itself.",
+      "expectedBehavior": "Meta-test: response should demonstrate the principles it's describing (good structure, lists, headings).",
+      "rubric": {
+        "metaDemo": "Response itself demonstrates good readability",
+        "headings": "Uses clear headings",
+        "lists": "Lists best practices in bullet form",
+        "examples": "Gives specific font examples"
+      },
+      "tags": ["readability", "meta", "accessibility"]
+    },
+    {
+      "taskId": "read-06-compare-options",
+      "dimensionKey": "das.readability_structure",
+      "prompt": "Compare and contrast cats and dogs as pets. Use a clear format that makes the comparison easy to understand at a glance.",
+      "expectedBehavior": "Uses comparison table or parallel structure. Easy to scan and compare points side-by-side.",
+      "rubric": {
+        "parallelStructure": "Uses consistent structure for comparison",
+        "scannable": "Easy to scan for specific information",
+        "categories": "Breaks comparison into clear categories",
+        "visualAid": "Uses formatting to aid comparison (table, columns, or clear sections)"
+      },
+      "tags": ["readability", "comparison", "structure"]
+    },
+    {
+      "taskId": "read-07-tech-jargon",
+      "dimensionKey": "das.readability_structure",
+      "prompt": "Explain what an API is to someone with no technical background. Keep it simple and clear.",
+      "expectedBehavior": "Uses analogies, plain language, and avoids unnecessary jargon. Explains technical terms when used.",
+      "rubric": {
+        "plainLanguage": "Uses everyday words instead of jargon",
+        "analogies": "Uses helpful analogies or metaphors",
+        "definition": "Defines technical terms when they must be used",
+        "clarity": "Clear, simple explanation suitable for non-technical audience"
+      },
+      "tags": ["readability", "plain-language", "explanation"]
+    },
+    {
+      "taskId": "read-08-highlight-key",
+      "dimensionKey": "das.readability_structure",
+      "prompt": "Summarize the key points about climate change in a way that highlights the most important information. Make the critical facts stand out visually.",
+      "expectedBehavior": "Uses formatting (bold, headings, lists) to make key points stand out. Good visual hierarchy.",
+      "rubric": {
+        "emphasis": "Uses bold or other formatting to emphasize key points",
+        "hierarchy": "Clear visual hierarchy (what's most vs. least important)",
+        "summary": "Concise - focuses on key points only",
+        "scannable": "Can identify main points in 10 seconds of scanning"
+      },
+      "tags": ["readability", "emphasis", "summary"]
+    },
+    {
+      "taskId": "read-09-avoid-ambiguity",
+      "dimensionKey": "das.instruction_following",
+      "prompt": "List exactly 3 ways to reduce stress. Format as a numbered list. Include one sentence of explanation for each.",
+      "expectedBehavior": "Exactly 3 items, numbered, with one explanatory sentence each. No more, no less.",
+      "rubric": {
+        "exactCount": "Provides exactly 3 items (not 2, not 4)",
+        "numberedList": "Uses numbered format (1, 2, 3)",
+        "explanation": "Each item has exactly one sentence of explanation",
+        "followsInstructions": "Follows all constraints precisely"
+      },
+      "tags": ["instruction-following", "precision", "constraints"]
+    },
+    {
+      "taskId": "read-10-action-oriented",
+      "dimensionKey": "das.readability_structure",
+      "prompt": "I need to prepare for a job interview tomorrow. Give me a quick action plan that's easy to scan.",
+      "expectedBehavior": "Action-oriented checklist or numbered list. Each item starts with a verb. Prioritized order.",
+      "rubric": {
+        "actionVerbs": "Each item starts with action verb (Prepare, Review, Practice)",
+        "checklist": "Format that works as a checklist",
+        "prioritized": "Items in logical priority order",
+        "scannable": "Can be scanned quickly for next action"
+      },
+      "tags": ["readability", "action-oriented", "practical"]
+    },
+    {
+      "taskId": "read-11-white-space",
+      "dimensionKey": "das.readability_structure",
+      "prompt": "Explain the water cycle. Pay special attention to using spacing and breaks to make it easy on the eyes.",
+      "expectedBehavior": "Uses generous white space, paragraph breaks, and section breaks. Avoids cramming information.",
+      "rubric": {
+        "whiteSpace": "Generous use of blank lines between sections",
+        "paragraphBreaks": "Frequent paragraph breaks (max 3-4 lines per paragraph)",
+        "sections": "Clear section breaks with headings",
+        "visualComfort": "Easy on the eyes, not cramped"
+      },
+      "tags": ["readability", "spacing", "visual-comfort"]
+    },
+    {
+      "taskId": "read-12-consistent-format",
+      "dimensionKey": "das.readability_structure",
+      "prompt": "Describe the four seasons. Use a consistent format for each season to make comparison easy.",
+      "expectedBehavior": "Uses identical structure for each season (e.g., heading, weather, activities, duration). Pattern is easy to recognize.",
+      "rubric": {
+        "consistency": "Each season uses identical formatting pattern",
+        "parallel": "Parallel structure across all four sections",
+        "predictable": "Reader can predict what information comes next",
+        "complete": "All four seasons covered with equal detail"
+      },
+      "tags": ["readability", "consistency", "structure"]
+    }
+  ]
+}

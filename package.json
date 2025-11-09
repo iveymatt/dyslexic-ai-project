@@ -5,6 +5,12 @@
   "main": "index.js",
   "scripts": {
     "demo": "tsx benchmark/demo.ts",
+    "suite": "tsx benchmark/cli/runSuite.ts",
+    "suite:run": "tsx benchmark/cli/runSuite.ts run",
+    "suite:compare": "tsx benchmark/cli/runSuite.ts compare",
+    "suite:estimate": "tsx benchmark/cli/runSuite.ts estimate",
+    "suite:list": "tsx benchmark/cli/runSuite.ts list-suites",
+    "models:list": "tsx benchmark/cli/runSuite.ts list-models",
     "benchmark": "tsx benchmark/cli/benchmark.ts",
     "benchmark:run": "tsx benchmark/cli/benchmark.ts run",
     "benchmark:validate": "tsx benchmark/cli/benchmark.ts validate",

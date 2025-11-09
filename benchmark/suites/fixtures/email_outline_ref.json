@@ -1,0 +1,35 @@
+{
+  "scenario": "Student requesting assignment extension from professor",
+  "key_elements": {
+    "required": [
+      "Greeting with professor's name",
+      "Clear subject line",
+      "Specific reason for extension (illness, emergency, etc.)",
+      "Documentation mention (doctor's note, etc.)",
+      "Current deadline",
+      "Requested new deadline",
+      "Acknowledgment of inconvenience",
+      "Professional closing"
+    ],
+    "tone": "Professional but warm, not overly formal",
+    "length": "3-5 short paragraphs",
+    "structure": [
+      "Opening: state purpose immediately",
+      "Context: explain situation briefly",
+      "Request: specific new deadline",
+      "Closing: thank you and acknowledgment"
+    ]
+  },
+  "good_example": {
+    "subject": "Request for Extension on [Assignment Name]",
+    "body": "Dear Professor [Name],\n\nI am writing to request an extension on the [assignment name] currently due this Friday, [date].\n\nI have been ill with [condition] since [date] and have a doctor's note documenting my absence. I lost several days of work time and am concerned I cannot complete the assignment to the expected standard by the original deadline.\n\nWould it be possible to submit the assignment by Monday, [date] instead? This would give me the weekend to complete the work properly.\n\nI understand this may cause inconvenience and I apologize for the short notice. Thank you for considering my request.\n\nBest regards,\n[Name]"
+  },
+  "common_mistakes": [
+    "Too apologetic / excessive groveling",
+    "Too much personal detail about illness",
+    "Vague about what they're requesting",
+    "No specific alternative deadline",
+    "Too casual or too formal",
+    "Too long and rambling"
+  ]
+}

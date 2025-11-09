@@ -1,0 +1,165 @@
+{
+  "suiteId": "CPS_v1_socratic",
+  "name": "CPS v1: Socratic Thinking Partnership",
+  "description": "Tests the model's ability to be a cognitive partner through Socratic questioning, strategic structuring, decision support, and adaptive thinking. Evaluates depth of engagement as a thinking partner rather than just an answer machine.",
+  "version": "1.0.0",
+  "category": "CPS",
+  "tasks": [
+    {
+      "taskId": "socratic-01-open-ended",
+      "dimensionKey": "cps.socratic_depth",
+      "prompt": "I'm struggling to decide between two job offers. Can you help me think through this?",
+      "expectedBehavior": "Asks probing questions to help user think. Doesn't jump to advice. Explores values, priorities, criteria.",
+      "rubric": {
+        "asksQuestions": "Asks multiple thoughtful questions (3+)",
+        "exploratoryNotPrescriptive": "Helps explore rather than prescribing answer",
+        "depthOfProbing": "Questions go beyond surface level",
+        "empowering": "Empowers user's own thinking process"
+      },
+      "tags": ["socratic", "decision-support", "thinking-partner"]
+    },
+    {
+      "taskId": "socratic-02-reveal-assumptions",
+      "dimensionKey": "cps.socratic_depth",
+      "prompt": "I can't afford to go to college, so I guess I'll just work at a retail job forever.",
+      "expectedBehavior": "Gently questions assumptions. Asks about hidden beliefs. Opens up alternative perspectives without being preachy.",
+      "rubric": {
+        "identifiesAssumption": "Recognizes the false dichotomy / assumption",
+        "gentleQuestioning": "Questions assumption without being condescending",
+        "opensAlternatives": "Helps user see other options",
+        "respectful": "Respects user's situation and feelings"
+      },
+      "tags": ["socratic", "assumptions", "perspective"]
+    },
+    {
+      "taskId": "socratic-03-clarify-goal",
+      "dimensionKey": "cps.socratic_depth",
+      "prompt": "I want to be successful.",
+      "expectedBehavior": "Helps user clarify vague goal. Asks what success means to them. Helps make abstract concrete.",
+      "rubric": {
+        "asksDefinition": "Asks what 'successful' means to them specifically",
+        "makesConcrete": "Helps translate abstract goal into concrete terms",
+        "personalizes": "Focuses on their personal definition, not generic success",
+        "actionable": "Moves toward actionable understanding"
+      },
+      "tags": ["socratic", "goal-clarification", "concrete"]
+    },
+    {
+      "taskId": "socratic-04-pro-con-deeper",
+      "dimensionKey": "cps.strategic_structuring",
+      "prompt": "Should I take this new job? The pros are: better pay, closer to home. The cons are: less interesting work, smaller team.",
+      "expectedBehavior": "Goes beyond surface pros/cons. Asks about weight of each factor, long-term implications, values alignment.",
+      "rubric": {
+        "beyondSurface": "Probes deeper than the stated pros/cons",
+        "asksWeighting": "Asks about relative importance of factors",
+        "longTerm": "Considers long-term implications",
+        "structured": "Helps structure the thinking process"
+      },
+      "tags": ["decision-support", "structuring", "depth"]
+    },
+    {
+      "taskId": "socratic-05-stuck-thinking",
+      "dimensionKey": "cps.socratic_depth",
+      "prompt": "I keep going in circles thinking about this problem and I can't figure it out.",
+      "expectedBehavior": "Helps break the circular thinking. Asks about what they've tried, what's blocking them, different angles to approach.",
+      "rubric": {
+        "acknowledgesFeeling": "Acknowledges the frustration of circular thinking",
+        "asksAboutProcess": "Asks what they've tried or thought about so far",
+        "offersNewAngle": "Suggests different approach or perspective",
+        "metacognitive": "Helps user think about their thinking process"
+      },
+      "tags": ["socratic", "metacognition", "unstuck"]
+    },
+    {
+      "taskId": "socratic-06-values-elicitation",
+      "dimensionKey": "cps.socratic_depth",
+      "prompt": "I need to choose between spending my bonus on a vacation or investing it. What should I do?",
+      "expectedBehavior": "Asks about values, priorities, financial goals rather than prescribing. Helps user discover their own answer.",
+      "rubric": {
+        "asksValues": "Asks about what matters most to them",
+        "financialGoals": "Explores their financial situation/goals",
+        "tradeoffs": "Helps identify tradeoffs",
+        "userDriven": "Keeps decision with user, not AI"
+      },
+      "tags": ["socratic", "values", "decision-support"]
+    },
+    {
+      "taskId": "socratic-07-reframe-problem",
+      "dimensionKey": "cps.strategic_structuring",
+      "prompt": "My boss hates me and I don't know what to do.",
+      "expectedBehavior": "Gently reframes. Asks about specific behaviors rather than accepting 'hates'. Helps see problem from different angles.",
+      "rubric": {
+        "asksSpecifics": "Asks for specific behaviors/evidence rather than accepting emotional framing",
+        "reframesGently": "Offers alternative framings without dismissing feelings",
+        "multiplePerspectives": "Helps see from different angles",
+        "actionable": "Moves toward actionable understanding"
+      },
+      "tags": ["socratic", "reframing", "perspective"]
+    },
+    {
+      "taskId": "socratic-08-prioritization",
+      "dimensionKey": "cps.strategic_structuring",
+      "prompt": "I have so many things to do I don't know where to start: finish essay, study for test, clean room, call doctor, fix bike, text friend back, grocery shopping...",
+      "expectedBehavior": "Helps create structure and prioritization. Asks about deadlines, importance, dependencies. Builds a strategic approach.",
+      "rubric": {
+        "asksDeadlines": "Asks about deadlines or time constraints",
+        "asksImportance": "Asks about relative importance or consequences",
+        "createStructure": "Helps create ordered plan or categories",
+        "manageable": "Breaks overwhelming list into manageable approach"
+      },
+      "tags": ["strategic-structuring", "prioritization", "executive-function"]
+    },
+    {
+      "taskId": "socratic-09-consequence-exploration",
+      "dimensionKey": "cps.decision_support",
+      "prompt": "I'm thinking about dropping out of school to pursue my YouTube channel full-time.",
+      "expectedBehavior": "Explores consequences without being judgmental. Asks about plans, backup options, risks, timeline. Supports informed decision-making.",
+      "rubric": {
+        "exploresConsequences": "Asks about potential outcomes (positive and negative)",
+        "noJudgment": "Non-judgmental tone about the choice",
+        "asksPlans": "Asks about specific plans, not just vague hopes",
+        "backup": "Asks about contingency plans or reversibility"
+      },
+      "tags": ["decision-support", "consequences", "planning"]
+    },
+    {
+      "taskId": "socratic-10-growth-mindset",
+      "dimensionKey": "cps.adaptability_style",
+      "prompt": "I'm just not good at math. I've never been good at it and I never will be.",
+      "expectedBehavior": "Gently challenges fixed mindset. Asks about specific difficulties, past experiences, what they've tried. Growth-oriented without being preachy.",
+      "rubric": {
+        "challengesFixed": "Gently questions the fixed mindset statement",
+        "asksSpecifics": "Asks about specific math challenges rather than accepting blanket 'not good'",
+        "pastExperience": "Asks about what shaped this belief",
+        "growthOriented": "Points toward growth possibility without toxic positivity"
+      },
+      "tags": ["socratic", "growth-mindset", "beliefs"]
+    },
+    {
+      "taskId": "socratic-11-next-step",
+      "dimensionKey": "cps.decision_support",
+      "prompt": "I've been thinking about starting a business but I have no idea where to begin.",
+      "expectedBehavior": "Breaks down overwhelming goal into manageable next step. Focuses on immediate, actionable first move rather than complete roadmap.",
+      "rubric": {
+        "focusesOnFirst": "Focuses on identifying the very next step, not entire plan",
+        "makesManageable": "Makes the next step feel doable",
+        "asksAboutIdea": "Asks about the business idea to understand context",
+        "actionOriented": "Moves toward concrete action"
+      },
+      "tags": ["decision-support", "action-planning", "next-step"]
+    },
+    {
+      "taskId": "socratic-12-consistency-check",
+      "dimensionKey": "cps.consistency",
+      "prompt": "I want to lose weight but I also don't want to give up my nightly ice cream. What diet should I try?",
+      "expectedBehavior": "Gently points out tension between stated goals. Helps user examine priorities and tradeoffs. Supportive, not preachy.",
+      "rubric": {
+        "identifiesTension": "Notes the contradiction/tension between goals",
+        "noLecture": "Doesn't lecture about health or willpower",
+        "exploresPriorities": "Asks about what matters more / explores tradeoffs",
+        "realistic": "Helps user think about realistic options given priorities"
+      },
+      "tags": ["socratic", "consistency", "tradeoffs"]
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "suiteId": "DAS_v1_voice",
+  "name": "DAS v1: Voice Workflow Quality",
+  "description": "Tests voice-first interaction patterns, conversational flow, clarifying questions, and multi-turn dialogue support. Evaluates how well models handle the iterative, spoken-word workflow preferred by many dyslexic users.",
+  "version": "1.0.0",
+  "category": "DAS",
+  "tasks": [
+    {
+      "taskId": "voice-01-clarify-request",
+      "dimensionKey": "das.voice_workflow_quality",
+      "prompt": "I want to write something.",
+      "expectedBehavior": "Asks clarifying questions rather than assuming. Offers options. Supports conversational back-and-forth.",
+      "rubric": {
+        "asksClarifying": "Asks what they want to write (email, essay, list, etc.)",
+        "offersOptions": "Provides options rather than making assumptions",
+        "conversational": "Tone is conversational, not robotic",
+        "invitesDialogue": "Invites follow-up rather than closing conversation"
+      },
+      "tags": ["voice", "clarifying", "dialogue"]
+    },
+    {
+      "taskId": "voice-02-incomplete-thought",
+      "dimensionKey": "das.voice_workflow_quality",
+      "prompt": "So I'm thinking about... you know, the thing with the colors and the animals... like chameleons but also that octopus thing we talked about...",
+      "expectedBehavior": "Handles incomplete, conversational input gracefully. Asks for clarification without being condescending.",
+      "rubric": {
+        "gracefulHandling": "Doesn't reject or criticize unclear input",
+        "helpfulClarification": "Asks helpful questions to understand intent",
+        "notCondescending": "Tone is supportive, not patronizing",
+        "contextAware": "Acknowledges what's clear and asks about what's not"
+      },
+      "tags": ["voice", "incomplete-input", "error-recovery"]
+    },
+    {
+      "taskId": "voice-03-thinking-aloud",
+      "dimensionKey": "das.voice_workflow_quality",
+      "prompt": "Help me think through this... I have a job offer for $70k but it's a long commute, and another offer for $65k but it's remote. I like both companies. What should I think about?",
+      "expectedBehavior": "Engages in thinking-partner mode. Asks probing questions rather than just giving advice. Supports iterative thinking.",
+      "rubric": {
+        "askingNotTelling": "Asks questions to help user think rather than prescribing answer",
+        "multiFactors": "Helps identify multiple factors to consider",
+        "iterative": "Supports step-by-step thinking process",
+        "empowering": "Empowers user to make own decision"
+      },
+      "tags": ["voice", "thinking-partner", "socratic"]
+    },
+    {
+      "taskId": "voice-04-quick-capture",
+      "dimensionKey": "das.voice_workflow_quality",
+      "prompt": "Quick note: Call dentist tomorrow about appointment and also need to check if insurance covers the cleaning thing and maybe reschedule for next week if they have morning slots",
+      "expectedBehavior": "Captures rambling voice input and organizes it into actionable format. Preserves all details.",
+      "rubric": {
+        "capturesAll": "Preserves all action items from ramble",
+        "organizes": "Structures into clear, actionable format",
+        "prioritizes": "Shows priority or sequence if applicable",
+        "confirmatory": "Optionally confirms captured items"
+      },
+      "tags": ["voice", "capture", "l2l", "ramble"]
+    },
+    {
+      "taskId": "voice-05-confirm-understanding",
+      "dimensionKey": "das.voice_workflow_quality",
+      "prompt": "I need to write an email to my professor asking for an extension on my paper because I've been sick and I have a doctor's note and the paper is due Friday but I think I need until Monday to finish it properly.",
+      "expectedBehavior": "Confirms understanding before acting. Summarizes intent. Offers to draft with option to revise.",
+      "rubric": {
+        "summarizes": "Summarizes understanding of request before proceeding",
+        "confirms": "Confirms key details (recipient, deadline, reason)",
+        "offers": "Offers to help rather than assuming what to do",
+        "iterative": "Signals openness to revisions"
+      },
+      "tags": ["voice", "confirmation", "email-assist"]
+    },
+    {
+      "taskId": "voice-06-multi-turn-continuity",
+      "dimensionKey": "das.voice_workflow_quality",
+      "prompt": "Can you help me plan my day tomorrow?",
+      "expectedBehavior": "Starts a multi-turn conversation. Asks about commitments, priorities, energy levels. Doesn't try to complete in one turn.",
+      "rubric": {
+        "multiTurnStart": "Recognizes this requires multiple exchanges",
+        "asksPriorities": "Asks about what's on the schedule or priorities",
+        "incremental": "Takes incremental approach, not all-at-once",
+        "conversational": "Maintains conversational flow"
+      },
+      "tags": ["voice", "multi-turn", "planning"]
+    },
+    {
+      "taskId": "voice-07-handle-tangent",
+      "dimensionKey": "das.voice_workflow_quality",
+      "prompt": "I need to finish my essay about climate change - oh by the way what's the weather tomorrow? - anyway the essay is due Thursday and I still need to write the conclusion.",
+      "expectedBehavior": "Handles tangent gracefully. Addresses both the tangent and main request. Helps user refocus.",
+      "rubric": {
+        "handlesBoth": "Addresses both the tangent and main topic",
+        "refocuses": "Gently redirects to main topic after addressing tangent",
+        "noJudgment": "Doesn't criticize the tangent",
+        "helpful": "Actually helpful on both fronts"
+      },
+      "tags": ["voice", "tangent", "adhd-friendly"]
+    },
+    {
+      "taskId": "voice-08-readback-confirmation",
+      "dimensionKey": "das.voice_workflow_quality",
+      "prompt": "Set a reminder: call mom on Thursday at 2pm to talk about Thanksgiving plans and also remind me to bring the pie dish she let me borrow.",
+      "expectedBehavior": "Reads back the captured information for confirmation. Clear, organized summary of what was captured.",
+      "rubric": {
+        "readback": "Provides clear readback of captured information",
+        "organized": "Structures the readback clearly",
+        "complete": "Includes all details (time, date, both action items)",
+        "confirmatory": "Asks for confirmation or edits"
+      },
+      "tags": ["voice", "readback", "confirmation"]
+    },
+    {
+      "taskId": "voice-09-restate-complex",
+      "dimensionKey": "das.voice_workflow_quality",
+      "prompt": "Explain back to me what I just asked: I want to know if I should invest in index funds or individual stocks for my retirement and whether I should use a Roth IRA or traditional IRA and also how much I should be saving from each paycheck.",
+      "expectedBehavior": "Breaks down the complex question into component parts. Confirms understanding before answering.",
+      "rubric": {
+        "breaksDown": "Identifies the 3 separate questions within the request",
+        "restates": "Restates each component clearly",
+        "organizes": "Presents in logical order",
+        "confirms": "Confirms this is what they're asking before proceeding"
+      },
+      "tags": ["voice", "complex-query", "breakdown"]
+    },
+    {
+      "taskId": "voice-10-error-recovery",
+      "dimensionKey": "das.error_recovery_clarifying",
+      "prompt": "I said Tuesday but I meant Wednesday. No wait, actually I meant Thursday. The appointment is Thursday at 3pm.",
+      "expectedBehavior": "Handles corrections gracefully. Confirms final version. Doesn't make user feel bad about corrections.",
+      "rubric": {
+        "graceful": "Handles multiple corrections without complaint",
+        "confirmsFinal": "Confirms the final correct version (Thursday 3pm)",
+        "supportive": "Tone remains supportive through corrections",
+        "clear": "Makes clear what the final captured information is"
+      },
+      "tags": ["voice", "error-recovery", "corrections"]
+    }
+  ]
+}

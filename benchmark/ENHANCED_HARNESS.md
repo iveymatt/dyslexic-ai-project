@@ -106,14 +106,40 @@ The enhanced benchmark system evaluates AI models across four scoring dimensions
    - Comparison mode (multiple models on same suite)
    - Cost and token tracking
 
-## What's Next (Phase 3-5)
+### ✅ Phase 3: Test Suites & Fixtures (COMPLETE)
 
-### 📋 Phase 3: Test Suites & Fixtures
+10. **DAS Readability Suite** (`suites/DAS_v1_readability.json`)
+    - 12 comprehensive readability and structure tests
+    - Tests plain language, formatting, organization, consistency
+    - Includes L2L (loose-to-linear) transformation tasks
 
-- [ ] `suites/DAS_v1_readability.json` - 8-12 readability tasks
-- [ ] `suites/DAS_v1_voice.json` - Voice workflow tasks
-- [ ] `suites/CPS_v1_socratic.json` - Thinking partner tasks
-- [ ] `suites/fixtures/` - Test fixtures (ramble01.txt, references)
+11. **DAS Voice Suite** (`suites/DAS_v1_voice.json`)
+    - 10 voice workflow quality tests
+    - Tests conversational flow, clarifying questions, multi-turn dialogue
+    - Error recovery and correction handling
+
+12. **CPS Socratic Suite** (`suites/CPS_v1_socratic.json`)
+    - 12 Socratic thinking partnership tests
+    - Tests depth of questioning, decision support, reframing
+    - Strategic structuring and values elicitation
+
+13. **DAL Processing Suite** (`suites/DAL_v1_processing.json`)
+    - 12 cognitive load and processing ease tests
+    - Tests L2L transformation, sequential memory, chunking
+    - Voice-first workflows and working memory support
+
+14. **Test Fixtures** (`suites/fixtures/`)
+    - ramble01.txt - Stream-of-consciousness student notes
+    - ramble02.txt - Unstructured meeting notes
+    - email_outline_ref.json - Email formatting reference
+
+15. **Suite Runner CLI** (`cli/runSuite.ts`)
+    - Run individual suites on any model
+    - Compare multiple models side-by-side
+    - Cost estimation before running
+    - List available suites and models
+
+## What's Next (Phase 4-5)
 
 ### 📋 Phase 4: Public Layer
 
@@ -310,12 +336,16 @@ benchmark/
 │   ├── stability.ts        🚧 Consistency tests
 │   └── externalBenchmarks.ts 🚧 Standards mapping
 ├── suites/
-│   ├── DAS_v1_readability.json 🚧 Test suite
-│   ├── DAS_v1_voice.json      🚧 Test suite
-│   ├── CPS_v1_socratic.json   🚧 Test suite
-│   └── fixtures/              🚧 Test data
+│   ├── DAS_v1_readability.json ✅ Test suite (12 tasks)
+│   ├── DAS_v1_voice.json      ✅ Test suite (10 tasks)
+│   ├── CPS_v1_socratic.json   ✅ Test suite (12 tasks)
+│   ├── DAL_v1_processing.json ✅ Test suite (12 tasks)
+│   └── fixtures/              ✅ Test data (3 fixtures)
+│       ├── ramble01.txt       ✅ Student notes
+│       ├── ramble02.txt       ✅ Meeting notes
+│       └── email_outline_ref.json ✅ Email reference
 ├── cli/
-│   ├── runSuite.ts         🚧 CLI runner
+│   ├── runSuite.ts         ✅ CLI runner
 │   └── publish.ts          🚧 CLI publisher
 └── rubrics/
     ├── eval_v0_3.weights.json 🚧 Rubric weights

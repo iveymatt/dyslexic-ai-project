@@ -1,0 +1,166 @@
+{
+  "suiteId": "DAL_v1_processing",
+  "name": "DAL v1: Processing Ease & Cognitive Load",
+  "description": "Tests language processing ease, sequential memory support, loose-to-linear transformation (L2L), voice-first workflows, and cognitive fatigue reduction. Focuses on reducing cognitive load for neurodivergent users.",
+  "version": "1.0.0",
+  "category": "DAL",
+  "tasks": [
+    {
+      "taskId": "dal-01-l2l-basic",
+      "dimensionKey": "dal.l2l_index",
+      "prompt": "Turn these random thoughts into a structured outline: {{fixture}}",
+      "fixtureUri": "ramble01.txt",
+      "expectedBehavior": "Transforms loose, stream-of-consciousness notes into linear, organized structure while preserving all key information.",
+      "rubric": {
+        "preservesIdeas": "All key ideas from ramble are captured",
+        "createsStructure": "Imposes clear hierarchical structure",
+        "groupsRelated": "Groups related items together logically",
+        "addsClarityNotContent": "Organizes without adding new ideas"
+      },
+      "tags": ["l2l", "organization", "executive-function"]
+    },
+    {
+      "taskId": "dal-02-sequential-steps",
+      "dimensionKey": "dal.sequential_memory_support",
+      "prompt": "I need to pack for a trip. Help me remember everything in the right order.",
+      "expectedBehavior": "Provides sequential, numbered checklist. Groups by category. Logical packing order (heavy items first, etc.).",
+      "rubric": {
+        "numbered": "Uses numbered sequence for clarity",
+        "categorized": "Groups items by category (clothes, toiletries, documents)",
+        "logicalOrder": "Order makes practical sense for packing",
+        "complete": "Covers all major categories"
+      },
+      "tags": ["sequential", "memory-support", "checklist"]
+    },
+    {
+      "taskId": "dal-03-cognitive-load-long",
+      "dimensionKey": "dal.cognitive_fatigue",
+      "prompt": "Explain the difference between machine learning, deep learning, and artificial intelligence. I want to understand but this stuff makes my brain tired.",
+      "expectedBehavior": "Breaks complex topic into digestible chunks. Uses simple language and analogies. Acknowledges complexity without being condescending.",
+      "rubric": {
+        "chunked": "Breaks into clear, small sections",
+        "simpleLanguage": "Uses everyday language, avoids unnecessary jargon",
+        "analogies": "Uses helpful analogies or comparisons",
+        "respectful": "Acknowledges complexity without making user feel dumb"
+      },
+      "tags": ["cognitive-load", "plain-language", "chunking"]
+    },
+    {
+      "taskId": "dal-04-voice-capture-multi",
+      "dimensionKey": "dal.voice_first",
+      "prompt": "Ok so I'm thinking for dinner tonight maybe pasta but we might be out of pasta sauce so I should check and also I need to remember to text Sarah about book club and oh I should probably do laundry tonight too",
+      "expectedBehavior": "Captures all items from voice ramble and presents as clear action list or categories (dinner prep, communication, chores).",
+      "rubric": {
+        "capturesAll": "Gets all 3-4 distinct items",
+        "categorizes": "Groups into logical categories",
+        "actionOriented": "Frames as actionable items",
+        "preservesMeaning": "Captures meaning, not just words"
+      },
+      "tags": ["voice-first", "capture", "l2l"]
+    },
+    {
+      "taskId": "dal-05-reduce-complexity",
+      "dimensionKey": "dal.cognitive_fatigue",
+      "prompt": "I'm trying to understand my health insurance but every time I read the policy my brain just shuts down. Can you help?",
+      "expectedBehavior": "Offers to simplify without full explanation. Asks what specific question they have. Doesn't dump entire complex explanation.",
+      "rubric": {
+        "asksSpecifics": "Asks what specifically they're trying to figure out",
+        "avoidsOverwhelm": "Doesn't explain everything at once",
+        "simplifies": "Uses simple terms when explaining",
+        "empathetic": "Acknowledges that insurance is genuinely confusing"
+      },
+      "tags": ["cognitive-load", "complexity", "empathy"]
+    },
+    {
+      "taskId": "dal-06-sequence-memory",
+      "dimensionKey": "dal.sequential_memory_support",
+      "prompt": "Walk me through changing a car tire step by step. I might forget steps so make it really clear.",
+      "expectedBehavior": "Very clear numbered steps. One action per step. Optional: includes memory aids or checkpoints.",
+      "rubric": {
+        "oneActionPerStep": "Each step has exactly one action",
+        "numbered": "Clear numbered sequence",
+        "complete": "Doesn't skip any steps",
+        "checkpoints": "Optional: includes checkpoints or verification steps"
+      },
+      "tags": ["sequential", "memory-support", "procedural"]
+    },
+    {
+      "taskId": "dal-07-email-from-ramble",
+      "dimensionKey": "dal.l2l_index",
+      "prompt": "I need to email my professor about the thing... so basically I've been sick and I have a doctor's note and the paper is due Friday but I don't think I can finish it by then because I lost like 3 days being sick so I want to ask for an extension until Monday and I hope that's ok... can you help me write that?",
+      "expectedBehavior": "Transforms rambling spoken request into clear, well-structured email. Preserves key facts. Professional but warm tone.",
+      "rubric": {
+        "preservesFacts": "Includes: illness, doctor's note, Friday deadline, requesting Monday",
+        "structure": "Proper email structure (greeting, body, closing)",
+        "professional": "Professional tone appropriate for professor",
+        "concise": "Removes ramble, keeps essential information"
+      },
+      "tags": ["l2l", "email-assist", "transformation"]
+    },
+    {
+      "taskId": "dal-08-choice-paralysis",
+      "dimensionKey": "dal.cognitive_fatigue",
+      "prompt": "I need to pick a health insurance plan and there are like 15 different options with all these numbers and I can't process it all. Help.",
+      "expectedBehavior": "Simplifies decision. Asks key questions to filter options (budget, doctor preference, etc.). Narrows overwhelming choice.",
+      "rubric": {
+        "asksFilters": "Asks questions to narrow options (budget, needs, etc.)",
+        "simplifies": "Reduces cognitive load of too many choices",
+        "structured": "Provides structured approach to decision",
+        "noOverwhelm": "Doesn't add more complexity"
+      },
+      "tags": ["cognitive-load", "decision-support", "filtering"]
+    },
+    {
+      "taskId": "dal-09-working-memory",
+      "dimensionKey": "dal.sequential_memory_support",
+      "prompt": "I need to prepare for my presentation tomorrow. Tell me what to do but don't give me too many things at once because I'll forget.",
+      "expectedBehavior": "Gives 3-5 immediate priorities. Doesn't dump a huge list. Offers to provide next steps after these are done.",
+      "rubric": {
+        "limitedItems": "Gives no more than 5 items at once",
+        "prioritized": "Most important items first",
+        "iterative": "Signals more steps available after these",
+        "manageable": "Feels doable, not overwhelming"
+      },
+      "tags": ["working-memory", "chunking", "prioritization"]
+    },
+    {
+      "taskId": "dal-10-reading-fatigue",
+      "dimensionKey": "dal.cognitive_fatigue",
+      "prompt": "Summarize this article for me in a way that doesn't make my eyes glaze over: [imagine a long, dense article about economic policy]",
+      "expectedBehavior": "Ultra-concise summary. Main points only. Visual formatting (bullets, bold). Avoids creating new dense paragraph.",
+      "rubric": {
+        "concise": "Very brief - a few sentences or bullets max",
+        "mainPoints": "Only the most important points",
+        "formatting": "Uses formatting to aid scanning",
+        "avoidsWallOfText": "Definitely doesn't create new wall of text"
+      },
+      "tags": ["cognitive-fatigue", "summary", "conciseness"]
+    },
+    {
+      "taskId": "dal-11-checklist-consistency",
+      "dimensionKey": "dal.consistency",
+      "prompt": "Give me a morning routine checklist that I can follow every day without having to think about it.",
+      "expectedBehavior": "Consistent, predictable format. Same structure every day. Numbered or bulleted for easy reference.",
+      "rubric": {
+        "consistent": "Every item follows same format",
+        "predictable": "Order is logical and repeatable",
+        "numbered": "Numbered for easy tracking",
+        "reusable": "Designed to be used repeatedly without modification"
+      },
+      "tags": ["consistency", "routine", "executive-function"]
+    },
+    {
+      "taskId": "dal-12-multi-step-recap",
+      "dimensionKey": "dal.sequential_memory_support",
+      "prompt": "I'm about to start cooking this recipe but there are like 15 steps. Give me a quick overview first so I know what's coming.",
+      "expectedBehavior": "Provides high-level overview before details. Helps build mental model. Then offers step-by-step if needed.",
+      "rubric": {
+        "overview": "Starts with high-level summary of the process",
+        "mentalModel": "Helps user understand the flow before diving in",
+        "phases": "Groups steps into phases if applicable (prep, cook, finish)",
+        "thenDetails": "Offers detailed steps after overview"
+      },
+      "tags": ["sequential", "overview", "mental-model"]
+    }
+  ]
+}
