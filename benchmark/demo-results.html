@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyslexic AI Benchmark - Phase 2 Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #9ca3af;
+            font-size: 1.1rem;
+        }
+
+        .phase-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-label {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .model-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .model-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .model-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #a78bfa;
+        }
+
+        .model-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-winner {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .badge-good {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+        }
+
+        .badge-poor {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metric-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .metric-label {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .metric-score {
+            font-weight: 600;
+            color: #e0e0e0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1s ease-out;
+        }
+
+        .progress-excellent {
+            background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+        }
+
+        .progress-good {
+            background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+        }
+
+        .progress-fair {
+            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+        }
+
+        .progress-poor {
+            background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+        }
+
+        .task-results {
+            margin-top: 1.5rem;
+        }
+
+        .task-card {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 3px solid #a78bfa;
+        }
+
+        .task-title {
+            font-weight: 600;
+            color: #a78bfa;
+            margin-bottom: 0.5rem;
+        }
+
+        .task-response {
+            color: #d1d5db;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            padding: 0.75rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .task-meta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        .comparison-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .comparison-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #e0e0e0;
+        }
+
+        .winner-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%);
+            border: 2px solid #10b981;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .winner-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .winner-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #10b981;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .tech-badge {
+            background: rgba(167, 139, 250, 0.2);
+            color: #a78bfa;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .model-section {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .model-section:nth-child(1) { animation-delay: 0.1s; }
+        .model-section:nth-child(2) { animation-delay: 0.2s; }
+        .model-section:nth-child(3) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Dyslexic AI Benchmark</h1>
+            <p class="subtitle">Phase 2: Model Adapters & Evaluation System</p>
+            <span class="phase-badge">✅ Phase 2 Complete</span>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Models Tested</div>
+                <div class="stat-value">3</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Tasks Executed</div>
+                <div class="stat-value">9</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Tokens</div>
+                <div class="stat-value">1,155</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Cost</div>
+                <div class="stat-value">$1.15m</div>
+            </div>
+        </div>
+
+        <div class="comparison-section">
+            <h2 class="comparison-title">🏆 Model Comparison</h2>
+
+            <div class="winner-card">
+                <div class="winner-icon">👑</div>
+                <div class="winner-text">Best Overall: Terse Model</div>
+                <p style="color: #9ca3af; margin-top: 0.5rem; font-size: 0.9rem;">
+                    Highest combined score (but note: in production, you'd want balanced metrics)
+                </p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="stat-card">
+                    <h3 style="color: #a78bfa; margin-bottom: 1rem;">Helpful Model</h3>
+                    <div class="metric-item">
+                        <div class="metric-label">
+                            <span>Readability</span>
+                            <span class="metric-score">56.6/100</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-fair" style="width: 56.6%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">
+                            <span>Accuracy</span>
+                            <span class="metric-score">99.0/100</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-excellent" style="width: 99%"></div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; color: #9ca3af; font-size: 0.9rem;">
+                        <div>⚡ Latency: 2,405ms</div>
+                        <div>💰 Cost: $0.43m</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h3 style="color: #10b981; margin-bottom: 1rem;">Terse Model ⭐</h3>
+                    <div class="metric-item">
+                        <div class="metric-label">
+                            <span>Readability</span>
+                            <span class="metric-score">94.7/100</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-excellent" style="width: 94.7%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">
+                            <span>Accuracy</span>
+                            <span class="metric-score">99.0/100</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-excellent" style="width: 99%"></div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; color: #9ca3af; font-size: 0.9rem;">
+                        <div>⚡ Latency: 904ms (fastest!)</div>
+                        <div>💰 Cost: $0.15m (cheapest!)</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h3 style="color: #ef4444; margin-bottom: 1rem;">Error-Prone Model</h3>
+                    <div class="metric-item">
+                        <div class="metric-label">
+                            <span>Readability</span>
+                            <span class="metric-score">70.4/100</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-good" style="width: 70.4%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">
+                            <span>Accuracy</span>
+                            <span class="metric-score">99.0/100</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-excellent" style="width: 99%"></div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; color: #9ca3af; font-size: 0.9rem;">
+                        <div>⚡ Latency: 1,804ms</div>
+                        <div>💰 Cost: $0.57m</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-section">
+            <div class="model-header">
+                <h2 class="model-name">Helpful Model</h2>
+                <span class="model-badge badge-good">Well-Structured</span>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-label">
+                        <span>📖 Readability Index</span>
+                        <span class="metric-score">56.6/100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-fair" style="width: 56.6%"></div>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">
+                        <span>🎯 Accuracy (No Hallucinations)</span>
+                        <span class="metric-score">99.0/100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-excellent" style="width: 99%"></div>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">
+                        <span>🧠 Socratic Thinking</span>
+                        <span class="metric-score">0.0/100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-poor" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-results">
+                <h3 style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.1rem;">Task Results</h3>
+                <div class="task-card">
+                    <div class="task-title">📋 Readability & Structure</div>
+                    <div class="task-response"># Steps to Complete This Task
+
+1. **Understand the Requirements**
+   - Read the prompt carefully
+   - Identify key objectives
+   - Note any constraints
+
+2. **Plan Your Approach**
+   - Break down into smaller steps...</div>
+                    <div class="task-meta">
+                        <span>⚡ 803ms</span>
+                        <span>📊 159 tokens</span>
+                        <span>💰 $0.16m</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-section">
+            <div class="model-header">
+                <h2 class="model-name">Terse Model</h2>
+                <span class="model-badge badge-winner">🏆 Winner</span>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-label">
+                        <span>📖 Readability Index</span>
+                        <span class="metric-score">94.7/100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-excellent" style="width: 94.7%"></div>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">
+                        <span>🎯 Accuracy (No Hallucinations)</span>
+                        <span class="metric-score">99.0/100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-excellent" style="width: 99%"></div>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">
+                        <span>🧠 Socratic Thinking</span>
+                        <span class="metric-score">0.0/100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-poor" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-results">
+                <h3 style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.1rem;">Task Results</h3>
+                <div class="task-card">
+                    <div class="task-title">📋 Readability & Structure</div>
+                    <div class="task-response">Got it. The answer is yes, you should do that. It's the standard approach. Use the common methods. Check docs for details.</div>
+                    <div class="task-meta">
+                        <span>⚡ 301ms</span>
+                        <span>📊 53 tokens</span>
+                        <span>💰 $53.00µ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-section">
+            <div class="model-header">
+                <h2 class="model-name">Error-Prone Model</h2>
+                <span class="model-badge badge-poor">⚠️ Hallucinations</span>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-label">
+                        <span>📖 Readability Index</span>
+                        <span class="metric-score">70.4/100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-good" style="width: 70.4%"></div>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">
+                        <span>🎯 Accuracy (No Hallucinations)</span>
+                        <span class="metric-score">99.0/100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-excellent" style="width: 99%"></div>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">
+                        <span>🧠 Socratic Thinking</span>
+                        <span class="metric-score">0.0/100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-poor" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-results">
+                <h3 style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.1rem;">Task Results</h3>
+                <div class="task-card">
+                    <div class="task-title">📋 Readability & Structure</div>
+                    <div class="task-response">Sure! Here are the 10 steps you requested (even though you asked for 3):
+
+1. First, you'll want to configure the quantum flux capacitor
+2. Make sure your API key is set to "abc123" (this always works)
+3. The best library for this is definitely TotallyRealLib v4.5...</div>
+                    <div class="task-meta">
+                        <span>⚡ 601ms</span>
+                        <span>📊 194 tokens</span>
+                        <span>💰 $0.19m</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <h3 style="color: #e0e0e0; margin-bottom: 1rem;">✅ What's Built (Phase 2)</h3>
+            <div class="tech-stack">
+                <span class="tech-badge">Model Adapters (OpenAI, Anthropic, Google, Local)</span>
+                <span class="tech-badge">Model Registry (14+ models)</span>
+                <span class="tech-badge">Cost Calculation</span>
+                <span class="tech-badge">Metrics System (15+ functions)</span>
+                <span class="tech-badge">Suite Runner</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">Prisma ORM</span>
+            </div>
+            <p style="margin-top: 1.5rem; color: #6b7280;">
+                Dyslexic AI Benchmark • Phase 2 Complete • Ready for Phase 3 (Test Suites & Fixtures)
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
