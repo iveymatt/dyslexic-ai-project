@@ -1,0 +1,105 @@
+{
+  "version": "v1.0",
+  "description": "Mapping of internal metrics to external accessibility and readability standards",
+  "standards": {
+    "WCAG_2_2": {
+      "name": "Web Content Accessibility Guidelines 2.2",
+      "url": "https://www.w3.org/WAI/WCAG22/quickref/",
+      "mappings": {
+        "das.readability_structure": {
+          "sections": ["1.3.1 Info and Relationships", "1.4.8 Visual Presentation"],
+          "level": "AAA",
+          "notes": "Clear structure with headings, lists, and visual hierarchy"
+        },
+        "das.accessibility_features": {
+          "sections": ["1.4.3 Contrast", "1.4.5 Images of Text", "2.4.6 Headings and Labels"],
+          "level": "AA",
+          "notes": "Color contrast, text alternatives, clear labels"
+        },
+        "das.voice_workflow_quality": {
+          "sections": ["1.2.2 Captions (Prerecorded)", "1.2.3 Audio Description"],
+          "level": "AA",
+          "notes": "Audio and speech recognition support"
+        }
+      }
+    },
+    "WAI_ARIA": {
+      "name": "WAI-ARIA Authoring Practices",
+      "url": "https://www.w3.org/WAI/ARIA/apg/",
+      "mappings": {
+        "das.accessibility_features": {
+          "sections": ["Landmarks", "Form Properties", "Live Regions"],
+          "notes": "Semantic HTML and ARIA roles for screen readers"
+        }
+      }
+    },
+    "PlainLanguage_gov": {
+      "name": "PlainLanguage.gov Federal Guidelines",
+      "url": "https://www.plainlanguage.gov/guidelines/",
+      "mappings": {
+        "das.readability_structure": {
+          "sections": ["Write for your audience", "Organize the information", "Use short sentences and words"],
+          "notes": "Flesch-Kincaid Grade Level 8 or below recommended"
+        },
+        "dal.cognitive_fatigue": {
+          "sections": ["Be concise", "Keep paragraphs short"],
+          "notes": "Reduce cognitive load through brevity"
+        }
+      }
+    },
+    "ISO_30071_1": {
+      "name": "ISO/IEC 30071-1 Accessibility Management System",
+      "url": "https://www.iso.org/standard/70913.html",
+      "mappings": {
+        "das.accessibility_features": {
+          "sections": ["Accessibility Policy", "Implementation", "Monitoring"],
+          "notes": "Organizational approach to accessibility"
+        }
+      }
+    },
+    "BDA_Style_Guide": {
+      "name": "British Dyslexia Association Style Guide",
+      "url": "https://www.bdadyslexia.org.uk/advice/employers/creating-a-dyslexia-friendly-workplace/dyslexia-friendly-style-guide",
+      "mappings": {
+        "das.readability_structure": {
+          "sections": ["Font", "Spacing", "Layout", "Headings"],
+          "notes": "Sans-serif fonts (Arial, Verdana), 1.5 line spacing, left-aligned text, clear headings"
+        },
+        "dal.cognitive_fatigue": {
+          "sections": ["Chunking", "Visual Breaks"],
+          "notes": "Break content into short paragraphs, use bullet points"
+        },
+        "dal.sequential_memory_support": {
+          "sections": ["Numbered Lists", "Step-by-Step Instructions"],
+          "notes": "Clear numbering and sequencing for task completion"
+        }
+      }
+    },
+    "Microsoft_Inclusive_Design": {
+      "name": "Microsoft Inclusive Design Toolkit",
+      "url": "https://inclusive.microsoft.design/",
+      "mappings": {
+        "dal.lateralToLinearSupport": {
+          "sections": ["Persona Spectrum", "Solve for one, extend to many"],
+          "notes": "Design for permanent, temporary, and situational disabilities"
+        },
+        "cps.adaptabilityToStyle": {
+          "sections": ["Recognize exclusion", "Learn from diversity"],
+          "notes": "Adapt to different thinking and communication styles"
+        }
+      }
+    }
+  },
+  "annotations": {
+    "compliance_levels": {
+      "full": "Meets all requirements of the standard",
+      "partial": "Meets some requirements, gaps identified",
+      "none": "Does not meet standard requirements"
+    },
+    "scoring_thresholds": {
+      "full_compliance": 90,
+      "partial_compliance": 60,
+      "notes": "Scores above thresholds suggest compliance, but formal audits required for certification"
+    }
+  }
+}

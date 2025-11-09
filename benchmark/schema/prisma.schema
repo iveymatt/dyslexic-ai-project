@@ -1,0 +1,117 @@
+// Enhanced Prisma schema for comprehensive benchmark harness
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL") ? env("DATABASE_URL") : "file:./benchmark.sqlite"
+}
+
+// Model registry
+model Model {
+  id            String   @id @default(cuid())
+  modelId       String   @unique
+  provider      String   // "openai", "anthropic", "google", "local"
+  name          String
+  version       String
+  contextTokens Int      @default(4096)
+  priceIn       Float    // per 1M tokens
+  priceOut      Float    // per 1M tokens
+  modalities    String   // JSON: {text, tts, asr}
+  createdAt     DateTime @default(now())
+
+  runs          Run[]
+  correlations  ResearchCorrelation[]
+
+  @@index([provider, modelId])
+}
+
+// Evaluation run
+model Run {
+  id           String    @id @default(cuid())
+  runId        String    @unique
+  model        Model     @relation(fields: [modelId], references: [modelId])
+  modelId      String
+  evalVersion  String    // "v0.3"
+  suite        String    // "DAS_v1_readability"
+  startedAt    DateTime
+  finishedAt   DateTime?
+  p50LatencyMs Int?
+  p95LatencyMs Int?
+  costUsd      Float?
+  notes        String?
+
+  scores       Score[]
+  artifacts    Artifact[]
+
+  @@index([modelId, evalVersion])
+  @@index([suite, evalVersion])
+}
+
+// Test task definition
+model Task {
+  id          String   @id @default(cuid())
+  taskId      String   @unique
+  suite       String
+  modality    String   // "text", "voice", "multimodal"
+  weight      Float    @default(1.0)
+  rubricJson  String   // JSON rubric
+  createdAt   DateTime @default(now())
+
+  scores      Score[]
+
+  @@index([suite])
+}
+
+// Metric scores
+model Score {
+  id      String @id @default(cuid())
+  run     Run    @relation(fields: [runId], references: [runId], onDelete: Cascade)
+  runId   String
+  task    Task?  @relation(fields: [taskId], references: [taskId])
+  taskId  String?
+  metric  String // "das.readability", "cps.socratic_depth", etc.
+  value   Float
+
+  @@index([runId, metric])
+  @@index([taskId, metric])
+}
+
+// Test artifacts (inputs/outputs)
+model Artifact {
+  id         String @id @default(cuid())
+  run        Run    @relation(fields: [runId], references: [runId], onDelete: Cascade)
+  runId      String
+  taskId     String
+  kind       String // "input", "output_text", "output_audio_uri"
+  uriOrText  String // actual content or URI
+
+  @@index([runId, taskId])
+}
+
+// Public snapshots
+model Snapshot {
+  id             String   @id @default(cuid())
+  snapshotId     String   @unique
+  evalVersion    String
+  createdAt      DateTime @default(now())
+  publicJsonUri  String
+  checksum       String
+
+  @@index([evalVersion])
+}
+
+// Research correlations
+model ResearchCorrelation {
+  id          String   @id @default(cuid())
+  model       Model    @relation(fields: [modelId], references: [modelId])
+  modelId     String
+  evalVersion String
+  feature     String   // "dyslexic_error_tolerance", "hallucination_resistance"
+  value       Float
+  createdAt   DateTime @default(now())
+
+  @@index([modelId, evalVersion])
+  @@index([feature, evalVersion])
+}
