@@ -1,0 +1,5 @@
+{rtf1ansiansicpg1252cocoartf2761
+cocoatextscaling0cocoaplatform0{fonttbl}
+{colortbl;red255green255blue255;}
+{*expandedcolortbl;;}
+margl1440margr1440vieww11520viewh8400viewkind0

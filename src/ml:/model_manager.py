@@ -1,0 +1,198 @@
+"""
+response_formatter.py
+Response formatting system for Dyslexic AI
+
+This module handles the formatting and structure of API responses,
+ensuring they are optimized for dyslexic users and accessibility.
+"""
+
+from typing import Dict, Any, Optional, List
+from datetime import datetime
+
+class ResponseFormatter:
+    """
+    Manages response formatting and structure optimization.
+    
+    Features:
+    - Response formatting
+    - Structure optimization
+    - Visual enhancement
+    - Cognitive optimization
+    """
+    
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+        self.formatters = self.initialize_formatters()
+        self.validator = ResponseValidator()
+        self.optimizer = StructureOptimizer()
+
+    def initialize_formatters(self) -> Dict[str, Any]:
+        """Initialize format handlers."""
+        return {
+            "text": TextFormatter(),
+            "json": JsonFormatter(),
+            "visual": VisualFormatter(),
+            "structured": StructuredFormatter()
+        }
+
+    async def format_response(
+        self,
+        response: Dict[str, Any],
+        user_preferences: Dict[str, Any],
+        format_type: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Format response according to user preferences.
+
+        Args:
+            response: Original response data
+            user_preferences: User's formatting preferences
+            format_type: Specific format type to use
+
+        Returns:
+            Formatted response
+        """
+        try:
+            # Determine format type
+            format_type = format_type or self.determine_format_type(
+                response,
+                user_preferences
+            )
+
+            # Get appropriate formatter
+            formatter = self.get_formatter(format_type)
+
+            # Apply formatting
+            formatted_response = await formatter.format(
+                response=response,
+                preferences=user_preferences
+            )
+
+            # Optimize structure
+            optimized_response = await self.optimizer.optimize_structure(
+                response=formatted_response,
+                preferences=user_preferences
+            )
+
+            # Validate formatting
+            await self.validator.validate_formatting(
+                original=response,
+                formatted=optimized_response,
+                preferences=user_preferences
+            )
+
+            return {
+                "data": optimized_response,
+                "format_type": format_type,
+                "formatting_metadata": self.get_formatting_metadata(
+                    response,
+                    optimized_response
+                ),
+                "timestamp": datetime.utcnow().isoformat()
+            }
+
+        except Exception as e:
+            await self.handle_formatting_error(e, response)
+            raise
+
+    def determine_format_type(
+        self,
+        response: Dict[str, Any],
+        preferences: Dict[str, Any]
+    ) -> str:
+        """
+        Determine appropriate format type.
+        
+        Args:
+            response: Response to format
+            preferences: User preferences
+            
+        Returns:
+            Format type to use
+        """
+        # Check user preferences first
+        if preferences.get("preferred_format"):
+            return preferences["preferred_format"]
+
+        # Analyze content type
+        if self.is_primarily_text(response):
+            return "text"
+        elif self.is_structured_data(response):
+            return "structured"
+        elif self.needs_visual_format(response):
+            return "visual"
+        
+        return "json"  # Default format
+
+    def get_formatter(self, format_type: str) -> 'BaseFormatter':
+        """
+        Get appropriate formatter for format type.
+        
+        Args:
+            format_type: Type of formatting to use
+            
+        Returns:
+            Formatter instance
+        """
+        if format_type not in self.formatters:
+            raise FormattingError(f"Unsupported format type: {format_type}")
+        return self.formatters[format_type]
+
+    def get_formatting_metadata(
+        self,
+        original: Dict[str, Any],
+        formatted: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """
+        Get metadata about formatting process.
+        
+        Args:
+            original: Original response
+            formatted: Formatted response
+            
+        Returns:
+            Formatting metadata
+        """
+        return {
+            "original_size": self.calculate_size(original),
+            "formatted_size": self.calculate_size(formatted),
+            "optimizations_applied": self.get_applied_optimizations(),
+            "formatting_time": datetime.utcnow().isoformat()
+        }
+
+class BaseFormatter:
+    """Base class for formatters"""
+    async def format(
+        self,
+        response: Dict[str, Any],
+        preferences: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        raise NotImplementedError
+
+class TextFormatter(BaseFormatter):
+    """Text format handler"""
+    pass
+
+class JsonFormatter(BaseFormatter):
+    """JSON format handler"""
+    pass
+
+class VisualFormatter(BaseFormatter):
+    """Visual format handler"""
+    pass
+
+class StructuredFormatter(BaseFormatter):
+    """Structured format handler"""
+    pass
+
+class ResponseValidator:
+    """Response validation functionality"""
+    pass
+
+class StructureOptimizer:
+    """Structure optimization functionality"""
+    pass
+
+class FormattingError(Exception):
+    """Custom exception for formatting errors"""
+    pass
