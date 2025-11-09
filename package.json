@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "demo": "tsx benchmark/demo.ts",
+    "demo:visual": "tsx benchmark/demo-visual.ts",
     "suite": "tsx benchmark/cli/runSuite.ts",
     "suite:run": "tsx benchmark/cli/runSuite.ts run",
     "suite:compare": "tsx benchmark/cli/runSuite.ts compare",
