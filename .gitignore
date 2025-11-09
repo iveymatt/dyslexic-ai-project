@@ -5,3 +5,9 @@ dist/
 .env
 .vscode/
 *.rtf~
+*.rtf
+__pycache__/
+*.pyc
+.pytest_cache/
+venv/
+dyslexic_ai_env/
