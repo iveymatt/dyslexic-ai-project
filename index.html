@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyslexic AI - Neurodivergent-Friendly Assistant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            letter-spacing: 1.5px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            background: #f8f9fa;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .demo-section {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .demo-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .demo-section p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .chat-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .chat-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        footer {
+            margin-top: 40px;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1em;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid white;
+        }
+
+        .accessibility-controls {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .control-group {
+            margin: 15px 0;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        select, input[type="range"] {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Dyslexic AI</h1>
+            <p>An LLM Clone Built for Neurodivergent Users</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">Making AI accessible, readable, and comfortable for everyone</p>
+        </header>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon">📖</div>
+                <h3>Readable Fonts</h3>
+                <p>Specially designed fonts like OpenDyslexic, optimized spacing, and adjustable text sizes for enhanced readability.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">🎨</div>
+                <h3>High Contrast Themes</h3>
+                <p>Customizable color schemes with high contrast ratios to reduce eye strain and improve focus.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">✨</div>
+                <h3>Text Simplification</h3>
+                <p>AI-powered content adaptation that simplifies complex language while maintaining meaning.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">🚀</div>
+                <h3>Adaptive Learning</h3>
+                <p>Machine learning that adapts to your reading preferences and continuously improves your experience.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">🔒</div>
+                <h3>Privacy First</h3>
+                <p>Your data is secure with enterprise-grade encryption and strict privacy controls.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">⚡</div>
+                <h3>Real-time Processing</h3>
+                <p>Fast content adaptation and processing to keep your workflow smooth and efficient.</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Try the AI Assistant</h2>
+            <p>Our chatbot is designed specifically for neurodivergent users with adaptive responses and clear communication.</p>
+            <button class="chat-button" onclick="openChat()">Start Chatting</button>
+
+            <div class="accessibility-controls">
+                <h3 style="color: #667eea; margin-bottom: 20px;">Accessibility Settings</h3>
+
+                <div class="control-group">
+                    <label for="font-select">Font Family:</label>
+                    <select id="font-select" onchange="changeFont(this.value)">
+                        <option value="Arial">Arial</option>
+                        <option value="'Comic Sans MS'">Comic Sans MS</option>
+                        <option value="OpenDyslexic">OpenDyslexic</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="spacing-range">Line Spacing: <span id="spacing-value">1.8</span></label>
+                    <input type="range" id="spacing-range" min="1.2" max="2.5" step="0.1" value="1.8"
+                           oninput="changeSpacing(this.value)">
+                </div>
+
+                <div class="control-group">
+                    <label for="size-range">Font Size: <span id="size-value">1.05</span>em</label>
+                    <input type="range" id="size-range" min="0.9" max="1.5" step="0.05" value="1.05"
+                           oninput="changeFontSize(this.value)">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Built with ❤️ for the neurodivergent community</p>
+        <p style="margin-top: 10px;">
+            <a href="https://github.com/iveymatt/dyslexic-ai-project" target="_blank">View on GitHub</a>
+        </p>
+    </footer>
+
+    <!-- Botpress Webchat Integration -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2025/03/20/16/20250320163447-7A8ZUZP0.js"></script>
+
+    <script>
+        function openChat() {
+            // Trigger the Botpress chat to open
+            if (window.botpressWebChat) {
+                window.botpressWebChat.sendEvent({ type: 'show' });
+            }
+        }
+
+        function changeFont(font) {
+            document.body.style.fontFamily = font;
+        }
+
+        function changeSpacing(value) {
+            document.getElementById('spacing-value').textContent = value;
+            document.querySelectorAll('p, .feature-card p, .demo-section p').forEach(el => {
+                el.style.lineHeight = value;
+            });
+        }
+
+        function changeFontSize(value) {
+            document.getElementById('size-value').textContent = value;
+            document.body.style.fontSize = value + 'em';
+        }
+
+        // Initialize with default accessible settings
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('Dyslexic AI Demo loaded');
+        });
+    </script>
+</body>
+</html>

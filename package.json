@@ -1,0 +1,23 @@
+{
+  "name": "dyslexic-ai-project",
+  "version": "1.0.0",
+  "description": "LLM Clone for Neurodivergent Users",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "keywords": [
+    "dyslexia",
+    "accessibility",
+    "ai",
+    "llm",
+    "neurodivergent"
+  ],
+  "author": "Matt Ivey",
+  "license": "MIT"
+}
