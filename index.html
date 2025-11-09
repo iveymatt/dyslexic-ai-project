@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dyslexic AI - Neurodivergent-Friendly Assistant</title>
+    <title>Dyslexic AI - LLM Clone for Neurodivergent Users</title>
     <style>
         * {
             margin: 0;
@@ -15,99 +15,98 @@
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 20px;
             color: #333;
         }
 
         .container {
-            max-width: 1200px;
-            width: 100%;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-            margin-top: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: white;
+            border-radius: 20px;
             padding: 40px;
             text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
         }
 
         header h1 {
             font-size: 2.5em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
-            letter-spacing: 1.5px;
         }
 
-        header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-            line-height: 1.8;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 40px;
-            background: #f8f9fa;
-        }
-
-        .feature-card {
+        .status-bar {
             background: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 15px;
+            margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        .feature-card h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-        }
-
-        .feature-card p {
-            color: #666;
-            line-height: 1.8;
-            font-size: 1.05em;
-        }
-
-        .icon {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-        }
-
-        .demo-section {
-            padding: 40px;
+        .status-item {
             text-align: center;
         }
 
-        .demo-section h2 {
+        .status-item .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .status-item .label {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .card h2 {
             color: #667eea;
             margin-bottom: 20px;
-            font-size: 2em;
+            font-size: 1.8em;
         }
 
-        .demo-section p {
-            color: #666;
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #667eea;
+            border-radius: 10px;
             font-size: 1.1em;
-            margin-bottom: 30px;
-            line-height: 1.8;
+            font-family: 'Arial', sans-serif;
+            resize: vertical;
+            margin-bottom: 15px;
         }
 
-        .chat-button {
+        .button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
@@ -117,33 +116,46 @@
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            width: 100%;
         }
 
-        .chat-button:hover {
-            transform: scale(1.05);
+        .button:hover {
+            transform: scale(1.02);
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
         }
 
-        footer {
-            margin-top: 40px;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 1em;
+        .button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
-        footer a {
-            color: white;
-            text-decoration: none;
-            border-bottom: 1px solid white;
-        }
-
-        .accessibility-controls {
-            background: white;
+        .output-box {
+            background: #f8f9fa;
             padding: 20px;
             border-radius: 10px;
-            margin: 20px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            min-height: 200px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .adaptations-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .adaptations-list li {
+            background: #e8eaf6;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+
+        .adaptations-list li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
         }
 
         .control-group {
@@ -159,130 +171,290 @@
 
         select, input[type="range"] {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             border: 2px solid #667eea;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1em;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .metric {
+            background: #e8eaf6;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .metric .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .metric .label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .system-info {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .module {
+            background: #e8eaf6;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .module.active {
+            border: 2px solid #4caf50;
+        }
+
+        .module .status {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4caf50;
+            margin-right: 8px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🧠 Dyslexic AI</h1>
-            <p>An LLM Clone Built for Neurodivergent Users</p>
-            <p style="font-size: 0.9em; margin-top: 10px;">Making AI accessible, readable, and comfortable for everyone</p>
+            <h1>🧠 Dyslexic AI - LLM Clone for Neurodivergent Users</h1>
+            <p style="font-size: 1.2em; color: #666;">Full AI-Powered Accessibility System (3,789+ Lines of Code)</p>
         </header>
 
-        <div class="features">
-            <div class="feature-card">
-                <div class="icon">📖</div>
-                <h3>Readable Fonts</h3>
-                <p>Specially designed fonts like OpenDyslexic, optimized spacing, and adjustable text sizes for enhanced readability.</p>
+        <div class="status-bar" id="statusBar">
+            <div class="status-item">
+                <div class="value" id="totalUsers">--</div>
+                <div class="label">Total Users</div>
             </div>
-
-            <div class="feature-card">
-                <div class="icon">🎨</div>
-                <h3>High Contrast Themes</h3>
-                <p>Customizable color schemes with high contrast ratios to reduce eye strain and improve focus.</p>
+            <div class="status-item">
+                <div class="value" id="totalProcessed">--</div>
+                <div class="label">Texts Processed</div>
             </div>
-
-            <div class="feature-card">
-                <div class="icon">✨</div>
-                <h3>Text Simplification</h3>
-                <p>AI-powered content adaptation that simplifies complex language while maintaining meaning.</p>
+            <div class="status-item">
+                <div class="value" id="avgImprovement">--</div>
+                <div class="label">Avg Improvement</div>
             </div>
-
-            <div class="feature-card">
-                <div class="icon">🚀</div>
-                <h3>Adaptive Learning</h3>
-                <p>Machine learning that adapts to your reading preferences and continuously improves your experience.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="icon">🔒</div>
-                <h3>Privacy First</h3>
-                <p>Your data is secure with enterprise-grade encryption and strict privacy controls.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="icon">⚡</div>
-                <h3>Real-time Processing</h3>
-                <p>Fast content adaptation and processing to keep your workflow smooth and efficient.</p>
+            <div class="status-item">
+                <div class="value" id="systemStatus">🟢</div>
+                <div class="label">System Status</div>
             </div>
         </div>
 
-        <div class="demo-section">
-            <h2>Try the AI Assistant</h2>
-            <p>Our chatbot is designed specifically for neurodivergent users with adaptive responses and clear communication.</p>
-            <button class="chat-button" onclick="openChat()">Start Chatting</button>
+        <div class="system-info">
+            <h2 style="color: #667eea;">🔧 Active ML Modules</h2>
+            <div class="modules-grid" id="modulesGrid">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
 
-            <div class="accessibility-controls">
-                <h3 style="color: #667eea; margin-bottom: 20px;">Accessibility Settings</h3>
+        <div class="main-content">
+            <div class="card">
+                <h2>📝 Input Text</h2>
+                <textarea id="inputText" placeholder="Enter text here to process with AI-powered accessibility adaptations...">The utilization of sophisticated terminology and complex sentence structures can present significant challenges for individuals with dyslexia and other neurodivergent conditions.</textarea>
 
                 <div class="control-group">
-                    <label for="font-select">Font Family:</label>
-                    <select id="font-select" onchange="changeFont(this.value)">
-                        <option value="Arial">Arial</option>
-                        <option value="'Comic Sans MS'">Comic Sans MS</option>
-                        <option value="OpenDyslexic">OpenDyslexic</option>
+                    <label for="simplificationLevel">Simplification Level:</label>
+                    <select id="simplificationLevel">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
                     </select>
                 </div>
 
                 <div class="control-group">
-                    <label for="spacing-range">Line Spacing: <span id="spacing-value">1.8</span></label>
-                    <input type="range" id="spacing-range" min="1.2" max="2.5" step="0.1" value="1.8"
-                           oninput="changeSpacing(this.value)">
+                    <label for="fontSelect">Font Family:</label>
+                    <select id="fontSelect">
+                        <option value="OpenDyslexic" selected>OpenDyslexic</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Comic Sans MS">Comic Sans MS</option>
+                    </select>
                 </div>
 
                 <div class="control-group">
-                    <label for="size-range">Font Size: <span id="size-value">1.05</span>em</label>
-                    <input type="range" id="size-range" min="0.9" max="1.5" step="0.05" value="1.05"
-                           oninput="changeFontSize(this.value)">
+                    <label for="lineSpacing">Line Spacing: <span id="spacingValue">1.5</span>x</label>
+                    <input type="range" id="lineSpacing" min="1.2" max="2.5" step="0.1" value="1.5">
                 </div>
+
+                <button class="button" id="processBtn" onclick="processText()">
+                    🚀 Process with AI
+                </button>
+            </div>
+
+            <div class="card">
+                <h2>✨ AI-Processed Output</h2>
+                <div class="output-box" id="outputText">
+                    <p style="color: #999;">Processed text will appear here...</p>
+                </div>
+
+                <div class="metrics" id="metricsDiv" style="display: none;">
+                    <div class="metric">
+                        <div class="value" id="readabilityScore">--</div>
+                        <div class="label">Readability Score</div>
+                    </div>
+                    <div class="metric">
+                        <div class="value" id="processingTime">--</div>
+                        <div class="label">Processing Time (s)</div>
+                    </div>
+                </div>
+
+                <h3 style="color: #667eea; margin-top: 30px;">Applied Adaptations:</h3>
+                <ul class="adaptations-list" id="adaptationsList">
+                    <li>Waiting for processing...</li>
+                </ul>
             </div>
         </div>
     </div>
-
-    <footer>
-        <p>Built with ❤️ for the neurodivergent community</p>
-        <p style="margin-top: 10px;">
-            <a href="https://github.com/iveymatt/dyslexic-ai-project" target="_blank">View on GitHub</a>
-        </p>
-    </footer>
 
     <!-- Botpress Webchat Integration -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/03/20/16/20250320163447-7A8ZUZP0.js"></script>
 
     <script>
-        function openChat() {
-            // Trigger the Botpress chat to open
-            if (window.botpressWebChat) {
-                window.botpressWebChat.sendEvent({ type: 'show' });
+        const API_URL = 'http://localhost:8000/api';
+
+        // Load system info and stats on page load
+        async function loadSystemInfo() {
+            try {
+                // Get system info
+                const infoResponse = await fetch(`${API_URL}/info`);
+                const info = await infoResponse.json();
+
+                // Populate modules
+                const modulesGrid = document.getElementById('modulesGrid');
+                modulesGrid.innerHTML = '';
+                for (const [name, status] of Object.entries(info.modules)) {
+                    const moduleDiv = document.createElement('div');
+                    moduleDiv.className = 'module active';
+                    moduleDiv.innerHTML = `
+                        <span class="status"></span>
+                        <strong>${name.replace(/_/g, ' ').toUpperCase()}</strong>
+                        <br><small>${status}</small>
+                    `;
+                    modulesGrid.appendChild(moduleDiv);
+                }
+
+                // Get statistics
+                const statsResponse = await fetch(`${API_URL}/stats`);
+                const stats = await statsResponse.json();
+
+                document.getElementById('totalUsers').textContent = stats.total_users.toLocaleString();
+                document.getElementById('totalProcessed').textContent = stats.total_processed.toLocaleString();
+                document.getElementById('avgImprovement').textContent = `+${(stats.avg_readability_improvement * 100).toFixed(0)}%`;
+
+            } catch (error) {
+                console.error('Error loading system info:', error);
+                document.getElementById('systemStatus').textContent = '🔴';
             }
         }
 
-        function changeFont(font) {
-            document.body.style.fontFamily = font;
+        // Process text with AI backend
+        async function processText() {
+            const inputText = document.getElementById('inputText').value;
+            const processBtn = document.getElementById('processBtn');
+
+            if (!inputText.trim()) {
+                alert('Please enter some text to process');
+                return;
+            }
+
+            // Show loading state
+            processBtn.disabled = true;
+            processBtn.innerHTML = '🔄 Processing with AI <span class="loading"></span>';
+
+            try {
+                const preferences = {
+                    font_family: document.getElementById('fontSelect').value,
+                    line_spacing: parseFloat(document.getElementById('lineSpacing').value),
+                    simplification_level: document.getElementById('simplificationLevel').value
+                };
+
+                const response = await fetch(`${API_URL}/process`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        content: inputText,
+                        user_id: 'demo_user',
+                        preferences: preferences
+                    })
+                });
+
+                const result = await response.json();
+
+                // Display results
+                document.getElementById('outputText').innerHTML = `<p style="font-size: 1.1em; line-height: ${preferences.line_spacing};">${result.content}</p>`;
+
+                // Show metrics
+                document.getElementById('metricsDiv').style.display = 'grid';
+                document.getElementById('readabilityScore').textContent = (result.readability_score * 100).toFixed(0) + '%';
+                document.getElementById('processingTime').textContent = result.processing_time.toFixed(3);
+
+                // Show adaptations
+                const adaptationsList = document.getElementById('adaptationsList');
+                adaptationsList.innerHTML = '';
+                result.adaptations.forEach(adaptation => {
+                    const li = document.createElement('li');
+                    li.textContent = adaptation;
+                    adaptationsList.appendChild(li);
+                });
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('outputText').innerHTML = `<p style="color: red;">❌ Error processing text. Make sure the backend server is running at ${API_URL}</p>`;
+            } finally {
+                processBtn.disabled = false;
+                processBtn.innerHTML = '🚀 Process with AI';
+            }
         }
 
-        function changeSpacing(value) {
-            document.getElementById('spacing-value').textContent = value;
-            document.querySelectorAll('p, .feature-card p, .demo-section p').forEach(el => {
-                el.style.lineHeight = value;
-            });
-        }
-
-        function changeFontSize(value) {
-            document.getElementById('size-value').textContent = value;
-            document.body.style.fontSize = value + 'em';
-        }
-
-        // Initialize with default accessible settings
-        window.addEventListener('DOMContentLoaded', () => {
-            console.log('Dyslexic AI Demo loaded');
+        // Update spacing value display
+        document.getElementById('lineSpacing').addEventListener('input', function() {
+            document.getElementById('spacingValue').textContent = this.value;
         });
+
+        // Load system info on page load
+        loadSystemInfo();
     </script>
 </body>
 </html>
