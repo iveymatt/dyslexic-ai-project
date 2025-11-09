@@ -4,6 +4,7 @@
   "description": "Production-ready benchmark system for evaluating AI tools through a neurodivergent-first lens",
   "main": "index.js",
   "scripts": {
+    "demo": "tsx benchmark/demo.ts",
     "benchmark": "tsx benchmark/cli/benchmark.ts",
     "benchmark:run": "tsx benchmark/cli/benchmark.ts run",
     "benchmark:validate": "tsx benchmark/cli/benchmark.ts validate",
