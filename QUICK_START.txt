@@ -1,0 +1,103 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                 DREAMZILLA CURRICULUM                            ║
+║                   Quick Start Guide                              ║
+╚══════════════════════════════════════════════════════════════════╝
+
+📍 YOU ARE HERE: /home/user/dyslexic-ai-project
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 FASTEST WAY TO VIEW FILES:
+
+  1. View Life Skills (Week 1-6):
+     cat src/curriculum:/life_skills_manager.py.rtf | less
+
+  2. View Career Development:
+     cat src/curriculum:/career_development.py.rtf | less
+
+  3. View Cognitive Partner:
+     cat src/curriculum:/cognitive_partner.py.rtf | less
+
+  4. View Configuration:
+     cat config/curriculum_config.yaml.rtf | less
+
+  5. View Documentation:
+     cat docs/guides:/curriculum_guide.md.rtf | less
+
+  (Press 'q' to quit less viewer, use arrow keys to scroll)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 WHAT'S INSIDE:
+
+  ✅ 6-Week Life Skills Curriculum
+     Week 1: Cognitive Discovery (Brain Snapshot)
+     Week 2: Executive Function Coach
+     Week 3: Reset Routine Builder
+     Week 4: Energy Audit & Boundaries
+     Week 5: Self-Advocacy Trainer
+     Week 6: Sustainability Planner
+
+  ✅ Career Development System
+     - Job discovery with brain profile matching
+     - SOC/O*NET job codes integration
+     - AI disruption analysis
+     - Personalized learning paths
+
+  ✅ AI Literacy Training
+     - Beginner to Advanced curriculum
+     - Prompt engineering
+     - AI ethics and responsibility
+
+  ✅ Cognitive Partner
+     - Conversational AI interface
+     - Memory management
+     - Progress tracking
+     - Weekly check-ins
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔧 HELPFUL TOOLS:
+
+  Interactive Viewer:
+    ./scripts/view_curriculum.sh
+
+  Summary Guide:
+    ./view_curriculum_summary.sh
+
+  Complete README:
+    cat CURRICULUM_README.md
+
+  Search for content:
+    grep -r "keyword" src/curriculum:/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 QUICK TIPS:
+
+  - All files use .rtf format (matches your existing codebase)
+  - RTF markup doesn't affect code readability
+  - Files integrate with existing Dyslexic AI features
+  - Configuration is fully documented in YAML
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 FILE SIZES:
+
+  life_skills_manager.py.rtf    27KB  (~800 lines)
+  career_development.py.rtf     24KB  (~750 lines)
+  cognitive_partner.py.rtf      25KB  (~750 lines)
+  curriculum_config.yaml.rtf    15KB  (~400 lines)
+  curriculum_guide.md.rtf       15KB  (~700 lines)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ READY TO USE!
+
+  All files are committed and pushed to:
+  Branch: claude/update-neurodivergent-llm-clone-011CV13G9eynzJZaBqETt1hh
+
+  Start viewing now with:
+    ./view_curriculum_summary.sh
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
