@@ -1,0 +1,688 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 """\
+career_development.py\
+Career Exploration and Development Module for Neurodivergent Users\
+\
+This module helps neurodivergent users explore career paths based on their\
+brain profiles, skills, and interests. Integrates with government job codes\
+(SOC/O*NET) and AI disruption analysis.\
+"""\
+\
+from typing import Dict, Any, Optional, List, Tuple\
+from datetime import datetime\
+from enum import Enum\
+\
+class CareerPhase(Enum):\
+    """\
+    Phases of career exploration.\
+    """\
+    DISCOVERY = "discovery"\
+    EXPLORATION = "exploration"\
+    SKILL_MAPPING = "skill_mapping"\
+    PATH_PLANNING = "path_planning"\
+    AI_LITERACY = "ai_literacy"\
+\
+class CareerDevelopmentManager:\
+    """\
+    Manages career exploration and development for neurodivergent users.\
+    \
+    Features:\
+    - Job discovery based on brain profiles\
+    - SOC/O*NET job code mapping\
+    - AI disruption analysis\
+    - Learning path generation\
+    - AI literacy training\
+    """\
+    \
+    def __init__(self, config: Dict[str, Any]):\
+        self.config = config\
+        self.career_profiles = \{\}\
+        self.job_database = self.initialize_job_database()\
+        self.skill_taxonomy = self.initialize_skill_taxonomy()\
+\
+    def initialize_job_database(self) -> Dict[str, Any]:\
+        """\
+        Initialize job database with SOC/O*NET codes.\
+        \
+        Returns:\
+            Job database structure\
+        """\
+        return \{\
+            "categories": [\
+                "Technology & Engineering",\
+                "Creative & Design",\
+                "Healthcare & Social Services",\
+                "Business & Administration",\
+                "Education & Training",\
+                "Research & Analysis"\
+            ],\
+            "jobs": \{\}\
+        \}\
+\
+    def initialize_skill_taxonomy(self) -> Dict[str, List[str]]:\
+        """\
+        Initialize skill taxonomy for mapping.\
+        \
+        Returns:\
+            Skill categories and skills\
+        """\
+        return \{\
+            "cognitive": [\
+                "pattern_recognition",\
+                "problem_solving",\
+                "analytical_thinking",\
+                "creative_thinking",\
+                "attention_to_detail"\
+            ],\
+            "technical": [\
+                "programming",\
+                "data_analysis",\
+                "design_software",\
+                "digital_tools",\
+                "ai_tools"\
+            ],\
+            "interpersonal": [\
+                "communication",\
+                "collaboration",\
+                "empathy",\
+                "advocacy",\
+                "teaching"\
+            ],\
+            "executive": [\
+                "planning",\
+                "organization",\
+                "time_management",\
+                "self_regulation",\
+                "adaptability"\
+            ]\
+        \}\
+\
+    async def job_discovery_gpt(\
+        self,\
+        user_id: str,\
+        brain_profile: Dict[str, Any],\
+        interests: Optional[List[str]] = None\
+    ) -> Dict[str, Any]:\
+        """\
+        Discover career paths based on brain profile and interests.\
+        \
+        Args:\
+            user_id: User identifier\
+            brain_profile: User's cognitive profile from Week 1\
+            interests: User's stated interests\
+            \
+        Returns:\
+            Matched career paths with fit scores\
+        """\
+        # Analyze brain profile strengths\
+        strengths = self.analyze_profile_strengths(brain_profile)\
+        \
+        # Map to career categories\
+        matched_careers = await self.match_careers_to_profile(\
+            strengths=strengths,\
+            interests=interests or []\
+        )\
+        \
+        # Rank by fit score\
+        ranked_careers = self.rank_careers_by_fit(matched_careers, brain_profile)\
+        \
+        return \{\
+            "user_id": user_id,\
+            "strengths": strengths,\
+            "matched_careers": ranked_careers[:10],  # Top 10\
+            "exploration_prompt": "Based on your brain profile, these careers align with your natural strengths. Which ones spark your curiosity?",\
+            "timestamp": datetime.utcnow().isoformat()\
+        \}\
+\
+    def analyze_profile_strengths(\
+        self,\
+        brain_profile: Dict[str, Any]\
+    ) -> List[str]:\
+        """\
+        Analyze brain profile to identify key strengths.\
+        \
+        Args:\
+            brain_profile: User's cognitive profile\
+            \
+        Returns:\
+            List of identified strengths\
+        """\
+        strengths = []\
+        \
+        # Analyze focus patterns\
+        focus = brain_profile.get("focus_patterns", "")\
+        if "deep" in focus.lower() or "hyperfocus" in focus.lower():\
+            strengths.append("deep_work")\
+        if "detail" in focus.lower():\
+            strengths.append("attention_to_detail")\
+        \
+        # Analyze energy rhythms\
+        energy = brain_profile.get("energy_rhythms", "")\
+        if "morning" in energy.lower():\
+            strengths.append("morning_productivity")\
+        if "evening" in energy.lower():\
+            strengths.append("evening_productivity")\
+        \
+        # Analyze motivation triggers\
+        motivation = brain_profile.get("motivation_triggers", "")\
+        if "creative" in motivation.lower():\
+            strengths.append("creativity")\
+        if "problem" in motivation.lower():\
+            strengths.append("problem_solving")\
+        if "help" in motivation.lower():\
+            strengths.append("service_oriented")\
+        \
+        return strengths if strengths else ["adaptable", "unique_perspective"]\
+\
+    async def match_careers_to_profile(\
+        self,\
+        strengths: List[str],\
+        interests: List[str]\
+    ) -> List[Dict[str, Any]]:\
+        """\
+        Match careers to user strengths and interests.\
+        \
+        Args:\
+            strengths: User's identified strengths\
+            interests: User's stated interests\
+            \
+        Returns:\
+            List of matched career options\
+        """\
+        # Career matching logic based on strengths\
+        career_matches = []\
+        \
+        # Sample career mappings\
+        career_db = \{\
+            "deep_work": [\
+                \{"title": "Software Developer", "soc_code": "15-1252", "fit": 0.9\},\
+                \{"title": "Data Analyst", "soc_code": "15-2051", "fit": 0.85\},\
+                \{"title": "Research Scientist", "soc_code": "19-1029", "fit": 0.88\}\
+            ],\
+            "creativity": [\
+                \{"title": "UX Designer", "soc_code": "15-1255", "fit": 0.9\},\
+                \{"title": "Graphic Designer", "soc_code": "27-1024", "fit": 0.87\},\
+                \{"title": "Content Creator", "soc_code": "27-3043", "fit": 0.85\}\
+            ],\
+            "problem_solving": [\
+                \{"title": "Systems Analyst", "soc_code": "15-1211", "fit": 0.88\},\
+                \{"title": "Technical Writer", "soc_code": "27-3042", "fit": 0.82\},\
+                \{"title": "Quality Assurance Analyst", "soc_code": "15-1253", "fit": 0.84\}\
+            ],\
+            "service_oriented": [\
+                \{"title": "Occupational Therapist", "soc_code": "29-1122", "fit": 0.86\},\
+                \{"title": "Special Education Teacher", "soc_code": "25-2057", "fit": 0.88\},\
+                \{"title": "Social Worker", "soc_code": "21-1021", "fit": 0.85\}\
+            ],\
+            "attention_to_detail": [\
+                \{"title": "Quality Control Inspector", "soc_code": "51-9061", "fit": 0.87\},\
+                \{"title": "Accountant", "soc_code": "13-2011", "fit": 0.83\},\
+                \{"title": "Editor", "soc_code": "27-3041", "fit": 0.85\}\
+            ]\
+        \}\
+        \
+        # Match based on strengths\
+        for strength in strengths:\
+            if strength in career_db:\
+                career_matches.extend(career_db[strength])\
+        \
+        # Remove duplicates and sort by fit\
+        unique_careers = \{\}\
+        for career in career_matches:\
+            if career["title"] not in unique_careers:\
+                unique_careers[career["title"]] = career\
+        \
+        return list(unique_careers.values())\
+\
+    def rank_careers_by_fit(\
+        self,\
+        careers: List[Dict[str, Any]],\
+        brain_profile: Dict[str, Any]\
+    ) -> List[Dict[str, Any]]:\
+        """\
+        Rank careers by fit score.\
+        \
+        Args:\
+            careers: List of matched careers\
+            brain_profile: User's brain profile\
+            \
+        Returns:\
+            Sorted list of careers by fit score\
+        """\
+        # Sort by fit score (descending)\
+        return sorted(careers, key=lambda x: x.get("fit", 0), reverse=True)\
+\
+    async def ai_disruption_analysis(\
+        self,\
+        career: Dict[str, Any]\
+    ) -> Dict[str, Any]:\
+        """\
+        Analyze AI disruption risk for a career.\
+        \
+        Args:\
+            career: Career information with SOC code\
+            \
+        Returns:\
+            Disruption analysis with risk level and recommendations\
+        """\
+        # Simple AI disruption risk mapping\
+        # In production, this would use real data from labor statistics\
+        risk_levels = \{\
+            "low": [\
+                "Occupational Therapist",\
+                "Special Education Teacher",\
+                "Social Worker",\
+                "UX Designer"\
+            ],\
+            "medium": [\
+                "Software Developer",\
+                "Data Analyst",\
+                "Graphic Designer",\
+                "Technical Writer"\
+            ],\
+            "high": [\
+                "Quality Control Inspector",\
+                "Accountant",\
+                "Data Entry"\
+            ]\
+        \}\
+        \
+        career_title = career.get("title", "")\
+        risk = "medium"  # Default\
+        \
+        for level, titles in risk_levels.items():\
+            if any(title in career_title for title in titles):\
+                risk = level\
+                break\
+        \
+        recommendations = self.get_ai_adaptation_recommendations(risk, career_title)\
+        \
+        return \{\
+            "career": career_title,\
+            "soc_code": career.get("soc_code"),\
+            "ai_risk_level": risk,\
+            "risk_description": self.get_risk_description(risk),\
+            "recommendations": recommendations,\
+            "future_outlook": self.get_future_outlook(risk, career_title)\
+        \}\
+\
+    def get_risk_description(self, risk: str) -> str:\
+        """\
+        Get description for AI risk level.\
+        \
+        Args:\
+            risk: Risk level (low, medium, high)\
+            \
+        Returns:\
+            Risk description\
+        """\
+        descriptions = \{\
+            "low": "Low automation risk. This role requires human skills like empathy, creativity, and complex problem-solving.",\
+            "medium": "Moderate automation risk. Some tasks may be automated, but core skills remain valuable. Adaptability is key.",\
+            "high": "Higher automation risk. Consider developing complementary AI skills to stay competitive."\
+        \}\
+        return descriptions.get(risk, "Risk level unknown")\
+\
+    def get_ai_adaptation_recommendations(\
+        self,\
+        risk: str,\
+        career_title: str\
+    ) -> List[str]:\
+        """\
+        Get recommendations for adapting to AI in career.\
+        \
+        Args:\
+            risk: AI risk level\
+            career_title: Career title\
+            \
+        Returns:\
+            List of recommendations\
+        """\
+        base_recommendations = [\
+            "Learn AI literacy basics",\
+            "Understand AI tools in your field",\
+            "Develop uniquely human skills"\
+        ]\
+        \
+        if risk == "high":\
+            base_recommendations.extend([\
+                "Consider upskilling in AI/ML",\
+                "Pivot to AI-adjacent roles",\
+                "Focus on creative and strategic thinking"\
+            ])\
+        elif risk == "medium":\
+            base_recommendations.extend([\
+                "Learn to work alongside AI tools",\
+                "Develop specialized expertise",\
+                "Build strong interpersonal skills"\
+            ])\
+        else:  # low\
+            base_recommendations.extend([\
+                "Use AI as a productivity tool",\
+                "Focus on your unique strengths",\
+                "Stay current with industry AI trends"\
+            ])\
+        \
+        return base_recommendations\
+\
+    def get_future_outlook(\
+        self,\
+        risk: str,\
+        career_title: str\
+    ) -> str:\
+        """\
+        Get future outlook for career.\
+        \
+        Args:\
+            risk: AI risk level\
+            career_title: Career title\
+            \
+        Returns:\
+            Future outlook description\
+        """\
+        if risk == "low":\
+            return "Strong future demand. Human-centered skills are increasingly valuable."\
+        elif risk == "medium":\
+            return "Evolving role. Combination of human expertise and AI tools will be standard."\
+        else:\
+            return "Transforming field. Adaptation and continuous learning are essential."\
+\
+    async def generate_learning_path(\
+        self,\
+        user_id: str,\
+        target_career: Dict[str, Any],\
+        current_skills: List[str]\
+    ) -> Dict[str, Any]:\
+        """\
+        Generate personalized learning path for career goal.\
+        \
+        Args:\
+            user_id: User identifier\
+            target_career: Target career information\
+            current_skills: User's current skills\
+            \
+        Returns:\
+            Structured learning path with milestones\
+        """\
+        # Identify skill gaps\
+        required_skills = self.get_required_skills_for_career(target_career)\
+        skill_gaps = [skill for skill in required_skills if skill not in current_skills]\
+        \
+        # Generate learning milestones\
+        milestones = self.create_learning_milestones(skill_gaps, target_career)\
+        \
+        return \{\
+            "user_id": user_id,\
+            "target_career": target_career.get("title"),\
+            "current_skills": current_skills,\
+            "skill_gaps": skill_gaps,\
+            "learning_path": milestones,\
+            "estimated_timeline": self.estimate_timeline(skill_gaps),\
+            "resources": self.get_learning_resources(skill_gaps),\
+            "timestamp": datetime.utcnow().isoformat()\
+        \}\
+\
+    def get_required_skills_for_career(\
+        self,\
+        career: Dict[str, Any]\
+    ) -> List[str]:\
+        """\
+        Get required skills for a career.\
+        \
+        Args:\
+            career: Career information\
+            \
+        Returns:\
+            List of required skills\
+        """\
+        # Sample skill requirements by career\
+        skill_map = \{\
+            "Software Developer": ["programming", "problem_solving", "version_control", "testing", "algorithms"],\
+            "UX Designer": ["design_software", "user_research", "prototyping", "communication", "empathy"],\
+            "Data Analyst": ["data_analysis", "statistics", "sql", "visualization", "critical_thinking"],\
+            "Occupational Therapist": ["empathy", "assessment", "treatment_planning", "communication", "adaptability"]\
+        \}\
+        \
+        career_title = career.get("title", "")\
+        return skill_map.get(career_title, ["communication", "problem_solving", "adaptability"])\
+\
+    def create_learning_milestones(\
+        self,\
+        skill_gaps: List[str],\
+        target_career: Dict[str, Any]\
+    ) -> List[Dict[str, Any]]:\
+        """\
+        Create learning milestones for skill gaps.\
+        \
+        Args:\
+            skill_gaps: Skills to learn\
+            target_career: Target career\
+            \
+        Returns:\
+            List of learning milestones\
+        """\
+        milestones = []\
+        \
+        for i, skill in enumerate(skill_gaps, 1):\
+            milestone = \{\
+                "phase": i,\
+                "skill": skill,\
+                "objective": f"Develop foundational competency in \{skill\}",\
+                "activities": [\
+                    "Complete online course or tutorial",\
+                    "Practice with real-world projects",\
+                    "Join community or study group"\
+                ],\
+                "success_criteria": f"Can demonstrate \{skill\} in portfolio or project",\
+                "estimated_duration": "4-8 weeks"\
+            \}\
+            milestones.append(milestone)\
+        \
+        return milestones\
+\
+    def estimate_timeline(self, skill_gaps: List[str]) -> str:\
+        """\
+        Estimate timeline for learning path.\
+        \
+        Args:\
+            skill_gaps: Skills to learn\
+            \
+        Returns:\
+            Estimated timeline\
+        """\
+        weeks = len(skill_gaps) * 6  # Average 6 weeks per skill\
+        months = weeks // 4\
+        return f"\{months\}-\{months + 3\} months (with consistent effort)"\
+\
+    def get_learning_resources(\
+        self,\
+        skill_gaps: List[str]\
+    ) -> Dict[str, List[str]]:\
+        """\
+        Get learning resources for skill gaps.\
+        \
+        Args:\
+            skill_gaps: Skills to learn\
+            \
+        Returns:\
+            Dictionary of resources by skill\
+        """\
+        resources = \{\}\
+        \
+        for skill in skill_gaps:\
+            resources[skill] = [\
+                f"Online courses for \{skill\}",\
+                f"Practice projects for \{skill\}",\
+                f"Community forums for \{skill\}",\
+                f"Books and tutorials on \{skill\}"\
+            ]\
+        \
+        return resources\
+\
+    async def ai_literacy_trainer(\
+        self,\
+        user_id: str,\
+        skill_level: str = "beginner"\
+    ) -> Dict[str, Any]:\
+        """\
+        Provide AI literacy training for users.\
+        \
+        Args:\
+            user_id: User identifier\
+            skill_level: Current AI skill level (beginner, intermediate, advanced)\
+            \
+        Returns:\
+            AI literacy curriculum and resources\
+        """\
+        curriculum = \{\
+            "beginner": [\
+                \{\
+                    "module": "What is AI?",\
+                    "topics": ["AI basics", "Machine learning", "Types of AI"],\
+                    "duration": "1 week"\
+                \},\
+                \{\
+                    "module": "AI in Daily Life",\
+                    "topics": ["AI applications", "AI ethics", "Privacy"],\
+                    "duration": "1 week"\
+                \},\
+                \{\
+                    "module": "Using AI Tools",\
+                    "topics": ["ChatGPT basics", "Prompt engineering", "AI assistants"],\
+                    "duration": "2 weeks"\
+                \}\
+            ],\
+            "intermediate": [\
+                \{\
+                    "module": "Advanced Prompting",\
+                    "topics": ["Prompt techniques", "Context management", "Output optimization"],\
+                    "duration": "2 weeks"\
+                \},\
+                \{\
+                    "module": "AI in Your Field",\
+                    "topics": ["Industry-specific AI", "Tool selection", "Workflow integration"],\
+                    "duration": "2 weeks"\
+                \},\
+                \{\
+                    "module": "AI Ethics & Responsibility",\
+                    "topics": ["Bias", "Transparency", "Accountability"],\
+                    "duration": "1 week"\
+                \}\
+            ],\
+            "advanced": [\
+                \{\
+                    "module": "AI Development Basics",\
+                    "topics": ["ML fundamentals", "Model training", "APIs"],\
+                    "duration": "4 weeks"\
+                \},\
+                \{\
+                    "module": "AI Strategy",\
+                    "topics": ["AI adoption", "Change management", "Future trends"],\
+                    "duration": "2 weeks"\
+                \}\
+            ]\
+        \}\
+        \
+        return \{\
+            "user_id": user_id,\
+            "skill_level": skill_level,\
+            "curriculum": curriculum.get(skill_level, curriculum["beginner"]),\
+            "practice_exercises": self.get_ai_practice_exercises(skill_level),\
+            "certification_path": "Complete all modules to earn AI Literacy Certificate",\
+            "timestamp": datetime.utcnow().isoformat()\
+        \}\
+\
+    def get_ai_practice_exercises(\
+        self,\
+        skill_level: str\
+    ) -> List[Dict[str, str]]:\
+        """\
+        Get practice exercises for AI literacy.\
+        \
+        Args:\
+            skill_level: Current skill level\
+            \
+        Returns:\
+            List of practice exercises\
+        """\
+        exercises = \{\
+            "beginner": [\
+                \{"exercise": "Write 5 effective prompts for ChatGPT", "skill": "prompt_engineering"\},\
+                \{"exercise": "Identify AI in 10 daily applications", "skill": "ai_awareness"\},\
+                \{"exercise": "Compare 3 AI tools for a task", "skill": "tool_evaluation"\}\
+            ],\
+            "intermediate": [\
+                \{"exercise": "Create a prompt chain for complex task", "skill": "advanced_prompting"\},\
+                \{"exercise": "Integrate AI tool into your workflow", "skill": "workflow_integration"\},\
+                \{"exercise": "Evaluate AI output for bias", "skill": "critical_analysis"\}\
+            ],\
+            "advanced": [\
+                \{"exercise": "Build a simple AI model", "skill": "development"\},\
+                \{"exercise": "Design AI adoption strategy", "skill": "strategy"\},\
+                \{"exercise": "Present AI ethics framework", "skill": "leadership"\}\
+            ]\
+        \}\
+        \
+        return exercises.get(skill_level, exercises["beginner"])\
+\
+    async def track_career_progress(\
+        self,\
+        user_id: str,\
+        milestone_id: str,\
+        status: str\
+    ) -> Dict[str, Any]:\
+        """\
+        Track user's progress on career learning path.\
+        \
+        Args:\
+            user_id: User identifier\
+            milestone_id: Milestone being tracked\
+            status: Progress status (not_started, in_progress, completed)\
+            \
+        Returns:\
+            Updated progress information\
+        """\
+        if user_id not in self.career_profiles:\
+            self.career_profiles[user_id] = \{"progress": []\}\
+        \
+        progress_entry = \{\
+            "milestone_id": milestone_id,\
+            "status": status,\
+            "updated_at": datetime.utcnow().isoformat()\
+        \}\
+        \
+        self.career_profiles[user_id]["progress"].append(progress_entry)\
+        \
+        return \{\
+            "user_id": user_id,\
+            "current_progress": self.career_profiles[user_id]["progress"],\
+            "completion_rate": self.calculate_completion_rate(user_id)\
+        \}\
+\
+    def calculate_completion_rate(self, user_id: str) -> float:\
+        """\
+        Calculate completion rate for user's learning path.\
+        \
+        Args:\
+            user_id: User identifier\
+            \
+        Returns:\
+            Completion rate as percentage\
+        """\
+        if user_id not in self.career_profiles:\
+            return 0.0\
+        \
+        progress = self.career_profiles[user_id]["progress"]\
+        if not progress:\
+            return 0.0\
+        \
+        completed = sum(1 for entry in progress if entry["status"] == "completed")\
+        total = len(progress)\
+        \
+        return (completed / total) * 100 if total > 0 else 0.0}

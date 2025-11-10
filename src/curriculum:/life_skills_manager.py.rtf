@@ -1,0 +1,763 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 """\
+life_skills_manager.py\
+DreamZilla 6-Week Neurodivergent Life & Career Skills Program\
+\
+This module implements the comprehensive life skills curriculum for neurodivergent\
+young adults (ages 18-24), focusing on self-awareness, executive function,\
+energy management, communication, and career readiness.\
+"""\
+\
+from typing import Dict, Any, Optional, List\
+from datetime import datetime\
+from enum import Enum\
+\
+class WeekModule(Enum):\
+    """\
+    Enumeration of the 6-week curriculum modules.\
+    """\
+    COGNITIVE_DISCOVERY = 1\
+    EXECUTIVE_FUNCTION = 2\
+    RESET_ROUTINE = 3\
+    ENERGY_AUDIT = 4\
+    SELF_ADVOCACY = 5\
+    SUSTAINABILITY = 6\
+\
+class LifeSkillsManager:\
+    """\
+    Manages the DreamZilla 6-Week Life Skills curriculum for neurodivergent users.\
+    \
+    Features:\
+    - Cognitive discovery and self-awareness\
+    - Executive function coaching\
+    - Energy management and boundaries\
+    - Self-advocacy training\
+    - Sustainability planning\
+    """\
+    \
+    def __init__(self, config: Dict[str, Any]):\
+        self.config = config\
+        self.user_profiles = \{\}\
+        self.progress_tracker = \{\}\
+        self.session_history = []\
+\
+    async def start_module(\
+        self,\
+        user_id: str,\
+        module: WeekModule,\
+        context: Optional[Dict[str, Any]] = None\
+    ) -> Dict[str, Any]:\
+        """\
+        Initialize a new module for a user.\
+        \
+        Args:\
+            user_id: Unique identifier for the user\
+            module: The week module to start\
+            context: Additional context for the module\
+            \
+        Returns:\
+            Dict containing module introduction and initial prompt\
+        """\
+        module_map = \{\
+            WeekModule.COGNITIVE_DISCOVERY: self.cognitive_discovery_gpt,\
+            WeekModule.EXECUTIVE_FUNCTION: self.executive_function_coach_gpt,\
+            WeekModule.RESET_ROUTINE: self.reset_routine_builder_gpt,\
+            WeekModule.ENERGY_AUDIT: self.energy_audit_and_boundary_gpt,\
+            WeekModule.SELF_ADVOCACY: self.self_advocacy_trainer_gpt,\
+            WeekModule.SUSTAINABILITY: self.sustainability_planner_gpt\
+        \}\
+        \
+        handler = module_map.get(module)\
+        if handler:\
+            return await handler(user_id, "start", context)\
+        \
+        raise ValueError(f"Unknown module: \{module\}")\
+\
+    # ========== WEEK 1: COGNITIVE DISCOVERY ==========\
+    \
+    async def cognitive_discovery_gpt(\
+        self,\
+        user_id: str,\
+        action: str = "start",\
+        context: Optional[Dict[str, Any]] = None\
+    ) -> Dict[str, Any]:\
+        """\
+        Week 1: Help user build self-awareness by guiding them through how their brain works.\
+        \
+        Inputs:\
+        - Voice or text reflection prompts\
+        - Focus, energy, motivation insights\
+        \
+        Outputs:\
+        - Personalized Brain Snapshot summary\
+        - brain_profile object: \{focus_patterns, energy_rhythms, motivation_triggers\}\
+        \
+        Args:\
+            user_id: User identifier\
+            action: Action to perform (start, reflect, generate_profile)\
+            context: User responses and insights\
+            \
+        Returns:\
+            Dict with prompts or profile results\
+        """\
+        if action == "start":\
+            return \{\
+                "module": "Cognitive Discovery",\
+                "week": 1,\
+                "prompt": "Let's explore how your brain naturally works. When is it easiest for you to focus? What gives you energy? What helps you stay motivated?",\
+                "reflection_areas": [\
+                    "focus_patterns",\
+                    "energy_rhythms",\
+                    "motivation_triggers",\
+                    "sensory_preferences",\
+                    "processing_style"\
+                ],\
+                "tone": "warm, peer-coach style",\
+                "next_steps": ["reflect", "generate_profile"]\
+            \}\
+        \
+        elif action == "generate_profile":\
+            # Generate brain profile from user responses\
+            profile = await self.create_brain_profile(user_id, context)\
+            await self.save_user_profile(user_id, "brain_profile", profile)\
+            \
+            return \{\
+                "brain_profile": profile,\
+                "summary": self.generate_profile_summary(profile),\
+                "completed": True\
+            \}\
+        \
+        return \{\
+            "status": "in_progress",\
+            "current_step": action\
+        \}\
+\
+    async def create_brain_profile(\
+        self,\
+        user_id: str,\
+        responses: Optional[Dict[str, Any]]\
+    ) -> Dict[str, Any]:\
+        """\
+        Create a brain profile from user responses.\
+        \
+        Args:\
+            user_id: User identifier\
+            responses: User's reflection responses\
+            \
+        Returns:\
+            Structured brain profile\
+        """\
+        return \{\
+            "focus_patterns": responses.get("focus") if responses else "Not yet identified",\
+            "energy_rhythms": responses.get("energy") if responses else "Not yet identified",\
+            "motivation_triggers": responses.get("motivation") if responses else "Not yet identified",\
+            "timestamp": datetime.utcnow().isoformat()\
+        \}\
+\
+    # ========== WEEK 2: EXECUTIVE FUNCTION COACH ==========\
+    \
+    async def executive_function_coach_gpt(\
+        self,\
+        user_id: str,\
+        action: str = "start",\
+        context: Optional[Dict[str, Any]] = None\
+    ) -> Dict[str, Any]:\
+        """\
+        Week 2: Help user identify EF breakdowns and co-design support systems.\
+        \
+        Inputs:\
+        - Cognitive stuck points (Start → Focus → Shift → Finish → Recover)\
+        - Past task habits\
+        \
+        Outputs:\
+        - system_fit_map object\
+        - Small experiment plan to try this week\
+        \
+        Args:\
+            user_id: User identifier\
+            action: Action to perform\
+            context: User responses\
+            \
+        Returns:\
+            Dict with coaching prompts or system map\
+        """\
+        if action == "start":\
+            return \{\
+                "module": "Executive Function Coach",\
+                "week": 2,\
+                "prompt": "Where do you usually get stuck in a task — starting, focusing, or finishing? Let's create a system that works with your brain, not against it.",\
+                "ef_phases": [\
+                    "Start: Initiating tasks",\
+                    "Focus: Maintaining attention",\
+                    "Shift: Transitioning between tasks",\
+                    "Finish: Completing tasks",\
+                    "Recover: Resting and resetting"\
+                ],\
+                "assessment_questions": [\
+                    "Which phase is hardest for you?",\
+                    "What strategies have you tried?",\
+                    "What support would help most?"\
+                ],\
+                "next_steps": ["identify_stuck_points", "create_system_map"]\
+            \}\
+        \
+        elif action == "create_system_map":\
+            system_map = await self.create_system_fit_map(user_id, context)\
+            await self.save_user_profile(user_id, "system_fit_map", system_map)\
+            \
+            return \{\
+                "system_fit_map": system_map,\
+                "experiment_plan": self.generate_experiment_plan(system_map),\
+                "completed": True\
+            \}\
+        \
+        return \{\
+            "status": "in_progress",\
+            "current_step": action\
+        \}\
+\
+    async def create_system_fit_map(\
+        self,\
+        user_id: str,\
+        responses: Optional[Dict[str, Any]]\
+    ) -> Dict[str, Any]:\
+        """\
+        Create executive function system fit map.\
+        \
+        Args:\
+            user_id: User identifier\
+            responses: User's EF assessment responses\
+            \
+        Returns:\
+            System fit map with stuck points and supports\
+        """\
+        return \{\
+            "stuck_points": responses.get("stuck_points", []) if responses else [],\
+            "supports": responses.get("supports", []) if responses else [],\
+            "strategies": responses.get("strategies", []) if responses else [],\
+            "timestamp": datetime.utcnow().isoformat()\
+        \}\
+\
+    def generate_experiment_plan(\
+        self,\
+        system_map: Dict[str, Any]\
+    ) -> Dict[str, Any]:\
+        """\
+        Generate small experiment plan based on system map.\
+        \
+        Args:\
+            system_map: User's system fit map\
+            \
+        Returns:\
+            Experiment plan with specific action steps\
+        """\
+        return \{\
+            "experiment": "Try one new support strategy this week",\
+            "target_phase": system_map.get("stuck_points", ["start"])[0] if system_map.get("stuck_points") else "start",\
+            "duration": "1 week",\
+            "tracking": "Daily check-in: Did the strategy help?"\
+        \}\
+\
+    # ========== WEEK 3: RESET ROUTINE BUILDER ==========\
+    \
+    async def reset_routine_builder_gpt(\
+        self,\
+        user_id: str,\
+        action: str = "start",\
+        context: Optional[Dict[str, Any]] = None\
+    ) -> Dict[str, Any]:\
+        """\
+        Week 3: Help user create a personalized 3-step regulation plan.\
+        \
+        Inputs:\
+        - Overwhelm triggers, early signs, effective tools\
+        \
+        Outputs:\
+        - reset_routine object: \{notice_cue, interrupt_action, recovery_tool\}\
+        - Optional visualization walkthrough\
+        \
+        Args:\
+            user_id: User identifier\
+            action: Action to perform\
+            context: User responses\
+            \
+        Returns:\
+            Dict with routine building prompts or completed routine\
+        """\
+        if action == "start":\
+            return \{\
+                "module": "Reset Routine Builder",\
+                "week": 3,\
+                "prompt": "What are some early signs that you're getting overwhelmed? Let's build a reset plan that helps you come back online when things get hard.",\
+                "routine_steps": [\
+                    "Notice: Recognize early warning signs",\
+                    "Interrupt: Break the overwhelm cycle",\
+                    "Recover: Restore your baseline"\
+                ],\
+                "reflection_prompts": [\
+                    "What are your overwhelm triggers?",\
+                    "What early signs show you're getting stressed?",\
+                    "What tools help you reset?"\
+                ],\
+                "next_steps": ["identify_triggers", "build_routine"]\
+            \}\
+        \
+        elif action == "build_routine":\
+            routine = await self.create_reset_routine(user_id, context)\
+            await self.save_user_profile(user_id, "reset_routine", routine)\
+            \
+            return \{\
+                "reset_routine": routine,\
+                "visualization": self.create_routine_visualization(routine),\
+                "practice_plan": "Try using this routine once this week",\
+                "completed": True\
+            \}\
+        \
+        return \{\
+            "status": "in_progress",\
+            "current_step": action\
+        \}\
+\
+    async def create_reset_routine(\
+        self,\
+        user_id: str,\
+        responses: Optional[Dict[str, Any]]\
+    ) -> Dict[str, Any]:\
+        """\
+        Create personalized reset routine.\
+        \
+        Args:\
+            user_id: User identifier\
+            responses: User's trigger and tool responses\
+            \
+        Returns:\
+            3-step reset routine\
+        """\
+        return \{\
+            "notice": responses.get("early_signs") if responses else "Physical tension, racing thoughts",\
+            "interrupt": responses.get("interrupt_action") if responses else "Take 3 deep breaths, step away",\
+            "recover": responses.get("recovery_tool") if responses else "Rest, sensory activity, grounding",\
+            "timestamp": datetime.utcnow().isoformat()\
+        \}\
+\
+    def create_routine_visualization(\
+        self,\
+        routine: Dict[str, Any]\
+    ) -> str:\
+        """\
+        Create text visualization of reset routine.\
+        \
+        Args:\
+            routine: Reset routine object\
+            \
+        Returns:\
+            Formatted routine visualization\
+        """\
+        return f"""\
+═══════════════════════════════════\
+       YOUR RESET ROUTINE\
+═══════════════════════════════════\
+\
+1️⃣  NOTICE: \{routine.get('notice', 'Early warning signs')\}\
+\
+2️⃣  INTERRUPT: \{routine.get('interrupt', 'Break the cycle')\}\
+\
+3️⃣  RECOVER: \{routine.get('recover', 'Restore baseline')\}\
+\
+═══════════════════════════════════\
+"""\
+\
+    # ========== WEEK 4: ENERGY AUDIT & BOUNDARIES ==========\
+    \
+    async def energy_audit_and_boundary_gpt(\
+        self,\
+        user_id: str,\
+        action: str = "start",\
+        context: Optional[Dict[str, Any]] = None\
+    ) -> Dict[str, Any]:\
+        """\
+        Week 4: Help user manage energy leaks and create boundaries.\
+        \
+        Inputs:\
+        - Weekly energy map (+/- by activity)\
+        - Sample boundary scenarios\
+        \
+        Outputs:\
+        - Energy Audit Table\
+        - Drafted boundary scripts using: Need + Reason + Respectful Closure\
+        \
+        Args:\
+            user_id: User identifier\
+            action: Action to perform\
+            context: User responses\
+            \
+        Returns:\
+            Dict with energy audit or boundary scripts\
+        """\
+        if action == "start":\
+            return \{\
+                "module": "Energy Audit & Boundaries",\
+                "week": 4,\
+                "prompt": "Let's track where your energy goes this week. What drains you most? What small boundary could help protect your time or space?",\
+                "tracking_areas": [\
+                    "Social interactions",\
+                    "Work/Study tasks",\
+                    "Sensory environments",\
+                    "Transitions",\
+                    "Self-care activities"\
+                ],\
+                "boundary_framework": "Need + Reason + Respectful Closure",\
+                "next_steps": ["track_energy", "create_boundaries"]\
+            \}\
+        \
+        elif action == "create_boundaries":\
+            audit = await self.create_energy_audit(user_id, context)\
+            boundaries = await self.create_boundary_scripts(user_id, context)\
+            \
+            await self.save_user_profile(user_id, "energy_audit", audit)\
+            await self.save_user_profile(user_id, "boundaries", boundaries)\
+            \
+            return \{\
+                "energy_audit": audit,\
+                "boundaries": boundaries,\
+                "completed": True\
+            \}\
+        \
+        return \{\
+            "status": "in_progress",\
+            "current_step": action\
+        \}\
+\
+    async def create_energy_audit(\
+        self,\
+        user_id: str,\
+        responses: Optional[Dict[str, Any]]\
+    ) -> List[Dict[str, Any]]:\
+        """\
+        Create energy audit from user tracking.\
+        \
+        Args:\
+            user_id: User identifier\
+            responses: User's energy tracking data\
+            \
+        Returns:\
+            List of activities with energy impact\
+        """\
+        if not responses or "activities" not in responses:\
+            return []\
+        \
+        return responses["activities"]\
+\
+    async def create_boundary_scripts(\
+        self,\
+        user_id: str,\
+        responses: Optional[Dict[str, Any]]\
+    ) -> List[Dict[str, Any]]:\
+        """\
+        Create boundary scripts using Need + Reason + Closure framework.\
+        \
+        Args:\
+            user_id: User identifier\
+            responses: User's boundary scenarios\
+            \
+        Returns:\
+            List of drafted boundary scripts\
+        """\
+        if not responses or "scenarios" not in responses:\
+            return []\
+        \
+        scripts = []\
+        for scenario in responses["scenarios"]:\
+            script = \{\
+                "scenario": scenario.get("situation"),\
+                "script": f"\{scenario.get('need')\}. \{scenario.get('reason')\}. \{scenario.get('closure')\}.",\
+                "tone": scenario.get("tone", "respectful")\
+            \}\
+            scripts.append(script)\
+        \
+        return scripts\
+\
+    # ========== WEEK 5: SELF-ADVOCACY TRAINER ==========\
+    \
+    async def self_advocacy_trainer_gpt(\
+        self,\
+        user_id: str,\
+        action: str = "start",\
+        context: Optional[Dict[str, Any]] = None\
+    ) -> Dict[str, Any]:\
+        """\
+        Week 5: Help user write and rehearse advocacy statements.\
+        \
+        Inputs:\
+        - Communication scenario (professor, peer, supervisor)\
+        - Preferred tone (direct, warm, gentle)\
+        \
+        Outputs:\
+        - Drafted advocacy script: Describe → Need → Request\
+        - Option to role-play with Claude as peer or authority figure\
+        \
+        Args:\
+            user_id: User identifier\
+            action: Action to perform\
+            context: User responses\
+            \
+        Returns:\
+            Dict with advocacy scripts or role-play results\
+        """\
+        if action == "start":\
+            return \{\
+                "module": "Self-Advocacy Trainer",\
+                "week": 5,\
+                "prompt": "Want to practice asking for what you need? Let's write a self-advocacy script together and try it in a safe role-play.",\
+                "advocacy_framework": "Describe → Need → Request",\
+                "scenarios": [\
+                    "Requesting accommodations from professor",\
+                    "Setting boundaries with peers",\
+                    "Advocating at work/internship"\
+                ],\
+                "tone_options": ["direct", "warm", "gentle", "formal"],\
+                "next_steps": ["draft_script", "role_play"]\
+            \}\
+        \
+        elif action == "draft_script":\
+            script = await self.create_advocacy_script(user_id, context)\
+            await self.save_user_profile(user_id, "advocacy_script", script)\
+            \
+            return \{\
+                "advocacy_script": script,\
+                "ready_for_roleplay": True,\
+                "completed": action == "draft_script"\
+            \}\
+        \
+        elif action == "role_play":\
+            return \{\
+                "role_play_mode": True,\
+                "character": context.get("character", "supportive authority figure"),\
+                "instructions": "Practice your advocacy script. I'll respond as your chosen character.",\
+                "completed": True\
+            \}\
+        \
+        return \{\
+            "status": "in_progress",\
+            "current_step": action\
+        \}\
+\
+    async def create_advocacy_script(\
+        self,\
+        user_id: str,\
+        responses: Optional[Dict[str, Any]]\
+    ) -> Dict[str, Any]:\
+        """\
+        Create self-advocacy script using Describe → Need → Request.\
+        \
+        Args:\
+            user_id: User identifier\
+            responses: User's scenario and preferences\
+            \
+        Returns:\
+            Structured advocacy script\
+        """\
+        if not responses:\
+            return \{\}\
+        \
+        return \{\
+            "scenario": responses.get("scenario"),\
+            "describe": responses.get("describe", "I notice that..."),\
+            "need": responses.get("need", "I need..."),\
+            "request": responses.get("request", "Could you..."),\
+            "tone": responses.get("tone", "warm"),\
+            "full_script": f"\{responses.get('describe')\}. \{responses.get('need')\}. \{responses.get('request')\}.",\
+            "timestamp": datetime.utcnow().isoformat()\
+        \}\
+\
+    # ========== WEEK 6: SUSTAINABILITY PLANNER ==========\
+    \
+    async def sustainability_planner_gpt(\
+        self,\
+        user_id: str,\
+        action: str = "start",\
+        context: Optional[Dict[str, Any]] = None\
+    ) -> Dict[str, Any]:\
+        """\
+        Week 6: Build a weekly/monthly plan that integrates all tools.\
+        \
+        Inputs:\
+        - Brain Snapshot, Reset Routine, System Fit Map, Advocacy Script, etc.\
+        - Reflection on gaps and maintenance challenges\
+        \
+        Outputs:\
+        - sustainability_map object with Structure, Regulation, Support layers\
+        - Optional weekly check-in reminders\
+        \
+        Args:\
+            user_id: User identifier\
+            action: Action to perform\
+            context: User responses\
+            \
+        Returns:\
+            Dict with sustainability plan\
+        """\
+        if action == "start":\
+            return \{\
+                "module": "Sustainability Planner",\
+                "week": 6,\
+                "prompt": "Let's pull all your tools together. How do you want to organize your support system each week so you don't burn out?",\
+                "integration_areas": [\
+                    "Structure: Task systems & routines",\
+                    "Regulation: Reset routines & energy management",\
+                    "Support: Boundaries & advocacy"\
+                ],\
+                "reflection_prompts": [\
+                    "What tools will you use daily?",\
+                    "What do you need weekly check-ins for?",\
+                    "What support keeps you sustainable?"\
+                ],\
+                "next_steps": ["review_tools", "build_sustainability_map"]\
+            \}\
+        \
+        elif action == "build_sustainability_map":\
+            # Gather all previous modules\
+            profile = await self.get_user_profile(user_id)\
+            sustainability = await self.create_sustainability_map(user_id, profile, context)\
+            \
+            await self.save_user_profile(user_id, "sustainability_map", sustainability)\
+            \
+            return \{\
+                "sustainability_map": sustainability,\
+                "weekly_plan": self.generate_weekly_plan(sustainability),\
+                "check_in_reminders": True,\
+                "program_completed": True,\
+                "completed": True\
+            \}\
+        \
+        return \{\
+            "status": "in_progress",\
+            "current_step": action\
+        \}\
+\
+    async def create_sustainability_map(\
+        self,\
+        user_id: str,\
+        profile: Dict[str, Any],\
+        responses: Optional[Dict[str, Any]]\
+    ) -> Dict[str, Any]:\
+        """\
+        Create sustainability map integrating all tools.\
+        \
+        Args:\
+            user_id: User identifier\
+            profile: Complete user profile with all modules\
+            responses: User's sustainability preferences\
+            \
+        Returns:\
+            Integrated sustainability map\
+        """\
+        return \{\
+            "structure": [\
+                profile.get("system_fit_map", \{\}),\
+                responses.get("daily_routines", []) if responses else []\
+            ],\
+            "regulation": [\
+                profile.get("reset_routine", \{\}),\
+                profile.get("energy_audit", [])\
+            ],\
+            "support": [\
+                profile.get("boundaries", []),\
+                profile.get("advocacy_script", \{\})\
+            ],\
+            "timestamp": datetime.utcnow().isoformat()\
+        \}\
+\
+    def generate_weekly_plan(\
+        self,\
+        sustainability: Dict[str, Any]\
+    ) -> Dict[str, Any]:\
+        """\
+        Generate weekly maintenance plan.\
+        \
+        Args:\
+            sustainability: Sustainability map\
+            \
+        Returns:\
+            Weekly plan with daily/weekly tasks\
+        """\
+        return \{\
+            "daily": [\
+                "Morning: Check brain baseline",\
+                "Midday: Use reset routine if needed",\
+                "Evening: Reflect on energy"\
+            ],\
+            "weekly": [\
+                "Review system fit map",\
+                "Check boundaries",\
+                "Practice advocacy"\
+            ],\
+            "monthly": [\
+                "Full sustainability review",\
+                "Update tools as needed"\
+            ]\
+        \}\
+\
+    # ========== UTILITY METHODS ==========\
+\
+    async def get_user_profile(\
+        self,\
+        user_id: str\
+    ) -> Dict[str, Any]:\
+        """\
+        Retrieve complete user profile.\
+        \
+        Args:\
+            user_id: User identifier\
+            \
+        Returns:\
+            Complete user profile with all modules\
+        """\
+        return self.user_profiles.get(user_id, \{\})\
+\
+    async def save_user_profile(\
+        self,\
+        user_id: str,\
+        key: str,\
+        data: Any\
+    ) -> None:\
+        """\
+        Save user profile data.\
+        \
+        Args:\
+            user_id: User identifier\
+            key: Profile key\
+            data: Data to save\
+        """\
+        if user_id not in self.user_profiles:\
+            self.user_profiles[user_id] = \{\}\
+        \
+        self.user_profiles[user_id][key] = data\
+\
+    def generate_profile_summary(\
+        self,\
+        profile: Dict[str, Any]\
+    ) -> str:\
+        """\
+        Generate human-readable profile summary.\
+        \
+        Args:\
+            profile: Brain profile or other profile data\
+            \
+        Returns:\
+            Formatted summary text\
+        """\
+        return f"""\
+Your Brain Snapshot:\
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\
+Focus Patterns: \{profile.get('focus_patterns', 'Not identified')\}\
+Energy Rhythms: \{profile.get('energy_rhythms', 'Not identified')\}\
+Motivation Triggers: \{profile.get('motivation_triggers', 'Not identified')\}\
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\
+"""}

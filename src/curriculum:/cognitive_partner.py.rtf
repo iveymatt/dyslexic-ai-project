@@ -1,0 +1,752 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 """\
+cognitive_partner.py\
+Cognitive Partner GPT Agent System for Neurodivergent Users\
+\
+This module provides the conversational AI interface that integrates life skills,\
+career development, and AI literacy training into a cohesive cognitive partner\
+experience for neurodivergent young adults.\
+"""\
+\
+from typing import Dict, Any, Optional, List\
+from datetime import datetime\
+from enum import Enum\
+\
+# Import curriculum modules\
+# from life_skills_manager import LifeSkillsManager, WeekModule\
+# from career_development import CareerDevelopmentManager, CareerPhase\
+\
+class ConversationMode(Enum):\
+    """\
+    Conversation modes for the cognitive partner.\
+    """\
+    ONBOARDING = "onboarding"\
+    LIFE_SKILLS = "life_skills"\
+    CAREER_EXPLORATION = "career_exploration"\
+    AI_LITERACY = "ai_literacy"\
+    REFLECTION = "reflection"\
+    CHECK_IN = "check_in"\
+\
+class ToneStyle(Enum):\
+    """\
+    Conversation tone styles.\
+    """\
+    WARM = "warm"\
+    DIRECT = "direct"\
+    GENTLE = "gentle"\
+    ENCOURAGING = "encouraging"\
+    PEER_COACH = "peer_coach"\
+\
+class CognitivePartner:\
+    """\
+    Main cognitive partner system for neurodivergent users.\
+    \
+    Features:\
+    - Conversational AI interface\
+    - Integration with life skills and career modules\
+    - Memory and context management\
+    - Adaptive response generation\
+    - Progress tracking and check-ins\
+    """\
+    \
+    def __init__(self, config: Dict[str, Any]):\
+        self.config = config\
+        self.user_contexts = \{\}\
+        self.conversation_history = \{\}\
+        self.user_memory = \{\}\
+        \
+        # Initialize sub-managers\
+        # self.life_skills = LifeSkillsManager(config)\
+        # self.career_dev = CareerDevelopmentManager(config)\
+\
+    async def start_conversation(\
+        self,\
+        user_id: str,\
+        mode: Optional[ConversationMode] = None,\
+        context: Optional[Dict[str, Any]] = None\
+    ) -> Dict[str, Any]:\
+        """\
+        Start a new conversation with the user.\
+        \
+        Args:\
+            user_id: User identifier\
+            mode: Conversation mode\
+            context: Additional context\
+            \
+        Returns:\
+            Initial conversation response\
+        """\
+        # Initialize user context if new\
+        if user_id not in self.user_contexts:\
+            await self.initialize_user(user_id)\
+        \
+        # Determine conversation mode\
+        if mode is None:\
+            mode = await self.determine_conversation_mode(user_id)\
+        \
+        # Generate opening based on mode\
+        opening = await self.generate_opening(user_id, mode, context)\
+        \
+        # Store conversation start\
+        await self.log_conversation(user_id, "start", mode, opening)\
+        \
+        return opening\
+\
+    async def initialize_user(self, user_id: str) -> None:\
+        """\
+        Initialize a new user in the system.\
+        \
+        Args:\
+            user_id: User identifier\
+        """\
+        self.user_contexts[user_id] = \{\
+            "created_at": datetime.utcnow().isoformat(),\
+            "current_mode": ConversationMode.ONBOARDING,\
+            "current_week": None,\
+            "completed_modules": [],\
+            "tone_preference": ToneStyle.PEER_COACH,\
+            "accessibility_needs": []\
+        \}\
+        \
+        self.user_memory[user_id] = \{\
+            "brain_profile": \{\},\
+            "system_fit_map": \{\},\
+            "reset_routine": \{\},\
+            "energy_audit": [],\
+            "boundaries": [],\
+            "advocacy_script": \{\},\
+            "sustainability_map": \{\},\
+            "career_interests": [],\
+            "learning_path": \{\}\
+        \}\
+        \
+        self.conversation_history[user_id] = []\
+\
+    async def determine_conversation_mode(\
+        self,\
+        user_id: str\
+    ) -> ConversationMode:\
+        """\
+        Determine appropriate conversation mode based on user context.\
+        \
+        Args:\
+            user_id: User identifier\
+            \
+        Returns:\
+            Recommended conversation mode\
+        """\
+        context = self.user_contexts.get(user_id, \{\})\
+        \
+        # If new user, start with onboarding\
+        if not context.get("completed_modules"):\
+            return ConversationMode.ONBOARDING\
+        \
+        # If in middle of life skills program\
+        current_week = context.get("current_week")\
+        if current_week and current_week <= 6:\
+            return ConversationMode.LIFE_SKILLS\
+        \
+        # If completed life skills, move to career exploration\
+        if "sustainability" in context.get("completed_modules", []):\
+            return ConversationMode.CAREER_EXPLORATION\
+        \
+        # Default to reflection/check-in\
+        return ConversationMode.CHECK_IN\
+\
+    async def generate_opening(\
+        self,\
+        user_id: str,\
+        mode: ConversationMode,\
+        context: Optional[Dict[str, Any]] = None\
+    ) -> Dict[str, Any]:\
+        """\
+        Generate conversation opening based on mode.\
+        \
+        Args:\
+            user_id: User identifier\
+            mode: Conversation mode\
+            context: Additional context\
+            \
+        Returns:\
+            Opening message and prompts\
+        """\
+        openings = \{\
+            ConversationMode.ONBOARDING: \{\
+                "message": "Hey! I'm your Cognitive Partner — I'm here to help you understand how your brain works, build systems that fit you, and explore careers that match your strengths. Ready to get started?",\
+                "prompt": "Tell me a bit about yourself. What brings you here today?",\
+                "tone": ToneStyle.WARM,\
+                "next_steps": ["learn_about_user", "set_goals"]\
+            \},\
+            ConversationMode.LIFE_SKILLS: \{\
+                "message": "Welcome back! Let's continue building your life skills toolkit.",\
+                "prompt": self.get_current_week_prompt(user_id),\
+                "tone": ToneStyle.PEER_COACH,\
+                "next_steps": ["continue_module", "review_progress"]\
+            \},\
+            ConversationMode.CAREER_EXPLORATION: \{\
+                "message": "You've built an amazing toolkit! Now let's explore careers that align with your unique brain.",\
+                "prompt": "What kinds of work excite you? What do you want to learn more about?",\
+                "tone": ToneStyle.ENCOURAGING,\
+                "next_steps": ["discover_careers", "explore_paths"]\
+            \},\
+            ConversationMode.AI_LITERACY: \{\
+                "message": "Let's learn about AI together — how to use it, understand it, and work with it.",\
+                "prompt": "What do you already know about AI? What would you like to learn?",\
+                "tone": ToneStyle.PEER_COACH,\
+                "next_steps": ["assess_knowledge", "start_training"]\
+            \},\
+            ConversationMode.REFLECTION: \{\
+                "message": "Let's take a moment to reflect on your journey so far.",\
+                "prompt": "What's been working well for you? What challenges are you facing?",\
+                "tone": ToneStyle.GENTLE,\
+                "next_steps": ["reflect", "adjust_plans"]\
+            \},\
+            ConversationMode.CHECK_IN: \{\
+                "message": "How are you doing today?",\
+                "prompt": "What would be most helpful to talk about right now?",\
+                "tone": ToneStyle.WARM,\
+                "next_steps": ["assess_needs", "provide_support"]\
+            \}\
+        \}\
+        \
+        return openings.get(mode, openings[ConversationMode.CHECK_IN])\
+\
+    def get_current_week_prompt(self, user_id: str) -> str:\
+        """\
+        Get prompt for current week's module.\
+        \
+        Args:\
+            user_id: User identifier\
+            \
+        Returns:\
+            Week-specific prompt\
+        """\
+        context = self.user_contexts.get(user_id, \{\})\
+        current_week = context.get("current_week", 1)\
+        \
+        prompts = \{\
+            1: "Let's explore how your brain works best. When do you feel most focused?",\
+            2: "Where do you get stuck with tasks? Let's design systems that work with your brain.",\
+            3: "What helps you reset when you're overwhelmed? Let's build your reset routine.",\
+            4: "Let's look at your energy — what drains you and what fuels you?",\
+            5: "Ready to practice asking for what you need? Let's work on self-advocacy.",\
+            6: "Time to bring it all together! Let's create your sustainability plan."\
+        \}\
+        \
+        return prompts.get(current_week, "Let's continue your learning journey.")\
+\
+    async def process_user_input(\
+        self,\
+        user_id: str,\
+        user_input: str,\
+        context: Optional[Dict[str, Any]] = None\
+    ) -> Dict[str, Any]:\
+        """\
+        Process user input and generate response.\
+        \
+        Args:\
+            user_id: User identifier\
+            user_input: User's message/input\
+            context: Additional context\
+            \
+        Returns:\
+            Response with next prompt or action\
+        """\
+        # Get user context\
+        user_context = self.user_contexts.get(user_id, \{\})\
+        current_mode = user_context.get("current_mode")\
+        \
+        # Analyze input\
+        analysis = await self.analyze_user_input(user_input)\
+        \
+        # Generate response based on mode\
+        if current_mode == ConversationMode.LIFE_SKILLS:\
+            response = await self.handle_life_skills_input(\
+                user_id,\
+                user_input,\
+                analysis,\
+                context\
+            )\
+        elif current_mode == ConversationMode.CAREER_EXPLORATION:\
+            response = await self.handle_career_input(\
+                user_id,\
+                user_input,\
+                analysis,\
+                context\
+            )\
+        elif current_mode == ConversationMode.AI_LITERACY:\
+            response = await self.handle_ai_literacy_input(\
+                user_id,\
+                user_input,\
+                analysis,\
+                context\
+            )\
+        else:\
+            response = await self.handle_general_input(\
+                user_id,\
+                user_input,\
+                analysis,\
+                context\
+            )\
+        \
+        # Log conversation\
+        await self.log_conversation(\
+            user_id,\
+            "exchange",\
+            current_mode,\
+            \{"input": user_input, "response": response\}\
+        )\
+        \
+        # Update memory\
+        await self.update_memory(user_id, analysis, response)\
+        \
+        return response\
+\
+    async def analyze_user_input(\
+        self,\
+        user_input: str\
+    ) -> Dict[str, Any]:\
+        """\
+        Analyze user input for intent, sentiment, and key information.\
+        \
+        Args:\
+            user_input: User's message\
+            \
+        Returns:\
+            Analysis of user input\
+        """\
+        # Simple analysis - in production, use NLP/LLM\
+        analysis = \{\
+            "text": user_input,\
+            "length": len(user_input),\
+            "sentiment": "neutral",  # Placeholder\
+            "key_themes": [],\
+            "intent": "continue",\
+            "timestamp": datetime.utcnow().isoformat()\
+        \}\
+        \
+        # Detect sentiment indicators\
+        positive_words = ["good", "great", "excited", "love", "enjoy", "yes", "interested"]\
+        negative_words = ["bad", "hard", "difficult", "struggle", "no", "can't", "frustrated"]\
+        \
+        input_lower = user_input.lower()\
+        \
+        if any(word in input_lower for word in positive_words):\
+            analysis["sentiment"] = "positive"\
+        elif any(word in input_lower for word in negative_words):\
+            analysis["sentiment"] = "negative"\
+        \
+        return analysis\
+\
+    async def handle_life_skills_input(\
+        self,\
+        user_id: str,\
+        user_input: str,\
+        analysis: Dict[str, Any],\
+        context: Optional[Dict[str, Any]]\
+    ) -> Dict[str, Any]:\
+        """\
+        Handle input during life skills module.\
+        \
+        Args:\
+            user_id: User identifier\
+            user_input: User's message\
+            analysis: Input analysis\
+            context: Additional context\
+            \
+        Returns:\
+            Response for life skills conversation\
+        """\
+        # Get current week\
+        user_context = self.user_contexts.get(user_id, \{\})\
+        current_week = user_context.get("current_week", 1)\
+        \
+        # Process based on week\
+        # In production, delegate to LifeSkillsManager\
+        response = \{\
+            "message": f"That's really helpful insight. Let's build on that.",\
+            "acknowledgment": self.generate_validation(analysis["sentiment"]),\
+            "next_prompt": "What else would you like to explore in this area?",\
+            "progress_update": f"Week \{current_week\} in progress",\
+            "tone": ToneStyle.PEER_COACH\
+        \}\
+        \
+        return response\
+\
+    async def handle_career_input(\
+        self,\
+        user_id: str,\
+        user_input: str,\
+        analysis: Dict[str, Any],\
+        context: Optional[Dict[str, Any]]\
+    ) -> Dict[str, Any]:\
+        """\
+        Handle input during career exploration.\
+        \
+        Args:\
+            user_id: User identifier\
+            user_input: User's message\
+            analysis: Input analysis\
+            context: Additional context\
+            \
+        Returns:\
+            Response for career conversation\
+        """\
+        # In production, delegate to CareerDevelopmentManager\
+        response = \{\
+            "message": "Those interests align well with your brain profile!",\
+            "career_suggestions": ["Software Developer", "UX Designer", "Data Analyst"],\
+            "next_prompt": "Which of these careers would you like to explore first?",\
+            "tone": ToneStyle.ENCOURAGING\
+        \}\
+        \
+        return response\
+\
+    async def handle_ai_literacy_input(\
+        self,\
+        user_id: str,\
+        user_input: str,\
+        analysis: Dict[str, Any],\
+        context: Optional[Dict[str, Any]]\
+    ) -> Dict[str, Any]:\
+        """\
+        Handle input during AI literacy training.\
+        \
+        Args:\
+            user_id: User identifier\
+            user_input: User's message\
+            analysis: Input analysis\
+            context: Additional context\
+            \
+        Returns:\
+            Response for AI literacy conversation\
+        """\
+        response = \{\
+            "message": "Great question! Let's break that down.",\
+            "explanation": "AI is a tool that can help you work more effectively.",\
+            "next_prompt": "Want to try using an AI tool for a task?",\
+            "tone": ToneStyle.PEER_COACH\
+        \}\
+        \
+        return response\
+\
+    async def handle_general_input(\
+        self,\
+        user_id: str,\
+        user_input: str,\
+        analysis: Dict[str, Any],\
+        context: Optional[Dict[str, Any]]\
+    ) -> Dict[str, Any]:\
+        """\
+        Handle general conversation input.\
+        \
+        Args:\
+            user_id: User identifier\
+            user_input: User's message\
+            analysis: Input analysis\
+            context: Additional context\
+            \
+        Returns:\
+            General response\
+        """\
+        response = \{\
+            "message": "I hear you. How can I support you today?",\
+            "options": [\
+                "Continue life skills work",\
+                "Explore careers",\
+                "Learn about AI",\
+                "Just chat"\
+            ],\
+            "tone": ToneStyle.WARM\
+        \}\
+        \
+        return response\
+\
+    def generate_validation(\
+        self,\
+        sentiment: str\
+    ) -> str:\
+        """\
+        Generate neurodivergent-affirming validation.\
+        \
+        Args:\
+            sentiment: Detected sentiment\
+            \
+        Returns:\
+            Validation message\
+        """\
+        validations = \{\
+            "positive": "That's awesome! It's great to recognize what's working.",\
+            "negative": "That sounds really challenging. Your experience is valid.",\
+            "neutral": "Thanks for sharing that with me."\
+        \}\
+        \
+        return validations.get(sentiment, validations["neutral"])\
+\
+    async def update_memory(\
+        self,\
+        user_id: str,\
+        analysis: Dict[str, Any],\
+        response: Dict[str, Any]\
+    ) -> None:\
+        """\
+        Update user memory with new information.\
+        \
+        Args:\
+            user_id: User identifier\
+            analysis: Input analysis\
+            response: Generated response\
+        """\
+        # Extract key information and update memory\
+        memory = self.user_memory.get(user_id, \{\})\
+        \
+        # Store in appropriate memory slot\
+        # This would be more sophisticated in production\
+        if user_id in self.user_memory:\
+            memory["last_interaction"] = datetime.utcnow().isoformat()\
+            memory["interaction_count"] = memory.get("interaction_count", 0) + 1\
+\
+    async def log_conversation(\
+        self,\
+        user_id: str,\
+        event_type: str,\
+        mode: ConversationMode,\
+        data: Any\
+    ) -> None:\
+        """\
+        Log conversation event.\
+        \
+        Args:\
+            user_id: User identifier\
+            event_type: Type of event (start, exchange, end)\
+            mode: Conversation mode\
+            data: Event data\
+        """\
+        if user_id not in self.conversation_history:\
+            self.conversation_history[user_id] = []\
+        \
+        log_entry = \{\
+            "event_type": event_type,\
+            "mode": mode.value if isinstance(mode, ConversationMode) else mode,\
+            "data": data,\
+            "timestamp": datetime.utcnow().isoformat()\
+        \}\
+        \
+        self.conversation_history[user_id].append(log_entry)\
+\
+    async def weekly_check_in(\
+        self,\
+        user_id: str\
+    ) -> Dict[str, Any]:\
+        """\
+        Conduct weekly check-in with user.\
+        \
+        Args:\
+            user_id: User identifier\
+            \
+        Returns:\
+            Check-in prompts and status\
+        """\
+        memory = self.user_memory.get(user_id, \{\})\
+        context = self.user_contexts.get(user_id, \{\})\
+        \
+        return \{\
+            "message": "Time for our weekly check-in! Let's see how you're doing.",\
+            "prompts": [\
+                "What went well this week?",\
+                "What challenges did you face?",\
+                "What tools did you use from your toolkit?",\
+                "What do you need support with?"\
+            ],\
+            "current_progress": \{\
+                "week": context.get("current_week"),\
+                "modules_completed": context.get("completed_modules", []),\
+                "tools_in_use": self.get_active_tools(user_id)\
+            \},\
+            "tone": ToneStyle.WARM\
+        \}\
+\
+    def get_active_tools(\
+        self,\
+        user_id: str\
+    ) -> List[str]:\
+        """\
+        Get list of tools user has created and is using.\
+        \
+        Args:\
+            user_id: User identifier\
+            \
+        Returns:\
+            List of active tools\
+        """\
+        memory = self.user_memory.get(user_id, \{\})\
+        tools = []\
+        \
+        if memory.get("brain_profile"):\
+            tools.append("Brain Snapshot")\
+        if memory.get("system_fit_map"):\
+            tools.append("System Fit Map")\
+        if memory.get("reset_routine"):\
+            tools.append("Reset Routine")\
+        if memory.get("energy_audit"):\
+            tools.append("Energy Audit")\
+        if memory.get("boundaries"):\
+            tools.append("Boundaries")\
+        if memory.get("advocacy_script"):\
+            tools.append("Advocacy Script")\
+        if memory.get("sustainability_map"):\
+            tools.append("Sustainability Map")\
+        \
+        return tools\
+\
+    async def generate_progress_report(\
+        self,\
+        user_id: str\
+    ) -> Dict[str, Any]:\
+        """\
+        Generate comprehensive progress report for user.\
+        \
+        Args:\
+            user_id: User identifier\
+            \
+        Returns:\
+            Detailed progress report\
+        """\
+        context = self.user_contexts.get(user_id, \{\})\
+        memory = self.user_memory.get(user_id, \{\})\
+        history = self.conversation_history.get(user_id, [])\
+        \
+        return \{\
+            "user_id": user_id,\
+            "program_start": context.get("created_at"),\
+            "current_week": context.get("current_week"),\
+            "modules_completed": context.get("completed_modules", []),\
+            "tools_created": self.get_active_tools(user_id),\
+            "total_interactions": len(history),\
+            "career_interests": memory.get("career_interests", []),\
+            "learning_path": memory.get("learning_path", \{\}),\
+            "strengths_identified": self.extract_strengths(memory),\
+            "next_steps": self.recommend_next_steps(user_id),\
+            "timestamp": datetime.utcnow().isoformat()\
+        \}\
+\
+    def extract_strengths(\
+        self,\
+        memory: Dict[str, Any]\
+    ) -> List[str]:\
+        """\
+        Extract identified strengths from user memory.\
+        \
+        Args:\
+            memory: User memory\
+            \
+        Returns:\
+            List of strengths\
+        """\
+        strengths = []\
+        \
+        brain_profile = memory.get("brain_profile", \{\})\
+        if brain_profile:\
+            # Extract from profile data\
+            if brain_profile.get("focus_patterns"):\
+                strengths.append("Focus awareness")\
+            if brain_profile.get("motivation_triggers"):\
+                strengths.append("Self-motivation")\
+        \
+        return strengths\
+\
+    def recommend_next_steps(\
+        self,\
+        user_id: str\
+    ) -> List[str]:\
+        """\
+        Recommend next steps based on user progress.\
+        \
+        Args:\
+            user_id: User identifier\
+            \
+        Returns:\
+            List of recommended next steps\
+        """\
+        context = self.user_contexts.get(user_id, \{\})\
+        current_week = context.get("current_week", 0)\
+        \
+        if current_week == 0:\
+            return ["Start Week 1: Cognitive Discovery"]\
+        elif current_week < 6:\
+            return [f"Continue Week \{current_week + 1\}", "Practice current week's tools"]\
+        else:\
+            return ["Begin career exploration", "Practice AI literacy", "Maintain sustainability plan"]\
+\
+    def format_response_for_accessibility(\
+        self,\
+        response: Dict[str, Any],\
+        user_preferences: Dict[str, Any]\
+    ) -> Dict[str, Any]:\
+        """\
+        Format response according to user's accessibility preferences.\
+        \
+        Args:\
+            response: Raw response\
+            user_preferences: User's accessibility preferences\
+            \
+        Returns:\
+            Formatted response\
+        """\
+        # Apply formatting based on dyslexic-friendly principles\
+        formatted = response.copy()\
+        \
+        # Break long messages into chunks\
+        if "message" in formatted and len(formatted["message"]) > 200:\
+            formatted["message_chunks"] = self.chunk_text(formatted["message"], 200)\
+        \
+        # Add visual structure\
+        formatted["format"] = \{\
+            "font_family": "OpenDyslexic",\
+            "font_size": "large",\
+            "line_spacing": 1.5,\
+            "use_bullet_points": True,\
+            "use_headings": True\
+        \}\
+        \
+        return formatted\
+\
+    def chunk_text(\
+        self,\
+        text: str,\
+        max_length: int\
+    ) -> List[str]:\
+        """\
+        Break text into readable chunks.\
+        \
+        Args:\
+            text: Text to chunk\
+            max_length: Maximum chunk length\
+            \
+        Returns:\
+            List of text chunks\
+        """\
+        words = text.split()\
+        chunks = []\
+        current_chunk = []\
+        current_length = 0\
+        \
+        for word in words:\
+            if current_length + len(word) + 1 > max_length:\
+                chunks.append(" ".join(current_chunk))\
+                current_chunk = [word]\
+                current_length = len(word)\
+            else:\
+                current_chunk.append(word)\
+                current_length += len(word) + 1\
+        \
+        if current_chunk:\
+            chunks.append(" ".join(current_chunk))\
+        \
+        return chunks}

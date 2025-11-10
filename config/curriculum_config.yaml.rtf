@@ -1,0 +1,498 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 # DreamZilla Neurodivergent Life Skills & Career Development Configuration\
+# Part of the Dyslexic AI - Cognitive Partner System\
+\
+# =============================================================================\
+# PROGRAM OVERVIEW\
+# =============================================================================\
+program:\
+  name: "DreamZilla 6-Week Neurodivergent Life & Career Skills"\
+  version: "1.0.0"\
+  target_audience: "Neurodivergent young adults (ages 18-24)"\
+  focus_areas:\
+    - "Self-awareness and cognitive discovery"\
+    - "Executive function systems"\
+    - "Energy management and boundaries"\
+    - "Self-advocacy and communication"\
+    - "Career exploration and AI literacy"\
+  \
+  trauma_informed: true\
+  neurodivergent_affirming: true\
+  voice_first: true\
+\
+# =============================================================================\
+# LIFE SKILLS CURRICULUM - 6 WEEKS\
+# =============================================================================\
+life_skills:\
+  enabled: true\
+  \
+  # Week 1: Cognitive Discovery\
+  week_1:\
+    name: "Cognitive Discovery"\
+    module: "CognitiveDiscoveryGPT"\
+    duration: "1 week"\
+    objectives:\
+      - "Build self-awareness of brain patterns"\
+      - "Identify focus patterns"\
+      - "Recognize energy rhythms"\
+      - "Understand motivation triggers"\
+    \
+    outputs:\
+      - "Brain Snapshot summary"\
+      - "brain_profile object"\
+    \
+    conversation_style:\
+      tone: "warm, peer-coach"\
+      validation: "neurodivergent-affirming"\
+      approach: "exploratory, non-judgmental"\
+    \
+    prompts:\
+      opening: "Let's explore how your brain naturally works. When is it easiest for you to focus? What gives you energy? What helps you stay motivated?"\
+      reflection_areas:\
+        - "focus_patterns"\
+        - "energy_rhythms"\
+        - "motivation_triggers"\
+        - "sensory_preferences"\
+        - "processing_style"\
+  \
+  # Week 2: Executive Function Coach\
+  week_2:\
+    name: "Executive Function Coach"\
+    module: "ExecutiveFunctionCoachGPT"\
+    duration: "1 week"\
+    objectives:\
+      - "Identify executive function breakdowns"\
+      - "Map stuck points in task cycle"\
+      - "Co-design support systems"\
+      - "Create experiment plan"\
+    \
+    ef_phases:\
+      - "Start: Initiating tasks"\
+      - "Focus: Maintaining attention"\
+      - "Shift: Transitioning between tasks"\
+      - "Finish: Completing tasks"\
+      - "Recover: Resting and resetting"\
+    \
+    outputs:\
+      - "system_fit_map object"\
+      - "Weekly experiment plan"\
+    \
+    prompts:\
+      opening: "Where do you usually get stuck in a task — starting, focusing, or finishing? Let's create a system that works with your brain, not against it."\
+  \
+  # Week 3: Reset Routine Builder\
+  week_3:\
+    name: "Reset Routine Builder"\
+    module: "ResetRoutineBuilderGPT"\
+    duration: "1 week"\
+    objectives:\
+      - "Identify overwhelm triggers"\
+      - "Recognize early warning signs"\
+      - "Build 3-step regulation plan"\
+      - "Practice reset routine"\
+    \
+    routine_steps:\
+      - "Notice: Recognize early warning signs"\
+      - "Interrupt: Break the overwhelm cycle"\
+      - "Recover: Restore your baseline"\
+    \
+    outputs:\
+      - "reset_routine object: \{notice_cue, interrupt_action, recovery_tool\}"\
+      - "Visualization walkthrough"\
+    \
+    prompts:\
+      opening: "What are some early signs that you're getting overwhelmed? Let's build a reset plan that helps you come back online when things get hard."\
+  \
+  # Week 4: Energy Audit & Boundaries\
+  week_4:\
+    name: "Energy Audit & Boundaries"\
+    module: "EnergyAuditAndBoundaryGPT"\
+    duration: "1 week"\
+    objectives:\
+      - "Track energy by activity"\
+      - "Identify energy leaks"\
+      - "Create boundary scripts"\
+      - "Practice boundary setting"\
+    \
+    boundary_framework: "Need + Reason + Respectful Closure"\
+    \
+    tracking_areas:\
+      - "Social interactions"\
+      - "Work/Study tasks"\
+      - "Sensory environments"\
+      - "Transitions"\
+      - "Self-care activities"\
+    \
+    outputs:\
+      - "Energy Audit Table"\
+      - "Boundary scripts collection"\
+    \
+    prompts:\
+      opening: "Let's track where your energy goes this week. What drains you most? What small boundary could help protect your time or space?"\
+  \
+  # Week 5: Self-Advocacy Trainer\
+  week_5:\
+    name: "Self-Advocacy Trainer"\
+    module: "SelfAdvocacyTrainerGPT"\
+    duration: "1 week"\
+    objectives:\
+      - "Learn advocacy framework"\
+      - "Write advocacy scripts"\
+      - "Practice role-play scenarios"\
+      - "Build advocacy confidence"\
+    \
+    advocacy_framework: "Describe \u2192 Need \u2192 Request"\
+    \
+    scenarios:\
+      - "Requesting accommodations from professor"\
+      - "Setting boundaries with peers"\
+      - "Advocating at work/internship"\
+      - "Communicating with family"\
+    \
+    tone_options:\
+      - "direct"\
+      - "warm"\
+      - "gentle"\
+      - "formal"\
+    \
+    outputs:\
+      - "Advocacy script collection"\
+      - "Role-play practice logs"\
+    \
+    prompts:\
+      opening: "Want to practice asking for what you need? Let's write a self-advocacy script together and try it in a safe role-play."\
+  \
+  # Week 6: Sustainability Planner\
+  week_6:\
+    name: "Sustainability Planner"\
+    module: "SustainabilityPlannerGPT"\
+    duration: "1 week"\
+    objectives:\
+      - "Integrate all tools"\
+      - "Create weekly/monthly plan"\
+      - "Establish check-in routine"\
+      - "Build maintenance system"\
+    \
+    integration_layers:\
+      structure:\
+        - "Task systems & routines"\
+        - "Time management tools"\
+        - "Organization strategies"\
+      \
+      regulation:\
+        - "Reset routines"\
+        - "Energy management"\
+        - "Sensory supports"\
+      \
+      support:\
+        - "Boundaries"\
+        - "Advocacy scripts"\
+        - "Support network"\
+    \
+    outputs:\
+      - "sustainability_map object"\
+      - "Weekly maintenance plan"\
+      - "Check-in schedule"\
+    \
+    prompts:\
+      opening: "Let's pull all your tools together. How do you want to organize your support system each week so you don't burn out?"\
+\
+# =============================================================================\
+# CAREER DEVELOPMENT\
+# =============================================================================\
+career_development:\
+  enabled: true\
+  \
+  job_discovery:\
+    module: "JobDiscoveryGPT"\
+    features:\
+      - "Brain profile to career mapping"\
+      - "SOC/O*NET code integration"\
+      - "Interest-based matching"\
+      - "Strength alignment analysis"\
+    \
+    career_categories:\
+      - "Technology & Engineering"\
+      - "Creative & Design"\
+      - "Healthcare & Social Services"\
+      - "Business & Administration"\
+      - "Education & Training"\
+      - "Research & Analysis"\
+    \
+    prompts:\
+      opening: "Based on your brain profile, these careers align with your natural strengths. Which ones spark your curiosity?"\
+  \
+  ai_disruption_analysis:\
+    enabled: true\
+    risk_levels:\
+      - "low"\
+      - "medium"\
+      - "high"\
+    \
+    includes:\
+      - "Automation risk assessment"\
+      - "Future outlook"\
+      - "Adaptation recommendations"\
+      - "AI literacy pathways"\
+  \
+  learning_paths:\
+    module: "LearningPathGenerator"\
+    features:\
+      - "Skill gap analysis"\
+      - "Milestone creation"\
+      - "Resource recommendations"\
+      - "Timeline estimation"\
+      - "Progress tracking"\
+    \
+    milestone_structure:\
+      - "Phase number"\
+      - "Target skill"\
+      - "Learning activities"\
+      - "Success criteria"\
+      - "Duration estimate"\
+\
+# =============================================================================\
+# AI LITERACY TRAINING\
+# =============================================================================\
+ai_literacy:\
+  enabled: true\
+  module: "AILiteracyTrainerGPT"\
+  \
+  skill_levels:\
+    beginner:\
+      modules:\
+        - name: "What is AI?"\
+          topics:\
+            - "AI basics"\
+            - "Machine learning"\
+            - "Types of AI"\
+          duration: "1 week"\
+        \
+        - name: "AI in Daily Life"\
+          topics:\
+            - "AI applications"\
+            - "AI ethics"\
+            - "Privacy considerations"\
+          duration: "1 week"\
+        \
+        - name: "Using AI Tools"\
+          topics:\
+            - "ChatGPT basics"\
+            - "Prompt engineering"\
+            - "AI assistants"\
+          duration: "2 weeks"\
+    \
+    intermediate:\
+      modules:\
+        - name: "Advanced Prompting"\
+          topics:\
+            - "Prompt techniques"\
+            - "Context management"\
+            - "Output optimization"\
+          duration: "2 weeks"\
+        \
+        - name: "AI in Your Field"\
+          topics:\
+            - "Industry-specific AI"\
+            - "Tool selection"\
+            - "Workflow integration"\
+          duration: "2 weeks"\
+        \
+        - name: "AI Ethics & Responsibility"\
+          topics:\
+            - "Bias"\
+            - "Transparency"\
+            - "Accountability"\
+          duration: "1 week"\
+    \
+    advanced:\
+      modules:\
+        - name: "AI Development Basics"\
+          topics:\
+            - "ML fundamentals"\
+            - "Model training"\
+            - "APIs"\
+          duration: "4 weeks"\
+        \
+        - name: "AI Strategy"\
+          topics:\
+            - "AI adoption"\
+            - "Change management"\
+            - "Future trends"\
+          duration: "2 weeks"\
+  \
+  practice_exercises: true\
+  certification: true\
+\
+# =============================================================================\
+# COGNITIVE PARTNER SYSTEM\
+# =============================================================================\
+cognitive_partner:\
+  enabled: true\
+  module: "CognitivePartner"\
+  \
+  conversation_modes:\
+    - "onboarding"\
+    - "life_skills"\
+    - "career_exploration"\
+    - "ai_literacy"\
+    - "reflection"\
+    - "check_in"\
+  \
+  tone_styles:\
+    - "warm"\
+    - "direct"\
+    - "gentle"\
+    - "encouraging"\
+    - "peer_coach"\
+  \
+  default_tone: "peer_coach"\
+  \
+  features:\
+    memory_management: true\
+    context_awareness: true\
+    adaptive_responses: true\
+    progress_tracking: true\
+    weekly_check_ins: true\
+    long_term_planning: true\
+  \
+  accessibility:\
+    multimodal_support: true\
+    voice_input: true\
+    text_chunking: true\
+    visual_structure: true\
+    dyslexic_friendly: true\
+\
+# =============================================================================\
+# USER MEMORY SCHEMA\
+# =============================================================================\
+memory_schema:\
+  brain_profile:\
+    focus_patterns: "string"\
+    energy_rhythms: "string"\
+    motivation_triggers: "string"\
+    sensory_preferences: "array"\
+    processing_style: "string"\
+  \
+  system_fit_map:\
+    stuck_points: "array"\
+    supports: "array"\
+    strategies: "array"\
+  \
+  reset_routine:\
+    notice: "string"\
+    interrupt: "string"\
+    recover: "string"\
+  \
+  energy_audit: "array"\
+  \
+  boundaries: "array"\
+  \
+  advocacy_script:\
+    scenario: "string"\
+    describe: "string"\
+    need: "string"\
+    request: "string"\
+    tone: "string"\
+  \
+  sustainability_map:\
+    structure: "array"\
+    regulation: "array"\
+    support: "array"\
+  \
+  career_profile:\
+    interests: "array"\
+    target_careers: "array"\
+    learning_path: "object"\
+    progress: "array"\
+  \
+  ai_literacy:\
+    skill_level: "string"\
+    completed_modules: "array"\
+    practice_scores: "object"\
+\
+# =============================================================================\
+# ANALYTICS & TRACKING\
+# =============================================================================\
+analytics:\
+  track_progress: true\
+  track_engagement: true\
+  track_outcomes: true\
+  \
+  metrics:\
+    - "module_completion_rate"\
+    - "tool_usage_frequency"\
+    - "conversation_quality"\
+    - "user_satisfaction"\
+    - "skill_development"\
+    - "career_readiness"\
+  \
+  reporting:\
+    weekly_progress: true\
+    monthly_summary: true\
+    program_completion_report: true\
+\
+# =============================================================================\
+# INTEGRATION SETTINGS\
+# =============================================================================\
+integration:\
+  # Integrate with existing Dyslexic AI core modules\
+  accessibility_manager: true\
+  cognitive_processor: true\
+  processing_manager: true\
+  \
+  # API endpoints\
+  api_enabled: true\
+  endpoints:\
+    - "/api/curriculum/life-skills"\
+    - "/api/curriculum/career-development"\
+    - "/api/curriculum/ai-literacy"\
+    - "/api/cognitive-partner/chat"\
+    - "/api/user/progress"\
+    - "/api/user/profile"\
+  \
+  # External services\
+  job_database: "O*NET API"  # For SOC codes\
+  learning_resources: "Curated database"\
+  \
+# =============================================================================\
+# NOTIFICATIONS & REMINDERS\
+# =============================================================================\
+notifications:\
+  enabled: true\
+  channels:\
+    - "email"\
+    - "sms"\
+    - "in_app"\
+  \
+  types:\
+    weekly_check_in: true\
+    module_reminder: true\
+    practice_prompt: true\
+    celebration: true\
+  \
+  schedule:\
+    check_ins: "weekly"\
+    reminders: "as_needed"\
+    celebrations: "milestone_based"\
+\
+# =============================================================================\
+# SECURITY & PRIVACY\
+# =============================================================================\
+security:\
+  data_encryption: true\
+  user_anonymization: true\
+  consent_management: true\
+  data_retention_policy: "user_controlled"\
+  \
+  privacy:\
+    sensitive_data_handling: "high_security"\
+    third_party_sharing: false\
+    user_data_export: true\
+    right_to_deletion: true}
