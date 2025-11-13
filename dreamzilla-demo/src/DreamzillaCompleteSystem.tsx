@@ -622,20 +622,20 @@ const StatCard: React.FC<{ label: string; value: string | number; icon: React.El
   color,
 }) => {
   const colorMap: Record<string, string> = {
-    blue: 'bg-blue-100 text-blue-600',
-    purple: 'bg-purple-100 text-purple-600',
-    green: 'bg-green-100 text-green-600',
+    blue: 'bg-primary-100 text-primary-600',
+    purple: 'bg-secondary-100 text-secondary-600',
+    green: 'bg-accent-100 text-accent-600',
     orange: 'bg-orange-100 text-orange-600',
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg border border-gray-200">
+    <div className="card p-6">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm text-gray-600 mb-1">{label}</p>
-          <p className="text-3xl font-bold text-gray-900">{value}</p>
+          <p className="text-sm text-neutral-600 mb-1">{label}</p>
+          <p className="text-3xl font-bold text-neutral-900">{value}</p>
         </div>
-        <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${colorMap[color]}`}>
+        <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${colorMap[color]}`}>
           <Icon className="w-6 h-6" />
         </div>
       </div>
@@ -654,21 +654,21 @@ const WorksheetSection: React.FC<{
   const bgColorMap: Record<string, string> = {
     red: 'bg-red-50 border-red-200',
     orange: 'bg-orange-50 border-orange-200',
-    green: 'bg-green-50 border-green-200',
-    blue: 'bg-blue-50 border-blue-200',
-    purple: 'bg-purple-50 border-purple-200',
+    green: 'bg-accent-50 border-accent-200',
+    blue: 'bg-primary-50 border-primary-200',
+    purple: 'bg-secondary-50 border-secondary-200',
   };
 
   return (
-    <div className={`border rounded-lg ${bgColorMap[bgColor]}`}>
-      <button onClick={onToggle} className="w-full p-4 flex items-center justify-between hover:bg-opacity-75 transition-colors">
+    <div className={`border-2 rounded-2xl ${bgColorMap[bgColor]}`}>
+      <button onClick={onToggle} className="w-full p-5 flex items-center justify-between hover:bg-opacity-75 transition-colors">
         <div className="text-left">
-          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-          <p className="text-sm text-gray-600 mt-1">{description}</p>
+          <h3 className="text-lg font-semibold text-neutral-900">{title}</h3>
+          <p className="text-sm text-neutral-700 mt-1">{description}</p>
         </div>
-        <ChevronDown className={`w-5 h-5 text-gray-600 transition-transform ${isExpanded ? 'transform rotate-180' : ''}`} />
+        <ChevronDown className={`w-5 h-5 text-neutral-600 transition-transform ${isExpanded ? 'transform rotate-180' : ''}`} />
       </button>
-      {isExpanded && <div className="px-4 pb-4 border-t border-gray-200">{children}</div>}
+      {isExpanded && <div className="px-5 pb-5 border-t border-neutral-200 mt-2 pt-4">{children}</div>}
     </div>
   );
 };
@@ -769,12 +769,12 @@ const StudentDashboard: React.FC<{ student: Student }> = ({ student }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutral-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-50 to-blue-50 border-b border-green-200 px-6 py-8">
+      <div className="bg-gradient-to-r from-accent-50 via-primary-50 to-secondary-50 border-b-2 border-accent-200 px-6 py-10">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold text-gray-900">Welcome, {student.name}! 👋</h1>
-          <p className="text-gray-600 mt-2">You're in Week {student.cohortWeek} of 6 — {student.completionRate}% complete!</p>
+          <h1 className="text-5xl font-display font-bold text-neutral-900 mb-2">Welcome, {student.name}!</h1>
+          <p className="text-lg text-neutral-700 mt-2">You're in Week {student.cohortWeek} of 6 — {student.completionRate}% complete!</p>
         </div>
       </div>
 
@@ -967,12 +967,12 @@ const FacilitatorDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'students'>('overview');
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutral-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-50 to-blue-50 border-b border-purple-200 px-6 py-8">
+      <div className="bg-gradient-to-r from-secondary-50 via-primary-50 to-accent-50 border-b-2 border-secondary-200 px-6 py-10">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold text-gray-900">Welcome Back, Dr. Martinez 👋</h1>
-          <p className="text-gray-600 mt-2">Manage your cohorts and support your students</p>
+          <h1 className="text-5xl font-display font-bold text-neutral-900 mb-2">Welcome Back, Dr. Martinez</h1>
+          <p className="text-lg text-neutral-700 mt-2">Manage your cohorts and support your students</p>
         </div>
       </div>
 
@@ -1124,12 +1124,12 @@ const AdminDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'curriculum'>('overview');
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutral-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-blue-200 px-6 py-8">
+      <div className="bg-gradient-to-r from-primary-50 via-secondary-50 to-primary-100 border-b-2 border-primary-200 px-6 py-10">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold text-gray-900">Administration Panel</h1>
-          <p className="text-gray-600 mt-2">Manage system-wide operations and analytics</p>
+          <h1 className="text-5xl font-display font-bold text-neutral-900 mb-2">Administration Panel</h1>
+          <p className="text-lg text-neutral-700 mt-2">Manage system-wide operations and analytics</p>
         </div>
       </div>
 
@@ -1244,10 +1244,10 @@ export const DreamzillaCompleteSystem: React.FC = () => {
       <div>
         <button
           onClick={() => setSelectedView('selector')}
-          className="fixed top-4 left-4 z-50 flex items-center space-x-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 shadow-lg"
+          className="fixed top-6 left-6 z-50 flex items-center space-x-2 px-5 py-3 bg-white/95 backdrop-blur-sm border-2 border-primary-300 rounded-xl hover:bg-primary-50 shadow-soft-lg hover:shadow-soft transition-all duration-200 group"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span className="font-medium">Back to Demo</span>
+          <ArrowLeft className="w-5 h-5 text-primary-600 group-hover:-translate-x-1 transition-transform" />
+          <span className="font-semibold text-neutral-900">Back to Demo</span>
         </button>
         <StudentDashboard student={mockStudent} />
       </div>
@@ -1259,10 +1259,10 @@ export const DreamzillaCompleteSystem: React.FC = () => {
       <div>
         <button
           onClick={() => setSelectedView('selector')}
-          className="fixed top-4 left-4 z-50 flex items-center space-x-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 shadow-lg"
+          className="fixed top-6 left-6 z-50 flex items-center space-x-2 px-5 py-3 bg-white/95 backdrop-blur-sm border-2 border-secondary-300 rounded-xl hover:bg-secondary-50 shadow-soft-lg hover:shadow-soft transition-all duration-200 group"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span className="font-medium">Back to Demo</span>
+          <ArrowLeft className="w-5 h-5 text-secondary-600 group-hover:-translate-x-1 transition-transform" />
+          <span className="font-semibold text-neutral-900">Back to Demo</span>
         </button>
         <FacilitatorDashboard />
       </div>
@@ -1274,10 +1274,10 @@ export const DreamzillaCompleteSystem: React.FC = () => {
       <div>
         <button
           onClick={() => setSelectedView('selector')}
-          className="fixed top-4 left-4 z-50 flex items-center space-x-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 shadow-lg"
+          className="fixed top-6 left-6 z-50 flex items-center space-x-2 px-5 py-3 bg-white/95 backdrop-blur-sm border-2 border-primary-300 rounded-xl hover:bg-primary-50 shadow-soft-lg hover:shadow-soft transition-all duration-200 group"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span className="font-medium">Back to Demo</span>
+          <ArrowLeft className="w-5 h-5 text-primary-600 group-hover:-translate-x-1 transition-transform" />
+          <span className="font-semibold text-neutral-900">Back to Demo</span>
         </button>
         <AdminDashboard />
       </div>
@@ -1286,12 +1286,18 @@ export const DreamzillaCompleteSystem: React.FC = () => {
 
   // Demo Selector
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
-      <div className="max-w-7xl mx-auto px-6 py-16">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-accent-50 to-secondary-50">
+      <div className="max-w-7xl mx-auto px-6 py-20">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">🧠 Dreamzilla Platform</h1>
-          <p className="text-xl text-gray-600">Complete Neurodivergent Support System - All in One File</p>
+        <div className="text-center mb-20">
+          <div className="inline-block mb-6">
+            <div className="flex items-center justify-center space-x-4 px-8 py-4 bg-white/80 backdrop-blur-sm rounded-3xl shadow-soft-lg border-2 border-primary-200">
+              <Brain className="w-12 h-12 text-primary-600" />
+              <h1 className="text-6xl font-display font-bold text-neutral-900">Dreamzilla</h1>
+            </div>
+          </div>
+          <p className="text-2xl text-neutral-700 font-medium mb-4">LLM-Powered Neurodivergent Support Platform</p>
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">Empowering neurodivergent individuals with AI-driven tools for self-advocacy, executive function, and sustainable success</p>
         </div>
 
         {/* Demo Cards */}
@@ -1321,29 +1327,55 @@ export const DreamzillaCompleteSystem: React.FC = () => {
               features: ['System administration', 'Analytics', 'Content management'],
               color: 'blue',
             },
-          ].map((view) => (
-            <div
-              key={view.id}
-              className={`bg-white p-8 rounded-lg border-2 border-${view.color}-200 shadow-lg hover:shadow-xl transition-shadow cursor-pointer`}
-              onClick={() => setSelectedView(view.id)}
-            >
-              <div className={`flex items-center justify-center w-16 h-16 bg-${view.color}-100 rounded-lg mb-6`}>
-                <view.icon className={`w-8 h-8 text-${view.color}-600`} />
+          ].map((view) => {
+            const colorClasses = {
+              green: {
+                border: 'border-accent-300',
+                iconBg: 'bg-accent-100',
+                iconText: 'text-accent-700',
+                button: 'bg-accent-600 hover:bg-accent-700 focus:ring-accent-200'
+              },
+              purple: {
+                border: 'border-secondary-300',
+                iconBg: 'bg-secondary-100',
+                iconText: 'text-secondary-700',
+                button: 'bg-secondary-600 hover:bg-secondary-700 focus:ring-secondary-200'
+              },
+              blue: {
+                border: 'border-primary-300',
+                iconBg: 'bg-primary-100',
+                iconText: 'text-primary-700',
+                button: 'bg-primary-600 hover:bg-primary-700 focus:ring-primary-200'
+              },
+            };
+            const colors = colorClasses[view.color as keyof typeof colorClasses];
+
+            return (
+              <div
+                key={view.id}
+                className={`bg-white p-8 rounded-2xl border-2 ${colors.border} shadow-soft hover:shadow-soft-lg transition-all duration-300 cursor-pointer transform hover:scale-105`}
+                onClick={() => setSelectedView(view.id)}
+              >
+                <div className={`flex items-center justify-center w-20 h-20 ${colors.iconBg} rounded-2xl mb-6`}>
+                  <view.icon className={`w-10 h-10 ${colors.iconText}`} />
+                </div>
+                <h2 className="text-2xl font-display font-bold text-neutral-900 mb-3">{view.title}</h2>
+                <p className="text-neutral-600 mb-6 leading-relaxed">{view.desc}</p>
+                <div className="space-y-2 mb-8">
+                  {view.features.map((feature, idx) => (
+                    <p key={idx} className="text-sm text-neutral-700 flex items-center">
+                      <CheckCircle className="w-4 h-4 mr-2 text-accent-600" />
+                      {feature}
+                    </p>
+                  ))}
+                </div>
+                <button className={`w-full px-6 py-3.5 ${colors.button} text-white rounded-xl font-medium transition-all duration-200 shadow-soft hover:shadow-soft-lg focus:ring-4 flex items-center justify-center group`}>
+                  <span>Explore {view.title}</span>
+                  <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </button>
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">{view.title}</h2>
-              <p className="text-gray-600 mb-6">{view.desc}</p>
-              <div className="space-y-2 mb-6">
-                {view.features.map((feature, idx) => (
-                  <p key={idx} className="text-sm text-gray-700">
-                    ✓ {feature}
-                  </p>
-                ))}
-              </div>
-              <button className={`w-full px-6 py-3 bg-${view.color}-600 text-white rounded-lg hover:bg-${view.color}-700 font-medium transition-colors`}>
-                Explore {view.title} →
-              </button>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Curriculum Overview */}

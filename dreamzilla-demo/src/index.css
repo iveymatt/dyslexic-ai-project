@@ -1,10 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lexend:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  body {
+    @apply font-sans text-neutral-800 bg-neutral-50;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Better focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary-500 rounded;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Dyslexia-friendly paragraph spacing */
+  p {
+    @apply mb-4;
+  }
+
+  /* High contrast headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-neutral-900;
+  }
+}
+
+@layer components {
+  /* Custom button styles */
+  .btn-primary {
+    @apply px-6 py-3 bg-primary-600 text-white rounded-xl font-medium
+           hover:bg-primary-700 focus:ring-4 focus:ring-primary-200
+           transition-all duration-200 shadow-soft hover:shadow-soft-lg;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-secondary-600 text-white rounded-xl font-medium
+           hover:bg-secondary-700 focus:ring-4 focus:ring-secondary-200
+           transition-all duration-200 shadow-soft hover:shadow-soft-lg;
+  }
+
+  .btn-accent {
+    @apply px-6 py-3 bg-accent-600 text-white rounded-xl font-medium
+           hover:bg-accent-700 focus:ring-4 focus:ring-accent-200
+           transition-all duration-200 shadow-soft hover:shadow-soft-lg;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-2xl shadow-soft border border-neutral-200
+           hover:shadow-soft-lg transition-all duration-200;
+  }
+
+  /* Input styles */
+  .input {
+    @apply w-full px-4 py-3 border-2 border-neutral-300 rounded-xl
+           focus:border-primary-500 focus:ring-4 focus:ring-primary-100
+           transition-all duration-200 text-base;
+  }
+}
+
+@layer utilities {
+  /* Reduced motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .card {
+      @apply border-2 border-neutral-400;
+    }
+  }
 }
