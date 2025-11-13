@@ -1,89 +1,128 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lexend:wght@300;400;500;600;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  body {
-    @apply font-sans text-neutral-800 bg-neutral-50;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+@theme {
+  /* Custom color palette */
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-200: #bae6fd;
+  --color-primary-300: #7dd3fc;
+  --color-primary-400: #38bdf8;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-primary-800: #075985;
+  --color-primary-900: #0c4a6e;
 
-  /* Better focus styles for accessibility */
-  *:focus-visible {
-    @apply outline-2 outline-offset-2 outline-primary-500 rounded;
-  }
+  --color-secondary-50: #fdf4ff;
+  --color-secondary-100: #fae8ff;
+  --color-secondary-200: #f5d0fe;
+  --color-secondary-300: #f0abfc;
+  --color-secondary-400: #e879f9;
+  --color-secondary-500: #d946ef;
+  --color-secondary-600: #c026d3;
+  --color-secondary-700: #a21caf;
+  --color-secondary-800: #86198f;
+  --color-secondary-900: #701a75;
 
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
-  }
+  --color-accent-50: #ecfdf5;
+  --color-accent-100: #d1fae5;
+  --color-accent-200: #a7f3d0;
+  --color-accent-300: #6ee7b7;
+  --color-accent-400: #34d399;
+  --color-accent-500: #10b981;
+  --color-accent-600: #059669;
+  --color-accent-700: #047857;
+  --color-accent-800: #065f46;
+  --color-accent-900: #064e3b;
 
-  /* Dyslexia-friendly paragraph spacing */
-  p {
-    @apply mb-4;
-  }
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
 
-  /* High contrast headings */
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display text-neutral-900;
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Lexend', 'Inter', sans-serif;
+
+  /* Shadows */
+  --shadow-soft: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
+  --shadow-soft-lg: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+
+  /* Border radius */
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+}
+
+/* Base styles */
+body {
+  font-family: var(--font-sans);
+  color: var(--color-neutral-800);
+  background-color: var(--color-neutral-50);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Better focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Dyslexia-friendly paragraph spacing */
+p {
+  margin-bottom: 1rem;
+}
+
+/* High contrast headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--color-neutral-900);
+}
+
+/* Custom utility classes */
+.card {
+  background-color: white;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-neutral-200);
+  transition: all 0.2s;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-soft-lg);
+}
+
+/* Reduced motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-@layer components {
-  /* Custom button styles */
-  .btn-primary {
-    @apply px-6 py-3 bg-primary-600 text-white rounded-xl font-medium
-           hover:bg-primary-700 focus:ring-4 focus:ring-primary-200
-           transition-all duration-200 shadow-soft hover:shadow-soft-lg;
-  }
-
-  .btn-secondary {
-    @apply px-6 py-3 bg-secondary-600 text-white rounded-xl font-medium
-           hover:bg-secondary-700 focus:ring-4 focus:ring-secondary-200
-           transition-all duration-200 shadow-soft hover:shadow-soft-lg;
-  }
-
-  .btn-accent {
-    @apply px-6 py-3 bg-accent-600 text-white rounded-xl font-medium
-           hover:bg-accent-700 focus:ring-4 focus:ring-accent-200
-           transition-all duration-200 shadow-soft hover:shadow-soft-lg;
-  }
-
-  /* Card styles */
+/* High contrast mode support */
+@media (prefers-contrast: high) {
   .card {
-    @apply bg-white rounded-2xl shadow-soft border border-neutral-200
-           hover:shadow-soft-lg transition-all duration-200;
-  }
-
-  /* Input styles */
-  .input {
-    @apply w-full px-4 py-3 border-2 border-neutral-300 rounded-xl
-           focus:border-primary-500 focus:ring-4 focus:ring-primary-100
-           transition-all duration-200 text-base;
-  }
-}
-
-@layer utilities {
-  /* Reduced motion for users who prefer it */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
-
-  /* High contrast mode support */
-  @media (prefers-contrast: high) {
-    .card {
-      @apply border-2 border-neutral-400;
-    }
+    border: 2px solid var(--color-neutral-400);
   }
 }
