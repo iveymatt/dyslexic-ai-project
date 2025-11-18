@@ -250,6 +250,20 @@ export const aiTools: AITool[] = [
       'Can be verbose at times',
       'Limited real-time info without integration',
     ],
+    dyslexicFriendlyFeatures: [
+      'Clear, conversational language',
+      'Asks clarifying questions first',
+      'Can simplify complex topics on request',
+      'Patient, non-judgmental tone',
+      'Good at structured explanations',
+    ],
+    bestUseCases: [
+      'Learning complex concepts step-by-step',
+      'Socratic-style exploration',
+      'Breaking down large projects',
+      'Writing and editing assistance',
+      'Coding help with explanations',
+    ],
     features: {
       textToSpeech: false,
       voiceInput: false,
@@ -340,6 +354,20 @@ export const aiTools: AITool[] = [
       'Sometimes jumps to answers too quickly',
       'Can use technical jargon',
       'Less patient with exploration',
+    ],
+    dyslexicFriendlyFeatures: [
+      'Voice mode for hands-free interaction',
+      'Can simplify language when prompted',
+      'Image analysis to help with visual learning',
+      'Fast responses',
+      'Structured formatting with bullets and headers',
+    ],
+    bestUseCases: [
+      'Quick answers and summaries',
+      'Voice conversations',
+      'Image analysis and description',
+      'Code generation',
+      'Task list creation',
     ],
     features: {
       textToSpeech: true,
@@ -433,6 +461,19 @@ export const aiTools: AITool[] = [
       'Can be dense with information',
       'Less conversational',
     ],
+    dyslexicFriendlyFeatures: [
+      'Citations reduce need to verify info',
+      'Clean, organized output format',
+      'Bullet points and structured summaries',
+      'Real-time information',
+    ],
+    bestUseCases: [
+      'Research with sources',
+      'Fact-checking',
+      'Academic work',
+      'Finding recent information',
+      'Comparing multiple sources',
+    ],
     features: {
       textToSpeech: false,
       voiceInput: true,
@@ -525,6 +566,19 @@ export const aiTools: AITool[] = [
       'Can feel robotic',
       'Limited neurodivergent awareness',
     ],
+    dyslexicFriendlyFeatures: [
+      'Voice input available',
+      'Google Workspace integration',
+      'Multimodal (text and images)',
+      'Fast response times',
+    ],
+    bestUseCases: [
+      'Google Workspace users',
+      'Quick factual queries',
+      'Gmail and Docs integration',
+      'Image analysis',
+      'Google search enhancement',
+    ],
     features: {
       textToSpeech: false,
       voiceInput: true,
@@ -615,6 +669,19 @@ export const aiTools: AITool[] = [
       'Very corporate/formal tone',
       'Limited conversational depth',
       'Not designed for neurodivergent users',
+    ],
+    dyslexicFriendlyFeatures: [
+      'Voice input available',
+      'Immersive Reader integration (Edge)',
+      'Office integration for familiar tools',
+      'Windows dictation support',
+    ],
+    bestUseCases: [
+      'Microsoft Office users',
+      'Workplace productivity',
+      'Professional documentation',
+      'Email writing',
+      'Excel and PowerPoint assistance',
     ],
     features: {
       textToSpeech: false,
