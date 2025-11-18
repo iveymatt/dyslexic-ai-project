@@ -1,11 +1,14 @@
-export type ThinkingMode = 'socratic' | 'strategic';
+export type ThinkingMode = 'socratic' | 'strategic' | 'skeptic';
 
 export type SubAgent =
   | 'think-out-loud'
   | 'executive-strategist'
   | 'writing-clarity'
   | 'task-breakdown'
-  | 'research-digest';
+  | 'research-digest'
+  | 'reality-check'
+  | 'risk-assessor'
+  | 'assumption-challenger';
 
 export interface Message {
   id: string;
