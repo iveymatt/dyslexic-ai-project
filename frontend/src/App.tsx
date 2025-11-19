@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LandingPage } from './components/LandingPage';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
@@ -16,12 +16,20 @@ import { LifeSkillsCoach } from './pages/careerDiscovery/LifeSkillsCoach';
 import { AILiteracy } from './pages/careerDiscovery/AILiteracy';
 import { AIAgentsWorkflows } from './pages/careerDiscovery/AIAgentsWorkflows';
 import { DreamzillaCurriculum } from './components/DreamzillaCurriculum';
+import { CognitivePartnerAssessment } from './components/CognitivePartnerAssessment';
+import { CognitiveProfileViewer } from './components/CognitiveProfileViewer';
+import type { CognitivePartnerProfile } from './types/cognitiveProfile';
 
 function App() {
   const [showLanding, setShowLanding] = useState(true);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [showPromptLibrary, setShowPromptLibrary] = useState(false);
   const [selectedPromptId, setSelectedPromptId] = useState<string | null>(null);
+
+  // Cognitive Partner Profile states
+  const [cognitiveProfile, setCognitiveProfile] = useState<CognitivePartnerProfile | null>(null);
+  const [showAssessment, setShowAssessment] = useState(false);
+  const [showProfileViewer, setShowProfileViewer] = useState(false);
 
   // Career Discovery states
   const [showCareerDiscovery, setShowCareerDiscovery] = useState(false);
@@ -34,8 +42,62 @@ function App() {
   const [showCurriculum, setShowCurriculum] = useState(false);
   const [selectedJobId, setSelectedJobId] = useState<string | null>(null);
 
+  // Load cognitive profile from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('cognitivePartnerProfile');
+    if (saved) {
+      try {
+        setCognitiveProfile(JSON.parse(saved));
+      } catch (e) {
+        console.error('Failed to load cognitive profile:', e);
+      }
+    }
+  }, []);
+
+  // Save cognitive profile to localStorage when it changes
+  const handleProfileUpdate = (profile: CognitivePartnerProfile) => {
+    setCognitiveProfile(profile);
+    localStorage.setItem('cognitivePartnerProfile', JSON.stringify(profile));
+  };
+
+  // Cognitive Partner Assessment
+  if (showAssessment) {
+    return (
+      <CognitivePartnerAssessment
+        onComplete={(profile) => {
+          handleProfileUpdate(profile);
+          setShowAssessment(false);
+          setShowLanding(false);
+        }}
+        onSkip={() => {
+          setShowAssessment(false);
+          setShowLanding(false);
+        }}
+      />
+    );
+  }
+
+  // Cognitive Profile Viewer
+  if (showProfileViewer && cognitiveProfile) {
+    return (
+      <CognitiveProfileViewer
+        profile={cognitiveProfile}
+        onUpdate={handleProfileUpdate}
+        onClose={() => setShowProfileViewer(false)}
+      />
+    );
+  }
+
   if (showLanding) {
-    return <LandingPage onGetStarted={() => setShowLanding(false)} />;
+    return (
+      <LandingPage
+        onGetStarted={() => setShowLanding(false)}
+        onTakeAssessment={() => {
+          setShowLanding(false);
+          setShowAssessment(true);
+        }}
+      />
+    );
   }
 
   if (selectedPromptId) {
@@ -232,6 +294,14 @@ function App() {
         onShowPromptLibrary={() => setShowPromptLibrary(true)}
         onShowCareerDiscovery={() => setShowCareerDiscovery(true)}
         onShowAIAgentsWorkflows={() => setShowAIAgentsWorkflows(true)}
+        onShowProfile={() => {
+          if (cognitiveProfile) {
+            setShowProfileViewer(true);
+          } else {
+            setShowAssessment(true);
+          }
+        }}
+        hasProfile={!!cognitiveProfile}
       />
 
       {/* Main Content Area */}
