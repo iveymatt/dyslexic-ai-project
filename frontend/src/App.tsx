@@ -15,6 +15,7 @@ import { JobDetail } from './pages/careerDiscovery/JobDetail';
 import { LifeSkillsCoach } from './pages/careerDiscovery/LifeSkillsCoach';
 import { AILiteracy } from './pages/careerDiscovery/AILiteracy';
 import { AIAgentsWorkflows } from './pages/careerDiscovery/AIAgentsWorkflows';
+import { DreamzillaCurriculum } from './components/DreamzillaCurriculum';
 
 function App() {
   const [showLanding, setShowLanding] = useState(true);
@@ -30,6 +31,7 @@ function App() {
   const [showLifeSkills, setShowLifeSkills] = useState(false);
   const [showAILiteracy, setShowAILiteracy] = useState(false);
   const [showAIAgentsWorkflows, setShowAIAgentsWorkflows] = useState(false);
+  const [showCurriculum, setShowCurriculum] = useState(false);
   const [selectedJobId, setSelectedJobId] = useState<string | null>(null);
 
   if (showLanding) {
@@ -129,6 +131,27 @@ function App() {
     );
   }
 
+  if (showCurriculum) {
+    return (
+      <div className="h-screen flex flex-col bg-gray-900">
+        <div className="p-4 border-b border-gray-700">
+          <button
+            onClick={() => {
+              setShowCurriculum(false);
+              setShowCareerDiscovery(true);
+            }}
+            className="text-blue-400 hover:text-blue-300 flex items-center gap-2"
+          >
+            ← Back to Career Discovery
+          </button>
+        </div>
+        <div className="flex-1 overflow-y-auto">
+          <DreamzillaCurriculum />
+        </div>
+      </div>
+    );
+  }
+
   if (showProfileBuilder) {
     return (
       <ProfileBuilder
@@ -192,6 +215,10 @@ function App() {
         onViewAIAgentsWorkflows={() => {
           setShowCareerDiscovery(false);
           setShowAIAgentsWorkflows(true);
+        }}
+        onViewCurriculum={() => {
+          setShowCareerDiscovery(false);
+          setShowCurriculum(true);
         }}
       />
     );

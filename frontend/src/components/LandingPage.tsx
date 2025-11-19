@@ -21,6 +21,7 @@ import {
   Clock,
   TrendingUp,
   Bot,
+  AlertTriangle,
 } from 'lucide-react';
 
 interface LandingPageProps {
@@ -116,11 +117,11 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-400 flex-shrink-0 mt-1">✓</span>
-                <span>Compare 6 major AI tools side-by-side</span>
+                <span>Compare 40+ AI tools across 5 categories</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-400 flex-shrink-0 mt-1">✓</span>
-                <span>Filter by your thinking style</span>
+                <span>Filter by your thinking style & view as cards or list</span>
               </li>
             </ul>
             <div className="bg-blue-900/30 rounded-lg p-4 border border-blue-700/30">
@@ -137,7 +138,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             </div>
             <h3 className="text-2xl font-bold mb-4">Accessible AI Chat</h3>
             <p className="text-gray-300 mb-6 text-lg">
-              Two thinking modes (Socratic & Strategic), built-in accessibility, designed for dyslexic brains.
+              Three thinking modes (Socratic, Strategic & Skeptic), built-in accessibility, designed for dyslexic brains.
             </p>
             <ul className="space-y-3 text-gray-300 mb-6">
               <li className="flex items-start gap-2">
@@ -154,7 +155,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-purple-400 flex-shrink-0 mt-1">✓</span>
-                <span>Switch between exploration & direct answers</span>
+                <span>Explore, Execute, or Challenge ideas</span>
               </li>
             </ul>
             <div className="bg-purple-900/30 rounded-lg p-4 border border-purple-700/30">
@@ -236,14 +237,14 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
 
       {/* Thinking Modes Section */}
       <section className="container mx-auto px-6 py-16">
-        <h2 className="text-4xl font-bold text-center mb-4">Two Thinking Modes</h2>
-        <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-lg">
-          Neurodivergent brains think laterally (connections, exploration) AND need structure (step-by-step, organized).
-          We support both.
+        <h2 className="text-4xl font-bold text-center mb-4">Three Thinking Modes</h2>
+        <p className="text-center text-gray-400 mb-12 max-w-3xl mx-auto text-lg">
+          Neurodivergent brains need different modes: explore ideas freely, get direct answers, AND challenge assumptions.
+          We support all three ways of thinking.
         </p>
 
         {/* Mode Cards */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
           {/* SOCRATIC Mode */}
           <div className="bg-gradient-to-br from-accent-500 to-accent-700 p-8 rounded-2xl text-white shadow-2xl transform hover:scale-105 transition-all">
             <div className="flex items-center gap-3 mb-4">
@@ -315,6 +316,47 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             <div className="mt-6 bg-primary-900/40 rounded-lg p-4 border border-primary-300/30">
               <p className="text-sm text-primary-100">
                 <strong>Use when:</strong> Need quick answers, want specific steps, improving writing, researching
+              </p>
+            </div>
+          </div>
+
+          {/* SKEPTIC Mode */}
+          <div className="bg-gradient-to-br from-orange-500 to-orange-700 p-8 rounded-2xl text-white shadow-2xl transform hover:scale-105 transition-all">
+            <div className="flex items-center gap-3 mb-4">
+              <AlertTriangle size={40} className="text-yellow-300" />
+              <h3 className="text-3xl font-bold">SKEPTIC</h3>
+            </div>
+            <p className="text-xl mb-6 text-orange-100 font-semibold">Challenge ideas. Find blind spots. Make it stronger.</p>
+            <p className="text-orange-100 mb-6">
+              Perfect for stress-testing ideas, finding what you're missing, and playing devil's advocate.
+              The AI challenges assumptions and reveals weaknesses to make your thinking bulletproof.
+            </p>
+            <div className="space-y-3">
+              <div className="bg-white/10 rounded-lg p-4 border border-orange-300/30">
+                <h4 className="font-semibold mb-1 flex items-center gap-2">
+                  <Target size={16} />
+                  Reality Check
+                </h4>
+                <p className="text-sm text-orange-100">Stress-test ideas & surface hidden assumptions</p>
+              </div>
+              <div className="bg-white/10 rounded-lg p-4 border border-orange-300/30">
+                <h4 className="font-semibold mb-1 flex items-center gap-2">
+                  <AlertTriangle size={16} />
+                  Risk Assessor
+                </h4>
+                <p className="text-sm text-orange-100">Identify risks, edge cases & what could go wrong</p>
+              </div>
+              <div className="bg-white/10 rounded-lg p-4 border border-orange-300/30">
+                <h4 className="font-semibold mb-1 flex items-center gap-2">
+                  <Brain size={16} />
+                  Assumption Challenger
+                </h4>
+                <p className="text-sm text-orange-100">Question beliefs & uncover what you're taking for granted</p>
+              </div>
+            </div>
+            <div className="mt-6 bg-orange-900/40 rounded-lg p-4 border border-orange-300/30">
+              <p className="text-sm text-orange-100">
+                <strong>Use when:</strong> Testing ideas, making important decisions, planning projects, avoiding mistakes
               </p>
             </div>
           </div>

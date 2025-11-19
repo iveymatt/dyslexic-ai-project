@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { UserProfile } from '../../types/career';
 import { CognitiveProfile } from '../../components/CognitiveProfile';
-import { Briefcase, BookOpen, Lightbulb, ArrowRight, Star, Users, Zap, Clipboard, Eye, Brain, Calendar, Heart, Shield, MessageCircle, Bot } from 'lucide-react';
+import { Briefcase, BookOpen, Lightbulb, ArrowRight, Star, Users, Zap, Clipboard, Eye, Brain, Calendar, Heart, Shield, MessageCircle, Bot, GraduationCap } from 'lucide-react';
 import {
   calculateLifeSkillsProgress,
   calculateAILiteracyProgress,
@@ -38,6 +38,7 @@ interface CareerDiscoveryProps {
   onViewLifeSkills: () => void;
   onViewAILiteracy: () => void;
   onViewAIAgentsWorkflows: () => void;
+  onViewCurriculum: () => void;
 }
 
 export function CareerDiscovery({
@@ -48,6 +49,7 @@ export function CareerDiscovery({
   onViewLifeSkills,
   onViewAILiteracy,
   onViewAIAgentsWorkflows,
+  onViewCurriculum,
 }: CareerDiscoveryProps) {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
 
@@ -475,6 +477,31 @@ export function CareerDiscovery({
             <div className="bg-primary-900/20 border border-primary-700/30 rounded-lg p-3">
               <p className="text-sm text-primary-200">
                 10 agents • 3 workflows
+              </p>
+            </div>
+          </button>
+
+          {/* Dreamzilla Curriculum */}
+          <button
+            onClick={onViewCurriculum}
+            className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-purple-500 transition-all text-left group"
+          >
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <GraduationCap className="text-purple-400" size={24} />
+                  <h3 className="text-xl font-bold">Dreamzilla Curriculum</h3>
+                </div>
+                <p className="text-gray-400 text-sm">6-week neurodivergent workforce readiness program</p>
+              </div>
+              <ArrowRight
+                size={24}
+                className="text-gray-600 group-hover:text-purple-400 group-hover:translate-x-1 transition-all"
+              />
+            </div>
+            <div className="bg-purple-900/20 border border-purple-700/30 rounded-lg p-3">
+              <p className="text-sm text-purple-200">
+                6 weeks • Student, Facilitator & Admin views
               </p>
             </div>
           </button>
