@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { ArrowLeft, ExternalLink, Check, X, TrendingUp, Brain, Zap, HelpCircle, Filter } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Check, X, TrendingUp, Brain, Zap, HelpCircle, Filter, Grid, List } from 'lucide-react';
 import { aiTools, filterByThinkingStyle } from '../data/aiTools';
 import { NeuroScoreCell } from '../components/NeuroScore';
 import { NeurodivergentScorecard } from '../components/NeurodivergentScorecard';
+import { ToolCard } from '../components/ToolCard';
 import { HowWeScore } from './HowWeScore';
 import type { AITool, ThinkingStyle } from '../types/leaderboard';
 import { getScoreColor } from '../types/leaderboard';
@@ -16,6 +17,7 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
   const [showMethodology, setShowMethodology] = useState(false);
   const [sortBy, setSortBy] = useState<'overall' | 'neuro' | 'features'>('neuro');
   const [thinkingStyleFilter, setThinkingStyleFilter] = useState<ThinkingStyle>('all');
+  const [viewMode, setViewMode] = useState<'list' | 'cards'>('list');
 
   // Apply thinking style filter
   const filteredTools = filterByThinkingStyle(aiTools, thinkingStyleFilter);
@@ -74,6 +76,37 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
 
       {/* Controls */}
       <div className="container mx-auto px-6 py-6 space-y-4">
+        {/* View Mode Toggle */}
+        <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="text-sm text-gray-400 font-medium">View:</span>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setViewMode('list')}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 ${
+                  viewMode === 'list'
+                    ? 'bg-primary-600 text-white'
+                    : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                }`}
+              >
+                <List size={16} />
+                List
+              </button>
+              <button
+                onClick={() => setViewMode('cards')}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 ${
+                  viewMode === 'cards'
+                    ? 'bg-primary-600 text-white'
+                    : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                }`}
+              >
+                <Grid size={16} />
+                Cards
+              </button>
+            </div>
+          </div>
+        </div>
+
         {/* Sort Toggle */}
         <div className="flex flex-wrap items-center gap-3">
           <span className="text-sm text-gray-400 font-medium">Sort by:</span>
@@ -192,10 +225,30 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
         )}
       </div>
 
-      {/* Leaderboard Table */}
+      {/* Leaderboard Content */}
       <div className="container mx-auto px-6 pb-12">
-        <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
-          <table className="w-full">
+        {viewMode === 'cards' ? (
+          /* Card Grid View */
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sortedTools.length === 0 ? (
+              <div className="col-span-full bg-gray-800 rounded-xl border border-gray-700 p-8 text-center text-gray-400">
+                No tools match this thinking style filter. Try selecting "All Tools".
+              </div>
+            ) : (
+              sortedTools.map((tool, index) => (
+                <ToolCard
+                  key={tool.id}
+                  tool={tool}
+                  onClick={() => setSelectedTool(tool)}
+                  rank={index + 1}
+                />
+              ))
+            )}
+          </div>
+        ) : (
+          /* Table List View */
+          <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
+            <table className="w-full">
             <thead>
               <tr className="bg-gray-750 border-b border-gray-700">
                 <th className="text-left p-4 font-semibold text-gray-300 w-20">Rank</th>
@@ -283,7 +336,8 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
               )}
             </tbody>
           </table>
-        </div>
+          </div>
+        )}
 
         {/* Legend */}
         <div className="mt-6 flex items-center justify-center gap-6 text-sm text-gray-400">
