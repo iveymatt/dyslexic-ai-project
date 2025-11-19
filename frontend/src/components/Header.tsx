@@ -1,4 +1,4 @@
-import { Menu, Settings, Brain, Trophy, BookOpen, Briefcase, Bot } from 'lucide-react';
+import { Menu, Settings, Brain, Trophy, BookOpen, Briefcase, Bot, User } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { modes, getSubAgentsForMode } from '../config/modes';
 import type { ThinkingMode, SubAgent } from '../types';
@@ -8,9 +8,11 @@ interface HeaderProps {
   onShowPromptLibrary?: () => void;
   onShowCareerDiscovery?: () => void;
   onShowAIAgentsWorkflows?: () => void;
+  onShowProfile?: () => void;
+  hasProfile?: boolean;
 }
 
-export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDiscovery, onShowAIAgentsWorkflows }: HeaderProps) {
+export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDiscovery, onShowAIAgentsWorkflows, onShowProfile, hasProfile }: HeaderProps) {
   const {
     sidebarOpen,
     setSidebarOpen,
@@ -94,6 +96,19 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
             >
               <Trophy size={18} />
               <span className="hidden sm:inline">AI Leaderboard</span>
+            </button>
+          )}
+          {onShowProfile && (
+            <button
+              onClick={onShowProfile}
+              className={`btn-icon relative ${hasProfile ? 'bg-blue-600 hover:bg-blue-700' : ''}`}
+              aria-label="View Cognitive Profile"
+              title={hasProfile ? 'View your profile' : 'Create profile'}
+            >
+              <User size={20} />
+              {hasProfile && (
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 border-2 border-gray-800 rounded-full" />
+              )}
             </button>
           )}
           <button

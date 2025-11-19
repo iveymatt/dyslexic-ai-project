@@ -26,9 +26,10 @@ import {
 
 interface LandingPageProps {
   onGetStarted: () => void;
+  onTakeAssessment: () => void;
 }
 
-export function LandingPage({ onGetStarted }: LandingPageProps) {
+export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
       {/* Hero Section */}
@@ -45,14 +46,44 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
           AI chat + Prompt library + Tool comparison + Career discovery. Everything you need to work WITH your brain, not against it.
         </p>
-        <button
-          onClick={onGetStarted}
-          className="btn-primary text-lg px-8 py-4 inline-flex items-center gap-2 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all"
-        >
-          Start Free →
-          <ArrowRight size={20} />
-        </button>
-        <p className="text-sm text-gray-500 mt-4">No signup required • Privacy-focused • Open source</p>
+
+        {/* Dual CTA - Assessment or Skip */}
+        <div className="max-w-4xl mx-auto">
+          {/* Primary: Take Assessment */}
+          <button
+            onClick={onTakeAssessment}
+            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-6 px-8 rounded-xl shadow-2xl transition-all mb-4 border-2 border-blue-400/50"
+          >
+            <div className="flex items-center justify-center gap-4">
+              <Brain size={32} />
+              <div className="text-left">
+                <div className="text-2xl">Create Your Cognitive Partner Profile</div>
+                <div className="text-sm opacity-90 mt-1">
+                  5-minute assessment → Fully customized experience tailored to YOUR brain
+                </div>
+              </div>
+              <ArrowRight size={24} className="ml-auto" />
+            </div>
+          </button>
+
+          {/* Divider */}
+          <div className="flex items-center gap-4 mb-4">
+            <div className="flex-1 border-t border-gray-600"></div>
+            <span className="text-gray-500 text-sm">OR START WITHOUT ASSESSMENT</span>
+            <div className="flex-1 border-t border-gray-600"></div>
+          </div>
+
+          {/* Secondary: Skip to Chat */}
+          <button
+            onClick={onGetStarted}
+            className="w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-2"
+          >
+            Skip to Chat
+            <ArrowRight size={20} />
+          </button>
+        </div>
+
+        <p className="text-sm text-gray-500 mt-6">No signup required • Privacy-focused • Open source</p>
       </header>
 
       {/* Feature Highlights - 5 Major Features */}
