@@ -1,9 +1,8 @@
+@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lexend:wght@300;400;500;600;700&display=swap');
 
-@import "tailwindcss";
-
 @theme {
-  /* Custom color palette */
+  /* Custom color palette - Primary (Blue) */
   --color-primary-50: #f0f9ff;
   --color-primary-100: #e0f2fe;
   --color-primary-200: #bae6fd;
@@ -15,6 +14,7 @@
   --color-primary-800: #075985;
   --color-primary-900: #0c4a6e;
 
+  /* Secondary (Purple) */
   --color-secondary-50: #fdf4ff;
   --color-secondary-100: #fae8ff;
   --color-secondary-200: #f5d0fe;
@@ -26,6 +26,7 @@
   --color-secondary-800: #86198f;
   --color-secondary-900: #701a75;
 
+  /* Accent (Green) */
   --color-accent-50: #ecfdf5;
   --color-accent-100: #d1fae5;
   --color-accent-200: #a7f3d0;
@@ -37,6 +38,7 @@
   --color-accent-800: #065f46;
   --color-accent-900: #064e3b;
 
+  /* Neutral */
   --color-neutral-50: #f8fafc;
   --color-neutral-100: #f1f5f9;
   --color-neutral-200: #e2e8f0;
@@ -49,56 +51,29 @@
   --color-neutral-900: #0f172a;
 
   /* Fonts */
-  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Lexend', 'Inter', sans-serif;
 
-  /* Shadows */
+  /* Custom shadows */
   --shadow-soft: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
   --shadow-soft-lg: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
-
-  /* Border radius */
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
-  --radius-3xl: 2rem;
 }
 
 /* Base styles */
 body {
-  font-family: var(--font-sans);
-  color: var(--color-neutral-800);
-  background-color: var(--color-neutral-50);
-  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Better focus styles for accessibility */
-*:focus-visible {
-  outline: 2px solid var(--color-primary-500);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Dyslexia-friendly paragraph spacing */
-p {
-  margin-bottom: 1rem;
-}
-
-/* High contrast headings */
+/* Headings use display font */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  color: var(--color-neutral-900);
 }
 
-/* Custom utility classes */
+/* Custom card class */
 .card {
   background-color: white;
-  border-radius: var(--radius-2xl);
+  border-radius: 1rem;
   box-shadow: var(--shadow-soft);
   border: 1px solid var(--color-neutral-200);
   transition: all 0.2s;
@@ -108,21 +83,25 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: var(--shadow-soft-lg);
 }
 
-/* Reduced motion for users who prefer it */
+/* Shadow utilities */
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+.shadow-soft-lg {
+  box-shadow: var(--shadow-soft-lg);
+}
+
+/* Font display utility */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .card {
-    border: 2px solid var(--color-neutral-400);
   }
 }
