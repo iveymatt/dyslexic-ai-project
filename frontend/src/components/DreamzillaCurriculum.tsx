@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {
   BookOpen,
-  Calendar,
   CheckCircle,
   Users,
   FileText,
@@ -12,8 +11,6 @@ import {
   Download,
   Upload,
   MessageCircle,
-  AlertCircle,
-  Star,
   BarChart
 } from 'lucide-react';
 
@@ -289,7 +286,6 @@ const MOCK_COHORT: Cohort = {
 export function DreamzillaCurriculum() {
   const [viewMode, setViewMode] = useState<ViewMode>('student');
   const [selectedWeek, setSelectedWeek] = useState<number>(1);
-  const [selectedStudent, setSelectedStudent] = useState<string | null>(null);
 
   // Student View
   const renderStudentView = () => {
@@ -303,21 +299,21 @@ export function DreamzillaCurriculum() {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h3 className="text-2xl font-bold mb-2">Welcome back, {currentStudent.studentName}!</h3>
-              <p className="text-gray-300">Current Week: Week {MOCK_COHORT.currentWeek} - {CURRICULUM[MOCK_COHORT.currentWeek - 1].theme}</p>
+              <p className="text-earth-600">Current Week: Week {MOCK_COHORT.currentWeek} - {CURRICULUM[MOCK_COHORT.currentWeek - 1].theme}</p>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-blue-400">{currentStudent.sustainabilityScore}</div>
-              <div className="text-sm text-gray-400">Sustainability Score</div>
+              <div className="text-sm text-earth-500">Sustainability Score</div>
             </div>
           </div>
 
           {/* Progress Bar */}
           <div className="space-y-2">
-            <div className="flex justify-between text-sm text-gray-400">
+            <div className="flex justify-between text-sm text-earth-500">
               <span>Overall Progress</span>
               <span>{Math.round((currentStudent.worksheetsCompleted.length / 18) * 100)}%</span>
             </div>
-            <div className="w-full bg-gray-700 rounded-full h-3">
+            <div className="w-full bg-earth-100 rounded-full h-3">
               <div
                 className="bg-gradient-to-r from-blue-500 to-purple-500 h-3 rounded-full transition-all"
                 style={{ width: `${(currentStudent.worksheetsCompleted.length / 18) * 100}%` }}
@@ -339,7 +335,7 @@ export function DreamzillaCurriculum() {
                   ? 'bg-green-900/30 border-green-700/50 hover:border-green-600'
                   : currentStudent.weekProgress[w.id] > 0
                   ? 'bg-yellow-900/30 border-yellow-700/50 hover:border-yellow-600'
-                  : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                  : 'bg-white border-earth-200 hover:border-earth-300'
               }`}
             >
               <div className="font-bold text-sm">Week {w.id}</div>
@@ -354,21 +350,21 @@ export function DreamzillaCurriculum() {
         </div>
 
         {/* Selected Week Content */}
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <div className="bg-white rounded-xl p-6 border border-earth-200">
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-2">
               <BookOpen className="text-blue-400" size={24} />
               <h3 className="text-2xl font-bold">{week.title}</h3>
             </div>
             <p className="text-xl text-blue-300 font-semibold mb-2">{week.theme}</p>
-            <p className="text-gray-400">{week.description}</p>
+            <p className="text-earth-500">{week.description}</p>
           </div>
 
           {/* Sessions */}
           <div className="space-y-4 mb-6">
             <h4 className="font-semibold text-lg">Sessions</h4>
             {week.sessions.map((session) => (
-              <div key={session.id} className="bg-gray-900/50 rounded-lg p-4 border border-gray-700/50">
+              <div key={session.id} className="bg-earth-50 rounded-lg p-4 border border-earth-200/50">
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
@@ -382,13 +378,13 @@ export function DreamzillaCurriculum() {
                         {session.type}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
+                    <div className="flex items-center gap-2 text-sm text-earth-500 mb-2">
                       <Clock size={14} />
                       {session.duration}
                     </div>
                   </div>
                 </div>
-                <ul className="text-sm text-gray-400 space-y-1 mb-3">
+                <ul className="text-sm text-earth-500 space-y-1 mb-3">
                   {session.topics.map((topic, idx) => (
                     <li key={idx} className="flex items-center gap-2">
                       <div className="w-1 h-1 bg-blue-400 rounded-full" />
@@ -420,7 +416,7 @@ export function DreamzillaCurriculum() {
               {week.deliverables.map((deliverable, idx) => (
                 <li key={idx} className="flex items-center gap-2 text-sm">
                   <CheckCircle size={14} className="text-yellow-400" />
-                  <span className="text-gray-300">{deliverable}</span>
+                  <span className="text-earth-600">{deliverable}</span>
                 </li>
               ))}
             </ul>
@@ -439,12 +435,12 @@ export function DreamzillaCurriculum() {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h3 className="text-2xl font-bold mb-2">{MOCK_COHORT.name}</h3>
-              <p className="text-gray-300">Facilitator: {MOCK_COHORT.facilitator}</p>
-              <p className="text-gray-400 text-sm">Started: {MOCK_COHORT.startDate} • Current Week: {MOCK_COHORT.currentWeek}</p>
+              <p className="text-earth-600">Facilitator: {MOCK_COHORT.facilitator}</p>
+              <p className="text-earth-500 text-sm">Started: {MOCK_COHORT.startDate} • Current Week: {MOCK_COHORT.currentWeek}</p>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-purple-400">{MOCK_COHORT.students.length}</div>
-              <div className="text-sm text-gray-400">Students</div>
+              <div className="text-sm text-earth-500">Students</div>
             </div>
           </div>
 
@@ -453,26 +449,26 @@ export function DreamzillaCurriculum() {
               <div className="text-2xl font-bold text-green-400">
                 {Math.round(MOCK_COHORT.students.reduce((sum, s) => sum + (s.weekProgress[MOCK_COHORT.currentWeek] || 0), 0) / MOCK_COHORT.students.length)}%
               </div>
-              <div className="text-xs text-gray-400 mt-1">Avg Current Week Progress</div>
+              <div className="text-xs text-earth-500 mt-1">Avg Current Week Progress</div>
             </div>
             <div className="bg-white/5 rounded-lg p-3 text-center">
               <div className="text-2xl font-bold text-blue-400">
                 {Math.round(MOCK_COHORT.students.reduce((sum, s) => sum + s.sustainabilityScore, 0) / MOCK_COHORT.students.length)}
               </div>
-              <div className="text-xs text-gray-400 mt-1">Avg Sustainability Score</div>
+              <div className="text-xs text-earth-500 mt-1">Avg Sustainability Score</div>
             </div>
             <div className="bg-white/5 rounded-lg p-3 text-center">
               <div className="text-2xl font-bold text-yellow-400">
                 {MOCK_COHORT.students.filter(s => s.lastActive.includes('hour') || s.lastActive.includes('minute')).length}
               </div>
-              <div className="text-xs text-gray-400 mt-1">Active Today</div>
+              <div className="text-xs text-earth-500 mt-1">Active Today</div>
             </div>
           </div>
         </div>
 
         {/* Student Progress Table */}
-        <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
-          <div className="p-4 border-b border-gray-700 flex items-center justify-between">
+        <div className="bg-white rounded-xl border border-earth-200 overflow-hidden">
+          <div className="p-4 border-b border-earth-200 flex items-center justify-between">
             <h3 className="font-semibold text-lg">Student Progress</h3>
             <button className="text-sm text-blue-400 hover:text-blue-300 flex items-center gap-1">
               <Download size={14} />
@@ -481,23 +477,23 @@ export function DreamzillaCurriculum() {
           </div>
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-900/50">
+              <thead className="bg-earth-50">
                 <tr>
-                  <th className="text-left p-4 text-sm font-medium text-gray-400">Student</th>
-                  <th className="text-center p-4 text-sm font-medium text-gray-400">Week 1</th>
-                  <th className="text-center p-4 text-sm font-medium text-gray-400">Week 2</th>
-                  <th className="text-center p-4 text-sm font-medium text-gray-400">Week 3</th>
-                  <th className="text-center p-4 text-sm font-medium text-gray-400">Sustainability</th>
-                  <th className="text-center p-4 text-sm font-medium text-gray-400">Last Active</th>
-                  <th className="text-center p-4 text-sm font-medium text-gray-400">Actions</th>
+                  <th className="text-left p-4 text-sm font-medium text-earth-500">Student</th>
+                  <th className="text-center p-4 text-sm font-medium text-earth-500">Week 1</th>
+                  <th className="text-center p-4 text-sm font-medium text-earth-500">Week 2</th>
+                  <th className="text-center p-4 text-sm font-medium text-earth-500">Week 3</th>
+                  <th className="text-center p-4 text-sm font-medium text-earth-500">Sustainability</th>
+                  <th className="text-center p-4 text-sm font-medium text-earth-500">Last Active</th>
+                  <th className="text-center p-4 text-sm font-medium text-earth-500">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {MOCK_COHORT.students.map((student) => (
-                  <tr key={student.studentId} className="border-t border-gray-700 hover:bg-gray-700/30">
+                  <tr key={student.studentId} className="border-t border-earth-200 hover:bg-earth-100/30">
                     <td className="p-4">
                       <div className="font-medium">{student.studentName}</div>
-                      <div className="text-xs text-gray-400">{student.worksheetsCompleted.length} worksheets completed</div>
+                      <div className="text-xs text-earth-500">{student.worksheetsCompleted.length} worksheets completed</div>
                     </td>
                     {[1, 2, 3].map((week) => (
                       <td key={week} className="p-4 text-center">
@@ -505,7 +501,7 @@ export function DreamzillaCurriculum() {
                           student.weekProgress[week] === 100 ? 'bg-green-600 text-white' :
                           student.weekProgress[week] >= 60 ? 'bg-yellow-600 text-white' :
                           student.weekProgress[week] > 0 ? 'bg-orange-600 text-white' :
-                          'bg-gray-700 text-gray-400'
+                          'bg-earth-100 text-earth-500'
                         }`}>
                           {student.weekProgress[week] || 0}%
                         </div>
@@ -521,7 +517,7 @@ export function DreamzillaCurriculum() {
                         <span className="font-bold">{student.sustainabilityScore}</span>
                       </div>
                     </td>
-                    <td className="p-4 text-center text-sm text-gray-400">{student.lastActive}</td>
+                    <td className="p-4 text-center text-sm text-earth-500">{student.lastActive}</td>
                     <td className="p-4 text-center">
                       <button className="text-blue-400 hover:text-blue-300 text-sm">
                         View Details
@@ -535,16 +531,16 @@ export function DreamzillaCurriculum() {
         </div>
 
         {/* Week-by-Week Curriculum */}
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <div className="bg-white rounded-xl p-6 border border-earth-200">
           <h3 className="font-semibold text-lg mb-4">Curriculum Overview</h3>
           <div className="space-y-3">
             {CURRICULUM.map((week) => (
-              <div key={week.id} className="bg-gray-900/50 rounded-lg p-4 border border-gray-700/50">
+              <div key={week.id} className="bg-earth-50 rounded-lg p-4 border border-earth-200/50">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <h4 className="font-semibold mb-1">{week.title}</h4>
                     <p className="text-sm text-blue-300 mb-2">{week.theme}</p>
-                    <div className="flex items-center gap-4 text-xs text-gray-400">
+                    <div className="flex items-center gap-4 text-xs text-earth-500">
                       <span>{week.sessions.length} sessions</span>
                       <span>{week.deliverables.length} deliverables</span>
                     </div>
@@ -552,7 +548,7 @@ export function DreamzillaCurriculum() {
                   <div className={`px-3 py-1 rounded text-xs font-medium ${
                     week.id < MOCK_COHORT.currentWeek ? 'bg-green-900/40 text-green-300' :
                     week.id === MOCK_COHORT.currentWeek ? 'bg-blue-900/40 text-blue-300' :
-                    'bg-gray-700 text-gray-400'
+                    'bg-earth-100 text-earth-500'
                   }`}>
                     {week.id < MOCK_COHORT.currentWeek ? 'Completed' :
                      week.id === MOCK_COHORT.currentWeek ? 'Current' :
@@ -579,7 +575,7 @@ export function DreamzillaCurriculum() {
               <h4 className="font-semibold">Total Students</h4>
             </div>
             <p className="text-3xl font-bold">24</p>
-            <p className="text-xs text-gray-400 mt-1">Across 3 cohorts</p>
+            <p className="text-xs text-earth-500 mt-1">Across 3 cohorts</p>
           </div>
 
           <div className="bg-gradient-to-br from-green-900/40 to-green-800/40 rounded-xl p-5 border border-green-700/50">
@@ -588,7 +584,7 @@ export function DreamzillaCurriculum() {
               <h4 className="font-semibold">Completions</h4>
             </div>
             <p className="text-3xl font-bold">12</p>
-            <p className="text-xs text-gray-400 mt-1">50% completion rate</p>
+            <p className="text-xs text-earth-500 mt-1">50% completion rate</p>
           </div>
 
           <div className="bg-gradient-to-br from-purple-900/40 to-purple-800/40 rounded-xl p-5 border border-purple-700/50">
@@ -597,7 +593,7 @@ export function DreamzillaCurriculum() {
               <h4 className="font-semibold">Avg Engagement</h4>
             </div>
             <p className="text-3xl font-bold">87%</p>
-            <p className="text-xs text-gray-400 mt-1">Weekly activity rate</p>
+            <p className="text-xs text-earth-500 mt-1">Weekly activity rate</p>
           </div>
 
           <div className="bg-gradient-to-br from-yellow-900/40 to-yellow-800/40 rounded-xl p-5 border border-yellow-700/50">
@@ -606,23 +602,23 @@ export function DreamzillaCurriculum() {
               <h4 className="font-semibold">Avg Sustainability</h4>
             </div>
             <p className="text-3xl font-bold">76</p>
-            <p className="text-xs text-gray-400 mt-1">Across all students</p>
+            <p className="text-xs text-earth-500 mt-1">Across all students</p>
           </div>
         </div>
 
         {/* Active Cohorts */}
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <div className="bg-white rounded-xl p-6 border border-earth-200">
           <h3 className="font-semibold text-lg mb-4">Active Cohorts</h3>
           <div className="space-y-4">
             {[MOCK_COHORT,
               { ...MOCK_COHORT, id: 'cohort-2024-12', name: 'December 2024 Cohort', currentWeek: 6, students: [{ ...MOCK_COHORT.students[0], studentName: 'Previous Student' }] },
               { ...MOCK_COHORT, id: 'cohort-2024-11', name: 'November 2024 Cohort', currentWeek: 6, students: [] }
             ].map((cohort) => (
-              <div key={cohort.id} className="bg-gray-900/50 rounded-lg p-4 border border-gray-700/50">
+              <div key={cohort.id} className="bg-earth-50 rounded-lg p-4 border border-earth-200/50">
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <h4 className="font-semibold mb-1">{cohort.name}</h4>
-                    <p className="text-sm text-gray-400">Facilitator: {cohort.facilitator}</p>
+                    <p className="text-sm text-earth-500">Facilitator: {cohort.facilitator}</p>
                   </div>
                   <div className={`px-3 py-1 rounded text-xs font-medium ${
                     cohort.currentWeek === 6 ? 'bg-green-900/40 text-green-300' : 'bg-blue-900/40 text-blue-300'
@@ -632,15 +628,15 @@ export function DreamzillaCurriculum() {
                 </div>
                 <div className="grid grid-cols-4 gap-4 text-sm">
                   <div>
-                    <div className="text-gray-400 text-xs mb-1">Students</div>
+                    <div className="text-earth-500 text-xs mb-1">Students</div>
                     <div className="font-semibold">{cohort.students.length}</div>
                   </div>
                   <div>
-                    <div className="text-gray-400 text-xs mb-1">Start Date</div>
+                    <div className="text-earth-500 text-xs mb-1">Start Date</div>
                     <div className="font-semibold">{cohort.startDate}</div>
                   </div>
                   <div>
-                    <div className="text-gray-400 text-xs mb-1">Progress</div>
+                    <div className="text-earth-500 text-xs mb-1">Progress</div>
                     <div className="font-semibold">{Math.round((cohort.currentWeek / 6) * 100)}%</div>
                   </div>
                   <div className="text-right">
@@ -653,7 +649,7 @@ export function DreamzillaCurriculum() {
         </div>
 
         {/* System Health */}
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <div className="bg-white rounded-xl p-6 border border-earth-200">
           <h3 className="font-semibold text-lg mb-4">System Health</h3>
           <div className="space-y-3">
             <div className="flex items-center justify-between p-3 bg-green-900/20 rounded-lg border border-green-700/30">
@@ -661,16 +657,16 @@ export function DreamzillaCurriculum() {
                 <CheckCircle className="text-green-400" size={20} />
                 <span className="text-sm">All systems operational</span>
               </div>
-              <span className="text-xs text-gray-400">Last checked: 2 min ago</span>
+              <span className="text-xs text-earth-500">Last checked: 2 min ago</span>
             </div>
-            <div className="flex items-center justify-between p-3 bg-gray-900/50 rounded-lg border border-gray-700/30">
+            <div className="flex items-center justify-between p-3 bg-earth-50 rounded-lg border border-earth-200/30">
               <div className="flex items-center gap-2">
                 <Upload className="text-blue-400" size={20} />
                 <span className="text-sm">24 worksheets submitted this week</span>
               </div>
               <button className="text-xs text-blue-400 hover:text-blue-300">View →</button>
             </div>
-            <div className="flex items-center justify-between p-3 bg-gray-900/50 rounded-lg border border-gray-700/30">
+            <div className="flex items-center justify-between p-3 bg-earth-50 rounded-lg border border-earth-200/30">
               <div className="flex items-center gap-2">
                 <MessageCircle className="text-purple-400" size={20} />
                 <span className="text-sm">12 pending facilitator messages</span>
@@ -684,7 +680,7 @@ export function DreamzillaCurriculum() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
+    <div className="min-h-screen text-earth-800 p-6" style={{ background: 'var(--bg-primary)' }}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -694,7 +690,7 @@ export function DreamzillaCurriculum() {
             </div>
             <div>
               <h1 className="text-3xl font-bold">Dreamzilla Curriculum</h1>
-              <p className="text-gray-400">6-Week Neurodivergent Workforce Readiness Program</p>
+              <p className="text-earth-500">6-Week Neurodivergent Workforce Readiness Program</p>
             </div>
           </div>
 
@@ -705,7 +701,7 @@ export function DreamzillaCurriculum() {
               className={`px-4 py-2 rounded-lg font-medium transition-all ${
                 viewMode === 'student'
                   ? 'bg-blue-600 text-white'
-                  : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                  : 'bg-white text-earth-500 hover:bg-earth-100'
               }`}
             >
               Student View
@@ -715,7 +711,7 @@ export function DreamzillaCurriculum() {
               className={`px-4 py-2 rounded-lg font-medium transition-all ${
                 viewMode === 'facilitator'
                   ? 'bg-purple-600 text-white'
-                  : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                  : 'bg-white text-earth-500 hover:bg-earth-100'
               }`}
             >
               Facilitator View
@@ -725,7 +721,7 @@ export function DreamzillaCurriculum() {
               className={`px-4 py-2 rounded-lg font-medium transition-all ${
                 viewMode === 'admin'
                   ? 'bg-pink-600 text-white'
-                  : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                  : 'bg-white text-earth-500 hover:bg-earth-100'
               }`}
             >
               Admin View

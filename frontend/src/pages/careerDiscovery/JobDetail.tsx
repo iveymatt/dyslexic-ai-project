@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import type { UserProfile } from '../../types/career';
 import { jobs } from '../../data/careerDiscovery/jobs';
 import {
@@ -18,12 +19,9 @@ import {
   EnhancedSensorySection,
 } from '../../components/career/NeurodivergentJobFeatures';
 
-interface JobDetailProps {
-  jobId: string;
-  onBack: () => void;
-}
-
-export function JobDetail({ jobId, onBack }: JobDetailProps) {
+export function JobDetail() {
+  const navigate = useNavigate();
+  const { jobId } = useParams<{ jobId: string }>();
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [isSaved, setIsSaved] = useState(false);
 
@@ -47,7 +45,7 @@ export function JobDetail({ jobId, onBack }: JobDetailProps) {
       <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
         <div className="text-center">
           <p className="text-xl text-gray-400 mb-4">Job not found</p>
-          <button onClick={onBack} className="btn-primary">
+          <button onClick={() => navigate('/career-discovery/jobs')} className="btn-primary">
             ← Go Back
           </button>
         </div>
@@ -60,7 +58,7 @@ export function JobDetail({ jobId, onBack }: JobDetailProps) {
     : null;
 
   const handleSave = () => {
-    if (!userProfile) return;
+    if (!userProfile || !jobId) return;
     const updated = {
       ...userProfile,
       savedJobs: isSaved
@@ -77,7 +75,7 @@ export function JobDetail({ jobId, onBack }: JobDetailProps) {
       <div className="container mx-auto px-6 py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <button onClick={onBack} className="btn-secondary">
+          <button onClick={() => navigate('/career-discovery/jobs')} className="btn-secondary">
             <ArrowLeft size={18} />
             Back to Jobs
           </button>
@@ -85,7 +83,7 @@ export function JobDetail({ jobId, onBack }: JobDetailProps) {
             <button
               onClick={handleSave}
               className={`btn-secondary inline-flex items-center gap-2 ${
-                isSaved ? 'bg-primary-600 border-primary-500' : ''
+                isSaved ? 'bg-cyan-600 border-cyan-500' : ''
               }`}
             >
               <Bookmark size={18} fill={isSaved ? 'currentColor' : 'none'} />
@@ -95,7 +93,7 @@ export function JobDetail({ jobId, onBack }: JobDetailProps) {
         </div>
 
         {/* Job Header */}
-        <div className="bg-gradient-to-br from-primary-900/30 to-accent-900/30 rounded-2xl p-8 border border-primary-700/30 mb-8">
+        <div className="bg-gradient-to-br from-cyan-900/30 to-magenta-900/30 rounded-2xl p-8 border border-cyan-700/30 mb-8">
           <h1 className="text-4xl font-bold mb-3">{job.title}</h1>
           <div className="flex flex-wrap gap-4 text-lg text-gray-300 mb-6">
             <span>{job.industry}</span>
@@ -120,7 +118,7 @@ export function JobDetail({ jobId, onBack }: JobDetailProps) {
                     <div
                       key={i}
                       className={`h-3 flex-1 rounded-sm ${
-                        i < Math.round(cognitiveFit) ? 'bg-primary-600' : 'bg-gray-700'
+                        i < Math.round(cognitiveFit) ? 'bg-cyan-600' : 'bg-gray-700'
                       }`}
                     />
                   ))}
@@ -260,15 +258,15 @@ export function JobDetail({ jobId, onBack }: JobDetailProps) {
         )}
 
         {/* How to Get Started */}
-        <div className="bg-primary-900/20 border border-primary-700/30 rounded-xl p-6 mb-8">
+        <div className="bg-cyan-900/20 border border-cyan-700/30 rounded-xl p-6 mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <TrendingUp className="text-primary-400" size={24} />
+            <TrendingUp className="text-cyan-400" size={24} />
             <h2 className="text-2xl font-bold">How to Get Started</h2>
           </div>
           <ol className="space-y-3">
             {job.gettingStarted.map((step, idx) => (
               <li key={idx} className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center text-sm font-bold">
+                <span className="flex-shrink-0 w-6 h-6 bg-cyan-600 rounded-full flex items-center justify-center text-sm font-bold">
                   {idx + 1}
                 </span>
                 <span className="text-gray-300">{step}</span>
@@ -300,7 +298,7 @@ export function JobDetail({ jobId, onBack }: JobDetailProps) {
             <h2 className="text-2xl font-bold mb-4">You Might Also Like</h2>
             <div className="flex flex-wrap gap-3">
               {job.similar.map((similarJob, idx) => (
-                <span key={idx} className="px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-300 hover:border-primary-500 cursor-pointer transition-colors">
+                <span key={idx} className="px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-300 hover:border-cyan-500 cursor-pointer transition-colors">
                   {similarJob}
                 </span>
               ))}

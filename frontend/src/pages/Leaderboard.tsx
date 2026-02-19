@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Check, X, TrendingUp, Brain, Zap, HelpCircle, Filter, Grid, List } from 'lucide-react';
 import { aiTools, filterByThinkingStyle } from '../data/aiTools';
 import { NeuroScoreCell } from '../components/NeuroScore';
@@ -8,11 +9,8 @@ import { HowWeScore } from './HowWeScore';
 import type { AITool, ThinkingStyle } from '../types/leaderboard';
 import { getScoreColor } from '../types/leaderboard';
 
-interface LeaderboardProps {
-  onBack: () => void;
-}
-
-export function Leaderboard({ onBack }: LeaderboardProps) {
+export function Leaderboard() {
+  const navigate = useNavigate();
   const [selectedTool, setSelectedTool] = useState<AITool | null>(null);
   const [showMethodology, setShowMethodology] = useState(false);
   const [sortBy, setSortBy] = useState<'overall' | 'neuro' | 'features'>('neuro');
@@ -41,13 +39,13 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-earth-50 text-earth-800">
       {/* Header */}
-      <header className="border-b border-gray-700 bg-gray-800">
+      <header className="border-b border-earth-200 bg-white">
         <div className="container mx-auto px-6 py-6">
           <button
-            onClick={onBack}
-            className="flex items-center gap-2 text-gray-400 hover:text-white mb-4 transition-colors"
+            onClick={() => navigate('/chat')}
+            className="flex items-center gap-2 text-earth-500 hover:text-cyan-500 mb-4 transition-colors"
           >
             <ArrowLeft size={20} />
             Back to Chat
@@ -55,19 +53,19 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
 
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-              <Brain className="text-primary-500" size={32} />
+              <Brain className="text-cyan-500" size={32} />
               <h1 className="text-3xl font-bold">AI Tool Leaderboard</h1>
             </div>
             <button
               onClick={() => setShowMethodology(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors text-sm font-medium"
+              className="flex items-center gap-2 px-4 py-2 bg-earth-100 hover:bg-earth-200 rounded-lg transition-colors text-sm font-medium"
             >
               <HelpCircle size={16} />
               How We Score
             </button>
           </div>
 
-          <p className="text-gray-400 text-lg max-w-3xl">
+          <p className="text-earth-500 text-lg max-w-3xl">
             Compare AI tools based on their support for neurodivergent thinking patterns.
             We test for lateral thinking, linear organization, language adaptability, and neurodivergent awareness.
           </p>
@@ -79,14 +77,14 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
         {/* View Mode Toggle */}
         <div className="flex items-center justify-between">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="text-sm text-gray-400 font-medium">View:</span>
+            <span className="text-sm text-earth-500 font-medium">View:</span>
             <div className="flex gap-2">
               <button
                 onClick={() => setViewMode('list')}
                 className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 ${
                   viewMode === 'list'
-                    ? 'bg-primary-600 text-white'
-                    : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                    ? 'bg-cyan-600 text-white'
+                    : 'bg-earth-100 text-earth-500 hover:bg-earth-200'
                 }`}
               >
                 <List size={16} />
@@ -96,8 +94,8 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
                 onClick={() => setViewMode('cards')}
                 className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 ${
                   viewMode === 'cards'
-                    ? 'bg-primary-600 text-white'
-                    : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                    ? 'bg-cyan-600 text-white'
+                    : 'bg-earth-100 text-earth-500 hover:bg-earth-200'
                 }`}
               >
                 <Grid size={16} />
@@ -109,14 +107,14 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
 
         {/* Sort Toggle */}
         <div className="flex flex-wrap items-center gap-3">
-          <span className="text-sm text-gray-400 font-medium">Sort by:</span>
+          <span className="text-sm text-earth-500 font-medium">Sort by:</span>
           <div className="flex gap-2">
             <button
               onClick={() => setSortBy('neuro')}
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 sortBy === 'neuro'
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                  ? 'bg-cyan-600 text-white'
+                  : 'bg-earth-100 text-earth-500 hover:bg-earth-200'
               }`}
             >
               <span className="flex items-center gap-2">
@@ -128,8 +126,8 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
               onClick={() => setSortBy('overall')}
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 sortBy === 'overall'
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                  ? 'bg-cyan-600 text-white'
+                  : 'bg-earth-100 text-earth-500 hover:bg-earth-200'
               }`}
             >
               <span className="flex items-center gap-2">
@@ -141,8 +139,8 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
               onClick={() => setSortBy('features')}
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 sortBy === 'features'
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                  ? 'bg-cyan-600 text-white'
+                  : 'bg-earth-100 text-earth-500 hover:bg-earth-200'
               }`}
             >
               <span className="flex items-center gap-2">
@@ -155,7 +153,7 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
 
         {/* Thinking Style Filter */}
         <div className="flex flex-wrap items-center gap-3">
-          <span className="text-sm text-gray-400 font-medium flex items-center gap-2">
+          <span className="text-sm text-earth-500 font-medium flex items-center gap-2">
             <Filter size={16} />
             Filter by thinking style:
           </span>
@@ -165,7 +163,7 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 thinkingStyleFilter === 'all'
                   ? 'bg-blue-600 text-white'
-                  : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                  : 'bg-earth-100 text-earth-500 hover:bg-earth-200'
               }`}
             >
               All Tools
@@ -175,7 +173,7 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 thinkingStyleFilter === 'lateral'
                   ? 'bg-blue-600 text-white'
-                  : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                  : 'bg-earth-100 text-earth-500 hover:bg-earth-200'
               }`}
             >
               Lateral Thinkers
@@ -185,7 +183,7 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 thinkingStyleFilter === 'linear'
                   ? 'bg-blue-600 text-white'
-                  : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                  : 'bg-earth-100 text-earth-500 hover:bg-earth-200'
               }`}
             >
               Linear Thinkers
@@ -195,7 +193,7 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 thinkingStyleFilter === 'balanced'
                   ? 'bg-blue-600 text-white'
-                  : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                  : 'bg-earth-100 text-earth-500 hover:bg-earth-200'
               }`}
             >
               Balanced (Both)
@@ -205,7 +203,7 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
 
         {/* Filter Explanation */}
         {thinkingStyleFilter !== 'all' && (
-          <div className="bg-blue-900/20 border border-blue-700/30 rounded-lg p-4 text-sm text-gray-300">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-earth-600">
             {thinkingStyleFilter === 'lateral' && (
               <>
                 <strong className="text-blue-400">Lateral Thinkers:</strong> Tools that excel at non-linear exploration, creative connections, and adaptable language. Perfect for brainstorming and learning.
@@ -231,7 +229,7 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
           /* Card Grid View */
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sortedTools.length === 0 ? (
-              <div className="col-span-full bg-gray-800 rounded-xl border border-gray-700 p-8 text-center text-gray-400">
+              <div className="col-span-full bg-white rounded-xl border border-earth-200 p-8 text-center text-earth-500">
                 No tools match this thinking style filter. Try selecting "All Tools".
               </div>
             ) : (
@@ -247,28 +245,28 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
           </div>
         ) : (
           /* Table List View */
-          <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
+          <div className="bg-white rounded-xl border border-earth-200 overflow-hidden">
             <table className="w-full">
             <thead>
-              <tr className="bg-gray-750 border-b border-gray-700">
-                <th className="text-left p-4 font-semibold text-gray-300 w-20">Rank</th>
-                <th className="text-left p-4 font-semibold text-gray-300">Tool</th>
-                <th className="text-left p-4 font-semibold text-gray-300 w-24">Overall</th>
-                <th className="text-left p-4 font-semibold text-gray-300 w-32">Features</th>
-                <th className="text-left p-4 font-semibold text-gray-300 w-48">
+              <tr className="bg-earth-50 border-b border-earth-200">
+                <th className="text-left p-4 font-semibold text-earth-600 w-20">Rank</th>
+                <th className="text-left p-4 font-semibold text-earth-600">Tool</th>
+                <th className="text-left p-4 font-semibold text-earth-600 w-24">Overall</th>
+                <th className="text-left p-4 font-semibold text-earth-600 w-32">Features</th>
+                <th className="text-left p-4 font-semibold text-earth-600 w-48">
                   <span className="flex items-center gap-2">
                     <Brain size={16} />
                     Neurodiv Support
                   </span>
                 </th>
-                <th className="text-left p-4 font-semibold text-gray-300">Perfect For</th>
-                <th className="text-right p-4 font-semibold text-gray-300 w-32">Actions</th>
+                <th className="text-left p-4 font-semibold text-earth-600">Perfect For</th>
+                <th className="text-right p-4 font-semibold text-earth-600 w-32">Actions</th>
               </tr>
             </thead>
             <tbody>
               {sortedTools.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="p-8 text-center text-gray-400">
+                  <td colSpan={7} className="p-8 text-center text-earth-500">
                     No tools match this thinking style filter. Try selecting "All Tools".
                   </td>
                 </tr>
@@ -276,15 +274,15 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
                 sortedTools.map((tool, index) => (
                   <tr
                     key={tool.id}
-                    className="border-b border-gray-700 hover:bg-gray-750 transition-colors cursor-pointer"
+                    className="border-b border-earth-200 hover:bg-earth-50 transition-colors cursor-pointer"
                     onClick={() => setSelectedTool(tool)}
                   >
                     <td className="p-4">
                       <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold ${
                         index === 0 ? 'bg-yellow-600 text-white' :
-                        index === 1 ? 'bg-gray-400 text-white' :
+                        index === 1 ? 'bg-earth-300 text-white' :
                         index === 2 ? 'bg-orange-600 text-white' :
-                        'bg-gray-700 text-gray-300'
+                        'bg-earth-100 text-earth-600'
                       }`}>
                         {index + 1}
                       </div>
@@ -292,7 +290,7 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
                     <td className="p-4">
                       <div>
                         <div className="font-semibold text-white">{tool.name}</div>
-                        <div className="text-sm text-gray-400 line-clamp-1">{tool.description}</div>
+                        <div className="text-sm text-earth-500 line-clamp-1">{tool.description}</div>
                       </div>
                     </td>
                     <td className="p-4">
@@ -311,7 +309,7 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
                     <td className="p-4">
                       <div className="flex flex-wrap gap-1">
                         {tool.neurodivergentAssessment.perfectFor.slice(0, 2).map((item, i) => (
-                          <span key={i} className="text-xs bg-blue-900/40 border border-blue-700/30 px-2 py-1 rounded text-blue-200">
+                          <span key={i} className="text-xs bg-blue-50 border border-blue-200 px-2 py-1 rounded text-blue-700">
                             {item}
                           </span>
                         ))}
@@ -326,7 +324,7 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
                           e.stopPropagation();
                           setSelectedTool(tool);
                         }}
-                        className="text-primary-500 hover:text-primary-400 font-medium text-sm"
+                        className="text-cyan-500 hover:text-cyan-400 font-medium text-sm"
                       >
                         Details →
                       </button>
@@ -340,7 +338,7 @@ export function Leaderboard({ onBack }: LeaderboardProps) {
         )}
 
         {/* Legend */}
-        <div className="mt-6 flex items-center justify-center gap-6 text-sm text-gray-400">
+        <div className="mt-6 flex items-center justify-center gap-6 text-sm text-earth-500">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-green-600"></div>
             <span>Excellent (9-10)</span>
@@ -367,13 +365,13 @@ function ToolDetailView({ tool, onBack, onShowMethodology }: { tool: AITool; onB
   const [showTestResults, setShowTestResults] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-earth-50 text-earth-800">
       {/* Header */}
-      <header className="border-b border-gray-700 bg-gray-800 sticky top-0 z-10">
+      <header className="border-b border-earth-200 bg-white sticky top-0 z-10">
         <div className="container mx-auto px-6 py-6">
           <button
             onClick={onBack}
-            className="flex items-center gap-2 text-gray-400 hover:text-white mb-4 transition-colors"
+            className="flex items-center gap-2 text-earth-500 hover:text-cyan-500 mb-4 transition-colors"
           >
             <ArrowLeft size={20} />
             Back to Leaderboard
@@ -382,12 +380,12 @@ function ToolDetailView({ tool, onBack, onShowMethodology }: { tool: AITool; onB
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold mb-2">{tool.name}</h1>
-              <p className="text-gray-400 text-lg">{tool.description}</p>
+              <p className="text-earth-500 text-lg">{tool.description}</p>
             </div>
             <div className="flex gap-3">
               <button
                 onClick={onShowMethodology}
-                className="btn flex items-center gap-2 bg-gray-700 hover:bg-gray-600"
+                className="btn flex items-center gap-2 bg-earth-100 hover:bg-earth-200"
               >
                 <HelpCircle size={16} />
                 How We Score
@@ -411,20 +409,20 @@ function ToolDetailView({ tool, onBack, onShowMethodology }: { tool: AITool; onB
       <div className="container mx-auto px-6 py-8">
         {/* Score Summary Cards */}
         <div className="grid sm:grid-cols-3 gap-4 mb-8">
-          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-            <div className="text-sm text-gray-400 mb-2">Overall Rating</div>
+          <div className="bg-white rounded-xl p-6 border border-earth-200">
+            <div className="text-sm text-earth-500 mb-2">Overall Rating</div>
             <div className={`text-3xl font-bold ${getScoreColor(tool.overallScore)}`}>
               {tool.overallScore.toFixed(1)}/10
             </div>
           </div>
-          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-            <div className="text-sm text-gray-400 mb-2">Features Score</div>
+          <div className="bg-white rounded-xl p-6 border border-earth-200">
+            <div className="text-sm text-earth-500 mb-2">Features Score</div>
             <div className={`text-3xl font-bold ${getScoreColor(tool.featuresScore)}`}>
               {tool.featuresScore.toFixed(1)}/10
             </div>
           </div>
-          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-            <div className="text-sm text-gray-400 mb-2 flex items-center gap-2">
+          <div className="bg-white rounded-xl p-6 border border-earth-200">
+            <div className="text-sm text-earth-500 mb-2 flex items-center gap-2">
               <Brain size={16} />
               Neurodivergent Support
             </div>
@@ -443,27 +441,27 @@ function ToolDetailView({ tool, onBack, onShowMethodology }: { tool: AITool; onB
         <div className="mb-8">
           <button
             onClick={() => setShowTestResults(!showTestResults)}
-            className="w-full bg-gray-800 hover:bg-gray-750 rounded-xl p-6 border border-gray-700 transition-colors text-left"
+            className="w-full bg-white hover:bg-earth-50 rounded-xl p-6 border border-earth-200 transition-colors text-left"
           >
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-white mb-2">View Test Results</h2>
-                <p className="text-gray-400">See the actual AI responses that determined these scores</p>
+                <p className="text-earth-500">See the actual AI responses that determined these scores</p>
               </div>
-              <span className="text-3xl text-gray-400">{showTestResults ? '−' : '+'}</span>
+              <span className="text-3xl text-earth-500">{showTestResults ? '−' : '+'}</span>
             </div>
           </button>
 
           {showTestResults && (
             <div className="mt-4 space-y-6">
               {tool.neurodivergentAssessment.testResults.map((test, index) => (
-                <div key={index} className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <div key={index} className="bg-white rounded-xl p-6 border border-earth-200">
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="text-lg font-bold text-white mb-1">
                         Test {index + 1}: {test.dimension.replace(/([A-Z])/g, ' $1').trim()}
                       </h3>
-                      <p className="text-sm text-gray-400 italic">"{test.prompt}"</p>
+                      <p className="text-sm text-earth-500 italic">"{test.prompt}"</p>
                     </div>
                     <span className={`text-xl font-bold ${getScoreColor(test.score)} ml-4`}>
                       {test.score}/10
@@ -471,13 +469,13 @@ function ToolDetailView({ tool, onBack, onShowMethodology }: { tool: AITool; onB
                   </div>
 
                   <div className="bg-gray-900/50 rounded-lg p-4 mb-4">
-                    <h4 className="text-sm font-semibold text-gray-400 mb-2">AI Response:</h4>
-                    <p className="text-sm text-gray-300 whitespace-pre-line">{test.response}</p>
+                    <h4 className="text-sm font-semibold text-earth-500 mb-2">AI Response:</h4>
+                    <p className="text-sm text-earth-600 whitespace-pre-line">{test.response}</p>
                   </div>
 
-                  <div className="bg-blue-900/20 border border-blue-700/30 rounded-lg p-4">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                     <h4 className="text-sm font-semibold text-blue-400 mb-2">Why this score:</h4>
-                    <p className="text-sm text-gray-300">{test.reasoning}</p>
+                    <p className="text-sm text-earth-600">{test.reasoning}</p>
                   </div>
                 </div>
               ))}
@@ -489,14 +487,14 @@ function ToolDetailView({ tool, onBack, onShowMethodology }: { tool: AITool; onB
           {/* Left Column */}
           <div className="space-y-6">
             {/* General Strengths & Weaknesses */}
-            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <div className="bg-white rounded-xl p-6 border border-earth-200">
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                 <Zap className="text-green-500" size={20} />
                 General Strengths
               </h3>
               <ul className="space-y-2">
                 {tool.strengths.map((strength, i) => (
-                  <li key={i} className="flex items-start gap-2 text-gray-300">
+                  <li key={i} className="flex items-start gap-2 text-earth-600">
                     <Check size={16} className="text-green-500 flex-shrink-0 mt-1" />
                     <span>{strength}</span>
                   </li>
@@ -504,14 +502,14 @@ function ToolDetailView({ tool, onBack, onShowMethodology }: { tool: AITool; onB
               </ul>
             </div>
 
-            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <div className="bg-white rounded-xl p-6 border border-earth-200">
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                 <X className="text-orange-500" size={20} />
                 General Weaknesses
               </h3>
               <ul className="space-y-2">
                 {tool.weaknesses.map((weakness, i) => (
-                  <li key={i} className="flex items-start gap-2 text-gray-300">
+                  <li key={i} className="flex items-start gap-2 text-earth-600">
                     <X size={16} className="text-orange-500 flex-shrink-0 mt-1" />
                     <span>{weakness}</span>
                   </li>
@@ -523,7 +521,7 @@ function ToolDetailView({ tool, onBack, onShowMethodology }: { tool: AITool; onB
           {/* Right Column */}
           <div className="space-y-6">
             {/* Features */}
-            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <div className="bg-white rounded-xl p-6 border border-earth-200">
               <h3 className="text-xl font-bold mb-4">Features</h3>
               <div className="grid grid-cols-2 gap-3">
                 {Object.entries(tool.features).map(([key, value]) => (
@@ -533,7 +531,7 @@ function ToolDetailView({ tool, onBack, onShowMethodology }: { tool: AITool; onB
                     ) : (
                       <X size={16} className="text-gray-600" />
                     )}
-                    <span className={value ? 'text-gray-300' : 'text-gray-600 text-sm'}>
+                    <span className={value ? 'text-earth-600' : 'text-gray-600 text-sm'}>
                       {key.replace(/([A-Z])/g, ' $1').trim()}
                     </span>
                   </div>
@@ -542,7 +540,7 @@ function ToolDetailView({ tool, onBack, onShowMethodology }: { tool: AITool; onB
             </div>
 
             {/* Pricing */}
-            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <div className="bg-white rounded-xl p-6 border border-earth-200">
               <h3 className="text-xl font-bold mb-4">Pricing</h3>
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
@@ -551,10 +549,10 @@ function ToolDetailView({ tool, onBack, onShowMethodology }: { tool: AITool; onB
                   ) : (
                     <X size={16} className="text-gray-600" />
                   )}
-                  <span className="text-gray-300">Free tier available</span>
+                  <span className="text-earth-600">Free tier available</span>
                 </div>
                 {tool.pricing.paid && tool.pricing.priceRange && (
-                  <div className="text-gray-300">
+                  <div className="text-earth-600">
                     <strong>Paid plan:</strong> {tool.pricing.priceRange}
                   </div>
                 )}

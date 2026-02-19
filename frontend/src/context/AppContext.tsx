@@ -30,6 +30,10 @@ interface AppContextType {
   // TTS state
   isSpeaking: boolean;
   setIsSpeaking: (speaking: boolean) => void;
+
+  // Pending prompt (from prompt library "Use in Chat")
+  pendingPrompt: string | null;
+  setPendingPrompt: (prompt: string | null) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -37,8 +41,8 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 const defaultAccessibilitySettings: AccessibilitySettings = {
   fontSize: 16,
   lineSpacing: 1.5,
-  fontFamily: 'inter',
-  colorScheme: 'dark',
+  fontFamily: 'default',
+  colorScheme: 'light',
   ttsSpeed: 1.0,
   ttsVoice: 'default',
   readingGuideEnabled: false,
@@ -55,6 +59,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [currentMode, setCurrentMode] = useState<ThinkingMode>(defaultMode);
   const [currentSubAgent, setCurrentSubAgent] = useState<SubAgent>(defaultSubAgent);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [pendingPrompt, setPendingPrompt] = useState<string | null>(null);
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -104,21 +109,40 @@ export function AppProvider({ children }: { children: ReactNode }) {
     document.documentElement.style.fontSize = `${accessibilitySettings.fontSize}px`;
     document.documentElement.style.lineHeight = `${accessibilitySettings.lineSpacing}`;
 
-    // Apply font family
-    const fontMap = {
-      inter: 'Inter, system-ui, sans-serif',
-      poppins: 'Poppins, system-ui, sans-serif',
-      opendyslexic: 'OpenDyslexic, sans-serif',
-      verdana: 'Verdana, sans-serif',
-      'comic-sans': 'Comic Sans MS, cursive',
+    // Apply font family via body classes
+    document.body.classList.remove('dyslexic-mode', 'jetbrains-mode');
+    const fontMap: Record<string, string> = {
+      default: '',
+      opendyslexic: 'dyslexic-mode',
+      jetbrains: 'jetbrains-mode',
+      verdana: '',
+      'comic-sans': '',
     };
-    document.body.style.fontFamily = fontMap[accessibilitySettings.fontFamily];
-
-    // Apply color scheme
-    if (accessibilitySettings.colorScheme === 'dark') {
-      document.documentElement.classList.add('dark');
+    const fontClass = fontMap[accessibilitySettings.fontFamily];
+    if (fontClass) {
+      document.body.classList.add(fontClass);
+    }
+    // For fonts that don't have a body class, apply directly
+    const directFontMap: Record<string, string> = {
+      default: "'Futura', 'Avenir Next', 'Century Gothic', -apple-system, sans-serif",
+      verdana: 'Verdana, sans-serif',
+      'comic-sans': "'Comic Sans MS', cursive",
+    };
+    if (directFontMap[accessibilitySettings.fontFamily]) {
+      document.body.style.fontFamily = directFontMap[accessibilitySettings.fontFamily];
     } else {
-      document.documentElement.classList.remove('dark');
+      document.body.style.fontFamily = '';
+    }
+
+    // Apply color scheme via data-theme attribute
+    if (accessibilitySettings.colorScheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else if (accessibilitySettings.colorScheme === 'high-contrast') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      document.documentElement.classList.add('high-contrast');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      document.documentElement.classList.remove('high-contrast');
     }
   }, [accessibilitySettings]);
 
@@ -132,40 +156,54 @@ export function AppProvider({ children }: { children: ReactNode }) {
       mode,
       subAgent,
     };
-    setChats([newChat, ...chats]);
+    setChats(prev => [newChat, ...prev]);
     setCurrentChat(newChat);
     setCurrentMode(mode);
     setCurrentSubAgent(subAgent);
   };
 
   const addMessage = (message: Omit<Message, 'id' | 'timestamp'>) => {
-    if (!currentChat) {
-      createNewChat();
-      return;
-    }
-
     const newMessage: Message = {
       ...message,
       id: `msg-${Date.now()}`,
       timestamp: new Date(),
     };
 
-    const updatedChat: Chat = {
-      ...currentChat,
-      messages: [...currentChat.messages, newMessage],
-      updatedAt: new Date(),
-      // Update title from first user message
-      title: currentChat.messages.length === 0 && message.role === 'user'
-        ? message.content.slice(0, 50) + (message.content.length > 50 ? '...' : '')
-        : currentChat.title,
-    };
+    setCurrentChat(prev => {
+      if (!prev) {
+        // Create a new chat WITH this message included
+        const newChat: Chat = {
+          id: `chat-${Date.now()}`,
+          title: message.role === 'user'
+            ? message.content.slice(0, 50) + (message.content.length > 50 ? '...' : '')
+            : 'New Conversation',
+          messages: [newMessage],
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          mode: currentMode,
+          subAgent: currentSubAgent,
+        };
+        setChats(prevChats => [newChat, ...prevChats]);
+        return newChat;
+      }
 
-    setCurrentChat(updatedChat);
-    setChats(chats.map(chat => chat.id === updatedChat.id ? updatedChat : chat));
+      const updatedChat: Chat = {
+        ...prev,
+        messages: [...prev.messages, newMessage],
+        updatedAt: new Date(),
+        // Update title from first user message
+        title: prev.messages.length === 0 && message.role === 'user'
+          ? message.content.slice(0, 50) + (message.content.length > 50 ? '...' : '')
+          : prev.title,
+      };
+
+      setChats(prevChats => prevChats.map(chat => chat.id === updatedChat.id ? updatedChat : chat));
+      return updatedChat;
+    });
   };
 
   const deleteChat = (chatId: string) => {
-    setChats(chats.filter(chat => chat.id !== chatId));
+    setChats(prev => prev.filter(chat => chat.id !== chatId));
     if (currentChat?.id === chatId) {
       setCurrentChat(null);
     }
@@ -196,6 +234,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setCurrentSubAgent,
         isSpeaking,
         setIsSpeaking,
+        pendingPrompt,
+        setPendingPrompt,
       }}
     >
       {children}

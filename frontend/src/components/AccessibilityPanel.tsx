@@ -7,9 +7,9 @@ export function AccessibilityPanel() {
   if (!accessibilityPanelOpen) return null;
 
   const fonts = [
-    { value: 'inter', label: 'Inter (Default)' },
-    { value: 'poppins', label: 'Poppins' },
+    { value: 'default', label: 'Futura (Default)' },
     { value: 'opendyslexic', label: 'OpenDyslexic' },
+    { value: 'jetbrains', label: 'JetBrains Mono' },
     { value: 'verdana', label: 'Verdana' },
     { value: 'comic-sans', label: 'Comic Sans' },
   ];
@@ -21,7 +21,7 @@ export function AccessibilityPanel() {
   ];
 
   return (
-    <aside className="w-80 bg-gray-800 border-l border-gray-700 flex flex-col h-full overflow-y-auto p-6">
+    <aside className="w-80 flex flex-col h-full overflow-y-auto p-6" style={{ background: 'var(--bg-secondary)', borderLeft: '1px solid var(--border-color)' }}>
       <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
         <Eye size={20} />
         Accessibility
@@ -43,7 +43,7 @@ export function AccessibilityPanel() {
           className="slider"
           aria-label="Font size"
         />
-        <div className="flex justify-between text-xs text-gray-400 mt-1">
+        <div className="flex justify-between text-xs mt-1">
           <span>16px</span>
           <span>24px</span>
         </div>
@@ -65,7 +65,7 @@ export function AccessibilityPanel() {
           className="slider"
           aria-label="Line spacing"
         />
-        <div className="flex justify-between text-xs text-gray-400 mt-1">
+        <div className="flex justify-between text-xs mt-1">
           <span>1.5x</span>
           <span>2.0x</span>
         </div>
@@ -102,11 +102,11 @@ export function AccessibilityPanel() {
             <button
               key={scheme.value}
               onClick={() => updateAccessibilitySettings({ colorScheme: scheme.value as any })}
-              className={`w-full text-left px-4 py-2 rounded-lg transition-colors ${
-                accessibilitySettings.colorScheme === scheme.value
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-              }`}
+              className="w-full text-left px-4 py-2 rounded-lg transition-colors"
+              style={accessibilitySettings.colorScheme === scheme.value
+                ? { background: '#00CBFF', color: '#1A1614', fontWeight: 600 }
+                : { background: 'var(--bg-accent)', color: 'var(--text-primary)', border: '1px solid var(--border-subtle)' }
+              }
             >
               {scheme.label}
             </button>
@@ -130,7 +130,7 @@ export function AccessibilityPanel() {
           className="slider"
           aria-label="Text-to-speech speed"
         />
-        <div className="flex justify-between text-xs text-gray-400 mt-1">
+        <div className="flex justify-between text-xs mt-1">
           <span>0.5x</span>
           <span>2.0x</span>
         </div>
@@ -144,18 +144,19 @@ export function AccessibilityPanel() {
             type="checkbox"
             checked={accessibilitySettings.readingGuideEnabled}
             onChange={(e) => updateAccessibilitySettings({ readingGuideEnabled: e.target.checked })}
-            className="w-5 h-5 rounded bg-gray-700 border-gray-600 text-primary-600 focus:ring-2 focus:ring-primary-500"
+            className="w-5 h-5 rounded text-cyan-600 focus:ring-2 focus:ring-cyan-500"
+            style={{ background: 'var(--bg-accent)', borderColor: 'var(--border-color)' }}
           />
         </label>
-        <p className="text-xs text-gray-400 mt-1">
+        <p className="text-xs mt-1">
           Highlights text as AI reads it aloud
         </p>
       </div>
 
       {/* Info Section */}
-      <div className="mt-8 p-4 bg-gray-700/50 rounded-lg">
+      <div className="mt-8 p-4 rounded-lg" style={{ background: 'var(--bg-accent)', border: '1px solid var(--border-subtle)' }}>
         <h3 className="font-medium mb-2 text-sm">About Accessibility</h3>
-        <p className="text-xs text-gray-400 leading-relaxed">
+        <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
           These controls help make the interface more comfortable for dyslexic and neurodivergent users.
           All settings are saved automatically.
         </p>

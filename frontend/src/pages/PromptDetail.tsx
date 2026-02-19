@@ -1,18 +1,16 @@
 import { ArrowLeft, Copy, MessageCircle, Star, ThumbsUp, Share2, CheckCircle } from 'lucide-react';
 import { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { prompts } from '../data/prompts';
 import { copyToClipboard, getRelatedPrompts } from '../utils/promptHelpers';
 import { PromptCard } from '../components/PromptCard';
 import { USER_TYPE_COLORS, MODE_COLORS, MODE_LABELS, USER_TYPE_LABELS } from '../types/prompts';
+import { useApp } from '../context/AppContext';
 
-interface PromptDetailProps {
-  promptId: string;
-  onBack: () => void;
-  onUseInChat?: (promptText: string) => void;
-  onRelatedPromptClick?: (promptId: string) => void;
-}
-
-export function PromptDetail({ promptId, onBack, onUseInChat, onRelatedPromptClick }: PromptDetailProps) {
+export function PromptDetail() {
+  const { promptId } = useParams();
+  const navigate = useNavigate();
+  const { setPendingPrompt } = useApp();
   const prompt = prompts.find(p => p.id === promptId);
   const [copied, setCopied] = useState(false);
   const [upvoted, setUpvoted] = useState(false);
@@ -22,7 +20,7 @@ export function PromptDetail({ promptId, onBack, onUseInChat, onRelatedPromptCli
       <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
         <div className="text-center">
           <p className="text-gray-400 text-lg mb-4">Prompt not found</p>
-          <button onClick={onBack} className="text-primary-500 hover:text-primary-400 font-medium">
+          <button onClick={() => navigate('/prompts')} className="text-cyan-500 hover:text-cyan-400 font-medium">
             Back to Library
           </button>
         </div>
@@ -41,9 +39,8 @@ export function PromptDetail({ promptId, onBack, onUseInChat, onRelatedPromptCli
   };
 
   const handleUseInChat = () => {
-    if (onUseInChat) {
-      onUseInChat(prompt.prompt);
-    }
+    setPendingPrompt(prompt.prompt);
+    navigate('/chat');
   };
 
   const handleUpvote = () => {
@@ -63,7 +60,7 @@ export function PromptDetail({ promptId, onBack, onUseInChat, onRelatedPromptCli
       <header className="border-b border-gray-700 bg-gray-800 sticky top-0 z-10">
         <div className="container mx-auto px-6 py-6">
           <button
-            onClick={onBack}
+            onClick={() => navigate('/prompts')}
             className="flex items-center gap-2 text-gray-400 hover:text-white mb-4 transition-colors"
           >
             <ArrowLeft size={20} />
@@ -136,15 +133,13 @@ export function PromptDetail({ promptId, onBack, onUseInChat, onRelatedPromptCli
                   </>
                 )}
               </button>
-              {onUseInChat && (
-                <button
-                  onClick={handleUseInChat}
-                  className="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors"
-                >
-                  <MessageCircle size={18} />
-                  Use in Chat
-                </button>
-              )}
+              <button
+                onClick={handleUseInChat}
+                className="flex items-center gap-2 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg font-medium transition-colors"
+              >
+                <MessageCircle size={18} />
+                Use in Chat
+              </button>
             </div>
           </div>
 
@@ -243,7 +238,7 @@ export function PromptDetail({ promptId, onBack, onUseInChat, onRelatedPromptCli
                 <PromptCard
                   key={relatedPrompt.id}
                   prompt={relatedPrompt}
-                  onClick={() => onRelatedPromptClick && onRelatedPromptClick(relatedPrompt.id)}
+                  onClick={() => navigate(`/prompts/${relatedPrompt.id}`)}
                   onCopy={() => copyToClipboard(relatedPrompt.prompt)}
                 />
               ))}

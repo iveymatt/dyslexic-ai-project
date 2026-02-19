@@ -32,8 +32,8 @@ export interface Chat {
 export interface AccessibilitySettings {
   fontSize: number; // 16-24px
   lineSpacing: number; // 1.5-2.0
-  fontFamily: 'inter' | 'poppins' | 'opendyslexic' | 'verdana' | 'comic-sans';
-  colorScheme: 'dark' | 'light' | 'high-contrast';
+  fontFamily: 'default' | 'opendyslexic' | 'jetbrains' | 'verdana' | 'comic-sans';
+  colorScheme: 'light' | 'dark' | 'high-contrast';
   ttsSpeed: number; // 0.5-2.0
   ttsVoice: string;
   readingGuideEnabled: boolean;

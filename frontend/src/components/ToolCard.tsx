@@ -18,13 +18,13 @@ export function ToolCard({ tool, onClick, rank }: ToolCardProps) {
       productivity: 'bg-orange-900/30 border-orange-700/50 text-orange-400',
       learning: 'bg-pink-900/30 border-pink-700/50 text-pink-400',
     };
-    return colors[category] || 'bg-gray-900/30 border-gray-700/50 text-gray-400';
+    return colors[category] || 'bg-earth-50 border-earth-200/50 text-earth-500';
   };
 
   return (
     <div
       onClick={onClick}
-      className="bg-gray-800 rounded-xl p-5 border border-gray-700 hover:border-primary-600 transition-all cursor-pointer group h-full flex flex-col"
+      className="bg-white rounded-xl p-5 border border-earth-200 hover:border-cyan-600 transition-all cursor-pointer group h-full flex flex-col"
     >
       {/* Header with rank and name */}
       <div className="flex items-start gap-3 mb-3">
@@ -33,13 +33,13 @@ export function ToolCard({ tool, onClick, rank }: ToolCardProps) {
             rank === 1 ? 'bg-yellow-600 text-white' :
             rank === 2 ? 'bg-gray-400 text-white' :
             rank === 3 ? 'bg-orange-600 text-white' :
-            'bg-gray-700 text-gray-300'
+            'bg-earth-100 text-earth-600'
           }`}>
             {rank}
           </div>
         )}
         <div className="flex-1 min-w-0">
-          <h3 className="text-lg font-bold text-white mb-2 group-hover:text-primary-400 transition-colors line-clamp-1">
+          <h3 className="text-lg font-bold text-earth-800 mb-2 group-hover:text-cyan-500 transition-colors line-clamp-1">
             {tool.name}
           </h3>
 
@@ -56,20 +56,20 @@ export function ToolCard({ tool, onClick, rank }: ToolCardProps) {
       </div>
 
       {/* Description */}
-      <p className="text-gray-300 text-sm mb-3 line-clamp-2 flex-grow">
+      <p className="text-earth-600 text-sm mb-3 line-clamp-2 flex-grow">
         {tool.description}
       </p>
 
       {/* Scores - Compact */}
-      <div className="grid grid-cols-3 gap-2 mb-3 bg-gray-900/50 rounded-lg p-3 border border-gray-700/50">
+      <div className="grid grid-cols-3 gap-2 mb-3 bg-earth-50 rounded-lg p-3 border border-earth-200/50">
         <div className="text-center">
-          <div className="text-xs text-gray-400 mb-1">Overall</div>
+          <div className="text-xs text-earth-500 mb-1">Overall</div>
           <div className={`text-lg font-bold ${getScoreColor(tool.overallScore)}`}>
             {tool.overallScore.toFixed(1)}
           </div>
         </div>
-        <div className="text-center border-l border-r border-gray-700/50">
-          <div className="text-xs text-gray-400 mb-1 flex items-center justify-center gap-1">
+        <div className="text-center border-l border-r border-earth-200/50">
+          <div className="text-xs text-earth-500 mb-1 flex items-center justify-center gap-1">
             <Brain size={12} />
             Neuro
           </div>
@@ -78,7 +78,7 @@ export function ToolCard({ tool, onClick, rank }: ToolCardProps) {
           </div>
         </div>
         <div className="text-center">
-          <div className="text-xs text-gray-400 mb-1 flex items-center justify-center gap-1">
+          <div className="text-xs text-earth-500 mb-1 flex items-center justify-center gap-1">
             <Zap size={12} />
             Features
           </div>
@@ -90,7 +90,7 @@ export function ToolCard({ tool, onClick, rank }: ToolCardProps) {
 
       {/* Perfect For tags */}
       <div className="mb-3">
-        <div className="text-xs text-gray-400 mb-2 font-medium">Perfect for:</div>
+        <div className="text-xs text-earth-500 mb-2 font-medium">Perfect for:</div>
         <div className="flex flex-wrap gap-1">
           {tool.neurodivergentAssessment.perfectFor.slice(0, 2).map((item, index) => (
             <span
@@ -101,7 +101,7 @@ export function ToolCard({ tool, onClick, rank }: ToolCardProps) {
             </span>
           ))}
           {tool.neurodivergentAssessment.perfectFor.length > 2 && (
-            <span className="text-xs text-gray-500 px-2 py-1">
+            <span className="text-xs text-earth-400 px-2 py-1">
               +{tool.neurodivergentAssessment.perfectFor.length - 2} more
             </span>
           )}
@@ -109,7 +109,7 @@ export function ToolCard({ tool, onClick, rank }: ToolCardProps) {
       </div>
 
       {/* Footer with pricing and action */}
-      <div className="flex items-center justify-between pt-3 border-t border-gray-700 mt-auto">
+      <div className="flex items-center justify-between pt-3 border-t border-earth-200 mt-auto">
         {/* Pricing */}
         <div className="text-sm">
           {tool.pricing.free ? (
@@ -118,7 +118,7 @@ export function ToolCard({ tool, onClick, rank }: ToolCardProps) {
               Free
             </span>
           ) : (
-            <span className="text-gray-400">{tool.pricing.priceRange?.split(',')[0]}</span>
+            <span className="text-earth-500">{tool.pricing.priceRange?.split(',')[0]}</span>
           )}
         </div>
 
@@ -130,7 +130,7 @@ export function ToolCard({ tool, onClick, rank }: ToolCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="p-2 text-gray-400 hover:text-primary-400 hover:bg-gray-700 rounded-lg transition-colors"
+              className="p-2 text-earth-500 hover:text-cyan-500 hover:bg-earth-100 rounded-lg transition-colors"
               aria-label="Visit website"
               title="Visit Site"
             >
@@ -138,7 +138,7 @@ export function ToolCard({ tool, onClick, rank }: ToolCardProps) {
             </a>
           )}
           <button
-            className="flex items-center gap-1 text-sm text-primary-500 hover:text-primary-400 font-medium transition-colors"
+            className="flex items-center gap-1 text-sm text-cyan-500 hover:text-cyan-500 font-medium transition-colors"
             aria-label="View details"
           >
             Details

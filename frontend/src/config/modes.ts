@@ -6,7 +6,7 @@ export const modes: Record<ThinkingMode, ModeConfig> = {
     name: 'SOCRATIC',
     description: 'Explore together. Ask questions. Think it through.',
     tagline: 'Think through problems together',
-    color: 'bg-blue-600',
+    color: 'bg-cyan-500',
     examplePrompts: [
       'Help me think through a big decision',
       'I\'m stuck on this problem, let\'s explore',
@@ -69,7 +69,7 @@ Remember: ADHD brains thrive on interest, challenge, novelty, and urgency. Not "
     name: 'STRATEGIC',
     description: 'Get direct answers. Clear info. Done.',
     tagline: 'Get accurate information and actionable data',
-    color: 'bg-green-600',
+    color: 'bg-magenta-500',
     examplePrompts: [
       'Summarize this article for me',
       'Break down this project into steps',
@@ -190,7 +190,7 @@ When you drink coffee, caffeine blocks adenosine receptors in your brain...`,
     name: 'SKEPTIC',
     description: 'Challenge ideas. Find blind spots. Make it stronger.',
     tagline: 'Stress-test ideas and reveal what you might be missing',
-    color: 'bg-orange-600',
+    color: 'bg-earth-500',
     examplePrompts: [
       'What am I missing in this plan?',
       'Play devil\'s advocate on this idea',

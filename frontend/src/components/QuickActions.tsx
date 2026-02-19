@@ -17,28 +17,28 @@ export function QuickActions({ lastMessage, onAction }: QuickActionsProps) {
       id: 'simplify',
       label: 'Simplify This',
       icon: Sparkles,
-      color: 'bg-purple-600 hover:bg-purple-700',
+      color: 'bg-cyan-500 hover:bg-cyan-400 text-earth-900',
       prompt: `Please rewrite this in simpler language, using shorter sentences and everyday words:\n\n${lastMessage.content}`,
     },
     {
       id: 'mindmap',
       label: 'Make Mind Map',
       icon: Network,
-      color: 'bg-teal-600 hover:bg-teal-700',
+      color: 'bg-magenta-500 hover:bg-magenta-400 text-white',
       prompt: `Create a simple text-based mind map from this response. Use indentation and bullet points to show relationships:\n\n${lastMessage.content}`,
     },
     {
       id: 'tasks',
       label: 'Extract Tasks',
       icon: CheckSquare,
-      color: 'bg-green-600 hover:bg-green-700',
+      color: 'bg-neon-600 hover:bg-neon-500 text-earth-900',
       prompt: `Extract all action items and tasks from this response as a simple checklist:\n\n${lastMessage.content}`,
     },
     {
       id: 'followup',
       label: 'Ask Follow-Up',
       icon: Lightbulb,
-      color: 'bg-orange-600 hover:bg-orange-700',
+      color: 'bg-earth-500 hover:bg-earth-400 text-white',
       prompt: `Suggest 3 good follow-up questions I could ask about this topic:\n\n${lastMessage.content}`,
     },
   ];
@@ -50,7 +50,7 @@ export function QuickActions({ lastMessage, onAction }: QuickActionsProps) {
   };
 
   return (
-    <div className="border-t border-gray-700 bg-gray-800/50 px-4 py-3">
+    <div className="px-4 py-3" style={{ borderTop: '1px solid var(--border-color)', background: 'var(--bg-accent)' }}>
       <div className="flex flex-wrap gap-2 justify-center">
         {actions.map(action => {
           const Icon = action.icon;

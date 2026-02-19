@@ -58,10 +58,10 @@ export function SkillsModuleCard({
       gradient: 'from-cyan-600 to-cyan-700',
     },
     primary: {
-      border: 'border-gray-700',
-      hover: 'hover:border-primary-500',
-      text: 'text-primary-400',
-      gradient: 'from-primary-600 to-accent-600',
+      border: 'border-earth-200',
+      hover: 'hover:border-cyan-500',
+      text: 'text-cyan-500',
+      gradient: 'from-cyan-500 to-magenta-500',
     },
   };
 
@@ -70,23 +70,23 @@ export function SkillsModuleCard({
   return (
     <button
       onClick={onClick}
-      className={`w-full bg-gray-800 rounded-xl p-6 border ${colors.border} ${colors.hover} transition-all text-left group`}
+      className={`w-full bg-white rounded-xl p-6 border ${colors.border} ${colors.hover} transition-all text-left group`}
     >
       <div className="flex items-start gap-4">
         <div className="text-4xl flex-shrink-0">{icon}</div>
         <div className="flex-1">
-          <h3 className={`text-xl font-bold text-white mb-2 group-hover:${colors.text} transition-colors`}>
+          <h3 className={`text-xl font-bold text-earth-800 mb-2 group-hover:${colors.text} transition-colors`}>
             {title}
           </h3>
-          <p className="text-gray-400 text-sm mb-4">{description}</p>
+          <p className="text-earth-500 text-sm mb-4">{description}</p>
 
           {/* Progress */}
           <div className="mb-3">
             <div className="flex items-center justify-between mb-1">
-              <span className="text-xs text-gray-500">Progress</span>
+              <span className="text-xs text-earth-400">Progress</span>
               <span className={`text-xs ${colors.text} font-semibold`}>{percentage}%</span>
             </div>
-            <div className="w-full bg-gray-700 rounded-full h-2">
+            <div className="w-full bg-earth-100 rounded-full h-2">
               <div
                 className={`bg-gradient-to-r ${colors.gradient} h-full rounded-full transition-all duration-300`}
                 style={{ width: `${percentage}%` }}
@@ -95,7 +95,7 @@ export function SkillsModuleCard({
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-earth-400">
               {progress} / {total} lessons
             </span>
             {isComplete ? (
@@ -130,7 +130,7 @@ export function LessonCard({ lesson, lessonNumber, isCompleted, onClick }: Lesso
       className={`w-full rounded-xl p-4 border transition-all text-left ${
         isCompleted
           ? 'bg-green-900/20 border-green-700/30 hover:border-green-600'
-          : 'bg-gray-800 border-gray-700 hover:border-primary-500'
+          : 'bg-white border-earth-200 hover:border-cyan-500'
       }`}
     >
       <div className="flex items-start gap-3">
@@ -138,16 +138,16 @@ export function LessonCard({ lesson, lessonNumber, isCompleted, onClick }: Lesso
           {isCompleted ? (
             <CheckCircle size={24} className="text-green-400" />
           ) : (
-            <Circle size={24} className="text-gray-600" />
+            <Circle size={24} className="text-earth-400" />
           )}
         </div>
         <div className="flex-1">
           <div className="flex items-start justify-between mb-2">
             <div>
-              <span className="text-xs text-gray-500 uppercase">Lesson {lessonNumber}</span>
-              <h4 className="text-lg font-semibold text-white">{lesson.title}</h4>
+              <span className="text-xs text-earth-400 uppercase">Lesson {lessonNumber}</span>
+              <h4 className="text-lg font-semibold text-earth-800">{lesson.title}</h4>
             </div>
-            <div className="flex items-center gap-1 text-gray-400 text-sm">
+            <div className="flex items-center gap-1 text-earth-500 text-sm">
               <Clock size={14} />
               <span>{lesson.duration} min</span>
             </div>
@@ -178,17 +178,17 @@ export function LessonContent({ lesson, lessonNumber, onComplete, onBack, userPr
     <div className="max-w-3xl mx-auto">
       {/* Header */}
       <div className="mb-8">
-        <span className="text-sm text-gray-500 uppercase">Lesson {lessonNumber}</span>
-        <h1 className="text-3xl font-bold text-white mb-2">{lesson.title}</h1>
-        <div className="flex items-center gap-2 text-gray-400">
+        <span className="text-sm text-earth-400 uppercase">Lesson {lessonNumber}</span>
+        <h1 className="text-3xl font-bold text-earth-800 mb-2">{lesson.title}</h1>
+        <div className="flex items-center gap-2 text-earth-500">
           <Clock size={16} />
           <span>{lesson.duration} minutes</span>
         </div>
       </div>
 
       {/* Content */}
-      <div className="bg-gray-800 rounded-xl p-8 mb-6 border border-gray-700">
-        <div className="prose prose-invert max-w-none">
+      <div className="bg-white rounded-xl p-8 mb-6 border border-earth-200">
+        <div className="prose max-w-none">
           {lesson.content.split('\n\n').map((paragraph, idx) => {
             // Check if it's a list item
             if (paragraph.trim().startsWith('-')) {
@@ -196,7 +196,7 @@ export function LessonContent({ lesson, lessonNumber, onComplete, onBack, userPr
               return (
                 <ul key={idx} className="space-y-2 my-4 list-disc list-inside">
                   {items.map((item, i) => (
-                    <li key={i} className="text-gray-300">
+                    <li key={i} className="text-earth-600">
                       {item.replace(/^-\s*/, '')}
                     </li>
                   ))}
@@ -207,10 +207,10 @@ export function LessonContent({ lesson, lessonNumber, onComplete, onBack, userPr
             if (paragraph.includes('**')) {
               const parts = paragraph.split('**');
               return (
-                <p key={idx} className="text-gray-300 mb-4 leading-relaxed">
+                <p key={idx} className="text-earth-600 mb-4 leading-relaxed">
                   {parts.map((part, i) =>
                     i % 2 === 1 ? (
-                      <strong key={i} className="text-white font-semibold">
+                      <strong key={i} className="text-earth-800 font-semibold">
                         {part}
                       </strong>
                     ) : (
@@ -221,7 +221,7 @@ export function LessonContent({ lesson, lessonNumber, onComplete, onBack, userPr
               );
             }
             return (
-              <p key={idx} className="text-gray-300 mb-4 leading-relaxed">
+              <p key={idx} className="text-earth-600 mb-4 leading-relaxed">
                 {paragraph}
               </p>
             );
@@ -232,7 +232,7 @@ export function LessonContent({ lesson, lessonNumber, onComplete, onBack, userPr
       {/* Exercise */}
       <div className="bg-blue-900/20 border border-blue-700/30 rounded-xl p-6 mb-6">
         <h3 className="text-lg font-semibold text-blue-300 mb-3">💪 Your Exercise</h3>
-        <p className="text-gray-300">{lesson.exercise}</p>
+        <p className="text-earth-600">{lesson.exercise}</p>
       </div>
 
       {/* Teachable Moment */}

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { UserProfile } from '../../types/career';
 import { CognitiveProfile } from '../../components/CognitiveProfile';
 import { Briefcase, BookOpen, Lightbulb, ArrowRight, Star, Users, Zap, Clipboard, Eye, Brain, Calendar, Heart, Shield, MessageCircle, Bot, GraduationCap } from 'lucide-react';
@@ -30,27 +31,8 @@ const DEMO_PROFILE: UserProfile = {
   aiLiteracyProgress: {},
 };
 
-interface CareerDiscoveryProps {
-  onBack: () => void;
-  onStartProfile: () => void;
-  onQuickStart: () => void;
-  onViewJobs: () => void;
-  onViewLifeSkills: () => void;
-  onViewAILiteracy: () => void;
-  onViewAIAgentsWorkflows: () => void;
-  onViewCurriculum: () => void;
-}
-
-export function CareerDiscovery({
-  onBack,
-  onStartProfile,
-  onQuickStart,
-  onViewJobs,
-  onViewLifeSkills,
-  onViewAILiteracy,
-  onViewAIAgentsWorkflows,
-  onViewCurriculum,
-}: CareerDiscoveryProps) {
+export function CareerDiscovery() {
+  const navigate = useNavigate();
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
 
   useEffect(() => {
@@ -70,7 +52,7 @@ export function CareerDiscovery({
     localStorage.setItem('careerDiscoveryProfile', JSON.stringify(DEMO_PROFILE));
     setUserProfile(DEMO_PROFILE);
     // Navigate to jobs view to show the matched careers
-    onViewJobs();
+    navigate('/career-discovery/jobs');
   };
 
   const hasProfile = userProfile && userProfile.profileCompleted;
@@ -93,7 +75,7 @@ export function CareerDiscovery({
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <h1 className="text-3xl font-bold">Career Discovery</h1>
-            <button onClick={onBack} className="btn-secondary">
+            <button onClick={() => navigate('/chat')} className="btn-secondary">
               ← Back
             </button>
           </div>
@@ -133,7 +115,7 @@ export function CareerDiscovery({
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4 max-w-3xl mx-auto">
               <button
-                onClick={onQuickStart}
+                onClick={() => navigate('/career-discovery/quick-start')}
                 className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-5 px-8 rounded-lg shadow-lg transition-all flex items-center justify-center gap-3"
               >
                 <Zap size={24} />
@@ -144,7 +126,7 @@ export function CareerDiscovery({
               </button>
 
               <button
-                onClick={onStartProfile}
+                onClick={() => navigate('/career-discovery/profile-builder')}
                 className="flex-1 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold py-5 px-8 rounded-lg shadow-lg transition-all flex items-center justify-center gap-3"
               >
                 <Clipboard size={24} />
@@ -269,7 +251,7 @@ export function CareerDiscovery({
             </div>
 
             {/* Testimonial */}
-            <div className="bg-gradient-to-r from-primary-900/30 to-accent-900/30 rounded-xl p-8 border border-primary-700/30 mt-12">
+            <div className="bg-gradient-to-r from-cyan-900/30 to-magenta-900/30 rounded-xl p-8 border border-cyan-700/30 mt-12">
               <div className="flex items-center gap-2 justify-center mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} size={20} className="text-yellow-400" fill="currentColor" />
@@ -326,7 +308,7 @@ export function CareerDiscovery({
             <h1 className="text-3xl font-bold mb-2">Career Discovery</h1>
             <p className="text-gray-400">Welcome back, {userProfile.name || 'there'}!</p>
           </div>
-          <button onClick={onBack} className="btn-secondary">
+          <button onClick={() => navigate('/chat')} className="btn-secondary">
             ← Back
           </button>
         </div>
@@ -363,7 +345,7 @@ export function CareerDiscovery({
 
         {/* Cognitive Profile */}
         <div className="mb-8">
-          <CognitiveProfile profile={userProfile} onEdit={onStartProfile} />
+          <CognitiveProfile profile={userProfile} onEdit={() => navigate('/career-discovery/profile-builder')} />
           <div className="mt-4 flex gap-3 justify-end">
             <button
               onClick={() => {
@@ -383,8 +365,8 @@ export function CareerDiscovery({
         <div className="grid md:grid-cols-2 gap-6">
           {/* Career Matches */}
           <button
-            onClick={onViewJobs}
-            className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-primary-500 transition-all text-left group"
+            onClick={() => navigate('/career-discovery/jobs')}
+            className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-cyan-500 transition-all text-left group"
           >
             <div className="flex items-start justify-between mb-4">
               <div>
@@ -398,7 +380,7 @@ export function CareerDiscovery({
               </div>
               <ArrowRight
                 size={24}
-                className="text-gray-600 group-hover:text-primary-400 group-hover:translate-x-1 transition-all"
+                className="text-gray-600 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all"
               />
             </div>
             <div className="bg-blue-900/20 border border-blue-700/30 rounded-lg p-3">
@@ -410,7 +392,7 @@ export function CareerDiscovery({
 
           {/* Life Skills */}
           <button
-            onClick={onViewLifeSkills}
+            onClick={() => navigate('/career-discovery/life-skills')}
             className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-green-500 transition-all text-left group"
           >
             <div className="flex items-start justify-between mb-4">
@@ -433,7 +415,7 @@ export function CareerDiscovery({
 
           {/* AI Literacy */}
           <button
-            onClick={onViewAILiteracy}
+            onClick={() => navigate('/career-discovery/ai-literacy')}
             className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-yellow-500 transition-all text-left group"
           >
             <div className="flex items-start justify-between mb-4">
@@ -458,24 +440,24 @@ export function CareerDiscovery({
 
           {/* AI Agents & Workflows */}
           <button
-            onClick={onViewAIAgentsWorkflows}
-            className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-primary-500 transition-all text-left group"
+            onClick={() => navigate('/ai-agents')}
+            className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-cyan-500 transition-all text-left group"
           >
             <div className="flex items-start justify-between mb-4">
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <Bot className="text-primary-400" size={24} />
+                  <Bot className="text-cyan-400" size={24} />
                   <h3 className="text-xl font-bold">AI Agents & Workflows</h3>
                 </div>
                 <p className="text-gray-400 text-sm">Pre-built AI assistants and step-by-step processes</p>
               </div>
               <ArrowRight
                 size={24}
-                className="text-gray-600 group-hover:text-primary-400 group-hover:translate-x-1 transition-all"
+                className="text-gray-600 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all"
               />
             </div>
-            <div className="bg-primary-900/20 border border-primary-700/30 rounded-lg p-3">
-              <p className="text-sm text-primary-200">
+            <div className="bg-cyan-900/20 border border-cyan-700/30 rounded-lg p-3">
+              <p className="text-sm text-cyan-200">
                 10 agents • 3 workflows
               </p>
             </div>
@@ -483,7 +465,7 @@ export function CareerDiscovery({
 
           {/* Dreamzilla Curriculum */}
           <button
-            onClick={onViewCurriculum}
+            onClick={() => navigate('/career-discovery/curriculum')}
             className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-purple-500 transition-all text-left group"
           >
             <div className="flex items-start justify-between mb-4">

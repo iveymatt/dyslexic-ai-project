@@ -27,12 +27,12 @@ export function CareerCard({ job, userProfile, onDetailsClick, onSave, isSaved }
   const aiRiskBarCount = job.aiRiskScore;
 
   return (
-    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-primary-500 transition-all">
+    <div className="bg-white rounded-xl p-6 border border-earth-200 hover:border-cyan-500 transition-all">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
-          <h3 className="text-xl font-bold text-white mb-1">{job.title}</h3>
-          <p className="text-gray-400 text-sm">
+          <h3 className="text-xl font-bold text-earth-800 mb-1">{job.title}</h3>
+          <p className="text-earth-500 text-sm">
             {job.industry} | {job.level.charAt(0).toUpperCase() + job.level.slice(1)} level
           </p>
         </div>
@@ -40,7 +40,7 @@ export function CareerCard({ job, userProfile, onDetailsClick, onSave, isSaved }
           <button
             onClick={onSave}
             className={`p-2 rounded-lg transition-colors ${
-              isSaved ? 'bg-primary-600 text-white' : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
+              isSaved ? 'bg-cyan-600 text-white' : 'bg-earth-100 text-earth-500 hover:bg-earth-200'
             }`}
             aria-label={isSaved ? 'Saved' : 'Save job'}
           >
@@ -53,7 +53,7 @@ export function CareerCard({ job, userProfile, onDetailsClick, onSave, isSaved }
       {cognitiveFit !== null && (
         <div className="mb-3">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-sm text-gray-400">Cognitive Fit:</span>
+            <span className="text-sm text-earth-500">Cognitive Fit:</span>
             <span className={`text-sm font-semibold ${getCognitiveFitColor(cognitiveFit)}`}>
               {getCognitiveFitLabel(cognitiveFit)}
             </span>
@@ -63,7 +63,7 @@ export function CareerCard({ job, userProfile, onDetailsClick, onSave, isSaved }
               <div
                 key={i}
                 className={`h-2 flex-1 rounded-sm ${
-                  i < cognitiveBarCount ? 'bg-primary-600' : 'bg-gray-700'
+                  i < cognitiveBarCount ? 'bg-cyan-600' : 'bg-earth-100'
                 }`}
               />
             ))}
@@ -73,7 +73,7 @@ export function CareerCard({ job, userProfile, onDetailsClick, onSave, isSaved }
 
       <div className="mb-4">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-sm text-gray-400">AI-Risk:</span>
+          <span className="text-sm text-earth-500">AI-Risk:</span>
           <span className={`text-sm font-semibold ${getAIRiskColor(job.aiRiskScore)}`}>
             {getAIRiskLabel(job.aiRiskScore)}
           </span>
@@ -89,7 +89,7 @@ export function CareerCard({ job, userProfile, onDetailsClick, onSave, isSaved }
                     : job.aiRiskScore <= 6
                     ? 'bg-yellow-600'
                     : 'bg-orange-600'
-                  : 'bg-gray-700'
+                  : 'bg-earth-100'
               }`}
             />
           ))}
@@ -98,30 +98,30 @@ export function CareerCard({ job, userProfile, onDetailsClick, onSave, isSaved }
 
       {/* Salary */}
       <div className="mb-4">
-        <span className="text-gray-400 text-sm">Salary: </span>
-        <span className="text-white font-semibold">{formatSalary(job.salary.min, job.salary.max)}</span>
+        <span className="text-earth-500 text-sm">Salary: </span>
+        <span className="text-earth-800 font-semibold">{formatSalary(job.salary.min, job.salary.max)}</span>
       </div>
 
       {/* Sensory & Social */}
       <div className="flex gap-4 mb-4 text-sm">
         <div>
-          <span className="text-gray-400">Sensory: </span>
-          <span className="text-white capitalize">{job.sensoryDemands.noise} noise</span>
+          <span className="text-earth-500">Sensory: </span>
+          <span className="text-earth-800 capitalize">{job.sensoryDemands.noise} noise</span>
         </div>
         <div>
-          <span className="text-gray-400">Social: </span>
-          <span className="text-white capitalize">{job.socialDemands}</span>
+          <span className="text-earth-500">Social: </span>
+          <span className="text-earth-800 capitalize">{job.socialDemands}</span>
         </div>
       </div>
 
       {/* Why it matches (if profile exists) */}
       {cognitiveFit !== null && cognitiveFit >= 6 && (
-        <div className="bg-primary-900/20 border border-primary-800/30 rounded-lg p-3 mb-4">
-          <p className="text-sm font-semibold text-primary-300 mb-2">Why it matches YOU:</p>
-          <ul className="space-y-1 text-sm text-gray-300">
+        <div className="bg-cyan-900/20 border border-cyan-800/30 rounded-lg p-3 mb-4">
+          <p className="text-sm font-semibold text-cyan-300 mb-2">Why it matches YOU:</p>
+          <ul className="space-y-1 text-sm text-earth-600">
             {job.cognitiveProfile.strengths.slice(0, 3).map((strength, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <span className="text-primary-400 flex-shrink-0">•</span>
+                <span className="text-cyan-400 flex-shrink-0">•</span>
                 <span>Values {strength.replace(/-/g, ' ')} (your strength!)</span>
               </li>
             ))}
@@ -131,13 +131,13 @@ export function CareerCard({ job, userProfile, onDetailsClick, onSave, isSaved }
 
       {/* Training & Growth */}
       <div className="mb-4 text-sm">
-        <p className="text-gray-400 mb-1">Training needed:</p>
-        <p className="text-white">{job.skillsNeeded.slice(0, 3).join(', ')}</p>
+        <p className="text-earth-500 mb-1">Training needed:</p>
+        <p className="text-earth-800">{job.skillsNeeded.slice(0, 3).join(', ')}</p>
       </div>
 
       <div className="mb-4 text-sm">
-        <p className="text-gray-400 mb-1">Growth path:</p>
-        <p className="text-white">{job.growthPath.join(' → ')}</p>
+        <p className="text-earth-500 mb-1">Growth path:</p>
+        <p className="text-earth-800">{job.growthPath.join(' → ')}</p>
       </div>
 
       {/* Actions */}

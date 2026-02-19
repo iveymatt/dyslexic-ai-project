@@ -284,6 +284,8 @@ export const aiTools: AITool[] = [
     name: 'ChatGPT (OpenAI)',
     website: 'https://chat.openai.com',
     description: 'Popular conversational AI with broad knowledge and capabilities',
+    category: 'chat',
+    type: 'llm',
     overallScore: 8.3,
     featuresScore: 9.0,
     neurodivergentAssessment: {
@@ -389,6 +391,8 @@ export const aiTools: AITool[] = [
     name: 'Perplexity AI',
     website: 'https://perplexity.ai',
     description: 'AI search engine with cited sources and real-time information',
+    category: 'research',
+    type: 'search',
     overallScore: 7.8,
     featuresScore: 8.0,
     neurodivergentAssessment: {
@@ -494,6 +498,8 @@ export const aiTools: AITool[] = [
     name: 'Gemini (Google)',
     website: 'https://gemini.google.com',
     description: 'Google\'s AI with integration to Google services',
+    category: 'chat',
+    type: 'llm',
     overallScore: 7.5,
     featuresScore: 7.5,
     neurodivergentAssessment: {
@@ -599,6 +605,8 @@ export const aiTools: AITool[] = [
     name: 'Microsoft Copilot',
     website: 'https://copilot.microsoft.com',
     description: 'Microsoft\'s AI assistant integrated with Office and Windows',
+    category: 'productivity',
+    type: 'assistant',
     overallScore: 7.2,
     featuresScore: 7.5,
     neurodivergentAssessment: {

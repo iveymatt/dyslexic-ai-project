@@ -37,7 +37,7 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
   const subAgents = getSubAgentsForMode(currentMode);
 
   return (
-    <header className="bg-gray-800 border-b border-gray-700 px-4 py-3">
+    <header className="px-4 py-3" style={{ background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border-color)' }}>
       {/* Top Row - Logo + Settings */}
       <div className="flex items-center justify-between mb-3">
         {/* Left side */}
@@ -51,8 +51,8 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
           </button>
 
           <div className="flex items-center gap-2">
-            <Brain className="text-primary-500" size={24} />
-            <h1 className="text-lg font-semibold text-white">Cognitive Partner</h1>
+            <Brain className="text-cyan-500" size={24} />
+            <h1 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>Cognitive Partner</h1>
           </div>
         </div>
 
@@ -61,7 +61,7 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
           {onShowCareerDiscovery && (
             <button
               onClick={onShowCareerDiscovery}
-              className="flex items-center gap-2 px-3 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-medium transition-colors"
+              className="flex items-center gap-2 px-3 py-2 bg-earth-500 hover:bg-earth-400 text-white rounded-lg font-medium transition-colors"
               aria-label="View Career Discovery"
             >
               <Briefcase size={18} />
@@ -71,7 +71,7 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
           {onShowPromptLibrary && (
             <button
               onClick={onShowPromptLibrary}
-              className="flex items-center gap-2 px-3 py-2 bg-highlight-500 hover:bg-highlight-600 text-white rounded-lg font-medium transition-colors"
+              className="flex items-center gap-2 px-3 py-2 bg-neon-600 hover:bg-neon-500 text-earth-900 rounded-lg font-medium transition-colors"
               aria-label="View Prompt Library"
             >
               <BookOpen size={18} />
@@ -81,7 +81,7 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
           {onShowAIAgentsWorkflows && (
             <button
               onClick={onShowAIAgentsWorkflows}
-              className="flex items-center gap-2 px-3 py-2 bg-accent-500 hover:bg-accent-600 text-white rounded-lg font-medium transition-colors"
+              className="flex items-center gap-2 px-3 py-2 bg-cyan-500 hover:bg-cyan-400 text-earth-900 rounded-lg font-medium transition-colors"
               aria-label="View AI Agents & Workflows"
             >
               <Bot size={18} />
@@ -91,7 +91,7 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
           {onShowLeaderboard && (
             <button
               onClick={onShowLeaderboard}
-              className="flex items-center gap-2 px-3 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors"
+              className="flex items-center gap-2 px-3 py-2 bg-magenta-500 hover:bg-magenta-400 text-white rounded-lg font-medium transition-colors"
               aria-label="View AI Leaderboard"
             >
               <Trophy size={18} />
@@ -101,13 +101,13 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
           {onShowProfile && (
             <button
               onClick={onShowProfile}
-              className={`btn-icon relative ${hasProfile ? 'bg-blue-600 hover:bg-blue-700' : ''}`}
+              className={`btn-icon relative ${hasProfile ? 'bg-cyan-500 hover:bg-cyan-400 text-earth-900' : ''}`}
               aria-label="View Cognitive Profile"
               title={hasProfile ? 'View your profile' : 'Create profile'}
             >
               <User size={20} />
               {hasProfile && (
-                <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 border-2 border-gray-800 rounded-full" />
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-neon-500 border-2 rounded-full" style={{ borderColor: 'var(--bg-secondary)' }} />
               )}
             </button>
           )}
@@ -125,7 +125,7 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
       <div className="flex flex-col gap-3">
         {/* Mode Buttons */}
         <div className="flex items-center gap-3">
-          <span className="text-sm text-gray-400 font-medium">Thinking Mode:</span>
+          <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Thinking Mode:</span>
           <div className="flex gap-2">
             {Object.values(modes).map((mode) => (
               <button
@@ -134,7 +134,7 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
                 className={`px-4 py-2 rounded-lg font-medium transition-all ${
                   currentMode === mode.id
                     ? `${mode.color} text-white shadow-lg`
-                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    : ''
                 }`}
                 aria-label={`Switch to ${mode.name} mode`}
               >
@@ -146,7 +146,7 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
 
         {/* Mode Description + Sub-agent Selector */}
         <div className="flex items-center justify-between">
-          <p className="text-sm text-gray-400 italic">{currentModeConfig.description}</p>
+          <p className="text-sm italic" style={{ color: 'var(--text-secondary)' }}>{currentModeConfig.description}</p>
 
           {/* Sub-agent Radio Buttons */}
           <div className="flex items-center gap-2">
@@ -156,8 +156,8 @@ export function Header({ onShowLeaderboard, onShowPromptLibrary, onShowCareerDis
                 onClick={() => setCurrentSubAgent(subAgent.id as SubAgent)}
                 className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                   currentSubAgent === subAgent.id
-                    ? 'bg-gray-700 text-white border border-gray-600'
-                    : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-300'
+                    ? 'font-semibold'
+                    : ''
                 }`}
                 aria-label={`Switch to ${subAgent.name}`}
                 title={subAgent.description}

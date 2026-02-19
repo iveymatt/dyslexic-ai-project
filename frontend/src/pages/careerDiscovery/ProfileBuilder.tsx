@@ -1,13 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { UserProfile, NeurodivergenceType, StrengthType, ChallengeType, SensoryPreference, EducationLevel, CareerInterestType, JobPriority } from '../../types/career';
 import { ArrowRight, Save } from 'lucide-react';
 
-interface ProfileBuilderProps {
-  onComplete: (profile: UserProfile) => void;
-  onBack: () => void;
-}
-
-export function ProfileBuilder({ onComplete, onBack }: ProfileBuilderProps) {
+export function ProfileBuilder() {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [profileData, setProfileData] = useState<Partial<UserProfile>>({
     neurodivergence: [],
@@ -29,7 +26,7 @@ export function ProfileBuilder({ onComplete, onBack }: ProfileBuilderProps) {
 
   const handleBack = () => {
     if (step > 1) setStep(step - 1);
-    else onBack();
+    else navigate('/career-discovery');
   };
 
   const handleComplete = () => {
@@ -55,7 +52,7 @@ export function ProfileBuilder({ onComplete, onBack }: ProfileBuilderProps) {
 
     // Save to localStorage
     localStorage.setItem('careerDiscoveryProfile', JSON.stringify(profile));
-    onComplete(profile);
+    navigate('/career-discovery');
   };
 
   const toggleArrayItem = <T,>(field: keyof UserProfile, value: T) => {
@@ -155,7 +152,7 @@ export function ProfileBuilder({ onComplete, onBack }: ProfileBuilderProps) {
                     onClick={() => toggleArrayItem('neurodivergence', option)}
                     className={`w-full text-left px-4 py-3 rounded-lg border transition-all ${
                       (profileData.neurodivergence || []).includes(option)
-                        ? 'bg-primary-600 border-primary-500 text-white'
+                        ? 'bg-cyan-600 border-cyan-500 text-white'
                         : 'bg-gray-700 border-gray-600 text-gray-300 hover:border-gray-500'
                     }`}
                   >
@@ -313,7 +310,7 @@ export function ProfileBuilder({ onComplete, onBack }: ProfileBuilderProps) {
                     onClick={() => setProfileData({ ...profileData, hasWorked: true })}
                     className={`flex-1 px-4 py-3 rounded-lg border ${
                       profileData.hasWorked
-                        ? 'bg-primary-600 border-primary-500'
+                        ? 'bg-cyan-600 border-cyan-500'
                         : 'bg-gray-700 border-gray-600'
                     }`}
                   >
@@ -323,7 +320,7 @@ export function ProfileBuilder({ onComplete, onBack }: ProfileBuilderProps) {
                     onClick={() => setProfileData({ ...profileData, hasWorked: false })}
                     className={`flex-1 px-4 py-3 rounded-lg border ${
                       !profileData.hasWorked
-                        ? 'bg-primary-600 border-primary-500'
+                        ? 'bg-cyan-600 border-cyan-500'
                         : 'bg-gray-700 border-gray-600'
                     }`}
                   >

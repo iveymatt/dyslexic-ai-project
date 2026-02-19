@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Brain,
   Volume2,
@@ -24,26 +25,23 @@ import {
   AlertTriangle,
 } from 'lucide-react';
 
-interface LandingPageProps {
-  onGetStarted: () => void;
-  onTakeAssessment: () => void;
-}
+export function LandingPage() {
+  const navigate = useNavigate();
 
-export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+    <div className="min-h-screen" style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
       {/* Hero Section */}
       <header className="container mx-auto px-6 py-16 text-center">
-        <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full mb-8 animate-pulse">
+        <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-cyan-500 to-magenta-500 rounded-full mb-8 animate-pulse">
           <Brain size={40} />
         </div>
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
+        <h1 className="text-5xl md:text-6xl font-bold mb-6 font-serif gradient-text">
           Cognitive Partner
         </h1>
-        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-semibold">
+        <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-semibold" style={{ color: 'var(--text-secondary)' }}>
           The complete AI platform for dyslexic and neurodivergent thinkers
         </p>
-        <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
+        <p className="text-lg mb-12 max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
           AI chat + Prompt library + Tool comparison + Career discovery. Everything you need to work WITH your brain, not against it.
         </p>
 
@@ -51,8 +49,8 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
         <div className="max-w-4xl mx-auto">
           {/* Primary: Take Assessment */}
           <button
-            onClick={onTakeAssessment}
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-6 px-8 rounded-xl shadow-2xl transition-all mb-4 border-2 border-blue-400/50"
+            onClick={() => navigate('/assessment')}
+            className="w-full bg-gradient-to-r from-cyan-500 to-magenta-500 hover:from-cyan-400 hover:to-magenta-400 text-earth-800 font-bold py-6 px-8 rounded-xl shadow-2xl transition-all mb-4 border-2 border-cyan-400/50"
           >
             <div className="flex items-center justify-center gap-4">
               <Brain size={32} />
@@ -68,42 +66,42 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
 
           {/* Divider */}
           <div className="flex items-center gap-4 mb-4">
-            <div className="flex-1 border-t border-gray-600"></div>
-            <span className="text-gray-500 text-sm">OR START WITHOUT ASSESSMENT</span>
-            <div className="flex-1 border-t border-gray-600"></div>
+            <div className="flex-1" style={{ borderTop: '1px solid var(--border-color)' }}></div>
+            <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>OR START WITHOUT ASSESSMENT</span>
+            <div className="flex-1" style={{ borderTop: '1px solid var(--border-color)' }}></div>
           </div>
 
           {/* Secondary: Skip to Chat */}
           <button
-            onClick={onGetStarted}
-            className="w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-2"
+            onClick={() => navigate('/chat')}
+            className="w-full font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-2 btn-secondary"
           >
             Skip to Chat
             <ArrowRight size={20} />
           </button>
         </div>
 
-        <p className="text-sm text-gray-500 mt-6">No signup required • Privacy-focused • Open source</p>
+        <p className="text-sm mt-6" style={{ color: 'var(--text-secondary)', opacity: 0.7 }}>No signup required • Privacy-focused • Open source</p>
       </header>
 
       {/* Feature Highlights - 5 Major Features */}
       <section className="container mx-auto px-6 py-16">
         <h2 className="text-4xl font-bold text-center mb-4">Five Tools. One Platform.</h2>
-        <p className="text-center text-gray-400 mb-12 text-lg max-w-3xl mx-auto">
+        <p className="text-center text-earth-500 mb-12 text-lg max-w-3xl mx-auto">
           We built the platform we wished existed. Here's what makes Cognitive Partner different.
         </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {/* Prompt Library */}
-          <div className="bg-gradient-to-br from-green-900/40 to-green-800/40 p-8 rounded-2xl border border-green-700/50 hover:border-green-600 transition-all">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl border border-green-200 hover:border-green-600 transition-all">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-green-600 rounded-full mb-6">
               <BookOpen size={32} />
             </div>
             <h3 className="text-2xl font-bold mb-4">Prompt Library</h3>
-            <p className="text-gray-300 mb-6 text-lg">
+            <p className="text-earth-600 mb-6 text-lg">
               30+ ready-to-use AI prompts created by neurodivergent people for neurodivergent people.
             </p>
-            <ul className="space-y-3 text-gray-300 mb-6">
+            <ul className="space-y-3 text-earth-600 mb-6">
               <li className="flex items-start gap-2">
                 <span className="text-green-400 flex-shrink-0 mt-1">✓</span>
                 <span>Organized by who you are (student, professional, parent, etc.)</span>
@@ -121,23 +119,23 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
                 <span>Community-rated and verified</span>
               </li>
             </ul>
-            <div className="bg-green-900/30 rounded-lg p-4 border border-green-700/30">
-              <p className="text-sm text-green-200 italic">
+            <div className="bg-green-50/80 rounded-lg p-4 border border-green-200">
+              <p className="text-sm text-green-700 italic">
                 "Finally, prompts that actually work for ADHD brains. No more staring at a blank screen."
               </p>
             </div>
           </div>
 
           {/* AI Leaderboard */}
-          <div className="bg-gradient-to-br from-blue-900/40 to-purple-800/40 p-8 rounded-2xl border border-blue-700/50 hover:border-blue-600 transition-all">
+          <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl border border-blue-200 hover:border-blue-600 transition-all">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-6">
               <Trophy size={32} />
             </div>
             <h3 className="text-2xl font-bold mb-4">AI Tool Leaderboard</h3>
-            <p className="text-gray-300 mb-6 text-lg">
+            <p className="text-earth-600 mb-6 text-lg">
               Which AI tools actually support neurodivergent thinking? We tested them. Here's the data.
             </p>
-            <ul className="space-y-3 text-gray-300 mb-6">
+            <ul className="space-y-3 text-earth-600 mb-6">
               <li className="flex items-start gap-2">
                 <span className="text-blue-400 flex-shrink-0 mt-1">✓</span>
                 <span>4 dimensions: lateral thinking, linear thinking, language, awareness</span>
@@ -155,23 +153,23 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
                 <span>Filter by your thinking style & view as cards or list</span>
               </li>
             </ul>
-            <div className="bg-blue-900/30 rounded-lg p-4 border border-blue-700/30">
-              <p className="text-sm text-blue-200 italic">
+            <div className="bg-blue-50/80 rounded-lg p-4 border border-blue-200">
+              <p className="text-sm text-blue-700 italic">
                 "The only benchmark that measures if AI tools actually 'get' how dyslexic brains work."
               </p>
             </div>
           </div>
 
           {/* AI Chat */}
-          <div className="bg-gradient-to-br from-purple-900/40 to-pink-800/40 p-8 rounded-2xl border border-purple-700/50 hover:border-purple-600 transition-all">
+          <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-200 hover:border-purple-600 transition-all">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-600 rounded-full mb-6">
               <MessageSquare size={32} />
             </div>
             <h3 className="text-2xl font-bold mb-4">Accessible AI Chat</h3>
-            <p className="text-gray-300 mb-6 text-lg">
+            <p className="text-earth-600 mb-6 text-lg">
               Three thinking modes (Socratic, Strategic & Skeptic), built-in accessibility, designed for dyslexic brains.
             </p>
-            <ul className="space-y-3 text-gray-300 mb-6">
+            <ul className="space-y-3 text-earth-600 mb-6">
               <li className="flex items-start gap-2">
                 <span className="text-purple-400 flex-shrink-0 mt-1">✓</span>
                 <span>Text-to-speech & voice input built-in</span>
@@ -189,23 +187,23 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
                 <span>Explore, Execute, or Challenge ideas</span>
               </li>
             </ul>
-            <div className="bg-purple-900/30 rounded-lg p-4 border border-purple-700/30">
-              <p className="text-sm text-purple-200 italic">
+            <div className="bg-purple-50/80 rounded-lg p-4 border border-purple-700/30">
+              <p className="text-sm text-purple-700 italic">
                 "First AI chat that doesn't make me feel stupid. It adapts to how MY brain works."
               </p>
             </div>
           </div>
 
           {/* Career Discovery */}
-          <div className="bg-gradient-to-br from-orange-900/40 to-orange-800/40 p-8 rounded-2xl border border-orange-700/50 hover:border-orange-600 transition-all">
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-2xl border border-orange-200 hover:border-orange-600 transition-all">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-500 rounded-full mb-6">
               <Briefcase size={32} />
             </div>
             <h3 className="text-2xl font-bold mb-4">Career Discovery</h3>
-            <p className="text-gray-300 mb-6 text-lg">
+            <p className="text-earth-600 mb-6 text-lg">
               Find careers that match how YOUR brain works. Learn life skills. Master AI tools. Use pre-built AI agents. Built for neurodivergent young adults.
             </p>
-            <ul className="space-y-3 text-gray-300 mb-6">
+            <ul className="space-y-3 text-earth-600 mb-6">
               <li className="flex items-start gap-2">
                 <span className="text-orange-400 flex-shrink-0 mt-1">✓</span>
                 <span>30+ careers matched to your cognitive profile</span>
@@ -223,23 +221,23 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
                 <span>10 AI agents & 3 workflows for career transition</span>
               </li>
             </ul>
-            <div className="bg-orange-900/30 rounded-lg p-4 border border-orange-700/30">
-              <p className="text-sm text-orange-200 italic">
+            <div className="bg-orange-50/80 rounded-lg p-4 border border-orange-200">
+              <p className="text-sm text-orange-700 italic">
                 "I have autism and ADHD. I never knew what career would work for me. This showed me jobs that actually fit my brain. Game changer."
               </p>
             </div>
           </div>
 
           {/* AI Agents & Workflows */}
-          <div className="bg-gradient-to-br from-cyan-900/40 to-teal-800/40 p-8 rounded-2xl border border-cyan-700/50 hover:border-cyan-600 transition-all">
+          <div className="bg-gradient-to-br from-cyan-50 to-teal-50 p-8 rounded-2xl border border-cyan-200 hover:border-cyan-600 transition-all">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-cyan-600 rounded-full mb-6">
               <Bot size={32} />
             </div>
             <h3 className="text-2xl font-bold mb-4">AI Agents & Workflows</h3>
-            <p className="text-gray-300 mb-6 text-lg">
+            <p className="text-earth-600 mb-6 text-lg">
               Pre-built AI assistants and step-by-step workflows for career transition challenges.
             </p>
-            <ul className="space-y-3 text-gray-300 mb-6">
+            <ul className="space-y-3 text-earth-600 mb-6">
               <li className="flex items-start gap-2">
                 <span className="text-cyan-400 flex-shrink-0 mt-1">✓</span>
                 <span>10 ready-to-use AI agents (task breakdown, interview prep, scripts)</span>
@@ -257,8 +255,8 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
                 <span>Organized by 5 core themes (executive function, emotional regulation, etc.)</span>
               </li>
             </ul>
-            <div className="bg-cyan-900/30 rounded-lg p-4 border border-cyan-700/30">
-              <p className="text-sm text-cyan-200 italic">
+            <div className="bg-cyan-50/80 rounded-lg p-4 border border-cyan-700/30">
+              <p className="text-sm text-cyan-700 italic">
                 "The Social Script Generator saved me. I finally have words for difficult conversations at work."
               </p>
             </div>
@@ -269,7 +267,7 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
       {/* Thinking Modes Section */}
       <section className="container mx-auto px-6 py-16">
         <h2 className="text-4xl font-bold text-center mb-4">Three Thinking Modes</h2>
-        <p className="text-center text-gray-400 mb-12 max-w-3xl mx-auto text-lg">
+        <p className="text-center text-earth-500 mb-12 max-w-3xl mx-auto text-lg">
           Neurodivergent brains need different modes: explore ideas freely, get direct answers, AND challenge assumptions.
           We support all three ways of thinking.
         </p>
@@ -277,116 +275,116 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
         {/* Mode Cards */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
           {/* SOCRATIC Mode */}
-          <div className="bg-gradient-to-br from-accent-500 to-accent-700 p-8 rounded-2xl text-white shadow-2xl transform hover:scale-105 transition-all">
+          <div className="bg-gradient-to-br from-cyan-500 to-cyan-600 p-8 rounded-2xl text-earth-800 shadow-2xl transform hover:scale-105 transition-all">
             <div className="flex items-center gap-3 mb-4">
               <Lightbulb size={40} className="text-yellow-300" />
               <h3 className="text-3xl font-bold">SOCRATIC</h3>
             </div>
-            <p className="text-xl mb-6 text-accent-100 font-semibold">Explore together. Ask questions. Think it through.</p>
-            <p className="text-accent-100 mb-6">
+            <p className="text-xl mb-6 text-cyan-100 font-semibold">Explore together. Ask questions. Think it through.</p>
+            <p className="text-cyan-100 mb-6">
               Perfect for when you need to think through problems, explore ideas, or understand something deeply.
               The AI asks questions back, follows tangents, makes creative connections.
             </p>
             <div className="space-y-3">
-              <div className="bg-white/10 rounded-lg p-4 border border-accent-300/30">
+              <div className="bg-white/20 rounded-lg p-4 border border-cyan-300/30">
                 <h4 className="font-semibold mb-1 flex items-center gap-2">
                   <Sparkles size={16} />
                   Think Out Loud
                 </h4>
-                <p className="text-sm text-accent-100">Explore ideas through dialogue & creative connections</p>
+                <p className="text-sm text-cyan-100">Explore ideas through dialogue & creative connections</p>
               </div>
-              <div className="bg-white/10 rounded-lg p-4 border border-accent-300/30">
+              <div className="bg-white/20 rounded-lg p-4 border border-cyan-300/30">
                 <h4 className="font-semibold mb-1 flex items-center gap-2">
                   <Target size={16} />
                   Executive Strategist
                 </h4>
-                <p className="text-sm text-accent-100">ADHD-aware planning, decision-making & prioritization</p>
+                <p className="text-sm text-cyan-100">ADHD-aware planning, decision-making & prioritization</p>
               </div>
             </div>
-            <div className="mt-6 bg-accent-900/40 rounded-lg p-4 border border-accent-300/30">
-              <p className="text-sm text-accent-100">
+            <div className="mt-6 bg-cyan-800/20 rounded-lg p-4 border border-cyan-300/30">
+              <p className="text-sm text-cyan-100">
                 <strong>Use when:</strong> Stuck on a problem, making decisions, learning concepts, brainstorming
               </p>
             </div>
           </div>
 
           {/* STRATEGIC Mode */}
-          <div className="bg-gradient-to-br from-primary-500 to-primary-700 p-8 rounded-2xl text-white shadow-2xl transform hover:scale-105 transition-all">
+          <div className="bg-gradient-to-br from-magenta-500 to-magenta-600 p-8 rounded-2xl text-earth-800 shadow-2xl transform hover:scale-105 transition-all">
             <div className="flex items-center gap-3 mb-4">
               <Zap size={40} className="text-yellow-300" />
               <h3 className="text-3xl font-bold">STRATEGIC</h3>
             </div>
-            <p className="text-xl mb-6 text-primary-100 font-semibold">Get direct answers. Clear info. Done.</p>
-            <p className="text-primary-100 mb-6">
+            <p className="text-xl mb-6 text-magenta-100 font-semibold">Get direct answers. Clear info. Done.</p>
+            <p className="text-magenta-100 mb-6">
               Perfect for when you need quick answers, actionable steps, or direct information.
               No fluff. Just clear, organized, practical help.
             </p>
             <div className="space-y-3">
-              <div className="bg-white/10 rounded-lg p-4 border border-primary-300/30">
+              <div className="bg-white/20 rounded-lg p-4 border border-magenta-300/30">
                 <h4 className="font-semibold mb-1 flex items-center gap-2">
                   <Type size={16} />
                   Writing Clarity
                 </h4>
-                <p className="text-sm text-primary-100">Direct, actionable writing feedback & editing</p>
+                <p className="text-sm text-magenta-100">Direct, actionable writing feedback & editing</p>
               </div>
-              <div className="bg-white/10 rounded-lg p-4 border border-primary-300/30">
+              <div className="bg-white/20 rounded-lg p-4 border border-magenta-300/30">
                 <h4 className="font-semibold mb-1 flex items-center gap-2">
                   <List size={16} />
                   Task Breakdown
                 </h4>
-                <p className="text-sm text-primary-100">Break overwhelming projects into achievable steps</p>
+                <p className="text-sm text-magenta-100">Break overwhelming projects into achievable steps</p>
               </div>
-              <div className="bg-white/10 rounded-lg p-4 border border-primary-300/30">
+              <div className="bg-white/20 rounded-lg p-4 border border-magenta-300/30">
                 <h4 className="font-semibold mb-1 flex items-center gap-2">
                   <Brain size={16} />
                   Research Digest
                 </h4>
-                <p className="text-sm text-primary-100">Summarize & organize complex information</p>
+                <p className="text-sm text-magenta-100">Summarize & organize complex information</p>
               </div>
             </div>
-            <div className="mt-6 bg-primary-900/40 rounded-lg p-4 border border-primary-300/30">
-              <p className="text-sm text-primary-100">
+            <div className="mt-6 bg-magenta-800/20 rounded-lg p-4 border border-magenta-300/30">
+              <p className="text-sm text-magenta-100">
                 <strong>Use when:</strong> Need quick answers, want specific steps, improving writing, researching
               </p>
             </div>
           </div>
 
           {/* SKEPTIC Mode */}
-          <div className="bg-gradient-to-br from-orange-500 to-orange-700 p-8 rounded-2xl text-white shadow-2xl transform hover:scale-105 transition-all">
+          <div className="bg-gradient-to-br from-earth-500 to-earth-600 p-8 rounded-2xl text-earth-800 shadow-2xl transform hover:scale-105 transition-all">
             <div className="flex items-center gap-3 mb-4">
               <AlertTriangle size={40} className="text-yellow-300" />
               <h3 className="text-3xl font-bold">SKEPTIC</h3>
             </div>
-            <p className="text-xl mb-6 text-orange-100 font-semibold">Challenge ideas. Find blind spots. Make it stronger.</p>
-            <p className="text-orange-100 mb-6">
+            <p className="text-xl mb-6 text-white font-semibold">Challenge ideas. Find blind spots. Make it stronger.</p>
+            <p className="text-white mb-6">
               Perfect for stress-testing ideas, finding what you're missing, and playing devil's advocate.
               The AI challenges assumptions and reveals weaknesses to make your thinking bulletproof.
             </p>
             <div className="space-y-3">
-              <div className="bg-white/10 rounded-lg p-4 border border-orange-300/30">
+              <div className="bg-white/20 rounded-lg p-4 border border-orange-300/30">
                 <h4 className="font-semibold mb-1 flex items-center gap-2">
                   <Target size={16} />
                   Reality Check
                 </h4>
-                <p className="text-sm text-orange-100">Stress-test ideas & surface hidden assumptions</p>
+                <p className="text-sm text-white">Stress-test ideas & surface hidden assumptions</p>
               </div>
-              <div className="bg-white/10 rounded-lg p-4 border border-orange-300/30">
+              <div className="bg-white/20 rounded-lg p-4 border border-orange-300/30">
                 <h4 className="font-semibold mb-1 flex items-center gap-2">
                   <AlertTriangle size={16} />
                   Risk Assessor
                 </h4>
-                <p className="text-sm text-orange-100">Identify risks, edge cases & what could go wrong</p>
+                <p className="text-sm text-white">Identify risks, edge cases & what could go wrong</p>
               </div>
-              <div className="bg-white/10 rounded-lg p-4 border border-orange-300/30">
+              <div className="bg-white/20 rounded-lg p-4 border border-orange-300/30">
                 <h4 className="font-semibold mb-1 flex items-center gap-2">
                   <Brain size={16} />
                   Assumption Challenger
                 </h4>
-                <p className="text-sm text-orange-100">Question beliefs & uncover what you're taking for granted</p>
+                <p className="text-sm text-white">Question beliefs & uncover what you're taking for granted</p>
               </div>
             </div>
-            <div className="mt-6 bg-orange-900/40 rounded-lg p-4 border border-orange-300/30">
-              <p className="text-sm text-orange-100">
+            <div className="mt-6 bg-orange-50/80 rounded-lg p-4 border border-orange-300/30">
+              <p className="text-sm text-white">
                 <strong>Use when:</strong> Testing ideas, making important decisions, planning projects, avoiding mistakes
               </p>
             </div>
@@ -395,14 +393,14 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
       </section>
 
       {/* Prompt Library Deep Dive */}
-      <section className="container mx-auto px-6 py-16 bg-gray-800/50 rounded-3xl my-16">
+      <section className="container mx-auto px-6 py-16 bg-earth-50 rounded-3xl my-16">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-green-600 rounded-full mb-4">
               <BookOpen size={32} />
             </div>
             <h2 className="text-4xl font-bold mb-4">Prompt Library: Your Secret Weapon</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-earth-600 max-w-3xl mx-auto">
               30+ battle-tested prompts organized by who you are and what you need. No more blank screen paralysis.
             </p>
           </div>
@@ -470,16 +468,16 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
             />
           </div>
 
-          <div className="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-8 border border-green-700/30">
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-8 border border-green-200">
             <div className="flex items-start gap-4">
-              <Users size={32} className="text-green-400 flex-shrink-0 mt-1" />
+              <Users size={32} className="text-green-500 flex-shrink-0 mt-1" />
               <div>
                 <h3 className="text-xl font-bold mb-2">Community-Powered</h3>
-                <p className="text-gray-300 mb-4">
+                <p className="text-earth-600 mb-4">
                   Every prompt is created by neurodivergent people who actually use them. Real problems. Real solutions.
                   Rated, verified, and constantly improving.
                 </p>
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-earth-500">
                   Each prompt includes: when to use it, the full prompt text, real example use case, best mode
                   (Socratic/Strategic), and related prompts.
                 </p>
@@ -497,15 +495,15 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
               <Trophy size={32} />
             </div>
             <h2 className="text-4xl font-bold mb-4">AI Tool Leaderboard</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-earth-600 max-w-3xl mx-auto">
               The only benchmark that measures if AI tools actually understand neurodivergent thinking.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-gray-800 rounded-xl p-8 border border-gray-700">
+            <div className="bg-white rounded-xl p-8 border border-earth-200">
               <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                <Brain className="text-primary-400" />
+                <Brain className="text-cyan-500" />
                 What We Test
               </h3>
               <div className="space-y-4">
@@ -532,7 +530,7 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
               </div>
             </div>
 
-            <div className="bg-gray-800 rounded-xl p-8 border border-gray-700">
+            <div className="bg-white rounded-xl p-8 border border-earth-200">
               <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
                 <Star className="text-yellow-500" />
                 Top Performers
@@ -545,8 +543,8 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
                 <LeaderboardPreview rank={5} name="Gemini (Google)" score={7.0} color="yellow" />
                 <LeaderboardPreview rank={6} name="Microsoft Copilot" score={6.5} color="orange" />
               </div>
-              <div className="mt-6 pt-6 border-t border-gray-700">
-                <p className="text-sm text-gray-400">
+              <div className="mt-6 pt-6 border-t border-earth-200">
+                <p className="text-sm text-earth-500">
                   Each tool tested with 4 questions across all dimensions. Full test results, AI responses, and scoring
                   reasoning available in the leaderboard.
                 </p>
@@ -554,13 +552,13 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-8 border border-blue-700/30">
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8 border border-blue-200">
             <h3 className="text-xl font-bold mb-4">Why This Matters</h3>
-            <p className="text-gray-300 text-lg mb-4">
-              <strong className="text-blue-400">Dyslexia is a language-processing difference.</strong> LLMs are
+            <p className="text-earth-600 text-lg mb-4">
+              <strong className="text-blue-600">Dyslexia is a language-processing difference.</strong> LLMs are
               language models.
             </p>
-            <p className="text-gray-300">
+            <p className="text-earth-600">
               We asked: Which AI tools adapt to BOTH lateral thinking (how neurodivergent brains naturally work) AND
               linear thinking (structured support when needed)? Which ones truly "get" us? Now you have the data.
             </p>
@@ -569,29 +567,29 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
       </section>
 
       {/* Career Discovery Deep Dive */}
-      <section className="container mx-auto px-6 py-16 bg-gray-800/50 rounded-3xl my-16">
+      <section className="container mx-auto px-6 py-16 bg-earth-50 rounded-3xl my-16">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-500 rounded-full mb-4">
               <Briefcase size={32} />
             </div>
             <h2 className="text-4xl font-bold mb-4">Career Discovery: Your Future, Your Brain</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-earth-600 max-w-3xl mx-auto">
               The complete career development platform for neurodivergent young adults. Find jobs that fit how YOUR brain works.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Career Matching */}
-            <div className="bg-gradient-to-br from-orange-900/30 to-red-900/30 rounded-xl p-6 border border-orange-700/30">
+            <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200">
               <div className="flex items-center gap-3 mb-4">
                 <Briefcase className="text-orange-400" size={28} />
                 <h3 className="text-xl font-bold">Career Matching</h3>
               </div>
-              <p className="text-gray-300 mb-4">
+              <p className="text-earth-600 mb-4">
                 30+ careers matched to your neurodivergent strengths, challenges, and interests.
               </p>
-              <ul className="space-y-2 text-sm text-gray-400">
+              <ul className="space-y-2 text-sm text-earth-500">
                 <li className="flex items-start gap-2">
                   <span className="text-orange-400">•</span>
                   <span>Cognitive fit scores</span>
@@ -612,15 +610,15 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
             </div>
 
             {/* Life Skills Coach */}
-            <div className="bg-gradient-to-br from-green-900/30 to-teal-900/30 rounded-xl p-6 border border-green-700/30">
+            <div className="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-6 border border-green-200">
               <div className="flex items-center gap-3 mb-4">
                 <Clock className="text-green-400" size={28} />
                 <h3 className="text-xl font-bold">Life Skills Coach</h3>
               </div>
-              <p className="text-gray-300 mb-4">
+              <p className="text-earth-600 mb-4">
                 Master the skills you need for adult life. Built for neurodivergent brains.
               </p>
-              <ul className="space-y-2 text-sm text-gray-400">
+              <ul className="space-y-2 text-sm text-earth-500">
                 <li className="flex items-start gap-2">
                   <span className="text-green-400">🧠</span>
                   <span>Executive Function</span>
@@ -645,15 +643,15 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
             </div>
 
             {/* AI Literacy Training */}
-            <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-700/30">
+            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-6 border border-blue-200">
               <div className="flex items-center gap-3 mb-4">
                 <TrendingUp className="text-blue-400" size={28} />
                 <h3 className="text-xl font-bold">AI Literacy</h3>
               </div>
-              <p className="text-gray-300 mb-4">
+              <p className="text-earth-600 mb-4">
                 Master AI tools for job search, learning, and daily life.
               </p>
-              <ul className="space-y-2 text-sm text-gray-400">
+              <ul className="space-y-2 text-sm text-earth-500">
                 <li className="flex items-start gap-2">
                   <span className="text-blue-400">•</span>
                   <span>What is AI & how it works</span>
@@ -678,86 +676,86 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
             </div>
 
             {/* AI Agents & Workflows */}
-            <div className="bg-gradient-to-br from-primary-900/30 to-accent-900/30 rounded-xl p-6 border border-primary-700/30">
+            <div className="bg-gradient-to-br from-cyan-50 to-magenta-50 rounded-xl p-6 border border-cyan-200">
               <div className="flex items-center gap-3 mb-4">
-                <Bot className="text-primary-400" size={28} />
+                <Bot className="text-cyan-500" size={28} />
                 <h3 className="text-xl font-bold">AI Agents & Workflows</h3>
               </div>
-              <p className="text-gray-300 mb-4">
+              <p className="text-earth-600 mb-4">
                 Pre-built AI assistants and step-by-step processes for career transition.
               </p>
-              <ul className="space-y-2 text-sm text-gray-400">
+              <ul className="space-y-2 text-sm text-earth-500">
                 <li className="flex items-start gap-2">
-                  <span className="text-primary-400">🤖</span>
+                  <span className="text-cyan-500">🤖</span>
                   <span>10 ready-to-use AI agents</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary-400">🔄</span>
+                  <span className="text-cyan-500">🔄</span>
                   <span>3 multi-step workflows</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary-400">📋</span>
+                  <span className="text-cyan-500">📋</span>
                   <span>Task breakdown & planning</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary-400">💬</span>
+                  <span className="text-cyan-500">💬</span>
                   <span>Social scripts & prep</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary-400">✨</span>
+                  <span className="text-cyan-500">✨</span>
                   <span>Voice-optimized prompts</span>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-orange-900/30 to-primary-900/30 rounded-xl p-8 border border-orange-700/30 mb-8">
+          <div className="bg-gradient-to-r from-orange-50 to-cyan-50 rounded-xl p-8 border border-orange-200 mb-8">
             <h3 className="text-2xl font-bold mb-4">How It Works</h3>
             <div className="grid md:grid-cols-4 gap-6">
               <div>
                 <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-xl font-bold mb-3">1</div>
                 <h4 className="font-semibold mb-2">Build Your Profile</h4>
-                <p className="text-sm text-gray-400">7-step questionnaire: neurodivergence, strengths, challenges, interests</p>
+                <p className="text-sm text-earth-500">7-step questionnaire: neurodivergence, strengths, challenges, interests</p>
               </div>
               <div>
                 <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-xl font-bold mb-3">2</div>
                 <h4 className="font-semibold mb-2">Get Matched</h4>
-                <p className="text-sm text-gray-400">See 30+ jobs ranked by cognitive fit, AI-risk, and sensory/social demands</p>
+                <p className="text-sm text-earth-500">See 30+ jobs ranked by cognitive fit, AI-risk, and sensory/social demands</p>
               </div>
               <div>
                 <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-xl font-bold mb-3">3</div>
                 <h4 className="font-semibold mb-2">Learn Skills</h4>
-                <p className="text-sm text-gray-400">Take bite-sized lessons on time, money, interviews, emotions, social skills</p>
+                <p className="text-sm text-earth-500">Take bite-sized lessons on time, money, interviews, emotions, social skills</p>
               </div>
               <div>
                 <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-xl font-bold mb-3">4</div>
                 <h4 className="font-semibold mb-2">Master AI</h4>
-                <p className="text-sm text-gray-400">Complete 10-module AI course with hands-on practice and certification</p>
+                <p className="text-sm text-earth-500">Complete 10-module AI course with hands-on practice and certification</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-8 border border-green-700/30">
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-8 border border-green-200">
             <div className="flex items-start gap-4">
-              <Users size={32} className="text-green-400 flex-shrink-0 mt-1" />
+              <Users size={32} className="text-green-500 flex-shrink-0 mt-1" />
               <div>
                 <h3 className="text-2xl font-bold mb-4">Built FOR Neurodivergent People, BY Neurodivergent People</h3>
-                <p className="text-gray-300 text-lg mb-4">
+                <p className="text-earth-600 text-lg mb-4">
                   Every job, every lesson, every prompt is designed with neurodivergent thinking at the center.
                   We celebrate your strengths. We're honest about challenges. We never make you feel broken.
                 </p>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div className="bg-green-900/20 rounded-lg p-4 border border-green-700/30">
-                    <p className="text-sm text-green-200 italic">
+                  <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                    <p className="text-sm text-green-700 italic">
                       "I have autism and ADHD. I never knew what career would work for me. This tool showed me jobs that actually fit how my brain works. I found a job I love as a Software Tester."
                     </p>
-                    <p className="text-xs text-gray-500 mt-2">- Alex, 23</p>
+                    <p className="text-xs text-earth-400 mt-2">- Alex, 23</p>
                   </div>
-                  <div className="bg-blue-900/20 rounded-lg p-4 border border-blue-700/30">
-                    <p className="text-sm text-blue-200 italic">
+                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                    <p className="text-sm text-blue-700 italic">
                       "The Life Skills Coach saved me. Time management lessons actually made sense for my ADHD brain. I'm not 'lazy'—I just needed tools that work WITH how I think."
                     </p>
-                    <p className="text-xs text-gray-500 mt-2">- Jordan, 20</p>
+                    <p className="text-xs text-earth-400 mt-2">- Jordan, 20</p>
                   </div>
                 </div>
               </div>
@@ -767,9 +765,9 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
       </section>
 
       {/* Accessibility Features */}
-      <section className="container mx-auto px-6 py-16 bg-gray-800/50 rounded-3xl my-16">
+      <section className="container mx-auto px-6 py-16 bg-earth-50 rounded-3xl my-16">
         <h2 className="text-4xl font-bold text-center mb-4">Accessibility First, Always</h2>
-        <p className="text-center text-gray-400 mb-12 text-lg max-w-3xl mx-auto">
+        <p className="text-center text-earth-500 mb-12 text-lg max-w-3xl mx-auto">
           Every feature, every design choice, built with dyslexic and neurodivergent users at the center.
         </p>
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
@@ -785,38 +783,38 @@ export function LandingPage({ onGetStarted, onTakeAssessment }: LandingPageProps
       {/* CTA Section */}
       <section className="container mx-auto px-6 py-16 text-center">
         <h2 className="text-5xl font-bold mb-6">Ready to Think Better?</h2>
-        <p className="text-xl text-gray-400 mb-4">
+        <p className="text-xl text-earth-500 mb-4">
           No signup required. No credit card. No BS.
         </p>
-        <p className="text-lg text-gray-500 mb-8">
+        <p className="text-lg text-earth-400 mb-8">
           Start chatting, browse prompts, compare AI tools. Free. Forever.
         </p>
         <button
-          onClick={onGetStarted}
-          className="btn-primary text-xl px-10 py-5 inline-flex items-center gap-3 shadow-2xl hover:shadow-primary-500/50 transform hover:scale-110 transition-all"
+          onClick={() => navigate('/chat')}
+          className="btn-primary text-xl px-10 py-5 inline-flex items-center gap-3 shadow-2xl hover:shadow-cyan-500/50 transform hover:scale-110 transition-all"
         >
           Launch Cognitive Partner
           <ArrowRight size={24} />
         </button>
-        <p className="text-xs text-gray-600 mt-6">
+        <p className="text-xs text-earth-400 mt-6">
           Join thousands of neurodivergent thinkers who finally found an AI that gets them.
         </p>
       </section>
 
       {/* Footer */}
-      <footer className="container mx-auto px-6 py-12 border-t border-gray-800">
+      <footer className="container mx-auto px-6 py-12 border-t" style={{ borderColor: 'var(--border-color)' }}>
         <div className="text-center space-y-4">
-          <p className="text-gray-400 text-lg">
+          <p className="text-earth-500 text-lg">
             Built with ❤️ by neurodivergent people, for neurodivergent people
           </p>
-          <div className="flex items-center justify-center gap-6 text-sm text-gray-500">
+          <div className="flex items-center justify-center gap-6 text-sm text-earth-400">
             <span>🔒 Privacy-focused</span>
             <span>•</span>
             <span>💾 Open source</span>
             <span>•</span>
             <span>🌍 Community-driven</span>
           </div>
-          <p className="text-xs text-gray-600 mt-4">
+          <p className="text-xs text-earth-400 mt-4">
             No tracking. No data collection. Just tools that work for your brain.
           </p>
         </div>
@@ -837,22 +835,22 @@ function PromptPreviewCard({
   color: string;
 }) {
   const colorClasses = {
-    blue: 'border-blue-700/50 hover:border-blue-600',
-    green: 'border-green-700/50 hover:border-green-600',
-    purple: 'border-purple-700/50 hover:border-purple-600',
-    orange: 'border-orange-700/50 hover:border-orange-600',
+    blue: 'border-blue-200 hover:border-blue-600',
+    green: 'border-green-200 hover:border-green-600',
+    purple: 'border-purple-200 hover:border-purple-600',
+    orange: 'border-orange-200 hover:border-orange-600',
     pink: 'border-pink-700/50 hover:border-pink-600',
     teal: 'border-teal-700/50 hover:border-teal-600',
   };
 
   return (
-    <div className={`bg-gray-800 rounded-xl p-6 border ${colorClasses[color as keyof typeof colorClasses]} transition-all hover:scale-105`}>
+    <div className={`bg-white rounded-xl p-6 border ${colorClasses[color as keyof typeof colorClasses]} transition-all hover:scale-105`}>
       <div className="text-4xl mb-3">{emoji}</div>
       <h3 className="text-lg font-bold mb-4">{title}</h3>
       <ul className="space-y-2">
         {examples.map((example, i) => (
-          <li key={i} className="text-sm text-gray-400 flex items-start gap-2">
-            <span className="text-primary-500 mt-0.5">→</span>
+          <li key={i} className="text-sm text-earth-500 flex items-start gap-2">
+            <span className="text-cyan-500 mt-0.5">→</span>
             <span>{example}</span>
           </li>
         ))}
@@ -866,8 +864,8 @@ function ScoreDimension({ icon, title, description }: { icon: React.ReactNode; t
     <div className="flex items-start gap-3">
       <div className="flex-shrink-0 mt-1">{icon}</div>
       <div>
-        <h4 className="font-semibold text-white mb-1">{title}</h4>
-        <p className="text-sm text-gray-400">{description}</p>
+        <h4 className="font-semibold text-earth-800 mb-1">{title}</h4>
+        <p className="text-sm text-earth-500">{description}</p>
       </div>
     </div>
   );
@@ -884,10 +882,10 @@ function LeaderboardPreview({ rank, name, score, color }: { rank: number; name: 
   const medalEmoji = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : '';
 
   return (
-    <div className="flex items-center justify-between p-4 bg-gray-900/50 rounded-lg border border-gray-700">
+    <div className="flex items-center justify-between p-4 bg-earth-50 rounded-lg border border-earth-200">
       <div className="flex items-center gap-3">
         <span className="text-2xl w-8 text-center">{medalEmoji || `${rank}.`}</span>
-        <span className="font-semibold text-white">{name}</span>
+        <span className="font-semibold text-earth-800">{name}</span>
       </div>
       <span className={`text-lg font-bold ${colorClasses[color as keyof typeof colorClasses]}`}>{score.toFixed(2)}/10</span>
     </div>
@@ -896,11 +894,11 @@ function LeaderboardPreview({ rank, name, score, color }: { rank: number; name: 
 
 function AccessibilityFeature({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="flex items-start gap-4 p-5 bg-gray-800 rounded-xl border border-gray-700">
-      <div className="text-primary-500 flex-shrink-0 mt-1">{icon}</div>
+    <div className="flex items-start gap-4 p-5 bg-white rounded-xl border border-earth-200">
+      <div className="text-cyan-500 flex-shrink-0 mt-1">{icon}</div>
       <div>
         <h3 className="text-lg font-semibold mb-1">{title}</h3>
-        <p className="text-gray-400 text-sm">{description}</p>
+        <p className="text-earth-500 text-sm">{description}</p>
       </div>
     </div>
   );

@@ -1,14 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { User, Brain, BookOpen, MessageCircle, Eye, Sparkles, Check, ArrowRight, ArrowLeft } from 'lucide-react';
 import type { CognitivePartnerProfile, AssessmentFormData } from '../types/cognitiveProfile';
 import { createEmptyProfile } from '../types/cognitiveProfile';
 
-interface CognitivePartnerAssessmentProps {
-  onComplete: (profile: CognitivePartnerProfile) => void;
-  onSkip: () => void;
-}
-
-export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePartnerAssessmentProps) {
+export function CognitivePartnerAssessment() {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<AssessmentFormData>(createEmptyProfile());
 
@@ -28,7 +25,8 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
         completedAssessment: true,
         updatedAt: new Date().toISOString(),
       };
-      onComplete(completeProfile);
+      localStorage.setItem('cognitivePartnerProfile', JSON.stringify(completeProfile));
+      navigate('/chat');
     }
   };
 
@@ -46,7 +44,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
           <User size={32} />
         </div>
         <h2 className="text-3xl font-bold mb-2">Let's Get Started!</h2>
-        <p className="text-gray-400">Tell us a bit about yourself</p>
+        <p className="text-earth-500">Tell us a bit about yourself</p>
       </div>
 
       <div>
@@ -55,7 +53,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
           type="text"
           value={formData.name || ''}
           onChange={(e) => updateFormData({ name: e.target.value })}
-          className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none"
+          className="w-full px-4 py-3 bg-white border border-earth-200 rounded-lg focus:border-blue-500 focus:outline-none"
           placeholder="Your full name"
         />
       </div>
@@ -66,7 +64,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
           type="text"
           value={formData.pronouns || ''}
           onChange={(e) => updateFormData({ pronouns: e.target.value })}
-          className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none"
+          className="w-full px-4 py-3 bg-white border border-earth-200 rounded-lg focus:border-blue-500 focus:outline-none"
           placeholder="e.g., she/her, they/them, he/him"
         />
       </div>
@@ -85,7 +83,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
               className={`p-3 rounded-lg border transition-all ${
                 formData.preferredAddress === option.value
                   ? 'bg-blue-600 border-blue-500 text-white'
-                  : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                  : 'bg-white border-earth-200 hover:border-earth-300'
               }`}
             >
               {option.label}
@@ -101,7 +99,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
             type="text"
             value={formData.nickname || ''}
             onChange={(e) => updateFormData({ nickname: e.target.value })}
-            className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none"
+            className="w-full px-4 py-3 bg-white border border-earth-200 rounded-lg focus:border-blue-500 focus:outline-none"
             placeholder="What should I call you?"
           />
         </div>
@@ -122,7 +120,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
             <Brain size={32} />
           </div>
           <h2 className="text-3xl font-bold mb-2">Your Neurodivergent Identity</h2>
-          <p className="text-gray-400">Help us understand how your brain works</p>
+          <p className="text-earth-500">Help us understand how your brain works</p>
         </div>
 
         <div>
@@ -141,7 +139,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
                 className={`p-3 rounded-lg border transition-all text-left ${
                   formData.neurodivergentConditions?.includes(condition)
                     ? 'bg-purple-600 border-purple-500 text-white'
-                    : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                    : 'bg-white border-earth-200 hover:border-earth-300'
                 }`}
               >
                 {condition}
@@ -166,7 +164,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
                 className={`p-3 rounded-lg border transition-all text-left text-sm ${
                   formData.strengths?.includes(strength)
                     ? 'bg-green-600 border-green-500 text-white'
-                    : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                    : 'bg-white border-earth-200 hover:border-earth-300'
                 }`}
               >
                 {strength}
@@ -191,7 +189,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
                 className={`p-3 rounded-lg border transition-all text-left text-sm ${
                   formData.challenges?.includes(challenge)
                     ? 'bg-orange-600 border-orange-500 text-white'
-                    : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                    : 'bg-white border-earth-200 hover:border-earth-300'
                 }`}
               >
                 {challenge}
@@ -211,7 +209,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
           <BookOpen size={32} />
         </div>
         <h2 className="text-3xl font-bold mb-2">How You Learn Best</h2>
-        <p className="text-gray-400">Rate how much each learning style helps you (1-5)</p>
+        <p className="text-earth-500">Rate how much each learning style helps you (1-5)</p>
       </div>
 
       <div className="space-y-4">
@@ -236,7 +234,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
                   className={`flex-1 py-3 rounded-lg border transition-all ${
                     formData.learningStyle?.[key as keyof typeof formData.learningStyle] === value
                       ? 'bg-green-600 border-green-500 text-white'
-                      : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                      : 'bg-white border-earth-200 hover:border-earth-300'
                   }`}
                 >
                   {value}
@@ -264,7 +262,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
               className={`p-3 rounded-lg border transition-all ${
                 formData.learningStyle?.primary === option.value
                   ? 'bg-green-600 border-green-500 text-white'
-                  : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                  : 'bg-white border-earth-200 hover:border-earth-300'
               }`}
             >
               {option.label}
@@ -283,7 +281,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
           <MessageCircle size={32} />
         </div>
         <h2 className="text-3xl font-bold mb-2">Communication Style</h2>
-        <p className="text-gray-400">How should I communicate with you?</p>
+        <p className="text-earth-500">How should I communicate with you?</p>
       </div>
 
       <div>
@@ -302,7 +300,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
               className={`p-3 rounded-lg border transition-all ${
                 formData.communication?.tone === option.value
                   ? 'bg-pink-600 border-pink-500 text-white'
-                  : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                  : 'bg-white border-earth-200 hover:border-earth-300'
               }`}
             >
               <div className="font-medium">{option.label}</div>
@@ -328,7 +326,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
               className={`p-3 rounded-lg border transition-all ${
                 formData.communication?.detailLevel === option.value
                   ? 'bg-pink-600 border-pink-500 text-white'
-                  : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                  : 'bg-white border-earth-200 hover:border-earth-300'
               }`}
             >
               <div className="font-medium">{option.label}</div>
@@ -354,7 +352,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
               className={`p-3 rounded-lg border transition-all ${
                 formData.communication?.structure === option.value
                   ? 'bg-pink-600 border-pink-500 text-white'
-                  : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                  : 'bg-white border-earth-200 hover:border-earth-300'
               }`}
             >
               <div className="font-medium">{option.label}</div>
@@ -365,7 +363,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <label className="flex items-center justify-between p-4 bg-gray-800 rounded-lg border border-gray-700 cursor-pointer hover:border-gray-600">
+        <label className="flex items-center justify-between p-4 bg-white rounded-lg border border-earth-200 cursor-pointer hover:border-earth-300">
           <span>Use Emojis</span>
           <input
             type="checkbox"
@@ -377,7 +375,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
           />
         </label>
 
-        <label className="flex items-center justify-between p-4 bg-gray-800 rounded-lg border border-gray-700 cursor-pointer hover:border-gray-600">
+        <label className="flex items-center justify-between p-4 bg-white rounded-lg border border-earth-200 cursor-pointer hover:border-earth-300">
           <span>Avoid Jargon</span>
           <input
             type="checkbox"
@@ -400,7 +398,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
           <Eye size={32} />
         </div>
         <h2 className="text-3xl font-bold mb-2">Accessibility Settings</h2>
-        <p className="text-gray-400">Customize your visual and audio experience</p>
+        <p className="text-earth-500">Customize your visual and audio experience</p>
       </div>
 
       <div>
@@ -420,7 +418,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
               className={`p-3 rounded-lg border transition-all ${
                 formData.accessibility?.fontSize === option.value
                   ? 'bg-yellow-600 border-yellow-500 text-white'
-                  : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                  : 'bg-white border-earth-200 hover:border-earth-300'
               }`}
             >
               {option.label}
@@ -446,7 +444,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
               className={`p-3 rounded-lg border transition-all text-left ${
                 formData.accessibility?.fontFamily === option.value
                   ? 'bg-yellow-600 border-yellow-500 text-white'
-                  : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                  : 'bg-white border-earth-200 hover:border-earth-300'
               }`}
             >
               <div className="font-medium">{option.label}</div>
@@ -460,7 +458,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
         <label className="block text-sm font-medium mb-2">Spacing</label>
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <div className="text-xs text-gray-400 mb-2">Line Spacing</div>
+            <div className="text-xs text-earth-500 mb-2">Line Spacing</div>
             <div className="flex gap-2">
               {[
                 { value: 'normal', label: 'Normal' },
@@ -475,7 +473,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
                   className={`flex-1 p-2 rounded-lg border transition-all text-sm ${
                     formData.accessibility?.lineSpacing === option.value
                       ? 'bg-yellow-600 border-yellow-500 text-white'
-                      : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                      : 'bg-white border-earth-200 hover:border-earth-300'
                   }`}
                 >
                   {option.label}
@@ -484,7 +482,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
             </div>
           </div>
           <div>
-            <div className="text-xs text-gray-400 mb-2">Letter Spacing</div>
+            <div className="text-xs text-earth-500 mb-2">Letter Spacing</div>
             <div className="flex gap-2">
               {[
                 { value: 'normal', label: 'Normal' },
@@ -498,7 +496,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
                   className={`flex-1 p-2 rounded-lg border transition-all text-sm ${
                     formData.accessibility?.letterSpacing === option.value
                       ? 'bg-yellow-600 border-yellow-500 text-white'
-                      : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                      : 'bg-white border-earth-200 hover:border-earth-300'
                   }`}
                 >
                   {option.label}
@@ -510,7 +508,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <label className="flex items-center justify-between p-4 bg-gray-800 rounded-lg border border-gray-700 cursor-pointer hover:border-gray-600">
+        <label className="flex items-center justify-between p-4 bg-white rounded-lg border border-earth-200 cursor-pointer hover:border-earth-300">
           <span>Text-to-Speech</span>
           <input
             type="checkbox"
@@ -522,7 +520,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
           />
         </label>
 
-        <label className="flex items-center justify-between p-4 bg-gray-800 rounded-lg border border-gray-700 cursor-pointer hover:border-gray-600">
+        <label className="flex items-center justify-between p-4 bg-white rounded-lg border border-earth-200 cursor-pointer hover:border-earth-300">
           <span>Voice Input</span>
           <input
             type="checkbox"
@@ -534,7 +532,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
           />
         </label>
 
-        <label className="flex items-center justify-between p-4 bg-gray-800 rounded-lg border border-gray-700 cursor-pointer hover:border-gray-600">
+        <label className="flex items-center justify-between p-4 bg-white rounded-lg border border-earth-200 cursor-pointer hover:border-earth-300">
           <span>Reduced Motion</span>
           <input
             type="checkbox"
@@ -553,11 +551,11 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
   const renderStep6 = () => (
     <div className="space-y-6">
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-600 rounded-full mb-4">
+        <div className="inline-flex items-center justify-center w-16 h-16 bg-cyan-600 rounded-full mb-4">
           <Sparkles size={32} />
         </div>
         <h2 className="text-3xl font-bold mb-2">Your Thinking Style</h2>
-        <p className="text-gray-400">Which modes resonate with you?</p>
+        <p className="text-earth-500">Which modes resonate with you?</p>
       </div>
 
       <div>
@@ -582,7 +580,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
               className={`w-full p-4 rounded-lg border transition-all text-left ${
                 formData.thinkingStyle?.preferredModes?.includes(option.value)
                   ? `bg-${option.color}-600 border-${option.color}-500 text-white`
-                  : 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                  : 'bg-white border-earth-200 hover:border-earth-300'
               }`}
             >
               <div className="font-bold mb-1">{option.label}</div>
@@ -608,10 +606,10 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
               disabled={!formData.thinkingStyle?.preferredModes?.includes(option.value)}
               className={`p-3 rounded-lg border transition-all ${
                 formData.thinkingStyle?.defaultMode === option.value
-                  ? 'bg-primary-600 border-primary-500 text-white'
+                  ? 'bg-cyan-600 border-cyan-500 text-white'
                   : formData.thinkingStyle?.preferredModes?.includes(option.value)
-                  ? 'bg-gray-800 border-gray-700 hover:border-gray-600'
-                  : 'bg-gray-900 border-gray-800 text-gray-600 cursor-not-allowed'
+                  ? 'bg-white border-earth-200 hover:border-earth-300'
+                  : 'bg-earth-50 border-earth-200 text-earth-400 cursor-not-allowed'
               }`}
             >
               {option.label}
@@ -648,20 +646,20 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
+    <div className="min-h-screen text-earth-800 p-6" style={{ background: 'var(--bg-primary)' }}>
       <div className="max-w-3xl mx-auto">
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium">Step {currentStep + 1} of {totalSteps}</span>
             <button
-              onClick={onSkip}
-              className="text-sm text-gray-400 hover:text-white transition-colors"
+              onClick={() => navigate('/chat')}
+              className="text-sm text-earth-500 hover:text-white transition-colors"
             >
               Skip for now →
             </button>
           </div>
-          <div className="w-full bg-gray-800 rounded-full h-2">
+          <div className="w-full bg-earth-100 rounded-full h-2">
             <div
               className="bg-gradient-to-r from-blue-600 to-purple-600 h-2 rounded-full transition-all duration-300"
               style={{ width: `${((currentStep + 1) / totalSteps) * 100}%` }}
@@ -670,7 +668,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
         </div>
 
         {/* Step Content */}
-        <div className="bg-gray-800 rounded-xl border border-gray-700 p-8 mb-6">
+        <div className="bg-white rounded-xl border border-earth-200 p-8 mb-6">
           {steps[currentStep]()}
         </div>
 
@@ -681,8 +679,8 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
             disabled={currentStep === 0}
             className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
               currentStep === 0
-                ? 'bg-gray-800 text-gray-600 cursor-not-allowed'
-                : 'bg-gray-700 text-white hover:bg-gray-600'
+                ? 'bg-earth-100 text-earth-400 cursor-not-allowed'
+                : 'bg-earth-100 text-earth-800 hover:bg-earth-200'
             }`}
           >
             <ArrowLeft size={20} />
@@ -694,7 +692,7 @@ export function CognitivePartnerAssessment({ onComplete, onSkip }: CognitivePart
             disabled={!isStepValid()}
             className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
               !isStepValid()
-                ? 'bg-gray-700 text-gray-500 cursor-not-allowed'
+                ? 'bg-earth-100 text-earth-400 cursor-not-allowed'
                 : currentStep === totalSteps - 1
                 ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:from-green-500 hover:to-emerald-500'
                 : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500'
