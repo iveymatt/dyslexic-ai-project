@@ -1,0 +1,30 @@
+# User Configuration for Dyslexic AI System
+# Override default settings here
+version: 1.0.0
+
+# Uncomment and modify settings as needed
+
+#system:
+#  debug_mode: true
+#  log_level: DEBUG
+
+#accessibility:
+#  default_font: "Arial"
+#  min_font_size: 16
+
+#text_processing:
+#  max_sentence_length: 25
+#  enable_syllable_highlighting: true
+
+#api:
+#  host: "0.0.0.0"
+#  port: 9000
+
+#ml:
+#  batch_size: 64
+
+#security:
+#  session_timeout: 7200
+
+#monitoring:
+#  metrics_interval: 30
