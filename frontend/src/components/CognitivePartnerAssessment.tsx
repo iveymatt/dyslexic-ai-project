@@ -618,8 +618,8 @@ export function CognitivePartnerAssessment() {
         </div>
       </div>
 
-      <div className="bg-blue-900/20 border border-blue-700/30 rounded-lg p-4">
-        <p className="text-sm text-blue-200">
+      <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
+        <p className="text-sm text-blue-900">
           <strong>Note:</strong> You can switch between modes anytime while chatting! This just sets your starting preference.
         </p>
       </div>

@@ -42,9 +42,9 @@ export function JobDetail() {
 
   if (!job) {
     return (
-      <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
         <div className="text-center">
-          <p className="text-xl text-gray-400 mb-4">Job not found</p>
+          <p className="text-xl mb-4" style={{ color: 'var(--text-secondary)' }}>Job not found</p>
           <button onClick={() => navigate('/career-discovery/jobs')} className="btn-primary">
             ← Go Back
           </button>
@@ -71,8 +71,9 @@ export function JobDetail() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen" style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
       <div className="container mx-auto px-6 py-8">
+
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <button onClick={() => navigate('/career-discovery/jobs')} className="btn-secondary">
@@ -82,9 +83,7 @@ export function JobDetail() {
           {userProfile && (
             <button
               onClick={handleSave}
-              className={`btn-secondary inline-flex items-center gap-2 ${
-                isSaved ? 'bg-cyan-600 border-cyan-500' : ''
-              }`}
+              className={`btn-secondary inline-flex items-center gap-2 ${isSaved ? 'bg-cyan-100 border-cyan-400 text-cyan-800' : ''}`}
             >
               <Bookmark size={18} fill={isSaved ? 'currentColor' : 'none'} />
               {isSaved ? 'Saved' : 'Save Job'}
@@ -93,14 +92,14 @@ export function JobDetail() {
         </div>
 
         {/* Job Header */}
-        <div className="bg-gradient-to-br from-cyan-900/30 to-magenta-900/30 rounded-2xl p-8 border border-cyan-700/30 mb-8">
-          <h1 className="text-4xl font-bold mb-3">{job.title}</h1>
-          <div className="flex flex-wrap gap-4 text-lg text-gray-300 mb-6">
+        <div className="rounded-2xl p-8 mb-8 border-2" style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-strong)' }}>
+          <h1 className="text-4xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>{job.title}</h1>
+          <div className="flex flex-wrap gap-4 text-lg mb-6" style={{ color: 'var(--text-secondary)' }}>
             <span>{job.industry}</span>
             <span>•</span>
             <span className="capitalize">{job.level} level</span>
             <span>•</span>
-            <span className="font-semibold text-white">{formatSalary(job.salary.min, job.salary.max)}</span>
+            <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{formatSalary(job.salary.min, job.salary.max)}</span>
           </div>
 
           {/* Scores */}
@@ -108,18 +107,16 @@ export function JobDetail() {
             {cognitiveFit !== null && (
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-gray-400">Cognitive Fit:</span>
+                  <span className="font-medium" style={{ color: 'var(--text-secondary)' }}>Cognitive Fit:</span>
                   <span className={`font-semibold ${getCognitiveFitColor(cognitiveFit)}`}>
-                    {cognitiveFit}/10 - {getCognitiveFitLabel(cognitiveFit)}
+                    {cognitiveFit}/10 — {getCognitiveFitLabel(cognitiveFit)}
                   </span>
                 </div>
                 <div className="flex gap-1">
                   {[...Array(10)].map((_, i) => (
                     <div
                       key={i}
-                      className={`h-3 flex-1 rounded-sm ${
-                        i < Math.round(cognitiveFit) ? 'bg-cyan-600' : 'bg-gray-700'
-                      }`}
+                      className={`h-3 flex-1 rounded-sm ${i < Math.round(cognitiveFit) ? 'bg-cyan-500' : 'bg-gray-200'}`}
                     />
                   ))}
                 </div>
@@ -128,9 +125,9 @@ export function JobDetail() {
 
             <div>
               <div className="flex items-center justify-between mb-2">
-                <span className="text-gray-400">AI-Risk:</span>
+                <span className="font-medium" style={{ color: 'var(--text-secondary)' }}>AI-Risk:</span>
                 <span className={`font-semibold ${getAIRiskColor(job.aiRiskScore)}`}>
-                  {job.aiRiskScore}/10 - {getAIRiskLabel(job.aiRiskScore)}
+                  {job.aiRiskScore}/10 — {getAIRiskLabel(job.aiRiskScore)}
                 </span>
               </div>
               <div className="flex gap-1">
@@ -139,12 +136,10 @@ export function JobDetail() {
                     key={i}
                     className={`h-3 flex-1 rounded-sm ${
                       i < job.aiRiskScore
-                        ? job.aiRiskScore <= 3
-                          ? 'bg-green-600'
-                          : job.aiRiskScore <= 6
-                          ? 'bg-yellow-600'
-                          : 'bg-orange-600'
-                        : 'bg-gray-700'
+                        ? job.aiRiskScore <= 3 ? 'bg-green-500'
+                        : job.aiRiskScore <= 6 ? 'bg-yellow-500'
+                        : 'bg-orange-500'
+                        : 'bg-gray-200'
                     }`}
                   />
                 ))}
@@ -155,15 +150,15 @@ export function JobDetail() {
 
         {/* Why This Matches You */}
         {cognitiveFit !== null && cognitiveFit >= 6 && (
-          <div className="bg-green-900/20 border border-green-700/30 rounded-xl p-6 mb-8">
+          <div className="bg-green-50 border-2 border-green-300 rounded-xl p-6 mb-8">
             <div className="flex items-center gap-2 mb-4">
-              <Lightbulb className="text-green-400" size={24} />
-              <h2 className="text-2xl font-bold">Why This Matches YOU</h2>
+              <Lightbulb className="text-green-600" size={24} />
+              <h2 className="text-2xl font-bold text-green-900">Why This Matches YOU</h2>
             </div>
             <ul className="space-y-2">
               {job.cognitiveProfile.strengths.map((strength, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-gray-300">
-                  <span className="text-green-400 flex-shrink-0">✓</span>
+                <li key={idx} className="flex items-start gap-2 text-green-800">
+                  <span className="text-green-600 flex-shrink-0 font-bold">✓</span>
                   <span>This job values {strength.replace(/-/g, ' ')} — one of your key strengths!</span>
                 </li>
               ))}
@@ -172,17 +167,17 @@ export function JobDetail() {
         )}
 
         {/* What You'd Do */}
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-8">
-          <h2 className="text-2xl font-bold mb-4">What You'd Do</h2>
-          <p className="text-gray-300 mb-6">{job.description}</p>
+        <div className="rounded-xl p-6 border-2 mb-8" style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>What You'd Do</h2>
+          <p className="mb-6 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{job.description}</p>
 
-          <h3 className="text-lg font-semibold mb-3">Typical Day:</h3>
-          <p className="text-gray-300 mb-6">{job.typicalDay}</p>
+          <h3 className="text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>Typical Day:</h3>
+          <p className="mb-6 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{job.typicalDay}</p>
 
-          <h3 className="text-lg font-semibold mb-3">Skills Needed:</h3>
+          <h3 className="text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>Skills Needed:</h3>
           <div className="flex flex-wrap gap-2">
             {job.skillsNeeded.map((skill, idx) => (
-              <span key={idx} className="px-3 py-1 bg-blue-900/30 border border-blue-700/50 rounded-full text-blue-200 text-sm">
+              <span key={idx} className="px-3 py-1 bg-blue-100 border border-blue-300 rounded-full text-blue-800 text-sm font-medium">
                 {skill}
               </span>
             ))}
@@ -190,102 +185,81 @@ export function JobDetail() {
         </div>
 
         {/* The Numbers */}
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-8">
-          <h2 className="text-2xl font-bold mb-4">The Numbers</h2>
+        <div className="rounded-xl p-6 border-2 mb-8" style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>The Numbers</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <p className="text-gray-400 mb-1">Salary Range</p>
-              <p className="text-xl font-semibold">{formatSalary(job.salary.min, job.salary.max)}</p>
-            </div>
-            <div>
-              <p className="text-gray-400 mb-1">Typical Schedule</p>
-              <p className="text-xl font-semibold">{job.schedule}</p>
-            </div>
-            <div>
-              <p className="text-gray-400 mb-1">Hours per Week</p>
-              <p className="text-xl font-semibold">{job.hoursPerWeek} hours</p>
-            </div>
-            <div>
-              <p className="text-gray-400 mb-1">Remote Options</p>
-              <p className="text-xl font-semibold">{job.sensoryDemands.remote ? 'Yes ✓' : 'Limited'}</p>
-            </div>
+            {[
+              { label: 'Salary Range', value: formatSalary(job.salary.min, job.salary.max) },
+              { label: 'Typical Schedule', value: job.schedule },
+              { label: 'Hours per Week', value: `${job.hoursPerWeek} hours` },
+              { label: 'Remote Options', value: job.sensoryDemands.remote ? 'Yes ✓' : 'Limited' },
+            ].map(({ label, value }) => (
+              <div key={label} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <p className="text-sm font-medium text-gray-600 mb-1">{label}</p>
+                <p className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>{value}</p>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Enhanced Sensory & Social Details */}
         <div className="mb-8">
-          <EnhancedSensorySection
-            sensory={job.sensoryDemands}
-            socialDetails={job.socialDemandDetails}
-          />
+          <EnhancedSensorySection sensory={job.sensoryDemands} socialDetails={job.socialDemandDetails} />
         </div>
 
-        {/* Soft Skills (if available) */}
         {job.softSkills && job.softSkills.length > 0 && (
           <div className="mb-8">
-            <SoftSkillsSection
-              skills={job.softSkills}
-              userChallenges={userProfile?.challenges}
-            />
+            <SoftSkillsSection skills={job.softSkills} userChallenges={userProfile?.challenges} />
           </div>
         )}
 
-        {/* AI Assistive Tools (if available) */}
         {job.aiAssistiveTools && job.aiAssistiveTools.length > 0 && (
           <div className="mb-8">
-            <AIAssistiveToolsSection
-              tools={job.aiAssistiveTools}
-              userChallenges={userProfile?.challenges}
-            />
+            <AIAssistiveToolsSection tools={job.aiAssistiveTools} userChallenges={userProfile?.challenges} />
           </div>
         )}
 
-        {/* Accommodations (if available) */}
         {job.accommodations && job.accommodations.length > 0 && (
           <div className="mb-8">
             <AccommodationsSection accommodations={job.accommodations} />
           </div>
         )}
 
-        {/* Future AI Impact (if available) */}
         {job.futureAIImpact && (
           <div className="mb-8">
-            <FutureAIImpactSection
-              impact={job.futureAIImpact}
-              aiRiskScore={job.aiRiskScore}
-            />
+            <FutureAIImpactSection impact={job.futureAIImpact} aiRiskScore={job.aiRiskScore} />
           </div>
         )}
 
         {/* How to Get Started */}
-        <div className="bg-cyan-900/20 border border-cyan-700/30 rounded-xl p-6 mb-8">
+        <div className="bg-cyan-50 border-2 border-cyan-300 rounded-xl p-6 mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <TrendingUp className="text-cyan-400" size={24} />
-            <h2 className="text-2xl font-bold">How to Get Started</h2>
+            <TrendingUp className="text-cyan-700" size={24} />
+            <h2 className="text-2xl font-bold text-cyan-900">How to Get Started</h2>
           </div>
           <ol className="space-y-3">
             {job.gettingStarted.map((step, idx) => (
               <li key={idx} className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-6 h-6 bg-cyan-600 rounded-full flex items-center justify-center text-sm font-bold">
+                <span className="flex-shrink-0 w-7 h-7 bg-cyan-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
                   {idx + 1}
                 </span>
-                <span className="text-gray-300">{step}</span>
+                <span className="text-cyan-900 leading-relaxed">{step}</span>
               </li>
             ))}
           </ol>
         </div>
 
-        {/* Growth Path */}
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-8">
-          <h2 className="text-2xl font-bold mb-4">Career Growth Path</h2>
+        {/* Career Growth Path */}
+        <div className="rounded-xl p-6 border-2 mb-8" style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>Career Growth Path</h2>
           <div className="flex flex-wrap items-center gap-2">
             {job.growthPath.map((level, idx) => (
               <React.Fragment key={idx}>
-                <span className="px-4 py-2 bg-green-900/30 border border-green-700/50 rounded-lg text-green-200">
+                <span className="px-4 py-2 bg-green-100 border-2 border-green-300 rounded-lg text-green-800 font-medium">
                   {level}
                 </span>
                 {idx < job.growthPath.length - 1 && (
-                  <span className="text-gray-600">→</span>
+                  <span className="text-gray-400 font-bold text-lg">→</span>
                 )}
               </React.Fragment>
             ))}
@@ -294,11 +268,15 @@ export function JobDetail() {
 
         {/* Similar Jobs */}
         {job.similar.length > 0 && (
-          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-            <h2 className="text-2xl font-bold mb-4">You Might Also Like</h2>
+          <div className="rounded-xl p-6 border-2" style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>You Might Also Like</h2>
             <div className="flex flex-wrap gap-3">
               {job.similar.map((similarJob, idx) => (
-                <span key={idx} className="px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-300 hover:border-cyan-500 cursor-pointer transition-colors">
+                <span
+                  key={idx}
+                  className="px-4 py-2 bg-gray-100 border-2 border-gray-300 rounded-lg font-medium hover:border-cyan-500 hover:bg-cyan-50 cursor-pointer transition-colors"
+                  style={{ color: 'var(--text-primary)' }}
+                >
                   {similarJob}
                 </span>
               ))}
