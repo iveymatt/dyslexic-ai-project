@@ -50,8 +50,8 @@ export function QuickActions({ lastMessage, onAction }: QuickActionsProps) {
   };
 
   return (
-    <div className="px-4 py-3" style={{ borderTop: '1px solid var(--border-color)', background: 'var(--bg-accent)' }}>
-      <div className="flex flex-wrap gap-2 justify-center">
+    <div className="px-3 py-2 sm:px-4 sm:py-3" style={{ borderTop: '1px solid var(--border-color)', background: 'var(--bg-accent)' }}>
+      <div className="flex gap-2 justify-start sm:justify-center overflow-x-auto scrollbar-hide pb-1">
         {actions.map(action => {
           const Icon = action.icon;
           return (
@@ -59,10 +59,11 @@ export function QuickActions({ lastMessage, onAction }: QuickActionsProps) {
               key={action.id}
               onClick={() => handleAction(action)}
               disabled={loading !== null}
-              className={`${action.color} text-white px-4 py-2 rounded-lg flex items-center gap-2 text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+              className={`${action.color} text-white px-3 py-2 sm:px-4 rounded-lg flex items-center gap-1.5 sm:gap-2 text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap flex-shrink-0`}
             >
               <Icon size={16} />
-              <span>{loading === action.id ? 'Processing...' : action.label}</span>
+              <span className="hidden sm:inline">{loading === action.id ? 'Processing...' : action.label}</span>
+              <span className="sm:hidden">{loading === action.id ? '...' : action.label}</span>
             </button>
           );
         })}

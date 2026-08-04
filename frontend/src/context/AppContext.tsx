@@ -148,7 +148,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const createNewChat = (mode: ThinkingMode = defaultMode, subAgent: SubAgent = defaultSubAgent) => {
     const newChat: Chat = {
-      id: `chat-${Date.now()}`,
+      id: crypto.randomUUID(),
       title: 'New Conversation',
       messages: [],
       createdAt: new Date(),
@@ -165,7 +165,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const addMessage = (message: Omit<Message, 'id' | 'timestamp'>) => {
     const newMessage: Message = {
       ...message,
-      id: `msg-${Date.now()}`,
+      id: crypto.randomUUID(),
       timestamp: new Date(),
     };
 
@@ -173,7 +173,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       if (!prev) {
         // Create a new chat WITH this message included
         const newChat: Chat = {
-          id: `chat-${Date.now()}`,
+          id: crypto.randomUUID(),
           title: message.role === 'user'
             ? message.content.slice(0, 50) + (message.content.length > 50 ? '...' : '')
             : 'New Conversation',

@@ -110,8 +110,8 @@ export function InputBar({ onSend, disabled = false, initialText }: InputBarProp
   }, [message]);
 
   return (
-    <form onSubmit={handleSubmit} className="p-4" style={{ borderTop: '1px solid var(--border-color)', background: 'var(--bg-secondary)' }}>
-      <div className="max-w-4xl mx-auto flex items-end gap-3">
+    <form onSubmit={handleSubmit} className="px-3 py-3 sm:p-4 safe-area-bottom" style={{ borderTop: '1px solid var(--border-color)', background: 'var(--bg-secondary)' }}>
+      <div className="max-w-4xl mx-auto flex items-end gap-2 sm:gap-3">
         {/* Voice Input Button */}
         <button
           type="button"
@@ -132,10 +132,10 @@ export function InputBar({ onSend, disabled = false, initialText }: InputBarProp
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder={isListening ? 'Listening...' : 'Type your message... (Shift+Enter for new line)'}
+          placeholder={isListening ? 'Listening...' : 'Type your message...'}
           disabled={disabled}
-          className="flex-1 rounded-lg px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:opacity-50"
-          style={{ background: 'var(--bg-accent)', color: 'var(--text-primary)', border: '1px solid var(--border-color)', minHeight: '50px', maxHeight: '200px' }}
+          className="flex-1 rounded-lg px-3 py-2.5 sm:px-4 sm:py-3 resize-none focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:opacity-50 text-base"
+          style={{ background: 'var(--bg-accent)', color: 'var(--text-primary)', border: '1px solid var(--border-color)', minHeight: '44px', maxHeight: '200px' }}
           rows={1}
         />
 
@@ -143,7 +143,7 @@ export function InputBar({ onSend, disabled = false, initialText }: InputBarProp
         <button
           type="submit"
           disabled={!message.trim() || disabled}
-          className="btn-primary flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="btn-primary flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed p-2.5 sm:px-4 sm:py-2"
           aria-label="Send message"
         >
           {disabled ? <Loader2 size={20} className="animate-spin" /> : <Send size={20} />}

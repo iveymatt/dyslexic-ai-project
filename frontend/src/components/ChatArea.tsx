@@ -6,6 +6,7 @@ import { QuickActions } from './QuickActions';
 import { InputBar } from './InputBar';
 import { modes, getSubAgentConfig } from '../config/modes';
 import { generateMockResponse } from '../utils/mockResponses';
+import { sendAgentMessage, buildUserContext, isClaudeConfigured, type ClaudeMessage } from '../services/claudeService';
 
 export function ChatArea() {
   const { currentChat, addMessage, currentMode, currentSubAgent, pendingPrompt, setPendingPrompt } = useApp();
@@ -29,22 +30,56 @@ export function ChatArea() {
       subAgent: currentSubAgent,
     });
 
-    // Simulate AI processing
     setIsProcessing(true);
 
-    // Wait a bit to simulate processing
-    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
+    try {
+      // Get the system prompt for the current mode/sub-agent
+      const subAgentConfig = getSubAgentConfig(currentMode, currentSubAgent);
+      const systemPrompt = subAgentConfig?.systemPrompt || modes[currentMode]?.description || '';
 
-    // Generate mock response based on mode and sub-agent
-    const response = generateMockResponse(content, currentMode, currentSubAgent);
+      if (isClaudeConfigured && systemPrompt) {
+        // REAL MODE: Send to Claude API
+        const chatHistory: ClaudeMessage[] = (currentChat?.messages || [])
+          .filter(m => m.role === 'user' || m.role === 'assistant')
+          .map(m => ({ role: m.role as 'user' | 'assistant', content: m.content }));
+        chatHistory.push({ role: 'user', content });
 
-    // Add assistant message
-    addMessage({
-      role: 'assistant',
-      content: response,
-      mode: currentMode,
-      subAgent: currentSubAgent,
-    });
+        // Load career profile for context
+        const profileStr = localStorage.getItem('career-profile');
+        const profile = profileStr ? JSON.parse(profileStr) : null;
+        const userContext = buildUserContext(profile);
+
+        const result = await sendAgentMessage(systemPrompt, chatHistory, { userContext });
+
+        addMessage({
+          role: 'assistant',
+          content: result.response,
+          mode: currentMode,
+          subAgent: currentSubAgent,
+        });
+      } else {
+        // DEMO MODE: Use mock responses
+        await new Promise(resolve => setTimeout(resolve, 800 + Math.random() * 700));
+        const response = generateMockResponse(content, currentMode, currentSubAgent);
+
+        addMessage({
+          role: 'assistant',
+          content: response,
+          mode: currentMode,
+          subAgent: currentSubAgent,
+        });
+      }
+    } catch (error) {
+      console.error('Chat error:', error);
+      // Fallback to mock on error
+      const response = generateMockResponse(content, currentMode, currentSubAgent);
+      addMessage({
+        role: 'assistant',
+        content: response,
+        mode: currentMode,
+        subAgent: currentSubAgent,
+      });
+    }
 
     setIsProcessing(false);
   };
@@ -60,26 +95,32 @@ export function ChatArea() {
   return (
     <div className="flex-1 flex flex-col h-full" style={{ background: 'var(--bg-primary)' }}>
       {/* Chat Messages */}
-      <div className="flex-1 overflow-y-auto">
+      <div
+        className="flex-1 overflow-y-auto"
+        role="log"
+        aria-live="polite"
+        aria-label="Chat conversation"
+      >
         {!currentChat || currentChat.messages.length === 0 ? (
           // Welcome Screen
-          <div className="h-full flex items-center justify-center p-8">
-            <div className="max-w-3xl text-center">
-              <div className={`inline-flex items-center justify-center w-16 h-16 ${currentModeConfig.color} rounded-full mb-6`}>
-                <Brain size={32} className="text-white" />
+          <div className="h-full flex items-center justify-center p-4 sm:p-8">
+            <div className="max-w-3xl text-center w-full">
+              <div className={`inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 ${currentModeConfig.color} rounded-full mb-4 sm:mb-6`}>
+                <Brain size={28} className="text-white sm:hidden" />
+                <Brain size={32} className="text-white hidden sm:block" />
               </div>
-              <h2 className="text-3xl font-bold mb-2 font-serif" style={{ color: 'var(--text-primary)' }}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-2 font-serif" style={{ color: 'var(--text-primary)' }}>
                 {currentModeConfig.name} Mode
               </h2>
-              <h3 className="text-xl text-cyan-500 mb-4">
+              <h3 className="text-lg sm:text-xl text-cyan-500 mb-3 sm:mb-4">
                 {currentSubAgentConfig?.name}
               </h3>
-              <p className="text-lg mb-8" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-base sm:text-lg mb-6 sm:mb-8" style={{ color: 'var(--text-secondary)' }}>
                 {currentModeConfig.tagline}
               </p>
 
               {/* Example Prompts */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-6 sm:mt-8">
                 {currentModeConfig.examplePrompts.map((prompt, idx) => (
                   <button
                     key={idx}
@@ -105,11 +146,11 @@ export function ChatArea() {
           </div>
         ) : (
           // Messages
-          <div className="max-w-4xl mx-auto p-6 w-full">
+          <div className="max-w-4xl mx-auto px-3 py-4 sm:p-6 w-full">
             {/* Mode/Sub-agent indicator */}
             <div className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ background: 'var(--bg-accent)', border: '1px solid var(--border-color)' }}>
               <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
-                {currentModeConfig.name} • {currentSubAgentConfig?.name}
+                {currentModeConfig.name} &bull; {currentSubAgentConfig?.name}
               </span>
             </div>
 
@@ -117,7 +158,7 @@ export function ChatArea() {
               <MessageBubble key={message.id} message={message} />
             ))}
             {isProcessing && (
-              <div className="flex justify-start mb-6">
+              <div className="flex justify-start mb-6" aria-label="Assistant is thinking">
                 <div className="rounded-xl px-5 py-4 card">
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1">

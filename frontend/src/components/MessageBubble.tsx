@@ -3,6 +3,7 @@ import { Volume2, VolumeX, Copy, Check } from 'lucide-react';
 import type { Message } from '../types';
 import { useApp } from '../context/AppContext';
 import ReactMarkdown from 'react-markdown';
+import rehypeSanitize from 'rehype-sanitize';
 
 interface MessageBubbleProps {
   message: Message;
@@ -52,7 +53,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
       >
         {/* Message Content */}
         <div className="prose max-w-none" style={{ color: 'inherit' }}>
-          <ReactMarkdown>{message.content}</ReactMarkdown>
+          <ReactMarkdown rehypePlugins={[rehypeSanitize]}>{message.content}</ReactMarkdown>
         </div>
 
         {/* Actions (only for assistant messages) */}

@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { aiAgents, aiWorkflows } from '../../data/careerDiscovery/aiAgents';
 import type { AIAgent, AIWorkflow } from '../../types/career';
-import { Bot, Workflow, Search, Filter, ArrowRight, Clock, Zap, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Bot, Workflow, Search, Filter, ArrowRight, Clock, Zap, CheckCircle2, AlertCircle, MessageCircle } from 'lucide-react';
+import { AgentChatPanel } from '../../components/career/AgentChatPanel';
 
 type CategoryFilter = 'all' | 'executive-function' | 'organizing-systems' | 'sensory-emotional' | 'masking' | 'communication';
 type ViewMode = 'agents' | 'workflows';
@@ -323,6 +324,15 @@ interface AgentDetailViewProps {
 function AgentDetailView({ agent, onBack }: AgentDetailViewProps) {
   const colors = categoryColors[agent.category];
   const [copied, setCopied] = useState(false);
+  const [activeTab, setActiveTab] = useState<'chat' | 'details'>('chat');
+
+  // Load career profile from localStorage for context enrichment
+  const userProfile = (() => {
+    try {
+      const stored = localStorage.getItem('career-profile');
+      return stored ? JSON.parse(stored) : null;
+    } catch { return null; }
+  })();
 
   const copySystemPrompt = () => {
     navigator.clipboard.writeText(agent.systemPrompt);
@@ -360,6 +370,49 @@ function AgentDetailView({ agent, onBack }: AgentDetailViewProps) {
             </div>
           </div>
 
+          {/* Tab Switcher */}
+          <div className="flex items-center gap-2 mb-6">
+            <button
+              onClick={() => setActiveTab('chat')}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm transition-all ${
+                activeTab === 'chat'
+                  ? 'bg-cyan-600 text-white'
+                  : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+              }`}
+            >
+              <MessageCircle size={16} />
+              Chat with Agent
+            </button>
+            <button
+              onClick={() => setActiveTab('details')}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm transition-all ${
+                activeTab === 'details'
+                  ? 'bg-gray-600 text-white'
+                  : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+              }`}
+            >
+              <Bot size={16} />
+              Details & Prompts
+            </button>
+          </div>
+
+          {/* Chat Tab */}
+          {activeTab === 'chat' && (
+            <div className="mb-6">
+              <AgentChatPanel
+                agentName={agent.name}
+                agentEmoji={agent.emoji}
+                systemPrompt={agent.systemPrompt}
+                placeholderText={`Ask ${agent.name} anything...`}
+                starterPrompts={agent.useCases.slice(0, 3).map(uc => `Help me with: ${uc.toLowerCase()}`)}
+                userProfile={userProfile}
+              />
+            </div>
+          )}
+
+          {/* Details Tab */}
+          {activeTab === 'details' && (
+            <>
           {/* Use Cases */}
           <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-6">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
@@ -444,6 +497,8 @@ function AgentDetailView({ agent, onBack }: AgentDetailViewProps) {
               </span>
             ))}
           </div>
+            </>
+          )}
         </div>
       </div>
     </div>

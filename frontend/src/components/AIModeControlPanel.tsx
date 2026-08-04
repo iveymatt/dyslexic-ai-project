@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { modes, getSubAgentsForMode } from '../config/modes';
 import type { ThinkingMode, SubAgent } from '../types';
+import { useFocusTrap } from '../hooks/useFocusTrap';
 
 interface AIModeControlPanelProps {
   isOpen: boolean;
@@ -10,7 +11,7 @@ interface AIModeControlPanelProps {
 
 export function AIModeControlPanel({ isOpen, onClose }: AIModeControlPanelProps) {
   const { currentMode, currentSubAgent, setCurrentMode, setCurrentSubAgent } = useApp();
-  const panelRef = useRef<HTMLDivElement>(null);
+  const panelRef = useFocusTrap(isOpen, onClose);
 
   const handleModeChange = (mode: ThinkingMode) => {
     setCurrentMode(mode);

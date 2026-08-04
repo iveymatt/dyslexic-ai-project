@@ -1,11 +1,9 @@
-import { Plus, MessageSquare, Trash2 } from 'lucide-react';
+import { Plus, MessageSquare, Trash2, X } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import type { Chat } from '../types';
 
 export function Sidebar() {
-  const { chats, currentChat, setCurrentChat, createNewChat, deleteChat, sidebarOpen } = useApp();
-
-  if (!sidebarOpen) return null;
+  const { chats, currentChat, setCurrentChat, createNewChat, deleteChat, sidebarOpen, setSidebarOpen } = useApp();
 
   const groupChatsByDate = (chats: Chat[]) => {
     const groups: { [key: string]: Chat[] } = {
@@ -38,16 +36,27 @@ export function Sidebar() {
 
   const groupedChats = groupChatsByDate(chats);
 
-  return (
-    <aside className="w-64 flex flex-col h-full" style={{ background: 'var(--bg-secondary)', borderRight: '1px solid var(--border-color)' }}>
-      {/* New Chat Button */}
-      <div className="p-4" style={{ borderBottom: '1px solid var(--border-color)' }}>
+  const sidebarContent = (
+    <aside
+      className="flex flex-col h-full"
+      style={{ background: 'var(--bg-secondary)', borderRight: '1px solid var(--border-color)' }}
+    >
+      {/* Header with close button on mobile */}
+      <div className="p-4 flex items-center gap-2" style={{ borderBottom: '1px solid var(--border-color)' }}>
         <button
           onClick={() => createNewChat()}
-          className="btn-primary w-full flex items-center justify-center gap-2"
+          className="btn-primary flex-1 flex items-center justify-center gap-2"
         >
           <Plus size={18} />
           <span>New Chat</span>
+        </button>
+        {/* Close button — visible on mobile only */}
+        <button
+          onClick={() => setSidebarOpen(false)}
+          className="md:hidden btn-icon p-2"
+          aria-label="Close sidebar"
+        >
+          <X size={20} />
         </button>
       </div>
 
@@ -70,7 +79,13 @@ export function Sidebar() {
                       ? { background: 'var(--bg-accent)', color: 'var(--text-primary)', border: '1px solid var(--border-color)' }
                       : { color: 'var(--text-secondary)' }
                     }
-                    onClick={() => setCurrentChat(chat)}
+                    onClick={() => {
+                      setCurrentChat(chat);
+                      // Auto-close sidebar on mobile after selecting a chat
+                      if (window.innerWidth < 768) {
+                        setSidebarOpen(false);
+                      }
+                    }}
                   >
                     <MessageSquare size={16} className="flex-shrink-0" />
                     <span className="flex-1 truncate text-sm">{chat.title}</span>
@@ -81,7 +96,7 @@ export function Sidebar() {
                           deleteChat(chat.id);
                         }
                       }}
-                      className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-600 rounded transition-all"
+                      className="opacity-0 group-hover:opacity-100 md:group-hover:opacity-100 p-1 hover:bg-red-600 rounded transition-all"
                       aria-label="Delete chat"
                     >
                       <Trash2 size={14} />
@@ -102,5 +117,32 @@ export function Sidebar() {
         )}
       </div>
     </aside>
+  );
+
+  // Desktop: standard sidebar
+  // Mobile: overlay drawer
+  return (
+    <>
+      {/* Desktop sidebar — hidden on mobile */}
+      <div className="hidden md:block w-64 h-full flex-shrink-0" style={{ display: sidebarOpen ? undefined : 'none' }}>
+        {sidebarContent}
+      </div>
+
+      {/* Mobile drawer overlay */}
+      {sidebarOpen && (
+        <div className="md:hidden">
+          {/* Backdrop */}
+          <div
+            className="sidebar-mobile-overlay"
+            onClick={() => setSidebarOpen(false)}
+            aria-hidden="true"
+          />
+          {/* Drawer */}
+          <div className="sidebar-mobile-drawer">
+            {sidebarContent}
+          </div>
+        </div>
+      )}
+    </>
   );
 }

@@ -340,6 +340,84 @@
 }
 
 /* ========================================
+   Mobile-First Responsive Overrides
+   ======================================== */
+
+/* Touch-friendly tap targets on mobile (min 44px) */
+@media (max-width: 767px) {
+  .btn, .btn-primary, .btn-secondary, .btn-icon {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .input {
+    font-size: 16px; /* prevents iOS zoom on focus */
+    padding: 12px 16px;
+  }
+
+  /* Full-width messages on mobile */
+  .message-user,
+  .message-assistant {
+    max-width: 92%;
+  }
+
+  /* Sidebar overlay on mobile */
+  .sidebar-mobile-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+
+  .sidebar-mobile-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 50;
+    width: 280px;
+    max-width: 85vw;
+    transform: translateX(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sidebar-mobile-drawer.closed {
+    transform: translateX(-100%);
+  }
+
+  /* Compact header spacing */
+  .mobile-header {
+    padding: 8px 12px;
+  }
+
+  /* Stack pricing cards */
+  .pricing-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .message-user,
+  .message-assistant {
+    max-width: 85%;
+  }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* ========================================
    Utilities Layer
    ======================================== */
 @layer utilities {

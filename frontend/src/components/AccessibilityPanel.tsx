@@ -1,8 +1,10 @@
 import { Type, LineChart, Palette, Volume2, Eye } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { useFocusTrap } from '../hooks/useFocusTrap';
 
 export function AccessibilityPanel() {
-  const { accessibilitySettings, updateAccessibilitySettings, accessibilityPanelOpen } = useApp();
+  const { accessibilitySettings, updateAccessibilitySettings, accessibilityPanelOpen, setAccessibilityPanelOpen } = useApp();
+  const panelRef = useFocusTrap(accessibilityPanelOpen, () => setAccessibilityPanelOpen(false));
 
   if (!accessibilityPanelOpen) return null;
 
@@ -21,7 +23,14 @@ export function AccessibilityPanel() {
   ];
 
   return (
-    <aside className="w-80 flex flex-col h-full overflow-y-auto p-6" style={{ background: 'var(--bg-secondary)', borderLeft: '1px solid var(--border-color)' }}>
+    <>
+      {/* Backdrop for mobile */}
+      <div
+        className="md:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+        onClick={() => setAccessibilityPanelOpen(false)}
+        aria-hidden="true"
+      />
+    <aside ref={panelRef} className="w-80 max-w-[85vw] flex flex-col h-full overflow-y-auto p-4 sm:p-6 fixed md:relative right-0 top-0 bottom-0 z-50" role="complementary" aria-label="Accessibility settings" style={{ background: 'var(--bg-secondary)', borderLeft: '1px solid var(--border-color)' }}>
       <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
         <Eye size={20} />
         Accessibility
@@ -162,5 +171,6 @@ export function AccessibilityPanel() {
         </p>
       </div>
     </aside>
+    </>
   );
 }
