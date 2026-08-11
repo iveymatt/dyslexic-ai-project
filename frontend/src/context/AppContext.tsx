@@ -139,29 +139,42 @@ export function AppProvider({ children }: { children: ReactNode }) {
   };
 
   const addMessage = (message: Omit<Message, 'id' | 'timestamp'>) => {
-    if (!currentChat) {
-      createNewChat();
-      return;
-    }
-
     const newMessage: Message = {
       ...message,
       id: `msg-${Date.now()}`,
       timestamp: new Date(),
     };
 
-    const updatedChat: Chat = {
-      ...currentChat,
-      messages: [...currentChat.messages, newMessage],
-      updatedAt: new Date(),
-      // Update title from first user message
-      title: currentChat.messages.length === 0 && message.role === 'user'
-        ? message.content.slice(0, 50) + (message.content.length > 50 ? '...' : '')
-        : currentChat.title,
-    };
+    setCurrentChat(prevChat => {
+      const baseChat: Chat = prevChat ?? {
+        id: `chat-${Date.now()}`,
+        title: 'New Conversation',
+        messages: [],
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        mode: currentMode,
+        subAgent: currentSubAgent,
+      };
 
-    setCurrentChat(updatedChat);
-    setChats(chats.map(chat => chat.id === updatedChat.id ? updatedChat : chat));
+      const updatedChat: Chat = {
+        ...baseChat,
+        messages: [...baseChat.messages, newMessage],
+        updatedAt: new Date(),
+        // Update title from first user message
+        title: baseChat.messages.length === 0 && message.role === 'user'
+          ? message.content.slice(0, 50) + (message.content.length > 50 ? '...' : '')
+          : baseChat.title,
+      };
+
+      setChats(prevChats => {
+        const exists = prevChats.some(chat => chat.id === updatedChat.id);
+        return exists
+          ? prevChats.map(chat => chat.id === updatedChat.id ? updatedChat : chat)
+          : [updatedChat, ...prevChats];
+      });
+
+      return updatedChat;
+    });
   };
 
   const deleteChat = (chatId: string) => {

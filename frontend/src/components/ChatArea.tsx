@@ -5,7 +5,6 @@ import { MessageBubble } from './MessageBubble';
 import { QuickActions } from './QuickActions';
 import { InputBar } from './InputBar';
 import { modes, getSubAgentConfig } from '../config/modes';
-import { generateMockResponse } from '../utils/mockResponses';
 
 export function ChatArea() {
   const { currentChat, addMessage, currentMode, currentSubAgent } = useApp();
@@ -29,19 +28,41 @@ export function ChatArea() {
       subAgent: currentSubAgent,
     });
 
-    // Simulate AI processing
     setIsProcessing(true);
 
-    // Wait a bit to simulate processing
-    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
+    const history = (currentChat?.messages ?? []).map(({ role, content: msgContent }) => ({
+      role,
+      content: msgContent,
+    }));
 
-    // Generate mock response based on mode and sub-agent
-    const response = generateMockResponse(content, currentMode, currentSubAgent);
+    let responseText: string;
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: content,
+          mode: currentMode,
+          subAgent: currentSubAgent,
+          history,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Chat request failed: ${res.status}`);
+      }
+
+      const data = await res.json();
+      responseText = data.text;
+    } catch (error) {
+      console.error('Chat request failed:', error);
+      responseText = "I couldn't reach the server just now — check your connection and try again.";
+    }
 
     // Add assistant message
     addMessage({
       role: 'assistant',
-      content: response,
+      content: responseText,
       mode: currentMode,
       subAgent: currentSubAgent,
     });
