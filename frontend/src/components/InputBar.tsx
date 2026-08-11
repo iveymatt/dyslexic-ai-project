@@ -4,9 +4,10 @@ import { Send, Mic, MicOff, Loader2 } from 'lucide-react';
 interface InputBarProps {
   onSend: (message: string) => void;
   disabled?: boolean;
+  initialText?: string | null;
 }
 
-export function InputBar({ onSend, disabled = false }: InputBarProps) {
+export function InputBar({ onSend, disabled = false, initialText }: InputBarProps) {
   const [message, setMessage] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [recognition, setRecognition] = useState<any>(null);
@@ -51,6 +52,22 @@ export function InputBar({ onSend, disabled = false }: InputBarProps) {
     }
   }, []);
 
+  // Pre-fill textarea when navigating from prompt library
+  useEffect(() => {
+    if (initialText) {
+      setMessage(initialText);
+      // Focus the textarea so user can review and send
+      setTimeout(() => {
+        if (textareaRef.current) {
+          textareaRef.current.focus();
+          // Place cursor at end of text
+          textareaRef.current.selectionStart = initialText.length;
+          textareaRef.current.selectionEnd = initialText.length;
+        }
+      }, 150);
+    }
+  }, [initialText]);
+
   const toggleListening = () => {
     if (!recognition) {
       alert('Speech recognition is not supported in your browser. Please try Chrome or Edge.');
@@ -93,7 +110,7 @@ export function InputBar({ onSend, disabled = false }: InputBarProps) {
   }, [message]);
 
   return (
-    <form onSubmit={handleSubmit} className="border-t border-gray-700 bg-gray-800 p-4">
+    <form onSubmit={handleSubmit} className="p-4" style={{ borderTop: '1px solid var(--border-color)', background: 'var(--bg-secondary)' }}>
       <div className="max-w-4xl mx-auto flex items-end gap-3">
         {/* Voice Input Button */}
         <button
@@ -117,9 +134,9 @@ export function InputBar({ onSend, disabled = false }: InputBarProps) {
           onKeyDown={handleKeyDown}
           placeholder={isListening ? 'Listening...' : 'Type your message... (Shift+Enter for new line)'}
           disabled={disabled}
-          className="flex-1 bg-gray-700 text-gray-100 placeholder-gray-400 rounded-lg px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50"
+          className="flex-1 rounded-lg px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:opacity-50"
+          style={{ background: 'var(--bg-accent)', color: 'var(--text-primary)', border: '1px solid var(--border-color)', minHeight: '50px', maxHeight: '200px' }}
           rows={1}
-          style={{ minHeight: '50px', maxHeight: '200px' }}
         />
 
         {/* Send Button */}

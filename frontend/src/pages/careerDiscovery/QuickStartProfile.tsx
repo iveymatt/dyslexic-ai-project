@@ -1,14 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { UserProfile, NeurodivergenceType, StrengthType, ChallengeType } from '../../types/career';
 import { ArrowRight, Sparkles, Zap, AlertCircle } from 'lucide-react';
 
-interface QuickStartProfileProps {
-  onComplete: (profile: UserProfile) => void;
-  onSwitchToFullAssessment: () => void;
-  onBack: () => void;
-}
-
-export default function QuickStartProfile({ onComplete, onSwitchToFullAssessment, onBack }: QuickStartProfileProps) {
+export default function QuickStartProfile() {
+  const navigate = useNavigate();
   const [selectedNeurodivergence, setSelectedNeurodivergence] = useState<NeurodivergenceType[]>([]);
   const [selectedStrengths, setSelectedStrengths] = useState<StrengthType[]>([]);
   const [selectedChallenges, setSelectedChallenges] = useState<ChallengeType[]>([]);
@@ -89,7 +85,8 @@ export default function QuickStartProfile({ onComplete, onSwitchToFullAssessment
       updatedAt: new Date().toISOString(),
     };
 
-    onComplete(quickProfile);
+    localStorage.setItem('careerDiscoveryProfile', JSON.stringify(quickProfile));
+    navigate('/career-discovery');
   };
 
   return (
@@ -98,7 +95,7 @@ export default function QuickStartProfile({ onComplete, onSwitchToFullAssessment
         {/* Header */}
         <div className="mb-8">
           <button
-            onClick={onBack}
+            onClick={() => navigate('/career-discovery')}
             className="text-purple-300 hover:text-purple-200 mb-4 flex items-center gap-2"
           >
             ← Back
@@ -117,7 +114,7 @@ export default function QuickStartProfile({ onComplete, onSwitchToFullAssessment
             <p className="text-blue-200">
               💡 <strong>Tip:</strong> You can always edit your profile later or take the{' '}
               <button
-                onClick={onSwitchToFullAssessment}
+                onClick={() => navigate('/career-discovery/profile-builder')}
                 className="underline hover:text-blue-100"
               >
                 full assessment
@@ -230,7 +227,7 @@ export default function QuickStartProfile({ onComplete, onSwitchToFullAssessment
           </button>
 
           <button
-            onClick={onSwitchToFullAssessment}
+            onClick={() => navigate('/career-discovery/profile-builder')}
             className="px-6 py-4 rounded-lg font-semibold border-2 border-purple-500 hover:bg-purple-500/20 transition-all"
           >
             Take Full Assessment

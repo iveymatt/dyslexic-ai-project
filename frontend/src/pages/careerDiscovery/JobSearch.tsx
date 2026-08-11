@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { UserProfile, JobFilters } from '../../types/career';
 import { jobs } from '../../data/careerDiscovery/jobs';
 import { CareerCard } from '../../components/CareerCard';
@@ -8,12 +9,8 @@ import { Search, Filter, Eye, X, Sparkles } from 'lucide-react';
 // Enhanced jobs with full neurodivergent features
 const ENHANCED_JOB_IDS = ['software-tester', 'graphic-designer', 'data-entry-specialist'];
 
-interface JobSearchProps {
-  onBack: () => void;
-  onJobSelect: (jobId: string) => void;
-}
-
-export function JobSearch({ onBack, onJobSelect }: JobSearchProps) {
+export function JobSearch() {
+  const navigate = useNavigate();
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [filters, setFilters] = useState<JobFilters>({
     searchQuery: '',
@@ -64,7 +61,7 @@ export function JobSearch({ onBack, onJobSelect }: JobSearchProps) {
             <h1 className="text-3xl font-bold mb-2">Career Search</h1>
             <p className="text-gray-400">{filteredJobs.length} jobs matched to your profile</p>
           </div>
-          <button onClick={onBack} className="btn-secondary">
+          <button onClick={() => navigate('/career-discovery')} className="btn-secondary">
             ← Back
           </button>
         </div>
@@ -102,7 +99,7 @@ export function JobSearch({ onBack, onJobSelect }: JobSearchProps) {
         {/* Filters */}
         <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <Filter size={20} className="text-primary-400" />
+            <Filter size={20} className="text-cyan-400" />
             <h2 className="text-lg font-semibold">Filters & Search</h2>
           </div>
 
@@ -189,7 +186,7 @@ export function JobSearch({ onBack, onJobSelect }: JobSearchProps) {
                   <CareerCard
                     job={job}
                     userProfile={userProfile}
-                    onDetailsClick={() => onJobSelect(job.id)}
+                    onDetailsClick={() => navigate(`/career-discovery/jobs/${job.id}`)}
                   />
                 </div>
               ))}
@@ -207,7 +204,7 @@ export function JobSearch({ onBack, onJobSelect }: JobSearchProps) {
                   key={job.id}
                   job={job}
                   userProfile={userProfile}
-                  onDetailsClick={() => onJobSelect(job.id)}
+                  onDetailsClick={() => navigate(`/career-discovery/jobs/${job.id}`)}
                 />
               ))}
             </div>
@@ -221,7 +218,7 @@ export function JobSearch({ onBack, onJobSelect }: JobSearchProps) {
                 key={job.id}
                 job={job}
                 userProfile={userProfile}
-                onDetailsClick={() => onJobSelect(job.id)}
+                onDetailsClick={() => navigate(`/career-discovery/jobs/${job.id}`)}
               />
             ))}
           </div>

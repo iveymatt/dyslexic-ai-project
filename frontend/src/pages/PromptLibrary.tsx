@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Plus, CheckCircle } from 'lucide-react';
 import { prompts, getAllTags } from '../data/prompts';
 import { PromptCard } from '../components/PromptCard';
@@ -6,12 +7,8 @@ import { PromptFiltersComponent } from '../components/PromptFilters';
 import { applyFilters, copyToClipboard } from '../utils/promptHelpers';
 import type { PromptFilters } from '../types/prompts';
 
-interface PromptLibraryProps {
-  onBack: () => void;
-  onPromptSelect?: (promptId: string) => void;
-}
-
-export function PromptLibrary({ onBack, onPromptSelect }: PromptLibraryProps) {
+export function PromptLibrary() {
+  const navigate = useNavigate();
   const [filters, setFilters] = useState<PromptFilters>({
     userType: 'all',
     searchQuery: '',
@@ -44,9 +41,7 @@ export function PromptLibrary({ onBack, onPromptSelect }: PromptLibraryProps) {
   };
 
   const handlePromptClick = (promptId: string) => {
-    if (onPromptSelect) {
-      onPromptSelect(promptId);
-    }
+    navigate(`/prompts/${promptId}`);
   };
 
   return (
@@ -55,7 +50,7 @@ export function PromptLibrary({ onBack, onPromptSelect }: PromptLibraryProps) {
       <header className="border-b border-gray-700 bg-gray-800 sticky top-0 z-10">
         <div className="container mx-auto px-6 py-6">
           <button
-            onClick={onBack}
+            onClick={() => navigate('/chat')}
             className="flex items-center gap-2 text-gray-400 hover:text-white mb-4 transition-colors"
           >
             <ArrowLeft size={20} />
@@ -71,7 +66,7 @@ export function PromptLibrary({ onBack, onPromptSelect }: PromptLibraryProps) {
             </div>
 
             <button
-              className="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg font-medium transition-colors"
               onClick={() => {/* TODO: Open submit form */}}
             >
               <Plus size={20} />
@@ -108,7 +103,7 @@ export function PromptLibrary({ onBack, onPromptSelect }: PromptLibraryProps) {
                 selectedTags: [],
                 sortBy: 'popular',
               })}
-              className="text-primary-500 hover:text-primary-400 font-medium"
+              className="text-cyan-500 hover:text-cyan-400 font-medium"
             >
               Clear all filters
             </button>

@@ -10,16 +10,16 @@ interface CognitiveProfileProps {
 
 export function CognitiveProfile({ profile, onEdit }: CognitiveProfileProps) {
   return (
-    <div className="bg-gradient-to-br from-primary-900/30 to-accent-900/30 rounded-2xl p-6 border border-primary-700/30">
+    <div className="bg-gradient-to-br from-cyan-50 to-magenta-50 rounded-2xl p-6 border border-cyan-200">
       {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <Brain className="text-primary-400" size={28} />
-            <h2 className="text-2xl font-bold text-white">Your Cognitive Profile</h2>
+            <Brain className="text-cyan-500" size={28} />
+            <h2 className="text-2xl font-bold text-earth-800">Your Cognitive Profile</h2>
           </div>
           {profile.name && (
-            <p className="text-gray-300">
+            <p className="text-earth-600">
               {profile.name}, {profile.age && `${profile.age} years old`}
             </p>
           )}
@@ -37,7 +37,7 @@ export function CognitiveProfile({ profile, onEdit }: CognitiveProfileProps) {
 
       {/* Neurodivergence */}
       <div className="mb-6">
-        <h3 className="text-sm font-semibold text-gray-400 uppercase mb-2">Neurodivergence</h3>
+        <h3 className="text-sm font-semibold text-earth-500 uppercase mb-2">Neurodivergence</h3>
         <div className="flex flex-wrap gap-2">
           {profile.neurodivergence.map((nd) => (
             <span
@@ -54,7 +54,7 @@ export function CognitiveProfile({ profile, onEdit }: CognitiveProfileProps) {
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-3">
           <Sparkles className="text-yellow-400" size={20} />
-          <h3 className="text-lg font-semibold text-white">Your Strengths</h3>
+          <h3 className="text-lg font-semibold text-earth-800">Your Strengths</h3>
         </div>
         <div className="grid md:grid-cols-2 gap-2">
           {profile.strengths.map((strength) => (
@@ -68,8 +68,8 @@ export function CognitiveProfile({ profile, onEdit }: CognitiveProfileProps) {
         </div>
         {profile.specialInterests && (
           <div className="mt-3 bg-blue-900/20 border border-blue-700/30 rounded-lg p-3">
-            <p className="text-sm text-gray-400 mb-1">Special Interests:</p>
-            <p className="text-white">{profile.specialInterests}</p>
+            <p className="text-sm text-earth-500 mb-1">Special Interests:</p>
+            <p className="text-earth-800">{profile.specialInterests}</p>
           </div>
         )}
       </div>
@@ -78,7 +78,7 @@ export function CognitiveProfile({ profile, onEdit }: CognitiveProfileProps) {
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-3">
           <AlertCircle className="text-orange-400" size={20} />
-          <h3 className="text-lg font-semibold text-white">What's Harder for You</h3>
+          <h3 className="text-lg font-semibold text-earth-800">What's Harder for You</h3>
         </div>
         <div className="grid md:grid-cols-2 gap-2">
           {profile.challenges.map((challenge) => (
@@ -90,8 +90,8 @@ export function CognitiveProfile({ profile, onEdit }: CognitiveProfileProps) {
             </div>
           ))}
         </div>
-        <div className="mt-3 bg-gray-800/50 border border-gray-700 rounded-lg p-3">
-          <p className="text-sm text-gray-400 mb-1">Sensory Preference:</p>
+        <div className="mt-3 bg-white/50 border border-earth-200 rounded-lg p-3">
+          <p className="text-sm text-earth-500 mb-1">Sensory Preference:</p>
           <p className="text-white capitalize">{profile.sensoryPreference.replace(/-/g, ' ')}</p>
         </div>
       </div>
@@ -100,7 +100,7 @@ export function CognitiveProfile({ profile, onEdit }: CognitiveProfileProps) {
       <div>
         <div className="flex items-center gap-2 mb-3">
           <Heart className="text-pink-400" size={20} />
-          <h3 className="text-lg font-semibold text-white">Career Interests</h3>
+          <h3 className="text-lg font-semibold text-earth-800">Career Interests</h3>
         </div>
         <div className="flex flex-wrap gap-2">
           {profile.careerInterests.map((interest) => (
@@ -113,11 +113,11 @@ export function CognitiveProfile({ profile, onEdit }: CognitiveProfileProps) {
           ))}
         </div>
         {profile.jobPriorities && profile.jobPriorities.length > 0 && (
-          <div className="mt-3 bg-gray-800/50 border border-gray-700 rounded-lg p-3">
-            <p className="text-sm text-gray-400 mb-2">What's most important in a job:</p>
+          <div className="mt-3 bg-white/50 border border-earth-200 rounded-lg p-3">
+            <p className="text-sm text-earth-500 mb-2">What's most important in a job:</p>
             <div className="flex flex-wrap gap-2">
               {profile.jobPriorities.map((priority, idx) => (
-                <span key={idx} className="text-sm text-gray-300 capitalize">
+                <span key={idx} className="text-sm text-earth-600 capitalize">
                   {idx + 1}. {priority.replace(/-/g, ' ')}
                 </span>
               ))}

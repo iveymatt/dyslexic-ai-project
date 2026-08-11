@@ -1,11 +1,8 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { aiAgents, aiWorkflows } from '../../data/careerDiscovery/aiAgents';
 import type { AIAgent, AIWorkflow } from '../../types/career';
 import { Bot, Workflow, Search, Filter, ArrowRight, Clock, Zap, CheckCircle2, AlertCircle } from 'lucide-react';
-
-interface AIAgentsWorkflowsProps {
-  onBack: () => void;
-}
 
 type CategoryFilter = 'all' | 'executive-function' | 'organizing-systems' | 'sensory-emotional' | 'masking' | 'communication';
 type ViewMode = 'agents' | 'workflows';
@@ -26,7 +23,8 @@ const categoryLabels: Record<string, string> = {
   'communication': '💬 Communication',
 };
 
-export function AIAgentsWorkflows({ onBack }: AIAgentsWorkflowsProps) {
+export function AIAgentsWorkflows() {
+  const navigate = useNavigate();
   const [viewMode, setViewMode] = useState<ViewMode>('agents');
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -71,25 +69,25 @@ export function AIAgentsWorkflows({ onBack }: AIAgentsWorkflowsProps) {
           <div className="flex items-center justify-between mb-8">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <Bot className="text-primary-400" size={32} />
+                <Bot className="text-cyan-400" size={32} />
                 <h1 className="text-4xl font-bold">AI Agents & Workflows</h1>
               </div>
               <p className="text-gray-400 text-lg">
                 Pre-built AI assistants and multi-step processes to help with career transition
               </p>
             </div>
-            <button onClick={onBack} className="btn-secondary">
+            <button onClick={() => navigate('/career-discovery')} className="btn-secondary">
               ← Back
             </button>
           </div>
 
           {/* Intro */}
-          <div className="bg-gradient-to-br from-primary-900/30 to-accent-900/30 rounded-xl p-8 border border-primary-700/30 mb-8">
+          <div className="bg-gradient-to-br from-cyan-900/30 to-magenta-900/30 rounded-xl p-8 border border-cyan-700/30 mb-8">
             <h2 className="text-2xl font-bold mb-4">What's the Difference?</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <Bot className="text-primary-400" size={24} />
+                  <Bot className="text-cyan-400" size={24} />
                   <h3 className="text-xl font-bold">AI Agents</h3>
                 </div>
                 <p className="text-gray-300 mb-2">
@@ -103,7 +101,7 @@ export function AIAgentsWorkflows({ onBack }: AIAgentsWorkflowsProps) {
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <Workflow className="text-accent-400" size={24} />
+                  <Workflow className="text-magenta-400" size={24} />
                   <h3 className="text-xl font-bold">Workflows</h3>
                 </div>
                 <p className="text-gray-300 mb-2">
@@ -124,7 +122,7 @@ export function AIAgentsWorkflows({ onBack }: AIAgentsWorkflowsProps) {
               onClick={() => setViewMode('agents')}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
                 viewMode === 'agents'
-                  ? 'bg-primary-600 text-white'
+                  ? 'bg-cyan-600 text-white'
                   : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
               }`}
             >
@@ -135,7 +133,7 @@ export function AIAgentsWorkflows({ onBack }: AIAgentsWorkflowsProps) {
               onClick={() => setViewMode('workflows')}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
                 viewMode === 'workflows'
-                  ? 'bg-accent-600 text-white'
+                  ? 'bg-magenta-600 text-white'
                   : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
               }`}
             >
@@ -154,7 +152,7 @@ export function AIAgentsWorkflows({ onBack }: AIAgentsWorkflowsProps) {
                 placeholder={`Search ${viewMode}...`}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary-500"
+                className="w-full pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500"
               />
             </div>
 
@@ -164,7 +162,7 @@ export function AIAgentsWorkflows({ onBack }: AIAgentsWorkflowsProps) {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value as CategoryFilter)}
-                className="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-primary-500"
+                className="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-cyan-500"
               >
                 <option value="all">All Categories</option>
                 <option value="executive-function">🧠 Executive Function</option>
@@ -232,13 +230,13 @@ function AgentCard({ agent, onClick }: AgentCardProps) {
   return (
     <button
       onClick={onClick}
-      className={`w-full ${colors.bg} border ${colors.border} rounded-xl p-6 text-left hover:border-primary-500 transition-all group`}
+      className={`w-full ${colors.bg} border ${colors.border} rounded-xl p-6 text-left hover:border-cyan-500 transition-all group`}
     >
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">
           <span className="text-3xl">{agent.emoji}</span>
           <div>
-            <h3 className="text-xl font-bold text-white group-hover:text-primary-400 transition-colors">
+            <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
               {agent.name}
             </h3>
             <p className="text-xs text-gray-500">{categoryLabels[agent.category]}</p>
@@ -256,7 +254,7 @@ function AgentCard({ agent, onClick }: AgentCardProps) {
           <Clock size={14} />
           <span>{agent.estimatedTime}</span>
         </div>
-        <span className="text-primary-400 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+        <span className="text-cyan-400 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
           View Details
           <ArrowRight size={16} />
         </span>
@@ -277,13 +275,13 @@ function WorkflowCard({ workflow, onClick }: WorkflowCardProps) {
   return (
     <button
       onClick={onClick}
-      className={`w-full ${colors.bg} border ${colors.border} rounded-xl p-6 text-left hover:border-accent-500 transition-all group`}
+      className={`w-full ${colors.bg} border ${colors.border} rounded-xl p-6 text-left hover:border-magenta-500 transition-all group`}
     >
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">
           <span className="text-3xl">{workflow.emoji}</span>
           <div>
-            <h3 className="text-xl font-bold text-white group-hover:text-accent-400 transition-colors">
+            <h3 className="text-xl font-bold text-white group-hover:text-magenta-400 transition-colors">
               {workflow.name}
             </h3>
             <p className="text-xs text-gray-500">{categoryLabels[workflow.category]}</p>
@@ -307,7 +305,7 @@ function WorkflowCard({ workflow, onClick }: WorkflowCardProps) {
             <span>{workflow.totalEstimatedTime}</span>
           </div>
         </div>
-        <span className="text-accent-400 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+        <span className="text-magenta-400 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
           Start Workflow
           <ArrowRight size={16} />
         </span>
@@ -371,7 +369,7 @@ function AgentDetailView({ agent, onBack }: AgentDetailViewProps) {
             <ul className="space-y-2">
               {agent.useCases.map((useCase, idx) => (
                 <li key={idx} className="flex items-start gap-2 text-gray-300">
-                  <span className="text-primary-400 flex-shrink-0">→</span>
+                  <span className="text-cyan-400 flex-shrink-0">→</span>
                   <span>{useCase}</span>
                 </li>
               ))}
@@ -527,7 +525,7 @@ function WorkflowDetailView({ workflow, onBack }: WorkflowDetailViewProps) {
             {workflow.steps.map((step, idx) => (
               <div key={idx} className="bg-gray-800 rounded-xl p-6 border border-gray-700">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center font-bold">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-cyan-600 flex items-center justify-center font-bold">
                     {step.stepNumber}
                   </div>
                   <div className="flex-1">
@@ -548,14 +546,14 @@ function WorkflowDetailView({ workflow, onBack }: WorkflowDetailViewProps) {
                     </div>
 
                     {step.agentToUse && (
-                      <div className="bg-primary-900/30 border border-primary-700/30 rounded-lg p-3 mb-3 text-sm">
-                        <span className="text-primary-300">🤖 Use Agent: {step.agentToUse}</span>
+                      <div className="bg-cyan-900/30 border border-cyan-700/30 rounded-lg p-3 mb-3 text-sm">
+                        <span className="text-cyan-300">🤖 Use Agent: {step.agentToUse}</span>
                       </div>
                     )}
 
                     {step.promptToUse && (
-                      <div className="bg-accent-900/30 border border-accent-700/30 rounded-lg p-3 mb-3 text-sm">
-                        <span className="text-accent-300">💡 Use Prompt: {step.promptToUse}</span>
+                      <div className="bg-magenta-900/30 border border-magenta-700/30 rounded-lg p-3 mb-3 text-sm">
+                        <span className="text-magenta-300">💡 Use Prompt: {step.promptToUse}</span>
                       </div>
                     )}
 
@@ -564,7 +562,7 @@ function WorkflowDetailView({ workflow, onBack }: WorkflowDetailViewProps) {
                       <ul className="space-y-2">
                         {step.instructions.map((instruction, i) => (
                           <li key={i} className="flex items-start gap-2 text-gray-300 text-sm">
-                            <span className="text-primary-400 flex-shrink-0">•</span>
+                            <span className="text-cyan-400 flex-shrink-0">•</span>
                             <span>{instruction}</span>
                           </li>
                         ))}

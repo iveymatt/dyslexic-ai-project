@@ -25,27 +25,27 @@ export function ProgressTracker({
     <div className="w-full">
       {(label || showPercentage) && (
         <div className="flex items-center justify-between mb-2">
-          {label && <span className={`text-gray-400 ${textSizeClass}`}>{label}</span>}
+          {label && <span className={`text-earth-500 ${textSizeClass}`}>{label}</span>}
           {showPercentage && (
-            <span className={`text-primary-400 font-semibold ${textSizeClass}`}>
+            <span className={`text-cyan-500 font-semibold ${textSizeClass}`}>
               {percentage}%
             </span>
           )}
         </div>
       )}
-      <div className={`w-full bg-gray-700 rounded-full ${heightClass} overflow-hidden`}>
+      <div className={`w-full bg-earth-100 rounded-full ${heightClass} overflow-hidden`}>
         <div
-          className="bg-gradient-to-r from-primary-600 to-accent-600 h-full transition-all duration-500 ease-out flex items-center justify-end pr-1"
+          className="bg-gradient-to-r from-cyan-500 to-magenta-500 h-full transition-all duration-500 ease-out flex items-center justify-end pr-1"
           style={{ width: `${percentage}%` }}
         >
           {percentage === 100 && size !== 'sm' && (
-            <Check size={size === 'lg' ? 16 : 12} className="text-white" />
+            <Check size={size === 'lg' ? 16 : 12} className="text-earth-800" />
           )}
         </div>
       </div>
       {total > 0 && (
         <div className={`flex items-center justify-between mt-1 ${textSizeClass}`}>
-          <span className="text-gray-500">
+          <span className="text-earth-400">
             {current} / {total} {current === 1 ? 'completed' : 'completed'}
           </span>
           {current === total && current > 0 && (
@@ -99,14 +99,14 @@ export function CircularProgress({
             strokeDasharray={circumference}
             strokeDashoffset={offset}
             strokeLinecap="round"
-            className="text-primary-500 transition-all duration-500 ease-out"
+            className="text-cyan-500 transition-all duration-500 ease-out"
           />
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-2xl font-bold text-white">{percentage}%</span>
+          <span className="text-2xl font-bold text-earth-800">{percentage}%</span>
         </div>
       </div>
-      {label && <span className="mt-2 text-sm text-gray-400">{label}</span>}
+      {label && <span className="mt-2 text-sm text-earth-500">{label}</span>}
     </div>
   );
 }

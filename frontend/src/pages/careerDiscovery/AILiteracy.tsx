@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { UserProfile } from '../../types/career';
 import { aiLiteracyModules } from '../../data/careerDiscovery/aiLiteracy';
 import { Lightbulb, Award, Clock } from 'lucide-react';
 
-interface AILiteracyProps {
-  onBack: () => void;
-}
-
-export function AILiteracy({ onBack }: AILiteracyProps) {
+export function AILiteracy() {
+  const navigate = useNavigate();
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [selectedModule, setSelectedModule] = useState<number | null>(null);
   const [completedModules, setCompletedModules] = useState<Set<string>>(new Set());
@@ -167,7 +165,7 @@ export function AILiteracy({ onBack }: AILiteracyProps) {
                 Master AI tools for job search, learning, and daily life
               </p>
             </div>
-            <button onClick={onBack} className="btn-secondary">
+            <button onClick={() => navigate('/career-discovery')} className="btn-secondary">
               ← Back
             </button>
           </div>

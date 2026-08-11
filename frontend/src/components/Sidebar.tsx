@@ -39,9 +39,9 @@ export function Sidebar() {
   const groupedChats = groupChatsByDate(chats);
 
   return (
-    <aside className="w-64 bg-gray-800 border-r border-gray-700 flex flex-col h-full">
+    <aside className="w-64 flex flex-col h-full" style={{ background: 'var(--bg-secondary)', borderRight: '1px solid var(--border-color)' }}>
       {/* New Chat Button */}
-      <div className="p-4 border-b border-gray-700">
+      <div className="p-4" style={{ borderBottom: '1px solid var(--border-color)' }}>
         <button
           onClick={() => createNewChat()}
           className="btn-primary w-full flex items-center justify-center gap-2"
@@ -58,18 +58,18 @@ export function Sidebar() {
 
           return (
             <div key={group} className="mb-4">
-              <h3 className="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+              <h3 className="px-4 py-2 text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
                 {group}
               </h3>
               <div className="space-y-1 px-2">
                 {groupChats.map(chat => (
                   <div
                     key={chat.id}
-                    className={`group relative flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer transition-colors ${
-                      currentChat?.id === chat.id
-                        ? 'bg-gray-700 text-white'
-                        : 'text-gray-300 hover:bg-gray-700/50'
-                    }`}
+                    className="group relative flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer transition-colors"
+                    style={currentChat?.id === chat.id
+                      ? { background: 'var(--bg-accent)', color: 'var(--text-primary)', border: '1px solid var(--border-color)' }
+                      : { color: 'var(--text-secondary)' }
+                    }
                     onClick={() => setCurrentChat(chat)}
                   >
                     <MessageSquare size={16} className="flex-shrink-0" />
@@ -94,7 +94,7 @@ export function Sidebar() {
         })}
 
         {chats.length === 0 && (
-          <div className="p-8 text-center text-gray-400 text-sm">
+          <div className="p-8 text-center text-sm" style={{ color: 'var(--text-secondary)' }}>
             <MessageSquare size={48} className="mx-auto mb-3 opacity-30" />
             <p>No conversations yet.</p>
             <p className="mt-1">Start a new chat to begin!</p>

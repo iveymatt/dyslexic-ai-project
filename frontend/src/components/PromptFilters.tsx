@@ -65,13 +65,13 @@ export function PromptFiltersComponent({
       <div className="flex flex-col sm:flex-row gap-3">
         {/* Search */}
         <div className="flex-1 relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-earth-500" size={20} />
           <input
             type="text"
             placeholder="Search prompts..."
             value={filters.searchQuery}
             onChange={handleSearchChange}
-            className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-600 transition-colors"
+            className="w-full pl-10 pr-4 py-3 bg-white border border-earth-200 rounded-lg text-earth-800 placeholder-gray-400 focus:outline-none focus:border-cyan-600 transition-colors"
           />
         </div>
 
@@ -79,7 +79,7 @@ export function PromptFiltersComponent({
         <select
           value={filters.userType}
           onChange={handleUserTypeChange}
-          className="px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-primary-600 transition-colors cursor-pointer"
+          className="px-4 py-3 bg-white border border-earth-200 rounded-lg text-earth-800 focus:outline-none focus:border-cyan-600 transition-colors cursor-pointer"
         >
           {Object.entries(USER_TYPE_LABELS).map(([value, label]) => (
             <option key={value} value={value}>
@@ -91,13 +91,13 @@ export function PromptFiltersComponent({
 
       {/* Sort Options */}
       <div className="flex flex-wrap items-center gap-2">
-        <span className="text-sm text-gray-400 font-medium">Sort by:</span>
+        <span className="text-sm text-earth-500 font-medium">Sort by:</span>
         <button
           onClick={() => handleSortChange('popular')}
           className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
             filters.sortBy === 'popular'
-              ? 'bg-primary-600 text-white'
-              : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              ? 'bg-cyan-600 text-white'
+              : 'bg-white text-earth-600 hover:bg-earth-100'
           }`}
         >
           <Star size={14} />
@@ -107,8 +107,8 @@ export function PromptFiltersComponent({
           onClick={() => handleSortChange('newest')}
           className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
             filters.sortBy === 'newest'
-              ? 'bg-primary-600 text-white'
-              : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              ? 'bg-cyan-600 text-white'
+              : 'bg-white text-earth-600 hover:bg-earth-100'
           }`}
         >
           <Clock size={14} />
@@ -118,8 +118,8 @@ export function PromptFiltersComponent({
           onClick={() => handleSortChange('most-used')}
           className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
             filters.sortBy === 'most-used'
-              ? 'bg-primary-600 text-white'
-              : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              ? 'bg-cyan-600 text-white'
+              : 'bg-white text-earth-600 hover:bg-earth-100'
           }`}
         >
           <TrendingUp size={14} />
@@ -129,8 +129,8 @@ export function PromptFiltersComponent({
           onClick={() => handleSortChange('trending')}
           className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
             filters.sortBy === 'trending'
-              ? 'bg-primary-600 text-white'
-              : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              ? 'bg-cyan-600 text-white'
+              : 'bg-white text-earth-600 hover:bg-earth-100'
           }`}
         >
           <Flame size={14} />
@@ -141,11 +141,11 @@ export function PromptFiltersComponent({
       {/* Tags */}
       <div>
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm text-gray-400 font-medium">Filter by tags:</span>
+          <span className="text-sm text-earth-500 font-medium">Filter by tags:</span>
           {hasActiveFilters && (
             <button
               onClick={clearAllFilters}
-              className="text-xs text-primary-500 hover:text-primary-400 font-medium transition-colors"
+              className="text-xs text-cyan-500 hover:text-cyan-500 font-medium transition-colors"
             >
               Clear all filters
             </button>
@@ -161,7 +161,7 @@ export function PromptFiltersComponent({
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                   isSelected
                     ? 'bg-blue-600 text-white'
-                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
+                    : 'bg-white text-earth-600 hover:bg-earth-100 border border-earth-200'
                 }`}
               >
                 {tag}
@@ -172,7 +172,7 @@ export function PromptFiltersComponent({
       </div>
 
       {/* Result count */}
-      <div className="text-sm text-gray-400">
+      <div className="text-sm text-earth-500">
         Showing {resultCount} {resultCount === 1 ? 'prompt' : 'prompts'}
       </div>
     </div>

@@ -37,9 +37,9 @@ export function SoftSkillsSection({ skills }: SoftSkillsProps) {
       case 'helpful':
         return 'text-blue-400 border-blue-500/50 bg-blue-900/20';
       case 'optional':
-        return 'text-gray-400 border-gray-500/50 bg-gray-900/20';
+        return 'text-earth-500 border-earth-300/50 bg-earth-50';
       default:
-        return 'text-gray-400 border-gray-500/50 bg-gray-900/20';
+        return 'text-earth-500 border-earth-300/50 bg-earth-50';
     }
   };
 
@@ -62,7 +62,7 @@ export function SoftSkillsSection({ skills }: SoftSkillsProps) {
         <Brain size={28} className="text-purple-400" />
         <h3 className="text-2xl font-bold">Soft Skills (Neurodivergent-Friendly Guide)</h3>
       </div>
-      <p className="text-gray-300 mb-6">
+      <p className="text-earth-600 mb-6">
         What soft skills matter for this job? We break down each skill with tips for neurodivergent
         thinkers and tools that can help.
       </p>
@@ -78,7 +78,7 @@ export function SoftSkillsSection({ skills }: SoftSkillsProps) {
                 {skill.name}
                 {skill.canBeSupported && <Zap size={16} className="text-yellow-400" />}
               </h4>
-              <span className="text-sm px-2 py-1 rounded bg-gray-800/50">
+              <span className="text-sm px-2 py-1 rounded bg-white/50">
                 {getImportanceLabel(skill.importance)}
               </span>
             </div>
@@ -93,7 +93,7 @@ export function SoftSkillsSection({ skills }: SoftSkillsProps) {
 
             {skill.supportTools && skill.supportTools.length > 0 && (
               <div className="mt-2">
-                <p className="text-xs text-gray-400 mb-1">Tools that help:</p>
+                <p className="text-xs text-earth-500 mb-1">Tools that help:</p>
                 <div className="flex flex-wrap gap-2">
                   {skill.supportTools.map((tool, i) => (
                     <span key={i} className="text-xs px-2 py-1 rounded bg-yellow-900/30 text-yellow-200 border border-yellow-700/50">
@@ -168,7 +168,7 @@ export function AIAssistiveToolsSection({ tools }: AIToolsProps) {
         <Zap size={28} className="text-cyan-400" />
         <h3 className="text-2xl font-bold">AI Tools That Help Neurodivergent Workers</h3>
       </div>
-      <p className="text-gray-300 mb-2">
+      <p className="text-earth-600 mb-2">
         AI isn't just a threat to jobs - it's a powerful <strong>accommodation tool</strong>! These AI
         tools help neurodivergent people excel in this career.
       </p>
@@ -186,14 +186,14 @@ export function AIAssistiveToolsSection({ tools }: AIToolsProps) {
             </h4>
             <div className="space-y-3">
               {categoryTools.map((tool, index) => (
-                <div key={index} className="bg-gray-800/50 rounded-lg p-4 border border-cyan-700/30">
+                <div key={index} className="bg-white/50 rounded-lg p-4 border border-cyan-700/30">
                   <div className="flex items-start justify-between mb-2">
                     <h5 className="font-semibold text-cyan-100">{tool.name}</h5>
                     <span className="text-xs px-2 py-1 rounded bg-cyan-900/50 text-cyan-200">
                       {getCostIcon(tool.costLevel)}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-400 mb-2">{tool.description}</p>
+                  <p className="text-sm text-earth-500 mb-2">{tool.description}</p>
                   <div className="bg-cyan-900/30 rounded p-2 border-l-4 border-cyan-400">
                     <p className="text-sm text-cyan-200">
                       <strong>🧠 For Neurodivergent Brains:</strong> {tool.neurodivergentBenefit}
@@ -236,7 +236,7 @@ export function AccommodationsSection({ accommodations }: AccommodationsProps) {
       case 'rare':
         return 'text-orange-400 bg-orange-900/30 border-orange-500/50';
       default:
-        return 'text-gray-400 bg-gray-900/30 border-gray-500/50';
+        return 'text-earth-500 bg-earth-50 border-earth-300/50';
     }
   };
 
@@ -268,7 +268,7 @@ export function AccommodationsSection({ accommodations }: AccommodationsProps) {
       case 'tech':
         return <Zap size={20} className="text-yellow-400" />;
       default:
-        return <CheckCircle2 size={20} className="text-gray-400" />;
+        return <CheckCircle2 size={20} className="text-earth-500" />;
     }
   };
 
@@ -287,7 +287,7 @@ export function AccommodationsSection({ accommodations }: AccommodationsProps) {
         <Shield size={28} className="text-green-400" />
         <h3 className="text-2xl font-bold">Workplace Accommodations</h3>
       </div>
-      <p className="text-gray-300 mb-6">
+      <p className="text-earth-600 mb-6">
         Accommodations you can request to succeed in this job. We tell you how common they are and how
         to ask for them.
       </p>
@@ -301,7 +301,7 @@ export function AccommodationsSection({ accommodations }: AccommodationsProps) {
             </h4>
             <div className="space-y-3">
               {typeAccommodations.map((accommodation, index) => (
-                <div key={index} className="bg-gray-800/50 rounded-lg p-4 border border-green-700/30">
+                <div key={index} className="bg-white/50 rounded-lg p-4 border border-green-700/30">
                   <div className="flex items-start justify-between mb-2">
                     <h5 className="font-semibold text-green-100">{accommodation.name}</h5>
                     <span
@@ -312,7 +312,7 @@ export function AccommodationsSection({ accommodations }: AccommodationsProps) {
                       {getLikelihoodLabel(accommodation.likelihood)}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-400 mb-3">{accommodation.description}</p>
+                  <p className="text-sm text-earth-500 mb-3">{accommodation.description}</p>
                   {accommodation.howToRequest && (
                     <div className="bg-green-900/30 rounded p-3 border-l-4 border-green-400">
                       <p className="text-sm text-green-200">
@@ -353,9 +353,9 @@ export function FutureAIImpactSection({ impact, aiRiskScore }: FutureAIProps) {
           </div>
           <div className="flex items-baseline gap-2 mb-2">
             <span className="text-3xl font-bold text-red-400">{impact.automationRisk}/10</span>
-            <span className="text-sm text-gray-400">(Overall: {aiRiskScore}/10)</span>
+            <span className="text-sm text-earth-500">(Overall: {aiRiskScore}/10)</span>
           </div>
-          <p className="text-sm text-gray-400">Parts AI might automate</p>
+          <p className="text-sm text-earth-500">Parts AI might automate</p>
         </div>
 
         {/* Augmentation Opportunity */}
@@ -367,7 +367,7 @@ export function FutureAIImpactSection({ impact, aiRiskScore }: FutureAIProps) {
           <div className="text-3xl font-bold text-green-400 mb-2">
             {impact.augmentationOpportunity}/10
           </div>
-          <p className="text-sm text-gray-400">How much AI helps you do the job BETTER</p>
+          <p className="text-sm text-earth-500">How much AI helps you do the job BETTER</p>
         </div>
       </div>
 
@@ -393,7 +393,7 @@ export function FutureAIImpactSection({ impact, aiRiskScore }: FutureAIProps) {
           </h4>
           <ul className="space-y-2">
             {impact.emergingTools.map((tool, index) => (
-              <li key={index} className="text-sm text-gray-300 flex items-start gap-2">
+              <li key={index} className="text-sm text-earth-600 flex items-start gap-2">
                 <span className="text-indigo-400">▸</span>
                 <span>{tool}</span>
               </li>
@@ -411,7 +411,7 @@ export function FutureAIImpactSection({ impact, aiRiskScore }: FutureAIProps) {
           </h4>
           <ul className="space-y-2">
             {impact.futureSkillsNeeded.map((skill, index) => (
-              <li key={index} className="text-sm text-gray-300 flex items-start gap-2">
+              <li key={index} className="text-sm text-earth-600 flex items-start gap-2">
                 <span className="text-green-400">✓</span>
                 <span>{skill}</span>
               </li>
@@ -446,7 +446,7 @@ export function EnhancedSensorySection({ sensory, socialDetails }: EnhancedSenso
               <Volume2 size={16} className="text-purple-400" />
               <span className="font-semibold">Noise Level: {sensory.noise}</span>
             </div>
-            {sensory.noiseDetails && <p className="text-sm text-gray-400">{sensory.noiseDetails}</p>}
+            {sensory.noiseDetails && <p className="text-sm text-earth-500">{sensory.noiseDetails}</p>}
           </div>
 
           {/* Lighting */}
@@ -456,7 +456,7 @@ export function EnhancedSensorySection({ sensory, socialDetails }: EnhancedSenso
               <span className="font-semibold">Lighting: {sensory.lights}</span>
             </div>
             {sensory.lightingDetails && (
-              <p className="text-sm text-gray-400">{sensory.lightingDetails}</p>
+              <p className="text-sm text-earth-500">{sensory.lightingDetails}</p>
             )}
           </div>
 
@@ -469,7 +469,7 @@ export function EnhancedSensorySection({ sensory, socialDetails }: EnhancedSenso
               </span>
             </div>
             {sensory.openPlanDetails && (
-              <p className="text-sm text-gray-400">{sensory.openPlanDetails}</p>
+              <p className="text-sm text-earth-500">{sensory.openPlanDetails}</p>
             )}
           </div>
 
@@ -479,7 +479,7 @@ export function EnhancedSensorySection({ sensory, socialDetails }: EnhancedSenso
               <Home size={16} className="text-green-400" />
               <span className="font-semibold">Remote: {sensory.remote ? 'Available' : 'In-office'}</span>
             </div>
-            {sensory.remoteDetails && <p className="text-sm text-gray-400">{sensory.remoteDetails}</p>}
+            {sensory.remoteDetails && <p className="text-sm text-earth-500">{sensory.remoteDetails}</p>}
           </div>
         </div>
 
@@ -511,27 +511,27 @@ export function EnhancedSensorySection({ sensory, socialDetails }: EnhancedSenso
 
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <span className="text-sm text-gray-400">Team Size</span>
+              <span className="text-sm text-earth-500">Team Size</span>
               <p className="font-semibold">{socialDetails.teamSize || 'Varies'} people</p>
             </div>
             <div>
-              <span className="text-sm text-gray-400">Daily Interactions</span>
+              <span className="text-sm text-earth-500">Daily Interactions</span>
               <p className="font-semibold">{socialDetails.dailyInteractions}</p>
             </div>
             <div>
-              <span className="text-sm text-gray-400">Client Facing?</span>
+              <span className="text-sm text-earth-500">Client Facing?</span>
               <p className="font-semibold">{socialDetails.clientFacing ? 'Yes' : 'No'}</p>
             </div>
             <div>
-              <span className="text-sm text-gray-400">Presentations?</span>
+              <span className="text-sm text-earth-500">Presentations?</span>
               <p className="font-semibold">{socialDetails.presentationsRequired ? 'Yes' : 'No'}</p>
             </div>
             <div>
-              <span className="text-sm text-gray-400">Phone Calls?</span>
+              <span className="text-sm text-earth-500">Phone Calls?</span>
               <p className="font-semibold">{socialDetails.phoneCallsRequired ? 'Yes' : 'No'}</p>
             </div>
             <div>
-              <span className="text-sm text-gray-400">Communication Style</span>
+              <span className="text-sm text-earth-500">Communication Style</span>
               <p className="font-semibold capitalize">
                 {socialDetails.writtenVsVerbal?.replace('-', ' ')}
               </p>

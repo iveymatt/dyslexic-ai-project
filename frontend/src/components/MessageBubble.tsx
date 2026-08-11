@@ -42,21 +42,25 @@ export function MessageBubble({ message }: MessageBubbleProps) {
       <div
         className={`max-w-[80%] rounded-xl px-5 py-4 ${
           isUser
-            ? 'bg-primary-600 text-white'
-            : 'bg-gray-800 text-gray-100 border border-gray-700'
+            ? 'text-white'
+            : ''
         }`}
+        style={isUser
+          ? { background: 'linear-gradient(135deg, #00CBFF, #00a3cc)' }
+          : { background: 'var(--bg-secondary)', color: 'var(--text-primary)', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-subtle)' }
+        }
       >
         {/* Message Content */}
-        <div className="prose prose-invert max-w-none">
+        <div className="prose max-w-none" style={{ color: 'inherit' }}>
           <ReactMarkdown>{message.content}</ReactMarkdown>
         </div>
 
         {/* Actions (only for assistant messages) */}
         {!isUser && (
-          <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-700">
+          <div className="flex items-center gap-2 mt-3 pt-3" style={{ borderTop: '1px solid var(--border-subtle)' }}>
             <button
               onClick={handleSpeak}
-              className="btn-icon text-gray-400 hover:text-white"
+              className="btn-icon"
               aria-label={isSpeaking ? 'Stop speaking' : 'Read aloud'}
               title={isSpeaking ? 'Stop speaking' : 'Read aloud'}
             >
@@ -65,14 +69,14 @@ export function MessageBubble({ message }: MessageBubbleProps) {
 
             <button
               onClick={handleCopy}
-              className="btn-icon text-gray-400 hover:text-white"
+              className="btn-icon"
               aria-label="Copy message"
               title="Copy message"
             >
               {copied ? <Check size={16} /> : <Copy size={16} />}
             </button>
 
-            <span className="text-xs text-gray-500 ml-auto">
+            <span className="text-xs ml-auto" style={{ color: 'var(--text-secondary)', opacity: 0.7 }}>
               {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
             </span>
           </div>
@@ -80,7 +84,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
 
         {/* Timestamp for user messages */}
         {isUser && (
-          <div className="text-xs text-primary-200 mt-2 text-right">
+          <div className="text-xs mt-2 text-right" style={{ opacity: 0.8 }}>
             {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </div>
         )}

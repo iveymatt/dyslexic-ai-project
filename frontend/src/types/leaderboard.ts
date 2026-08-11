@@ -2,6 +2,54 @@
 
 export type ThinkingStyle = 'lateral' | 'linear' | 'balanced' | 'all';
 
+// Tool Categories
+export type ToolCategory =
+  | 'chat'
+  | 'code'
+  | 'research'
+  | 'creative'
+  | 'productivity'
+  | 'learning'
+  | 'accessibility';
+
+export type ToolType =
+  | 'llm'
+  | 'specialized-ai'
+  | 'assistant'
+  | 'search'
+  | 'code-helper'
+  | 'creative-tool';
+
+// Model-Specific Prompt
+export interface ModelPrompt {
+  id: string;
+  title: string;
+  prompt: string;
+  category: string;
+  useCase: string;
+  example?: string;
+}
+
+// User Review
+export interface UserReview {
+  id: string;
+  author: string;
+  rating: number; // 1-10
+  date: string;
+  neurodivergentType?: string; // e.g., "dyslexia", "ADHD", "autism"
+  review: string;
+  helpful: number; // upvotes
+}
+
+// Resource Link
+export interface ResourceLink {
+  id: string;
+  title: string;
+  url: string;
+  type: 'tutorial' | 'guide' | 'video' | 'article' | 'community';
+  description?: string;
+}
+
 export interface NeurodivergentScore {
   lateralThinking: number;        // 1-10: Can handle non-linear exploration
   linearThinking: number;         // 1-10: Can organize and structure
@@ -47,6 +95,10 @@ export interface AITool {
   website: string;
   description: string;
 
+  // NEW: Tool classification
+  category: ToolCategory;
+  type: ToolType;
+
   // Overall scores
   overallScore: number;
   featuresScore: number;
@@ -57,6 +109,12 @@ export interface AITool {
   // General strengths/weaknesses (for features)
   strengths: string[];
   weaknesses: string[];
+
+  // NEW: Dyslexic-friendly features (highlighted)
+  dyslexicFriendlyFeatures: string[];
+
+  // NEW: Best use cases for this tool
+  bestUseCases: string[];
 
   // Features
   features: {
@@ -75,6 +133,18 @@ export interface AITool {
     paid: boolean;
     priceRange?: string;
   };
+
+  // NEW: Model-specific prompts
+  modelPrompts?: ModelPrompt[];
+
+  // NEW: User reviews
+  reviews?: UserReview[];
+
+  // NEW: Resource links
+  resources?: ResourceLink[];
+
+  // NEW: Additional notes/tips
+  notes?: string;
 }
 
 export type ScoreLevel = 'excellent' | 'good' | 'okay' | 'poor' | 'very-poor';

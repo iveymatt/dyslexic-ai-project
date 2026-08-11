@@ -44,7 +44,7 @@ export function TeachableMomentCard({ teachableMoment, userProfile }: TeachableM
           </div>
           <h4 className="font-semibold text-purple-300 text-lg">The Situation</h4>
         </div>
-        <p className="text-gray-200 ml-10 italic">
+        <p className="text-earth-700 ml-10 italic">
           "{teachableMoment.scenario}"
         </p>
       </div>
@@ -57,7 +57,7 @@ export function TeachableMomentCard({ teachableMoment, userProfile }: TeachableM
           </div>
           <h4 className="font-semibold text-blue-300 text-lg">What to Notice</h4>
         </div>
-        <p className="text-gray-200 ml-10">
+        <p className="text-earth-700 ml-10">
           {teachableMoment.whatToNotice}
         </p>
       </div>
@@ -70,7 +70,7 @@ export function TeachableMomentCard({ teachableMoment, userProfile }: TeachableM
           </div>
           <h4 className="font-semibold text-green-300 text-lg">How to Respond</h4>
         </div>
-        <p className="text-gray-200 ml-10">
+        <p className="text-earth-700 ml-10">
           {teachableMoment.howToRespond}
         </p>
       </div>
@@ -81,7 +81,7 @@ export function TeachableMomentCard({ teachableMoment, userProfile }: TeachableM
           <Target size={20} className="text-pink-400" />
           <h4 className="font-semibold text-pink-300">Why This Matters for Your Independence</h4>
         </div>
-        <p className="text-gray-200 text-sm">
+        <p className="text-earth-700 text-sm">
           {teachableMoment.whyItMatters}
         </p>
       </div>
@@ -99,7 +99,7 @@ export function TeachableMomentCard({ teachableMoment, userProfile }: TeachableM
           <Sparkles size={20} />
           Practice This Scenario with AI Coach
         </button>
-        <p className="text-xs text-center text-gray-400 mt-2">
+        <p className="text-xs text-center text-earth-500 mt-2">
           Get personalized guidance based on your AI Leaderboard score and neurodivergent profile
         </p>
       </div>

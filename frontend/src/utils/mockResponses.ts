@@ -34,6 +34,25 @@ const researchDigestResponses = [
   "Here's what you need to know:\n\n**THE ANSWER:** [Main point]\n\n**WHY IT MATTERS:** [Context]\n\n**HOW IT WORKS:** [Explanation]\n\n**WHAT TO DO:** [Action steps]\n\nClear? Want me to dive deeper into any part?",
 ];
 
+// SKEPTIC MODE RESPONSES
+const realityCheckResponses = [
+  "I can see why you're thinking about this - it's a solid starting point. Now let me help you stress-test it:\n\n**Questions to Consider:**\n• What assumptions are you making here?\n• Who might disagree with this approach and why?\n• What constraints haven't we discussed yet (budget, time, people, policies)?\n\n**Potential Blind Spots:**\n• [Area you might not have considered]\n• [Another perspective to think about]\n\n**How to Strengthen This:**\n• [Specific improvement suggestion]\n• [Risk mitigation strategy]\n\nWhat feels most important to address first? 🎯",
+  "This is a strong idea! Let's make it bulletproof. I'm going to challenge a few things - remember, I'm on your side:\n\n**Assumption Check:**\nYou're assuming [X]. What if that's not true? How would your plan change?\n\n**Stakeholder Test:**\nWho needs to approve this? Who might resist? What are their concerns?\n\n**Reality Constraints:**\n• Time: Is your timeline realistic?\n• Budget: Any hidden costs?\n• People: Do you have the right team/support?\n\n**Making It Stronger:**\nHere's what would address those concerns: [suggestions]\n\nThoughts?",
+  "Good thinking! Now let's play devil's advocate to make this even better:\n\n**If I were skeptical, I'd ask:**\n1. What's your evidence this will work?\n2. What's worked/failed in similar situations?\n3. What if your main assumption is wrong?\n\n**Perspectives You Might Be Missing:**\n• [Viewpoint A]\n• [Viewpoint B]\n\n**Strengthening Strategy:**\n• Address [concern] by [solution]\n• Test [assumption] by [method]\n\nThis isn't about shutting down the idea - it's about making it unstoppable. Which concern do you want to tackle first?",
+];
+
+const riskAssessorResponses = [
+  "Let's make sure this plan is bulletproof. I'll help you spot the risks:\n\n**HIGH-RISK AREAS:**\n• [Risk 1] (High likelihood) - Why this matters: [explanation]\n• [Risk 2] (Medium likelihood) - Potential impact: [details]\n\n**FAILURE MODES:**\n• What if [X] goes wrong? → Impact: [Y]\n• What if [X] takes 3x longer? → Impact: [Y]\n\n**MITIGATION STRATEGIES:**\n• For [Risk 1]: Consider [solution]\n• For [Risk 2]: Build in [buffer/backup plan]\n\n**REALISTIC OBSTACLES:**\n💰 Budget: [potential hidden costs]\n⏰ Time: [what might take longer]\n👥 People: [approval/resistance challenges]\n\nWhat's the biggest risk that concerns you?",
+  "Smart to think this through! Let me identify the landmines before you step on them:\n\n**RISK ANALYSIS:**\n\n**🔴 Critical Risks:**\n• [High-impact risk] - If this happens, it could [consequence]\n• [Another critical risk] - Likelihood: [assessment]\n\n**🟡 Moderate Risks:**\n• [Medium-impact risk] - Manageable if caught early\n• [Another moderate risk] - Can be mitigated by [action]\n\n**WHAT COULD DERAIL THIS:**\n1. [Scenario 1] → Plan B: [backup strategy]\n2. [Scenario 2] → Plan B: [alternative approach]\n\n**QUESTIONS TO ANSWER BEFORE PROCEEDING:**\n• [Critical question 1]\n• [Critical question 2]\n\nCelebrate that you're catching these NOW, not later! Which risk should we plan for first?",
+  "Great initiative! Let's identify risks so you can plan ahead:\n\n**FAILURE MODE ANALYSIS:**\n\n**If [key component] fails:**\n• Impact: [what breaks]\n• Probability: [likelihood]\n• Mitigation: [how to prevent/recover]\n\n**If timeline slips:**\n• Where's the slack? [buffer zones]\n• What's the critical path? [must-have milestones]\n• Backup plan: [alternatives]\n\n**If stakeholders resist:**\n• Who are the blockers? [identify]\n• What are their concerns? [empathize]\n• How to get buy-in? [strategy]\n\n**RISK SCORECARD:**\n🎯 Highest priority to address: [top risk]\n⚠️ Watch closely: [risks to monitor]\n✅ Acceptable risks: [low concern items]\n\nLet's build contingencies for the top ones. Ready?",
+];
+
+const assumptionChallengerResponses = [
+  "I love the vision here! Let me help you uncover what you might be taking for granted:\n\n**ASSUMPTIONS I'M HEARING:**\n• You're assuming [X] - What if that's not true? How would you validate this?\n• You're assuming [Y] - What's the evidence for this belief?\n• You're assuming [Z] - What if the opposite were true?\n\n**ALTERNATIVE PERSPECTIVES:**\nHow might these people see this differently?\n• [Stakeholder A]: They might think [viewpoint]\n• [Stakeholder B]: They might worry about [concern]\n• [Stakeholder C]: They might prioritize [different goal]\n\n**QUESTIONS TO TEST YOUR ASSUMPTIONS:**\n• [Test question 1]\n• [Test question 2]\n• [Test question 3]\n\n**BLIND SPOTS TO CONSIDER:**\n• [Unexplored area]\n• [Missing perspective]\n\nWhich assumption feels most critical to validate?",
+  "Strong start! Now let's test the foundation. I'm noticing some assumptions we should validate:\n\n**ASSUMPTION AUDIT:**\n\n**About Users/Audience:**\n• Assuming they want [X] - Have you asked them?\n• Assuming they'll pay [Y] - What's that based on?\n• Assuming they'll use it [Z way] - What if they don't?\n\n**About Resources:**\n• Assuming you have [time/budget/people]\n• Assuming [X] will be available when needed\n• Assuming costs will be [estimate]\n\n**About Implementation:**\n• Assuming it will take [timeframe]\n• Assuming [technical assumption]\n• Assuming [process assumption]\n\n**HOW TO VALIDATE:**\n1. For [assumption 1]: Try [validation method]\n2. For [assumption 2]: Test by [experiment]\n3. For [assumption 3]: Ask [specific people]\n\nWhat's one assumption you could test this week?",
+  "This is exciting! Let me help you see what you might be jumping over:\n\n**HIDDEN ASSUMPTIONS:**\n\n**You're assuming people will:**\n• [Behavior assumption] - But what if they actually [different behavior]?\n• [Motivation assumption] - Have you validated this?\n\n**You're assuming the environment:**\n• [Context assumption] - Is this still true?\n• [Market/policy assumption] - What's changed recently?\n\n**You're assuming about yourself:**\n• [Capability assumption] - Do you have the skills/time/resources?\n• [Commitment assumption] - What if your priorities shift?\n\n**WHAT IF YOU'RE WRONG?**\nIf [key assumption] is wrong, then [impact]. How would you pivot?\n\n**STRESS TEST:**\nLet's validate the 3 most critical assumptions. Which ones feel shakiest?\n\nRemember: Neurodivergent brains make brilliant leaps - we're just making sure the landing pad is solid! 🚀",
+];
+
 export function generateMockResponse(userMessage: string, mode: ThinkingMode, subAgent: SubAgent): string {
   const lowerMessage = userMessage.toLowerCase();
 
@@ -98,8 +117,7 @@ export function generateMockResponse(userMessage: string, mode: ThinkingMode, su
     } else {
       responses = thinkOutLoudResponses;
     }
-  } else {
-    // strategic mode
+  } else if (mode === 'strategic') {
     if (subAgent === 'writing-clarity') {
       responses = writingClarityResponses;
     } else if (subAgent === 'task-breakdown') {
@@ -109,6 +127,19 @@ export function generateMockResponse(userMessage: string, mode: ThinkingMode, su
     } else {
       responses = taskBreakdownResponses;
     }
+  } else if (mode === 'skeptic') {
+    if (subAgent === 'reality-check') {
+      responses = realityCheckResponses;
+    } else if (subAgent === 'risk-assessor') {
+      responses = riskAssessorResponses;
+    } else if (subAgent === 'assumption-challenger') {
+      responses = assumptionChallengerResponses;
+    } else {
+      responses = realityCheckResponses;
+    }
+  } else {
+    // Fallback to socratic
+    responses = thinkOutLoudResponses;
   }
 
   // Return a random response from the appropriate response set

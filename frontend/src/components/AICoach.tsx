@@ -81,7 +81,7 @@ export function AICoach({ context, scenario, relatedPrompts, userProfile }: AICo
   }
 
   return (
-    <div className="fixed bottom-6 right-6 w-96 bg-gray-800 border-2 border-purple-500 rounded-2xl shadow-2xl z-50 flex flex-col max-h-[600px]">
+    <div className="fixed bottom-6 right-6 w-96 bg-white border-2 border-purple-500 rounded-2xl shadow-2xl z-50 flex flex-col max-h-[600px]">
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-t-xl flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -131,12 +131,12 @@ export function AICoach({ context, scenario, relatedPrompts, userProfile }: AICo
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 ? (
           <div className="text-center py-8">
-            <MessageCircle size={48} className="text-gray-600 mx-auto mb-4" />
-            <p className="text-gray-400 text-sm mb-4">
+            <MessageCircle size={48} className="text-earth-400 mx-auto mb-4" />
+            <p className="text-earth-500 text-sm mb-4">
               I'm here to help you practice and learn! Ask me anything about this scenario.
             </p>
             <div className="space-y-2">
-              <p className="text-xs text-gray-500 font-semibold mb-2">Quick Questions:</p>
+              <p className="text-xs text-earth-400 font-semibold mb-2">Quick Questions:</p>
               {getSuggestedQuestions().map((q, idx) => (
                 <button
                   key={idx}
@@ -158,7 +158,7 @@ export function AICoach({ context, scenario, relatedPrompts, userProfile }: AICo
                 className={`max-w-[80%] p-3 rounded-lg ${
                   msg.role === 'user'
                     ? 'bg-purple-600 text-white'
-                    : 'bg-gray-700 text-gray-200 border border-gray-600'
+                    : 'bg-earth-100 text-earth-700 border border-earth-200'
                 }`}
               >
                 <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
@@ -169,7 +169,7 @@ export function AICoach({ context, scenario, relatedPrompts, userProfile }: AICo
       </div>
 
       {/* Input */}
-      <div className="border-t border-gray-700 p-3">
+      <div className="border-t border-earth-200 p-3">
         <div className="flex gap-2">
           <input
             type="text"
@@ -177,17 +177,17 @@ export function AICoach({ context, scenario, relatedPrompts, userProfile }: AICo
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
             placeholder="Ask me anything..."
-            className="flex-1 bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-purple-500"
+            className="flex-1 bg-earth-100 border border-earth-200 rounded-lg px-3 py-2 text-earth-800 text-sm focus:outline-none focus:border-purple-500"
           />
           <button
             onClick={handleSend}
             disabled={!input.trim()}
-            className="bg-purple-600 hover:bg-purple-500 disabled:bg-gray-600 disabled:cursor-not-allowed text-white rounded-lg px-4 py-2 transition-all"
+            className="bg-purple-600 hover:bg-purple-500 disabled:bg-earth-200 disabled:cursor-not-allowed text-white rounded-lg px-4 py-2 transition-all"
           >
             <Send size={18} />
           </button>
         </div>
-        <p className="text-xs text-gray-500 mt-2 flex items-center gap-1">
+        <p className="text-xs text-earth-400 mt-2 flex items-center gap-1">
           <TrendingUp size={12} />
           Powered by your AI thinking profile
         </p>

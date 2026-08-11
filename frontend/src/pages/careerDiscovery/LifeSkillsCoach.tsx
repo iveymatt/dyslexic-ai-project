@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { UserProfile } from '../../types/career';
 import { lifeSkillsModules } from '../../data/careerDiscovery/lifeSkills';
 import { SkillsModuleCard, LessonCard, LessonContent } from '../../components/SkillsModule';
 import { BookOpen, Heart } from 'lucide-react';
 
-interface LifeSkillsCoachProps {
-  onBack: () => void;
-}
-
-export function LifeSkillsCoach({ onBack }: LifeSkillsCoachProps) {
+export function LifeSkillsCoach() {
+  const navigate = useNavigate();
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [selectedModule, setSelectedModule] = useState<string | null>(null);
   const [selectedLesson, setSelectedLesson] = useState<number | null>(null);
@@ -162,7 +160,7 @@ export function LifeSkillsCoach({ onBack }: LifeSkillsCoachProps) {
                 Master the skills you need for adult life. Built for neurodivergent brains.
               </p>
             </div>
-            <button onClick={onBack} className="btn-secondary">
+            <button onClick={() => navigate('/career-discovery')} className="btn-secondary">
               ← Back
             </button>
           </div>
