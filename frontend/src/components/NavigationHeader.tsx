@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Brain, Menu, User, Settings, ChevronDown, X } from 'lucide-react';
+import { Brain, Menu, User, Settings, ChevronDown, X, LogOut } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { useAuth } from '../hooks/useAuth';
 
 interface NavigationHeaderProps {
   onOpenAIModePanel: () => void;
@@ -11,7 +12,13 @@ interface NavigationHeaderProps {
 export function NavigationHeader({ onOpenAIModePanel, hasProfile }: NavigationHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { currentMode, accessibilityPanelOpen, setAccessibilityPanelOpen } = useApp();
+  const { user, signOut } = useAuth();
   const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    await signOut();
+    setMobileMenuOpen(false);
+  };
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `px-4 py-2 rounded-lg transition-colors ${
@@ -91,6 +98,18 @@ export function NavigationHeader({ onOpenAIModePanel, hasProfile }: NavigationHe
           >
             <Settings size={20} />
           </button>
+
+          {/* Sign out */}
+          {user && (
+            <button
+              onClick={handleSignOut}
+              className="hidden md:flex btn-icon"
+              aria-label="Sign out"
+              title={user.email}
+            >
+              <LogOut size={20} />
+            </button>
+          )}
         </div>
       </nav>
 
@@ -182,6 +201,17 @@ export function NavigationHeader({ onOpenAIModePanel, hasProfile }: NavigationHe
               >
                 <span className="text-sm">AI Mode: <span className="capitalize">{currentMode}</span></span>
               </button>
+
+              {user && (
+                <button
+                  onClick={handleSignOut}
+                  className="px-4 py-3 rounded-lg text-left flex items-center gap-2"
+                  style={{ color: 'var(--text-secondary)' }}
+                >
+                  <LogOut size={18} />
+                  <span className="text-sm">Sign out ({user.email})</span>
+                </button>
+              )}
             </nav>
           </div>
         </div>
