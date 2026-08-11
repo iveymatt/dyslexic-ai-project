@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import Anthropic from '@anthropic-ai/sdk';
-import { getSubAgentConfig } from '../src/config/modes';
+import { getSubAgentConfig } from '../src/config/modes.js';
 import type { ThinkingMode, SubAgent } from '../src/types';
 
 // Reads ANTHROPIC_API_KEY from the function's environment — never sent to the client.
