@@ -89,10 +89,13 @@ export function ChatArea() {
               <div className={`inline-flex items-center justify-center w-16 h-16 ${currentModeConfig.color} rounded-full mb-6`}>
                 <Brain size={32} className="text-white" />
               </div>
+              <div className="eyebrow-label">
+                <span>Cognitive Partner</span>
+              </div>
               <h2 className="text-3xl font-bold mb-2 font-serif" style={{ color: 'var(--text-primary)' }}>
                 {currentModeConfig.name} Mode
               </h2>
-              <h3 className="text-xl text-cyan-500 mb-4">
+              <h3 className="text-xl mb-4" style={{ color: 'var(--text-accent)' }}>
                 {currentSubAgentConfig?.name}
               </h3>
               <p className="text-lg mb-8" style={{ color: 'var(--text-secondary)' }}>
@@ -105,7 +108,7 @@ export function ChatArea() {
                   <button
                     key={idx}
                     onClick={() => handleSendMessage(prompt)}
-                    className="text-left p-4 rounded-lg card cursor-pointer"
+                    className="text-left p-4 card cursor-pointer"
                   >
                     <p style={{ color: 'var(--text-secondary)' }}>{prompt}</p>
                   </button>
@@ -113,7 +116,7 @@ export function ChatArea() {
               </div>
 
               {/* Info */}
-              <div className="mt-12 p-6 rounded-lg card">
+              <div className="mt-12 p-6 card">
                 <h3 className="font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>About This Mode</h3>
                 <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
                   {currentModeConfig.description}
@@ -139,12 +142,12 @@ export function ChatArea() {
             ))}
             {isProcessing && (
               <div className="flex justify-start mb-6">
-                <div className="rounded-xl px-5 py-4 card">
+                <div className="px-5 py-4 card">
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1">
-                      <span className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                      <span className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                      <span className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                      <span className="w-2 h-2 rounded-full animate-bounce" style={{ background: 'var(--text-accent)', animationDelay: '0ms' }}></span>
+                      <span className="w-2 h-2 rounded-full animate-bounce" style={{ background: 'var(--text-accent)', animationDelay: '150ms' }}></span>
+                      <span className="w-2 h-2 rounded-full animate-bounce" style={{ background: 'var(--text-accent)', animationDelay: '300ms' }}></span>
                     </div>
                     <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>Thinking...</span>
                   </div>

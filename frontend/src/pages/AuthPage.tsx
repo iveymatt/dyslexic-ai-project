@@ -52,7 +52,10 @@ export function AuthPage() {
     <div className="min-h-screen flex items-center justify-center p-8" style={{ background: 'var(--bg-primary)' }}>
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-cyan-500 rounded-full mb-6">
+          <div className="eyebrow-label">
+            <span>Cognitive Partner</span>
+          </div>
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6" style={{ background: 'var(--text-accent)' }}>
             <Brain size={32} className="text-white" />
           </div>
           <h1 className="text-3xl font-bold mb-2 font-serif" style={{ color: 'var(--text-primary)' }}>
@@ -65,7 +68,7 @@ export function AuthPage() {
           </p>
         </div>
 
-        <div className="card rounded-lg p-8">
+        <div className="card p-8">
           <button
             onClick={handleGoogleSignIn}
             disabled={googleLoading || loading}
@@ -142,7 +145,8 @@ export function AuthPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-lg font-semibold bg-cyan-500 text-white hover:bg-cyan-600 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full py-3 rounded-lg font-semibold text-white hover:brightness-110 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              style={{ background: 'var(--text-accent)' }}
             >
               {loading ? 'Processing...' : mode === 'signin' ? 'Sign In' : 'Create Account'}
             </button>
@@ -155,7 +159,7 @@ export function AuthPage() {
             style={{ color: 'var(--text-secondary)' }}
           >
             {mode === 'signin' ? "Don't have an account? " : 'Already have an account? '}
-            <span className="text-cyan-500 font-medium">{mode === 'signin' ? 'Sign up' : 'Sign in'}</span>
+            <span className="font-medium" style={{ color: 'var(--text-accent)' }}>{mode === 'signin' ? 'Sign up' : 'Sign in'}</span>
           </button>
         </div>
       </div>

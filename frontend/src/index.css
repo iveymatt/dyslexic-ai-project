@@ -172,15 +172,21 @@
 @layer components {
   /* Buttons */
   .btn {
-    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+    @apply px-4 py-2 font-medium transition-all duration-200;
     @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
   }
 
   .btn-primary {
-    @apply btn bg-cyan-500 hover:bg-cyan-400;
+    @apply btn;
     @apply focus-visible:ring-cyan-500;
+    background: var(--text-accent);
     color: #1A1614;
     font-weight: 600;
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.1);
   }
 
   .btn-secondary {
@@ -249,7 +255,7 @@
   .card {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
     box-shadow: var(--shadow-subtle);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -257,6 +263,31 @@
   .card:hover {
     box-shadow: var(--shadow-medium);
     border-color: var(--border-strong);
+  }
+
+  /* Eyebrow label — small-caps section marker flanked by rules, matches dyslexic.ai marketing site */
+  .eyebrow-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .eyebrow-label span {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-accent);
+  }
+
+  .eyebrow-label::before,
+  .eyebrow-label::after {
+    content: '';
+    width: 40px;
+    height: 2px;
+    background: var(--text-accent);
   }
 
   /* Glow card */

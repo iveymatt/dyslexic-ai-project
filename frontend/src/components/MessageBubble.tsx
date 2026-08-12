@@ -40,10 +40,10 @@ export function MessageBubble({ message }: MessageBubbleProps) {
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-6`}>
       <div
-        className={`max-w-[80%] rounded-xl px-5 py-4 ${
+        className={`max-w-[80%] px-5 py-4 ${
           isUser
-            ? 'text-white'
-            : ''
+            ? 'rounded-2xl rounded-tr-none text-white'
+            : 'rounded-2xl rounded-tl-none'
         }`}
         style={isUser
           ? { background: 'linear-gradient(135deg, #00CBFF, #00a3cc)' }

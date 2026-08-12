@@ -23,7 +23,7 @@ export function NavigationHeader({ onOpenAIModePanel, hasProfile }: NavigationHe
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `px-4 py-2 rounded-lg transition-colors ${
       isActive
-        ? 'bg-cyan-500 text-earth-900 font-semibold'
+        ? 'bg-[var(--text-accent)] text-earth-900 font-semibold'
         : 'hover:bg-earth-100 [data-theme=dark]:hover:bg-earth-800'
     }`;
 
@@ -41,7 +41,7 @@ export function NavigationHeader({ onOpenAIModePanel, hasProfile }: NavigationHe
 
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <Brain className="text-cyan-500" size={28} />
+          <Brain className="text-[var(--text-accent)]" size={28} />
           <h1 className="text-lg font-semibold hidden sm:inline">Cognitive Partner</h1>
         </div>
 
@@ -120,7 +120,7 @@ export function NavigationHeader({ onOpenAIModePanel, hasProfile }: NavigationHe
             {/* Mobile Header */}
             <div className="flex items-center justify-between p-4" style={{ borderBottom: '1px solid var(--border-color)' }}>
               <div className="flex items-center gap-2">
-                <Brain className="text-cyan-500" size={28} />
+                <Brain className="text-[var(--text-accent)]" size={28} />
                 <h1 className="text-lg font-semibold">Cognitive Partner</h1>
               </div>
               <button
@@ -139,7 +139,7 @@ export function NavigationHeader({ onOpenAIModePanel, hasProfile }: NavigationHe
                 onClick={() => setMobileMenuOpen(false)}
                 className={({ isActive }) =>
                   `px-4 py-3 rounded-lg text-lg ${
-                    isActive ? 'bg-cyan-500 text-earth-900 font-semibold' : ''
+                    isActive ? 'bg-[var(--text-accent)] text-earth-900 font-semibold' : ''
                   }`
                 }
               >
@@ -150,7 +150,7 @@ export function NavigationHeader({ onOpenAIModePanel, hasProfile }: NavigationHe
                 onClick={() => setMobileMenuOpen(false)}
                 className={({ isActive }) =>
                   `px-4 py-3 rounded-lg text-lg ${
-                    isActive ? 'bg-cyan-500 text-earth-900 font-semibold' : ''
+                    isActive ? 'bg-[var(--text-accent)] text-earth-900 font-semibold' : ''
                   }`
                 }
               >
@@ -161,7 +161,7 @@ export function NavigationHeader({ onOpenAIModePanel, hasProfile }: NavigationHe
                 onClick={() => setMobileMenuOpen(false)}
                 className={({ isActive }) =>
                   `px-4 py-3 rounded-lg text-lg ${
-                    isActive ? 'bg-cyan-500 text-earth-900 font-semibold' : ''
+                    isActive ? 'bg-[var(--text-accent)] text-earth-900 font-semibold' : ''
                   }`
                 }
               >
@@ -172,7 +172,7 @@ export function NavigationHeader({ onOpenAIModePanel, hasProfile }: NavigationHe
                 onClick={() => setMobileMenuOpen(false)}
                 className={({ isActive }) =>
                   `px-4 py-3 rounded-lg text-lg ${
-                    isActive ? 'bg-cyan-500 text-earth-900 font-semibold' : ''
+                    isActive ? 'bg-[var(--text-accent)] text-earth-900 font-semibold' : ''
                   }`
                 }
               >
@@ -183,7 +183,7 @@ export function NavigationHeader({ onOpenAIModePanel, hasProfile }: NavigationHe
                 onClick={() => setMobileMenuOpen(false)}
                 className={({ isActive }) =>
                   `px-4 py-3 rounded-lg text-lg ${
-                    isActive ? 'bg-cyan-500 text-earth-900 font-semibold' : ''
+                    isActive ? 'bg-[var(--text-accent)] text-earth-900 font-semibold' : ''
                   }`
                 }
               >
